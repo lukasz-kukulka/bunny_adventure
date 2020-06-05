@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Option.hpp"
 #include "Interface.hpp"
+extern sf::Vector2i mouse;
 
 int main()
 {
@@ -10,15 +11,19 @@ int main()
     sf::RenderWindow window(sf::VideoMode(1280, 1000), "SFML window");
     // Limit the framerate to 60 frames per second
     window.setFramerateLimit(60);
+    
     Interface inter(window);
     Option* go_to_option = &inter;
     while (window.isOpen())
     {
+        sf::Vector2i mouse = sf::Mouse::getPosition(window);
+   
         switch (menu_option)
         {
         case 0:
         {
             go_to_option = &inter;
+            menu_option = go_to_option->system(window, mouse);
             break;
         }
             
