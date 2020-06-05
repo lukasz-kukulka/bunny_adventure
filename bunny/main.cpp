@@ -8,7 +8,7 @@ int main()
 {
     unsigned __int8 menu_option = 0;
     // Create the main window
-    sf::RenderWindow window(sf::VideoMode(1280, 1000), "SFML window");
+    sf::RenderWindow window(sf::VideoMode(1280, 1000), "Bunny adventure");
     // Limit the framerate to 60 frames per second
     window.setFramerateLimit(60);
     
@@ -23,7 +23,7 @@ int main()
         case 0:
         {
             go_to_option = &inter;
-            menu_option = go_to_option->system(window, mouse);
+            go_to_option->system(window, mouse);
             break;
         }
             

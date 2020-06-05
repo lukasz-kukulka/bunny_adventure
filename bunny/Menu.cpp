@@ -1,8 +1,10 @@
 #include "Menu.hpp"
 
-Menu::Menu(sf::RenderWindow &window, sf::Texture *texture_left, sf::Texture *texture_mid, sf::Texture *texture_right, sf::Font *font, int index, std::string sub)
+Menu::Menu(sf::RenderWindow& window, sf::Texture *texture_left, sf::Texture *texture_mid, sf::Texture *texture_right, sf::Texture* arrow_left, sf::Texture* arrow_right, sf::Font *font, int index, std::string sub)
 {
 	this->index_number = index;
+	this->arrow_left = arrow_left;
+	this->arrow_right = arrow_right;
 
 	this->button_sprite_left.setTexture(*texture_left);
 	this->button_sprite_mid.setTexture(*texture_mid);
@@ -30,9 +32,11 @@ Menu::Menu(sf::RenderWindow &window, sf::Texture *texture_left, sf::Texture *tex
 	this->button_sprite_left.setColor(sf::Color(255, 255, 255, 144));
 	this->button_sprite_right.setColor(sf::Color(255, 255, 255, 144));
 
-	scale_mid_sprite_x = button_sprite_mid.getScale().x;
-	scale_mid_sprite_x_mark = button_sprite_mid.getScale().x + 0.2;
+	this->scale_mid_sprite_x = button_sprite_mid.getScale().x;
+	this->scale_mid_sprite_x_mark = button_sprite_mid.getScale().x + 0.2;
 
+	
+	//arrows.push_back(Arrow(*arrow_left, 138, 111, 0.5, 0.5));
 }
 
 int Menu::mark(sf::RenderWindow& window, sf::Vector2i mouse)
@@ -50,12 +54,21 @@ int Menu::mark(sf::RenderWindow& window, sf::Vector2i mouse)
 		this->button_sprite_right.setColor(sf::Color(255, 255, 255, 222));
 
 		this->text_menu.setFillColor(sf::Color(255, 0, 0, 255));
+		if (arrows.size() == 0)
+		{
+			arrows.push_back(Arrow(*arrow_right, button_sprite_right.getPosition().x + button_sprite_right.getGlobalBounds().width, button_sprite_left.getPosition().y, button_sprite_left.getScale().x, button_sprite_left.getScale().y));
+			arrows.push_back(Arrow(*arrow_left, button_sprite_left.getPosition().x - arrows[0].global_x(), button_sprite_left.getPosition().y, button_sprite_left.getScale().x, button_sprite_left.getScale().y));
+		}
+		
 
 		return 0;
 	}
 	else
 	{
-
+		if (arrows.size() > 0)
+		{
+			arrows.erase(arrows.begin(), arrows.end());
+		}
 		this->button_sprite_mid.setScale(scale_mid_sprite_x, button_sprite_mid.getScale().y);
 		this->button_sprite_mid.setPosition(text_menu.getPosition().x + text_menu.getGlobalBounds().width/2 - button_sprite_mid.getGlobalBounds().width/2, text_menu.getPosition().y);
 		this->button_sprite_left.setPosition(button_sprite_mid.getPosition().x - button_sprite_left.getGlobalBounds().width, button_sprite_mid.getPosition().y);
@@ -71,6 +84,26 @@ int Menu::mark(sf::RenderWindow& window, sf::Vector2i mouse)
 	return 0;
 }
 
+int Menu::begin_button_x()
+{
+	return button_sprite_left.getPosition().x;
+}
+
+int Menu::end_button_x()
+{
+	return button_sprite_right.getPosition().x + button_sprite_right.getGlobalBounds().width;
+}
+
+int Menu::begin_button_y()
+{
+	return button_sprite_left.getPosition().y;
+}
+
+double Menu::scale()
+{
+	return button_sprite_left.getScale().x;
+}
+
 void Menu::draw(sf::RenderWindow& window)
 {
 	//std::cout << " DRAW " << button_sprite_mid.getPosition().x << std::endl;
@@ -79,4 +112,6 @@ void Menu::draw(sf::RenderWindow& window)
 	window.draw(button_sprite_mid);
 	window.draw(button_sprite_right);
 	window.draw(text_menu);
+	for (auto i : arrows)
+		i.draw(window);
 }

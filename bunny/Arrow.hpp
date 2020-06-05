@@ -4,8 +4,9 @@
 class Arrow
 {
 public:
-	Arrow(int, int, double, double, sf::Texture*);
+	Arrow(sf::Texture&, int, int, double, double);
 
+	int global_x();
 	void draw(sf::RenderWindow&);
 
 private:
