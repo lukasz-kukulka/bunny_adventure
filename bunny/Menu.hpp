@@ -3,7 +3,7 @@
 #include <iostream>
 #include "Arrow.hpp"
 
-class Menu 
+class Menu
 {
 public:
 	Menu(sf::RenderWindow& window, sf::Texture*, sf::Texture*, sf::Texture*, sf::Texture*, sf::Texture*, sf::Font*, int, std::string);
@@ -16,12 +16,13 @@ public:
 	void draw(sf::RenderWindow&);
 
 private:
-	sf::Texture* arrow_left, *arrow_right;
+	sf::Texture* arrow_left, * arrow_right;
 	sf::Sprite button_sprite_left, button_sprite_mid, button_sprite_right;
 	sf::Text text_menu;
-	
+
 	int index_number;
 	double scale_mid_sprite_x_mark, scale_mid_sprite_x;
-	std::vector<Arrow>arrows;
-};
 
+	std::vector<Arrow>arrows;
+
+};

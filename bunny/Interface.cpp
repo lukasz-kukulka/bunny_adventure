@@ -2,6 +2,8 @@
 
 Interface::Interface(sf::RenderWindow& window)
 {
+	this->end_animation = false;
+
 	background_tex.loadFromFile("Textures/Menu/background1.jpg");
 	background_sprite.setTexture(background_tex);
 	background_sprite.setScale(1.0 / 1080.0 * window.getSize().y, 1.0 / 1080.0 * window.getSize().y);
@@ -11,10 +13,17 @@ Interface::Interface(sf::RenderWindow& window)
 	menu_button_mid.loadFromFile("Textures/Menu/mid_button_blue.png");
 	menu_button_right.loadFromFile("Textures/Menu/right_button_blue.png");
 
+	leaf.loadFromFile("Textures/Menu/leaf.png");
+
+	jaguar.loadFromFile("Textures/Menu/Jaguar.png");
+	cloud.loadFromFile("Textures/Menu/cloud.png");
+	forest.loadFromFile("Textures/Menu/forest1.png");
+
 	arrow_left.loadFromFile("Textures/Menu/arrow_left.png");
 	arrow_right.loadFromFile("Textures/Menu/arrow_right.png");
 
 	font_menu_button.loadFromFile("Fonts/avocado.ttf");
+	button_confirm_font.loadFromFile("Fonts/bongus.ttf");
     //#include <random>
 	//#include <chrono>
 	//std::default_random_engine generator;
@@ -23,34 +32,67 @@ Interface::Interface(sf::RenderWindow& window)
 
 	button_menu.push_back(Menu(window, &menu_button_left, &menu_button_mid, &menu_button_right, &arrow_left, &arrow_right, &font_menu_button, button_menu.size(), "New game"));
 	button_menu.push_back(Menu(window, &menu_button_left, &menu_button_mid, &menu_button_right, &arrow_left, &arrow_right, &font_menu_button, button_menu.size(), "Best Score"));
-	button_menu.push_back(Menu(window, &menu_button_left, &menu_button_mid, &menu_button_right, &arrow_left, &arrow_right, &font_menu_button, button_menu.size(), "Options"));
+	button_menu.push_back(Menu(window, &menu_button_left, &menu_button_mid, &menu_button_right, &arrow_left, &arrow_right, &font_menu_button, button_menu.size(), "Settings"));
 	button_menu.push_back(Menu(window, &menu_button_left, &menu_button_mid, &menu_button_right, &arrow_left, &arrow_right, &font_menu_button, button_menu.size(), "Credits"));
 	button_menu.push_back(Menu(window, &menu_button_left, &menu_button_mid, &menu_button_right, &arrow_left, &arrow_right, &font_menu_button, button_menu.size(), "Exit"));
 
-	//arrows.push_back(Arrow(&arrow_right, button_menu[0].begin_button_x(), button_menu[0].begin_button_y(), button_menu[0].scale(), button_menu[0].scale()));
-	//arrows.push_back(Arrow(&arrow_left, button_sprite_left.getPosition().x - 138, button_sprite_left.getPosition().y, button_sprite_left.getScale().x, button_sprite_left.getScale().y));
+	exit_objects.push_back(Exit(window, &jaguar, &cloud, &forest, &font_menu_button));
 }
 
 int Interface::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
-	for (int i = 0; i < button_menu.size(); i++)
+	if (end_animation == true)
 	{
-		//std::cout << i << std::endl;
-		//std::cout << i << " ----- " << button_menu[i].mark(window, mouse) << std::endl;
-		if(button_menu[i].mark(window, mouse) != 0)
-			return button_menu[i].mark(window, mouse);
-		for (auto i : button_menu)
-			i.mark(window, mouse);
+		for (int i = 0; i < exit_objects.size(); i++)
+		{
+			if (exit_objects[i].system(window, mouse) == 5)
+			{
+				for (int j = 0; j < exit_objects.size(); j++)
+				{
+					exit_objects[j].sub();
+					if (buttons.size() <= 1)
+					{
+						buttons.push_back(Button(window, &leaf, &button_confirm_font, "YES", buttons.size(), exit_objects[0].fox_pos_X_out(), exit_objects[0].fox_pos_Y_out()));
+						buttons.push_back(Button(window, &leaf, &button_confirm_font, "NO", buttons.size(), exit_objects[0].fox_pos_X_out(), exit_objects[0].fox_pos_Y_out()));
+					}
+					for (int x = 0; x < buttons.size(); x++)
+					{
+						if (buttons[x].system(window, mouse) == 5)
+						{
+							return 5;
+						}
 
-		//else
-			//button_menu[i].mark(window, mouse);
-			
+						else if (buttons[x].system(window, mouse) == 1)
+						{
+							buttons.erase(buttons.begin(), buttons.end());
+							exit_objects[0].no_exit();
+							end_animation = false;
+							return 0;
+						}
+						
+					}
+					
+				}
+			}
+		}
+		return 0;
+
 	}
-	//for (auto i : button_menu)
-		//i.mark(window, mouse);
-		//return i.mark(window, mouse);;
+
+	else
+	{
+		for (int i = 0; i < button_menu.size(); i++)
+		{
+			if (button_menu[i].mark(window, mouse) != 0 && button_menu[i].mark(window, mouse) != 5)
+				return button_menu[i].mark(window, mouse);
+			else if (button_menu[i].mark(window, mouse) == 5)
+				end_animation = true;
+			for (auto i : button_menu)
+				i.mark(window, mouse);
+		}
+		return 0;
+	}
 	
-	return 0;
 }
 
 void Interface::draw(sf::RenderWindow& window)
@@ -58,9 +100,13 @@ void Interface::draw(sf::RenderWindow& window)
 	window.draw(background_sprite);
 	for (auto i : button_menu)
 		i.draw(window);
-	
-	//for (auto i : tree)
-		//i.draw(window);
-	//for (auto i : green2)
-		//i.draw(window);
+	for (auto i : exit_objects)
+		i.draw(window);
+	for (auto i : buttons)
+		i.draw(window);
+	//for (int i = 0; i < buttons.size(); i++)
+	//{
+	//	buttons[i].draw(window);
+	//}
+
 }

@@ -1,8 +1,9 @@
+#include <SFML/Graphics.hpp>
 #include "Menu.hpp"
 
 Menu::Menu(sf::RenderWindow& window, sf::Texture *texture_left, sf::Texture *texture_mid, sf::Texture *texture_right, sf::Texture* arrow_left, sf::Texture* arrow_right, sf::Font *font, int index, std::string sub)
 {
-	this->index_number = index;
+	this->index_number = index + 1;
 	this->arrow_left = arrow_left;
 	this->arrow_right = arrow_right;
 
@@ -34,9 +35,6 @@ Menu::Menu(sf::RenderWindow& window, sf::Texture *texture_left, sf::Texture *tex
 
 	this->scale_mid_sprite_x = button_sprite_mid.getScale().x;
 	this->scale_mid_sprite_x_mark = button_sprite_mid.getScale().x + 0.2;
-
-	
-	//arrows.push_back(Arrow(*arrow_left, 138, 111, 0.5, 0.5));
 }
 
 int Menu::mark(sf::RenderWindow& window, sf::Vector2i mouse)
@@ -60,8 +58,12 @@ int Menu::mark(sf::RenderWindow& window, sf::Vector2i mouse)
 			arrows.push_back(Arrow(*arrow_left, button_sprite_left.getPosition().x - arrows[0].global_x(), button_sprite_left.getPosition().y, button_sprite_left.getScale().x, button_sprite_left.getScale().y));
 		}
 		
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			return index_number;
+		}
 
-		return 0;
+		
 	}
 	else
 	{

@@ -2,32 +2,69 @@
 #include <SFML/Graphics.hpp>
 #include "Option.hpp"
 #include "Interface.hpp"
+#include "Exit.hpp"
+#include "Credits.hpp"
 extern sf::Vector2i mouse;
 
 int main()
 {
-    unsigned __int8 menu_option = 0;
+    int menu_option = 0;
     // Create the main window
-    sf::RenderWindow window(sf::VideoMode(1280, 1000), "Bunny adventure");
+    sf::RenderWindow window(sf::VideoMode(1880, 1000), "Bunny adventure");
     // Limit the framerate to 60 frames per second
     window.setFramerateLimit(60);
     
     Interface inter(window);
+    Credits credits(window);
     Option* go_to_option = &inter;
+    
     while (window.isOpen())
     {
         sf::Vector2i mouse = sf::Mouse::getPosition(window);
-   
+        std::cout << menu_option << "  -  ";
         switch (menu_option)
         {
-        case 0:
+        case 0: //menu interface
         {
             go_to_option = &inter;
-            go_to_option->system(window, mouse);
+            menu_option = go_to_option->system(window, mouse);
             break;
         }
+        
+        case 1: //Game
+        {
             
+            break;
+        }
+
+        case 2: //High score
+        {
+
+            break;
+        }
+
+        case 3: //Setings
+        {
+
+            break;
+        }
+
+        case 4: //Credits
+        {
+            go_to_option = &credits;
+            menu_option = go_to_option->system(window, mouse);
+            break;
+        }
+
+        case 5://Close
+        {
+            window.close();
+            break;
+        }
+
         default:
+            //go_to_option = &inter;
+            //menu_option = go_to_option->system(window, mouse);
             break;
         }
         // Process events
