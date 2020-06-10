@@ -4,6 +4,7 @@
 #include "Interface.hpp"
 #include "Exit.hpp"
 #include "Credits.hpp"
+#include "Settings_page.hpp"
 #include <stdlib.h>
 #include <time.h> 
 extern sf::Vector2i mouse;
@@ -19,6 +20,7 @@ int main()
     
     Interface inter(window);
     Credits credits(window);
+    Settings_page settings_page(window);
     Option* go_to_option = &inter;
     
     while (window.isOpen())
@@ -46,9 +48,10 @@ int main()
             break;
         }
 
-        case 3: //Setings
+        case 3: //Settings
         {
-
+            go_to_option = &settings_page;
+            menu_option = go_to_option->system(window, mouse);
             break;
         }
 
