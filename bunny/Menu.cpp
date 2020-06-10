@@ -3,7 +3,7 @@
 
 Menu::Menu(sf::RenderWindow& window, sf::Texture *texture_left, sf::Texture *texture_mid, sf::Texture *texture_right, sf::Texture* arrow_left, sf::Texture* arrow_right, sf::Font *font, int index, std::string sub)
 {
-	this->index_number = index + 1;
+	this->index_number = index;
 	this->arrow_left = arrow_left;
 	this->arrow_right = arrow_right;
 
@@ -18,7 +18,7 @@ Menu::Menu(sf::RenderWindow& window, sf::Texture *texture_left, sf::Texture *tex
 	this->text_menu.setOutlineThickness(2);
 	this->text_menu.setOutlineColor(sf::Color(0, 0, 0, 255));
 	this->text_menu.setPosition(window.getSize().x / 3 - text_menu.getGlobalBounds().width / 2,
-		50 + (25 * index_number) + (text_menu.getCharacterSize() * index_number));
+		50+ (25 * index_number) + (text_menu.getCharacterSize() * index_number));
 	this->text_menu.setOrigin(0, window.getSize().x / 100);
 	
 	this->button_sprite_mid.setScale(1.0 / button_sprite_mid.getGlobalBounds().width * text_menu.getGlobalBounds().width, 1.0 / button_sprite_mid.getGlobalBounds().height * (text_menu.getCharacterSize()));
@@ -60,7 +60,7 @@ int Menu::mark(sf::RenderWindow& window, sf::Vector2i mouse)
 		
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			return index_number;
+			return index_number + 1;
 		}
 
 		

@@ -4,13 +4,16 @@
 #include "Interface.hpp"
 #include "Exit.hpp"
 #include "Credits.hpp"
+#include <stdlib.h>
+#include <time.h> 
 extern sf::Vector2i mouse;
 
 int main()
 {
     int menu_option = 0;
+    srand(time(NULL));
     // Create the main window
-    sf::RenderWindow window(sf::VideoMode(1880, 1000), "Bunny adventure");
+    sf::RenderWindow window(sf::VideoMode(1280, 1000), "Bunny adventure");
     // Limit the framerate to 60 frames per second
     window.setFramerateLimit(60);
     
@@ -67,7 +70,7 @@ int main()
             //menu_option = go_to_option->system(window, mouse);
             break;
         }
-        // Process events
+
         sf::Event event;
         while (window.pollEvent(event))
         {
