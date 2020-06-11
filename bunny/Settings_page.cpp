@@ -20,6 +20,11 @@ Settings_page::Settings_page(sf::RenderWindow& window)
 	this->button_color.loadFromFile("Textures/Settings/button_color.png");
 	this->button_grey.loadFromFile("Textures/Settings/button_grey.png");
 
+	this->slider_base.loadFromFile("Textures/Settings/slider.png");
+	this->slider_black.loadFromFile("Textures/Settings/slider_black.png");
+	this->slider_volume.loadFromFile("Textures/Settings/slider_bunny1.png");
+
+
 	this->sections.push_back(Section(window, sections.size(), "RESOLUTION", settings_sections_no, basic, &sec_font));
 	//Button_option::Button_option(sf::RenderWindow & window, sf::RectangleShape work_space sf::Texture * texture, sf::Font * font, std::string text_button, int how_many, int index)
 	this->buttons_resolution.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "1280 X 1024", settings_resolution, buttons_resolution.size()));
@@ -27,7 +32,8 @@ Settings_page::Settings_page(sf::RenderWindow& window)
 	this->buttons_resolution.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "1920 X 1080", settings_resolution, buttons_resolution.size()));
 
 	this->sections.push_back(Section(window, sections.size(), "SOUND", settings_sections_no, basic, &sec_font));
-
+	//Slider_option(sf::RenderWindow & window, sf::RectangleShape work_space, sf::Texture * slider, sf::Texture * slider_black_tex, sf::Texture * slider_bunny, sf::Font * font, int volume, int index);
+	this->sliders_sound.push_back(Slider_option(window, sections[sections.size() - 1].shape(), &slider_base, &slider_black, &slider_volume, &sec_font, settings_sound, 0, "Volume"));
 
 	this->sections.push_back(Section(window, sections.size(), "DIFFICULTY", settings_sections_no, basic, &sec_font));
 	this->buttons_diff.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "EASY", settings_resolution, buttons_diff.size()));
@@ -56,6 +62,10 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	{
 		buttons_diff[i].system(window, mouse);
 	}
+	for (int i = 0; i < sliders_sound.size(); i++)
+	{
+		sliders_sound[i].system(window, mouse);
+	}
 
 	return 3;
 }
@@ -75,5 +85,9 @@ void Settings_page::draw(sf::RenderWindow& window)
 	for (int i = 0; i < buttons_diff.size(); i++)
 	{
 		buttons_diff[i].draw(window);
+	}
+	for (int i = 0; i < sliders_sound.size(); i++)
+	{
+		sliders_sound[i].draw(window);
 	}
 }
