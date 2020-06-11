@@ -29,7 +29,7 @@ Credits::Credits(sf::RenderWindow& window)
 	this->texts.push_back(Text(window, &cat_font, "THIS GAME IS DEDICATED TO MY BELOVED BELLA, ", 0, window.getSize().y / 70 * 47, window.getSize().y / 70, 1, texts.size()));
 	this->texts.push_back(Text(window, &cat_font, "THANK YOU FOR SUPPORT AND BELIEVE ON ME", 0, window.getSize().y / 70 * 50, window.getSize().y / 70, 1, texts.size()));
 
-	this->texts.push_back(Text(window, &good_mor, " -= THANKS =- ", 0, window.getSize().y / 70 * 57, window.getSize().y / 30, 2, texts.size()));
+	this->texts.push_back(Text(window, &good_mor, " - THANKS - ", 0, window.getSize().y / 70 * 57, window.getSize().y / 30, 2, texts.size()));
 	this->texts.push_back(Text(window, &cat_font, "THANKS FOR SUPORT TO MY FRIENDS:", 0, window.getSize().y / 70 * 62, window.getSize().y / 70, 1, texts.size()));
 	this->texts.push_back(Text(window, &cat_font, "MEDART, GOTRAN, ANIOL, VIX", 0, window.getSize().y / 70 * 65, window.getSize().y / 70, 1, texts.size()));
 

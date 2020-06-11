@@ -17,7 +17,12 @@ int main()
     sf::RenderWindow window(sf::VideoMode(1280, 1000), "Bunny adventure");
     // Limit the framerate to 60 frames per second
     window.setFramerateLimit(60);
-    
+    window.setMouseCursorVisible(false);
+
+    sf::Texture texture;
+    texture.loadFromFile("Textures/cursor.png");
+    sf::Sprite sprite(texture);
+
     Interface inter(window);
     Credits credits(window);
     Settings_page settings_page(window);
@@ -25,6 +30,7 @@ int main()
     
     while (window.isOpen())
     {
+        sprite.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)));
         sf::Vector2i mouse = sf::Mouse::getPosition(window);
         std::cout << menu_option << "  -  ";
         switch (menu_option)
@@ -86,6 +92,7 @@ int main()
         go_to_option->draw(window);
         //inter.draw(window);
         // Update the window
+        window.draw(sprite);
         window.display();
     }
     return EXIT_SUCCESS;
