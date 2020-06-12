@@ -5,6 +5,7 @@
 #include "Button_option.hpp"
 #include "Slider_option.hpp"
 #include "Yes_no_option.hpp"
+#include "Text_settings.hpp"
 
 class Settings_page :public Option
 {
@@ -18,13 +19,14 @@ private:
 	sf::Texture background, button_color, button_grey, slider_base, slider_black, slider_volume, yes_color, yes_grey;
 	sf::Sprite background_sprite;
 	sf::RectangleShape basic;
-	sf::Font sec_font, button_font;
+	sf::Font sec_font, button_font, game_font, kids_font;
 
 	std::vector<Section>sections;
 	std::vector<Button_option>buttons_resolution;
 	std::vector<Button_option>buttons_diff;
 	std::vector<Slider_option>sliders_sound;
 	std::vector<Yes_no_option>yes_no_buttons;
-	int settings_sections_no, settings_resolution, settings_sound, settings_dificult, settings_control, settings_summary;
+	std::vector<Text_settings>text_control;
+	int settings_sections_no, settings_resolution, settings_sound, settings_dificult, settings_control, settings_summary, max_row_control;
 };
 

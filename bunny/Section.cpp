@@ -5,27 +5,27 @@ Section::Section(sf::RenderWindow& window, int index_section, std::string title,
 	this->basic_rec = basic;
 	this->section_rec.setSize(sf::Vector2f(basic.getSize().x, basic.getSize().y / limit_section));
 	this->section_rec.setPosition(basic.getPosition().x, basic.getPosition().y + index_section * section_rec.getGlobalBounds().height);
-	this->section_rec.setFillColor(sf::Color(255, 0, 0, 0));
+	this->section_rec.setFillColor(sf::Color(255, 0, 0, 11));
 	this->section_rec.setOutlineThickness(1);
 	this->section_rec.setOutlineColor(sf::Color(0, 0, 0, 11));
 
 	this->top_rec.setSize(sf::Vector2f(section_rec.getSize().x / 10 * 9, section_rec.getSize().y / 3));
 	this->top_rec.setPosition(section_rec.getPosition().x + section_rec.getSize().x / 10, section_rec.getPosition().y);
-	this->top_rec.setFillColor(sf::Color(255, 255, 255, 44));
+	this->top_rec.setFillColor(sf::Color(255, 255, 255, 0));
 	this->top_rec.setOutlineThickness(1);
-	this->top_rec.setOutlineColor(sf::Color(0, 0, 0, 11));
+	this->top_rec.setOutlineColor(sf::Color(0, 0, 0, 0));
 
 	this->cursor_rec.setSize(sf::Vector2f(section_rec.getSize().x / 10, section_rec.getSize().y));
 	this->cursor_rec.setPosition(section_rec.getPosition().x, section_rec.getPosition().y);
-	this->cursor_rec.setFillColor(sf::Color(255, 255, 255, 44));
+	this->cursor_rec.setFillColor(sf::Color(255, 255, 255, 0));
 	this->cursor_rec.setOutlineThickness(1);
-	this->cursor_rec.setOutlineColor(sf::Color(0, 0, 0, 11));
+	this->cursor_rec.setOutlineColor(sf::Color(0, 0, 0, 0));
 
 	this->funcion_rec.setSize(sf::Vector2f(section_rec.getSize().x / 10 * 9, section_rec.getSize().y / 3 * 2));
 	this->funcion_rec.setPosition(section_rec.getPosition().x + cursor_rec.getSize().x, section_rec.getPosition().y + top_rec.getSize().y);
-	this->funcion_rec.setFillColor(sf::Color(255, 255, 255, 44));
+	this->funcion_rec.setFillColor(sf::Color(255, 255, 255, 0));
 	this->funcion_rec.setOutlineThickness(1);
-	this->funcion_rec.setOutlineColor(sf::Color(0, 0, 0, 11));
+	this->funcion_rec.setOutlineColor(sf::Color(0, 0, 0, 0));
 
 	this->title_section.setFont(*font);
 	this->title_section.setString(title);

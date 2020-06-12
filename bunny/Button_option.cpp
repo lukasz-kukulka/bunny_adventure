@@ -9,13 +9,13 @@ Button_option::Button_option(sf::RenderWindow& window, sf::RectangleShape space_
 
 	this->single_workspace.setSize(sf::Vector2f(work_space.getSize().x / how_many, work_space.getSize().y));
 	this->single_workspace.setPosition(work_space.getPosition().x + single_workspace.getSize().x * index, work_space.getPosition().y);
-	this->single_workspace.setFillColor(sf::Color(255, 255, 255, 44));
+	this->single_workspace.setFillColor(sf::Color(255, 255, 255, 0));
 	this->single_workspace.setOutlineThickness(1);
-	this->single_workspace.setOutlineColor(sf::Color(0, 0, 0, 11));
+	this->single_workspace.setOutlineColor(sf::Color(0, 0, 0, 0));
 
 	this->button_sprite.setTexture(*texture_grey);
-	this->button_sprite.setScale(single_workspace.getGlobalBounds().width / button_sprite.getGlobalBounds().width / 1.5, 
-		single_workspace.getGlobalBounds().width / button_sprite.getGlobalBounds().width / 1.5);
+	this->button_sprite.setScale(single_workspace.getGlobalBounds().width / button_sprite.getGlobalBounds().width / 1.8, 
+		single_workspace.getGlobalBounds().width / button_sprite.getGlobalBounds().width / 1.8);
 	this->button_sprite.setPosition(single_workspace.getPosition().x + single_workspace.getGlobalBounds().width/2 - button_sprite.getGlobalBounds().width / 2, 
 		single_workspace.getPosition().y + single_workspace.getGlobalBounds().height / 2 - button_sprite.getGlobalBounds().height / 2);
 

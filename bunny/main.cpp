@@ -14,7 +14,7 @@ int main()
     int menu_option = 0;
     srand(time(NULL));
     // Create the main window
-    sf::RenderWindow window(sf::VideoMode(1280, 1000), "Bunny adventure");
+    sf::RenderWindow window(sf::VideoMode(1800, 1080), "Bunny adventure");
     // Limit the framerate to 60 frames per second
     window.setFramerateLimit(60);
     window.setMouseCursorVisible(false);

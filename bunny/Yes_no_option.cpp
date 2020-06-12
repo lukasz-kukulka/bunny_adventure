@@ -9,9 +9,9 @@ Yes_no_option::Yes_no_option(sf::RenderWindow& window, sf::RectangleShape work_s
 	this->no_tex = no_tex;
 	this->single_workspace.setSize(sf::Vector2f(work_space.getSize().x / volume, work_space.getSize().y));
 	this->single_workspace.setPosition(work_space.getPosition().x + single_workspace.getSize().x * index, work_space.getPosition().y);
-	this->single_workspace.setFillColor(sf::Color(255, 255, 255, 44));
+	this->single_workspace.setFillColor(sf::Color(255, 255, 255, 0));
 	this->single_workspace.setOutlineThickness(1);
-	this->single_workspace.setOutlineColor(sf::Color(0, 0, 0, 11));
+	this->single_workspace.setOutlineColor(sf::Color(0, 0, 0, 0));
 
 	this->yes_button.setTexture(*yes_tex);
 	this->yes_button.setScale(single_workspace.getGlobalBounds().width * 0.12 / yes_button.getGlobalBounds().width,
