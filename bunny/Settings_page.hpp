@@ -16,7 +16,7 @@ public:
 	void draw(sf::RenderWindow&);
 
 private:
-	sf::Texture background, button_color, button_grey, slider_base, slider_black, slider_volume, yes_color, yes_grey;
+	sf::Texture background, button_color, button_grey, slider_base, slider_black, slider_volume, yes_color, yes_grey, cursor_section;
 	sf::Sprite background_sprite;
 	sf::RectangleShape basic;
 	sf::Font sec_font, button_font, game_font, kids_font;

@@ -22,6 +22,7 @@ Settings_page::Settings_page(sf::RenderWindow& window)
 
 	this->button_color.loadFromFile("Textures/Settings/button_color.png");
 	this->button_grey.loadFromFile("Textures/Settings/button_grey.png");
+	this->cursor_section.loadFromFile("Textures/Settings/id_rec.png");
 
 	this->slider_base.loadFromFile("Textures/Settings/slider.png");
 	this->slider_black.loadFromFile("Textures/Settings/slider_black.png");
@@ -31,22 +32,22 @@ Settings_page::Settings_page(sf::RenderWindow& window)
 	this->yes_grey.loadFromFile("Textures/Settings/yes_grey.png");
 
 
-	this->sections.push_back(Section(window, sections.size(), "RESOLUTION", settings_sections_no, basic, &sec_font));
+	this->sections.push_back(Section(window, sections.size(), "RESOLUTION", settings_sections_no, basic, &sec_font, &cursor_section));
 	this->buttons_resolution.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "1280 X 1024", settings_resolution, buttons_resolution.size()));
 	this->buttons_resolution.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "1600 X 900", settings_resolution, buttons_resolution.size()));
 	this->buttons_resolution.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "1920 X 1080", settings_resolution, buttons_resolution.size()));
 
-	this->sections.push_back(Section(window, sections.size(), "SOUND", settings_sections_no, basic, &sec_font));
+	this->sections.push_back(Section(window, sections.size(), "SOUND", settings_sections_no, basic, &sec_font, &cursor_section));
 	this->sliders_sound.push_back(Slider_option(window, sections[sections.size() - 1].shape(), &slider_base, &slider_black, &slider_volume, &sec_font, settings_sound, 0, "Volume"));
 	this->yes_no_buttons.push_back(Yes_no_option(window, sections[sections.size() - 1].shape(), &yes_color, &yes_grey, &sec_font, settings_sound, 1, "EFECTS"));
 	this->yes_no_buttons.push_back(Yes_no_option(window, sections[sections.size() - 1].shape(), &yes_color, &yes_grey, &sec_font, settings_sound, 2, "MUSIC"));
 
-	this->sections.push_back(Section(window, sections.size(), "DIFFICULTY", settings_sections_no, basic, &sec_font));
+	this->sections.push_back(Section(window, sections.size(), "DIFFICULTY", settings_sections_no, basic, &sec_font, &cursor_section));
 	this->buttons_diff.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "EASY", settings_resolution, buttons_diff.size()));
 	this->buttons_diff.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "NORMAL", settings_resolution, buttons_diff.size()));
 	this->buttons_diff.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "HARD", settings_resolution, buttons_diff.size()));
 
-	this->sections.push_back(Section(window, sections.size(), "CONTROL", settings_sections_no, basic, &sec_font));
+	this->sections.push_back(Section(window, sections.size(), "CONTROL", settings_sections_no, basic, &sec_font, &cursor_section));
 	//RenderWindow& window, sf::RectangleShape work_space, sf::Font* font, std::string text_control, int max_x, int max_y, int index_x, int index_y);
 	this->text_control.push_back(Text_settings(window, sections[sections.size() - 1].shape(), &game_font, "space - jump", settings_control, max_row_control, 1, 1));
 	this->text_control.push_back(Text_settings(window, sections[sections.size() - 1].shape(), &game_font, "empty - empty", settings_control, max_row_control, 1, 2));
@@ -60,7 +61,7 @@ Settings_page::Settings_page(sf::RenderWindow& window)
 	this->text_control.push_back(Text_settings(window, sections[sections.size() - 1].shape(), &game_font, "empty - empty", settings_control, max_row_control, 3, 2));
 	this->text_control.push_back(Text_settings(window, sections[sections.size() - 1].shape(), &game_font, "empty - empty", settings_control, max_row_control, 3, 3));
 
-	this->sections.push_back(Section(window, sections.size(), "", settings_sections_no, basic, &sec_font));
+	this->sections.push_back(Section(window, sections.size(), "", settings_sections_no, basic, &sec_font, &cursor_section));
 
 
 }

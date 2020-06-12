@@ -1,6 +1,6 @@
 #include "Section.hpp"
 
-Section::Section(sf::RenderWindow& window, int index_section, std::string title, int limit_section, sf::RectangleShape& basic, sf::Font* font)
+Section::Section(sf::RenderWindow& window, int index_section, std::string title, int limit_section, sf::RectangleShape& basic, sf::Font* font, sf::Texture* arrow)
 {
 	this->basic_rec = basic;
 	this->section_rec.setSize(sf::Vector2f(basic.getSize().x, basic.getSize().y / limit_section));
@@ -21,6 +21,11 @@ Section::Section(sf::RenderWindow& window, int index_section, std::string title,
 	this->cursor_rec.setOutlineThickness(1);
 	this->cursor_rec.setOutlineColor(sf::Color(0, 0, 0, 0));
 
+	this->arrow_sprite.setTexture(*arrow);
+	this->arrow_sprite.setScale(cursor_rec.getGlobalBounds().width / arrow_sprite.getGlobalBounds().width,
+		cursor_rec.getGlobalBounds().width / arrow_sprite.getGlobalBounds().width);
+	this->arrow_sprite.setPosition(cursor_rec.getPosition().x, cursor_rec.getPosition().y);
+
 	this->funcion_rec.setSize(sf::Vector2f(section_rec.getSize().x / 10 * 9, section_rec.getSize().y / 3 * 2));
 	this->funcion_rec.setPosition(section_rec.getPosition().x + cursor_rec.getSize().x, section_rec.getPosition().y + top_rec.getSize().y);
 	this->funcion_rec.setFillColor(sf::Color(255, 255, 255, 0));
@@ -40,6 +45,17 @@ Section::Section(sf::RenderWindow& window, int index_section, std::string title,
 
 int Section::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
+	if (mouse.x > section_rec.getPosition().x && mouse.x < section_rec.getPosition().x + section_rec.getGlobalBounds().width &&
+		mouse.y > section_rec.getPosition().y && mouse.y < section_rec.getPosition().y + section_rec.getGlobalBounds().height)
+	{
+		this->arrow_sprite.setPosition(cursor_rec.getPosition().x, cursor_rec.getPosition().y);
+		this->section_rec.setFillColor(sf::Color(255, 255, 255, 111));
+	}
+	else
+	{
+		this->section_rec.setFillColor(sf::Color(255, 255, 255, 0));
+		this->arrow_sprite.setPosition(- 500, -500);
+	}
 	return 0;
 }
 
@@ -55,4 +71,5 @@ void Section::draw(sf::RenderWindow& window)
 	window.draw(cursor_rec);
 	window.draw(funcion_rec);
 	window.draw(title_section);
+	window.draw(arrow_sprite);
 }
