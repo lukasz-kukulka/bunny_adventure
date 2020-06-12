@@ -24,16 +24,19 @@ Settings_page::Settings_page(sf::RenderWindow& window)
 	this->slider_black.loadFromFile("Textures/Settings/slider_black.png");
 	this->slider_volume.loadFromFile("Textures/Settings/slider_bunny1.png");
 
+	this->yes_color.loadFromFile("Textures/Settings/yes.png");
+	this->yes_grey.loadFromFile("Textures/Settings/yes_grey.png");
+
 
 	this->sections.push_back(Section(window, sections.size(), "RESOLUTION", settings_sections_no, basic, &sec_font));
-	//Button_option::Button_option(sf::RenderWindow & window, sf::RectangleShape work_space sf::Texture * texture, sf::Font * font, std::string text_button, int how_many, int index)
 	this->buttons_resolution.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "1280 X 1024", settings_resolution, buttons_resolution.size()));
 	this->buttons_resolution.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "1600 X 900", settings_resolution, buttons_resolution.size()));
 	this->buttons_resolution.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "1920 X 1080", settings_resolution, buttons_resolution.size()));
 
 	this->sections.push_back(Section(window, sections.size(), "SOUND", settings_sections_no, basic, &sec_font));
-	//Slider_option(sf::RenderWindow & window, sf::RectangleShape work_space, sf::Texture * slider, sf::Texture * slider_black_tex, sf::Texture * slider_bunny, sf::Font * font, int volume, int index);
 	this->sliders_sound.push_back(Slider_option(window, sections[sections.size() - 1].shape(), &slider_base, &slider_black, &slider_volume, &sec_font, settings_sound, 0, "Volume"));
+	this->yes_no_buttons.push_back(Yes_no_option(window, sections[sections.size() - 1].shape(), &yes_color, &yes_grey, &sec_font, 3, 1, "EFECTS"));
+	this->yes_no_buttons.push_back(Yes_no_option(window, sections[sections.size() - 1].shape(), &yes_color, &yes_grey, &sec_font, 3, 2, "MUSIC"));
 
 	this->sections.push_back(Section(window, sections.size(), "DIFFICULTY", settings_sections_no, basic, &sec_font));
 	this->buttons_diff.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "EASY", settings_resolution, buttons_diff.size()));
@@ -66,6 +69,10 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	{
 		sliders_sound[i].system(window, mouse);
 	}
+	for (int i = 0; i < yes_no_buttons.size(); i++)
+	{
+		yes_no_buttons[i].system(window, mouse);
+	}
 
 	return 3;
 }
@@ -89,5 +96,9 @@ void Settings_page::draw(sf::RenderWindow& window)
 	for (int i = 0; i < sliders_sound.size(); i++)
 	{
 		sliders_sound[i].draw(window);
+	}
+	for (int i = 0; i < yes_no_buttons.size(); i++)
+	{
+		yes_no_buttons[i].draw(window);
 	}
 }
