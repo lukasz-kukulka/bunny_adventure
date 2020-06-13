@@ -14,14 +14,17 @@ Button_option::Button_option(sf::RenderWindow& window, sf::RectangleShape space_
 	this->single_workspace.setOutlineColor(sf::Color(0, 0, 0, 0));
 
 	this->button_sprite.setTexture(*texture_grey);
-	this->button_sprite.setScale(single_workspace.getGlobalBounds().width / button_sprite.getGlobalBounds().width / 1.8, 
-		single_workspace.getGlobalBounds().width / button_sprite.getGlobalBounds().width / 1.8);
+	this->button_sprite.setScale(single_workspace.getGlobalBounds().width / button_sprite.getGlobalBounds().width / 2.5, 
+		single_workspace.getGlobalBounds().width / button_sprite.getGlobalBounds().width / 2.5);
 	this->button_sprite.setPosition(single_workspace.getPosition().x + single_workspace.getGlobalBounds().width/2 - button_sprite.getGlobalBounds().width / 2, 
 		single_workspace.getPosition().y + single_workspace.getGlobalBounds().height / 2 - button_sprite.getGlobalBounds().height / 2);
 
 	this->button_text.setFont(*font);
 	this->button_text.setString(text_button);
-	this->button_text.setCharacterSize(button_sprite.getGlobalBounds().height / 40 * 5);
+	if (text_button == "SAVE" || text_button == "EXIT")
+		this->button_text.setCharacterSize(button_sprite.getGlobalBounds().height / 40 * 10);
+	else 
+		this->button_text.setCharacterSize(button_sprite.getGlobalBounds().height / 40 * 5);
 	this->button_text.setFillColor(sf::Color(255, 255, 0, 255));
 	this->button_text.setOutlineThickness(1);
 	this->button_text.setOutlineColor(sf::Color(0, 0, 0, 255));

@@ -16,7 +16,7 @@ public:
 	void draw(sf::RenderWindow&);
 
 private:
-	sf::Texture background, button_color, button_grey, slider_base, slider_black, slider_volume, yes_color, yes_grey, cursor_section;
+	sf::Texture background, button_color, button_grey, slider_base, slider_black, slider_volume, yes_color, yes_grey, cursor_section, save_exit_button, save_exit_button_grey;
 	sf::Sprite background_sprite;
 	sf::RectangleShape basic;
 	sf::Font sec_font, button_font, game_font, kids_font;
@@ -27,6 +27,7 @@ private:
 	std::vector<Slider_option>sliders_sound;
 	std::vector<Yes_no_option>yes_no_buttons;
 	std::vector<Text_settings>text_control;
-	int settings_sections_no, settings_resolution, settings_sound, settings_dificult, settings_control, settings_summary, max_row_control;
+	std::vector<Button_option>buttons_save_back;
+	int settings_sections_no, settings_resolution, settings_sound, settings_dificult, settings_control_columns, settings_summary, max_row_control;
 };
 
