@@ -27,7 +27,7 @@ Section::Section(sf::RenderWindow& window, int index_section, std::string title,
 	this->arrow_sprite.setTexture(*arrow);
 	this->arrow_sprite.setScale(cursor_rec.getGlobalBounds().width / arrow_sprite.getGlobalBounds().width,
 		cursor_rec.getGlobalBounds().width / arrow_sprite.getGlobalBounds().width);
-	this->arrow_sprite.setPosition(cursor_rec.getPosition().x, cursor_rec.getPosition().y);
+	this->arrow_sprite.setPosition(-500, -500);
 
 	if (title.size() == 0)
 		this->funcion_rec.setSize(sf::Vector2f(section_rec.getSize().x / 10 * 9, section_rec.getSize().y));

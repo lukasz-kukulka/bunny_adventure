@@ -1,9 +1,10 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <iostream>
 class Yes_no_option
 {
 public:
-	Yes_no_option(sf::RenderWindow& window, sf::RectangleShape work_space, sf::Texture* yes_tex, sf::Texture* no_tex, sf::Font* font, int volume, int index, std::string text_title);
+	Yes_no_option(sf::RenderWindow& window, sf::RectangleShape work_space, sf::Texture* yes_tex, sf::Texture* no_tex, sf::Font* font, int volume, int index, std::string text_title, bool enabled);
 
 	int system(sf::RenderWindow& window, sf::Vector2i mouse);
 	void draw(sf::RenderWindow& window);
@@ -14,5 +15,6 @@ private:
 	sf::Texture* no_tex, *yes_tex;
 	sf::Text title, on_text, off_text;
 	bool no_button_bool, yes_button_bool;
+	int index;
 };
 

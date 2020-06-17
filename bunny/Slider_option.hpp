@@ -3,7 +3,7 @@
 class Slider_option
 {
 public:
-	Slider_option(sf::RenderWindow& window, sf::RectangleShape work_space, sf::Texture* slider, sf::Texture* slider_black_tex, sf::Texture* slider_bunny, sf::Font* font, int volume, int index, std::string text_title);
+	Slider_option(sf::RenderWindow& window, sf::RectangleShape work_space, sf::Texture* slider, sf::Texture* slider_black_tex, sf::Texture* slider_bunny, sf::Font* font, int volume, int index, std::string text_title, int volume_index);
 
 	int system(sf::RenderWindow& window, sf::Vector2i mouse);
 	void draw(sf::RenderWindow& window);

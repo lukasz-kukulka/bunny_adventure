@@ -1,11 +1,14 @@
 #include "Button_option.hpp"
 
-Button_option::Button_option(sf::RenderWindow& window, sf::RectangleShape space_work, sf::Texture* texture_color, sf::Texture* texture_grey, sf::Font* font, std::string text_button, int how_many, int index)
+Button_option::Button_option(sf::RenderWindow& window, sf::RectangleShape space_work, sf::Texture* texture_color, sf::Texture* texture_grey, sf::Font* font, std::string text_button, int how_many, int index, bool true_false)
 {
 	this->work_space = space_work;
 	this->how_many = how_many;
 	this->button_color = texture_color;
 	this->button_grey = texture_grey;
+	this->enabled_button = true_false;
+	this->perm_index = index + 1;
+
 
 	this->single_workspace.setSize(sf::Vector2f(work_space.getSize().x / how_many, work_space.getSize().y));
 	this->single_workspace.setPosition(work_space.getPosition().x + single_workspace.getSize().x * index, work_space.getPosition().y);
@@ -13,7 +16,8 @@ Button_option::Button_option(sf::RenderWindow& window, sf::RectangleShape space_
 	this->single_workspace.setOutlineThickness(1);
 	this->single_workspace.setOutlineColor(sf::Color(0, 0, 0, 0));
 
-	this->button_sprite.setTexture(*texture_grey);
+	
+	this->button_sprite.setTexture(*button_grey);
 	this->button_sprite.setScale(single_workspace.getGlobalBounds().width / button_sprite.getGlobalBounds().width / 2.5, 
 		single_workspace.getGlobalBounds().width / button_sprite.getGlobalBounds().width / 2.5);
 	this->button_sprite.setPosition(single_workspace.getPosition().x + single_workspace.getGlobalBounds().width/2 - button_sprite.getGlobalBounds().width / 2, 
@@ -21,7 +25,7 @@ Button_option::Button_option(sf::RenderWindow& window, sf::RectangleShape space_
 
 	this->button_text.setFont(*font);
 	this->button_text.setString(text_button);
-	if (text_button == "SAVE" || text_button == "EXIT")
+	if (text_button == "SAVE" || text_button == "EXIT" || text_button == "DEFAULT")
 		this->button_text.setCharacterSize(button_sprite.getGlobalBounds().height / 40 * 10);
 	else 
 		this->button_text.setCharacterSize(button_sprite.getGlobalBounds().height / 40 * 5);
@@ -34,16 +38,41 @@ Button_option::Button_option(sf::RenderWindow& window, sf::RectangleShape space_
 
 int Button_option::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
+	sf::Event event;
+	
 	if (mouse.x > button_sprite.getPosition().x && mouse.x < button_sprite.getPosition().x + button_sprite.getGlobalBounds().width &&
 		mouse.y > button_sprite.getPosition().y && mouse.y < button_sprite.getPosition().y + button_sprite.getGlobalBounds().height)
 	{
 		this->button_sprite.setTexture(*button_color);
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::MouseButtonReleased)
+			{
+				if (event.mouseButton.button == sf::Mouse::Left)
+				{
+					return perm_index;
+				}
+			}
+		}
 	}
 	else
 	{
-		this->button_sprite.setTexture(*button_grey);
+		if (enabled_button == true)
+			this->button_sprite.setTexture(*button_color);
+		else
+			this->button_sprite.setTexture(*button_grey);
 	}
+
+
 	return 0;
+}
+
+void Button_option::changing_status(int index)
+{
+	if (perm_index == index)
+		enabled_button = true;
+	else
+		enabled_button = false;
 }
 
 void Button_option::draw(sf::RenderWindow& window)

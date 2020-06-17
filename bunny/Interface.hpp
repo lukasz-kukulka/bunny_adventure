@@ -25,6 +25,7 @@ private:
 	std::vector<Button>buttons;
 
 	bool end_animation;
+	int button_answer;
 };
 
 

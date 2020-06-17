@@ -1,8 +1,8 @@
 #include "Slider_option.hpp"
 
-Slider_option::Slider_option(sf::RenderWindow& window, sf::RectangleShape work_space, sf::Texture* slider, sf::Texture* slider_black_tex, sf::Texture* slider_bunny, sf::Font* font, int units, int index, std::string text_title)
+Slider_option::Slider_option(sf::RenderWindow& window, sf::RectangleShape work_space, sf::Texture* slider, sf::Texture* slider_black_tex, sf::Texture* slider_bunny, sf::Font* font, int units, int index, std::string text_title, int volume_index)
 {
-	this->volume_sound = 10;
+	this->volume_sound = volume_index;
 	this->work_space = work_space;
 	this->volume = units;
 	this->single_workspace.setSize(sf::Vector2f(work_space.getSize().x / volume, work_space.getSize().y));
@@ -55,7 +55,7 @@ int Slider_option::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		this->volume_sound = (slider_hand.getPosition().x + slider_hand.getGlobalBounds().width / 2 - slider_black.getPosition().x) / slider_black.getGlobalBounds().width * 100;
 		this->text_procets.setString(std::to_string(volume_sound) + " / 100");
 	}
-	return 0;
+	return volume_sound;
 }
 
 void Slider_option::draw(sf::RenderWindow& window)

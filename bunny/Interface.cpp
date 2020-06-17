@@ -57,12 +57,13 @@ int Interface::system(sf::RenderWindow& window, sf::Vector2i mouse)
 					}
 					for (int x = 0; x < buttons.size(); x++)
 					{
-						if (buttons[x].system(window, mouse) == 5)
+						button_answer = buttons[x].system(window, mouse);
+						if (button_answer == 5)
 						{
 							return 5;
 						}
 
-						else if (buttons[x].system(window, mouse) == 1)
+						else if (button_answer == 1)
 						{
 							buttons.erase(buttons.begin(), buttons.end());
 							exit_objects[0].no_exit();

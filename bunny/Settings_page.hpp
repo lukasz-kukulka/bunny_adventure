@@ -6,21 +6,25 @@
 #include "Slider_option.hpp"
 #include "Yes_no_option.hpp"
 #include "Text_settings.hpp"
+#include "Files_operations.hpp"
 
 class Settings_page :public Option
 {
 public:
 	Settings_page(sf::RenderWindow&);
 
-	int system(sf::RenderWindow&, sf::Vector2i);
-	void draw(sf::RenderWindow&);
+	int system(sf::RenderWindow& window, sf::Vector2i mouse);
+	void load_settings();
+	void settings_ini_button();
+	void objects_ini(sf::RenderWindow& window);
+	void draw(sf::RenderWindow& window);
+	~Settings_page();
 
 private:
 	sf::Texture background, button_color, button_grey, slider_base, slider_black, slider_volume, yes_color, yes_grey, cursor_section, save_exit_button, save_exit_button_grey;
 	sf::Sprite background_sprite;
 	sf::RectangleShape basic;
 	sf::Font sec_font, button_font, game_font, kids_font;
-
 	std::vector<Section>sections;
 	std::vector<Button_option>buttons_resolution;
 	std::vector<Button_option>buttons_diff;
@@ -28,6 +32,22 @@ private:
 	std::vector<Yes_no_option>yes_no_buttons;
 	std::vector<Text_settings>text_control;
 	std::vector<Button_option>buttons_save_back;
-	int settings_sections_no, settings_resolution, settings_sound, settings_dificult, settings_control_columns, settings_summary, max_row_control;
+	int settings_sections_no, settings_resolution, settings_sound, settings_dificult, settings_control_columns, settings_summary, max_row_control, settings_sound_save, press_save_back;
+	Files_operations* settings_ini = new Files_operations();
+
+	struct settings {
+		int res;
+		int vol;
+		bool efect;
+		bool music;
+		int dif;
+	} settings_deffault, user_settings;
+	
+	struct sections_settings {
+		bool one;
+		bool two;
+		bool three;
+	} res_settings, diff_settings;
+
 };
 

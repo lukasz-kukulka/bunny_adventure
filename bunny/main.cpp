@@ -32,52 +32,50 @@ int main()
     {
         sprite.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)));
         sf::Vector2i mouse = sf::Mouse::getPosition(window);
-        std::cout << menu_option << "  -  ";
+        //std::cout << menu_option << "  -  ";
         switch (menu_option)
         {
-        case 0: //menu interface
-        {
-            go_to_option = &inter;
-            menu_option = go_to_option->system(window, mouse);
-            break;
-        }
+            case 0: //menu interface
+            {
+                go_to_option = &inter;
+                menu_option = go_to_option->system(window, mouse);
+                break;
+            }
         
-        case 1: //Game
-        {
+            case 1: //Game
+            {
             
-            break;
-        }
+                break;
+            }
 
-        case 2: //High score
-        {
+            case 2: //High score
+            {
 
-            break;
-        }
+                break;
+            }
 
-        case 3: //Settings
-        {
-            go_to_option = &settings_page;
-            menu_option = go_to_option->system(window, mouse);
-            break;
-        }
+            case 3: //Settings
+            {
+                go_to_option = &settings_page;
+                menu_option = go_to_option->system(window, mouse);
+                break;
+            }
 
-        case 4: //Credits
-        {
-            go_to_option = &credits;
-            menu_option = go_to_option->system(window, mouse);
-            break;
-        }
+            case 4: //Credits
+            {
+                go_to_option = &credits;
+                menu_option = go_to_option->system(window, mouse);
+                break;
+            }
 
-        case 5://Close
-        {
-            window.close();
-            break;
-        }
+            case 5://Close
+            {
+                window.close();
+                break;
+            }
 
-        default:
-            //go_to_option = &inter;
-            //menu_option = go_to_option->system(window, mouse);
-            break;
+            default:
+                break;
         }
 
         sf::Event event;
@@ -95,5 +93,5 @@ int main()
         window.draw(sprite);
         window.display();
     }
-    return EXIT_SUCCESS;
+    return 0;
 }

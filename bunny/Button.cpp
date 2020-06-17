@@ -22,20 +22,37 @@ Button::Button(sf::RenderWindow& window, sf::Texture* texture, sf::Font* font, s
 
 int Button::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
+	sf::Event event;
 	if (mouse.x > button_sprite.getPosition().x && mouse.x < button_sprite.getPosition().x + button_sprite.getGlobalBounds().width &&
 		mouse.y > button_sprite.getPosition().y && mouse.y < button_sprite.getPosition().y + button_sprite.getGlobalBounds().height)
 	{
 		this->button_sprite.setColor(sf::Color(111, 111, 111, 255));
 		this->button_sprite.setRotation(5.0);
 		this->button_text.setRotation(5.0);
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && button_index == 1)
+
+		while (window.pollEvent(event))
 		{
-			return 5;
+			if (event.type == sf::Event::MouseButtonReleased)
+			{
+				if (event.mouseButton.button == sf::Mouse::Left && button_index == 1)
+				{
+					return 5;
+				}
+				if (event.mouseButton.button == sf::Mouse::Left && button_index == 2)
+				{
+					return 1;
+				}
+			}
 		}
-		else if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && button_index == 2)
-		{
-			return 1;
-		}
+
+		//if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && button_index == 1)
+		//{
+		//	return 5;
+		//}
+		//else if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && button_index == 2)
+		//{
+		//	return 1;
+		//}
 	}
 	else
 	{

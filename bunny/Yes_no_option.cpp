@@ -1,30 +1,47 @@
 #include "Yes_no_option.hpp"
 
-Yes_no_option::Yes_no_option(sf::RenderWindow& window, sf::RectangleShape work_space, sf::Texture* yes_tex, sf::Texture* no_tex, sf::Font* font, int volume, int index, std::string text_title)
+Yes_no_option::Yes_no_option(sf::RenderWindow& window, sf::RectangleShape work_space, sf::Texture* yes_tex, sf::Texture* no_tex, sf::Font* font, int volume, int index, std::string text_title, bool enabled)
 {
 	this->work_space = work_space;
-	this->yes_button_bool = true;
-	this->no_button_bool = false;
 	this->yes_tex = yes_tex;
 	this->no_tex = no_tex;
+	this->index = index;
 	this->single_workspace.setSize(sf::Vector2f(work_space.getSize().x / volume, work_space.getSize().y));
 	this->single_workspace.setPosition(work_space.getPosition().x + single_workspace.getSize().x * index, work_space.getPosition().y);
 	this->single_workspace.setFillColor(sf::Color(255, 255, 255, 0));
 	this->single_workspace.setOutlineThickness(1);
 	this->single_workspace.setOutlineColor(sf::Color(0, 0, 0, 0));
 
-	this->yes_button.setTexture(*yes_tex);
+	if (enabled == true)
+	{
+		this->yes_button.setTexture(*yes_tex);
+		this->yes_button_bool = true;
+	}
+	else
+	{
+		this->yes_button.setTexture(*no_tex);
+		this->yes_button_bool = false;
+	}
 	this->yes_button.setScale(single_workspace.getGlobalBounds().width * 0.12 / yes_button.getGlobalBounds().width,
 		single_workspace.getGlobalBounds().width * 0.12 / yes_button.getGlobalBounds().height);
 	this->yes_button.setPosition(single_workspace.getPosition().x + single_workspace.getGlobalBounds().width / 4 - yes_button.getGlobalBounds().width / 2,
-		single_workspace.getPosition().y + single_workspace.getGlobalBounds().height / 2 - yes_button.getGlobalBounds().height / 2);
+		single_workspace.getPosition().y + single_workspace.getGlobalBounds().height / 3 - yes_button.getGlobalBounds().height / 2);
 	this->yes_button.setColor(sf::Color(255, 255, 255, 255));
 
-	this->no_button.setTexture(*no_tex);
+	if (enabled == true)
+	{
+		this->no_button.setTexture(*no_tex);
+		this->no_button_bool = false;
+	}
+	else
+	{
+		this->no_button.setTexture(*yes_tex);
+		this->no_button_bool = true;
+	}
 	this->no_button.setScale(single_workspace.getGlobalBounds().width * 0.12 / no_button.getGlobalBounds().width,
 		single_workspace.getGlobalBounds().width * 0.12 / no_button.getGlobalBounds().height);
 	this->no_button.setPosition(single_workspace.getPosition().x + single_workspace.getGlobalBounds().width / 4 * 3 - no_button.getGlobalBounds().width / 2,
-		single_workspace.getPosition().y + single_workspace.getGlobalBounds().height / 2 - no_button.getGlobalBounds().height / 2);
+		single_workspace.getPosition().y + single_workspace.getGlobalBounds().height / 3 - no_button.getGlobalBounds().height / 2);
 	this->no_button.setColor(sf::Color(255, 255, 255, 255));
 
 	this->on_text.setFont(*font);
@@ -40,7 +57,7 @@ Yes_no_option::Yes_no_option(sf::RenderWindow& window, sf::RectangleShape work_s
 	this->off_text.setCharacterSize(single_workspace.getGlobalBounds().height / 5);
 	this->off_text.setFillColor(sf::Color(55, 177, 255, 255));
 	this->off_text.setOutlineThickness(1);
-	this->off_text.setPosition(single_workspace.getPosition().x + single_workspace.getGlobalBounds().width / 4 * 3 - on_text.getGlobalBounds().width / 2,
+	this->off_text.setPosition(single_workspace.getPosition().x + single_workspace.getGlobalBounds().width / 4 * 3 - off_text.getGlobalBounds().width / 2,
 		single_workspace.getPosition().y + single_workspace.getGlobalBounds().height / 4 * 3 - off_text.getGlobalBounds().height / 2);
 
 	this->title.setFont(*font);
@@ -69,7 +86,9 @@ int Yes_no_option::system(sf::RenderWindow& window, sf::Vector2i mouse)
 				this->no_button.setTexture(*no_tex);
 				this->yes_button_bool = true;
 				this->no_button_bool = false;
+				return index * 2;
 			}
+			
 		}
 	}
 	else
@@ -94,6 +113,7 @@ int Yes_no_option::system(sf::RenderWindow& window, sf::Vector2i mouse)
 				this->no_button.setTexture(*yes_tex);
 				this->yes_button_bool = false;
 				this->no_button_bool = true;
+				return index * 2 - 1;
 			}
 		}
 	}
@@ -105,7 +125,7 @@ int Yes_no_option::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	}
 		
 
-	return 0;
+	return 10;
 }
 
 void Yes_no_option::draw(sf::RenderWindow& window)
