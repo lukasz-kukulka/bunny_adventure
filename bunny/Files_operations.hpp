@@ -8,9 +8,9 @@ public:
 	Files_operations();
 
 	int load_from_settings(int row_number);
-	void save_settings(struct settings* settings_save);
+	void save_settings(int res, int vol, bool efect, bool music, int diff);
 
 private:
-
+	
 };
 

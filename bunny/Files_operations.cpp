@@ -2,7 +2,6 @@
 
 Files_operations::Files_operations()
 {
-
 }
 
 int Files_operations::load_from_settings(int row_number)
@@ -57,7 +56,19 @@ int Files_operations::load_from_settings(int row_number)
 	return 0;
 }
 
-void Files_operations::save_settings(struct settings* sett)
+void Files_operations::save_settings(int res, int vol, bool efect, bool music, int diff)
 {
-
+    std::fstream file;
+    std::cout << res << " ---------------- " << diff << "\n";
+    
+    file.open("settings.ini", std::ios::out | std::ios::trunc);
+    file << res << std::endl;
+    file << vol << std::endl;
+    file << efect << std::endl;
+    file << music << std::endl;
+    file << diff << std::endl;
+    file.close();
 }
+
+
+

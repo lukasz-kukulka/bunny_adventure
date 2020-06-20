@@ -34,14 +34,14 @@ private:
 	std::vector<Button_option>buttons_save_back;
 	int settings_sections_no, settings_resolution, settings_sound, settings_dificult, settings_control_columns, settings_summary, max_row_control, settings_sound_save, press_save_back;
 	Files_operations* settings_ini = new Files_operations();
-
+	
 	struct settings {
 		int res;
 		int vol;
 		bool efect;
 		bool music;
 		int dif;
-	} settings_deffault, user_settings;
+	} settings_deffault, user_settings, temp_settings;
 	
 	struct sections_settings {
 		bool one;

@@ -9,9 +9,8 @@ Settings_page::Settings_page(sf::RenderWindow& window)
 	this->settings_control_columns = 3;
 	this->max_row_control = 3;
 	this->settings_summary = 3;
-	this->settings_deffault = { 1, 10, true, true, 1 };
+	this->temp_settings = settings_deffault = { 1, 10, true, true, 1 };
 	this->res_settings = diff_settings = { false, false, false };
-
 	this->background.loadFromFile("Textures/Credits/back.jpg");
 	this->button_color.loadFromFile("Textures/Settings/button_color.png");
 	this->button_grey.loadFromFile("Textures/Settings/button_grey.png");
@@ -48,22 +47,26 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	}
 	for (int i = 0; i < buttons_resolution.size(); i++)
 	{
-		user_settings.res = buttons_resolution[i].system(window, mouse);
-		if (user_settings.res != 0)
+		temp_settings.res = buttons_resolution[i].system(window, mouse);
+		if (temp_settings.res != 0)
 		{
 			for (int j = 0; j < buttons_resolution.size(); j++)
 			{
+				user_settings.res = temp_settings.res;
 				buttons_resolution[j].changing_status(user_settings.res);
 			}
 		}
+		std::cout << user_settings.res << " ---------------- " << user_settings.res << "\n";
 	}
+	
 	for (int i = 0; i < buttons_diff.size(); i++)
 	{
-		user_settings.dif = buttons_diff[i].system(window, mouse);
-		if (user_settings.dif != 0)
+		temp_settings.dif = buttons_diff[i].system(window, mouse);
+		if (temp_settings.dif != 0)
 		{
 			for (int j = 0; j < buttons_diff.size(); j++)
 			{
+				user_settings.dif = temp_settings.dif;
 				buttons_diff[j].changing_status(user_settings.dif);
 			}
 		}
@@ -101,7 +104,8 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		press_save_back = buttons_save_back[i].system(window, mouse);
 		if (press_save_back == 1)
 		{
-
+			
+			settings_ini->save_settings(user_settings.res, user_settings.vol, user_settings.efect, user_settings.music, user_settings.dif);
 		}
 		else if (press_save_back == 2)
 		{
@@ -111,6 +115,9 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		}
 		else if (press_save_back == 3)
 		{
+			load_settings();
+			settings_ini_button();
+			objects_ini(window);
 			return 0;
 		}
 	}
@@ -169,7 +176,6 @@ void Settings_page::settings_ini_button()
 
 void Settings_page::objects_ini(sf::RenderWindow& window)
 {
-	std::cout << user_settings.dif << " ---------xxxxxxxxxxxxxxxxx------- " << user_settings.res << "\n";
 	for (int i = 0; i < sections.size(); i++)
 	{
 		sections.erase(sections.begin(), sections.end());
@@ -205,9 +211,9 @@ void Settings_page::objects_ini(sf::RenderWindow& window)
 	this->buttons_resolution.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "1920 X 1080", settings_resolution, buttons_resolution.size(), res_settings.three));
 
 	this->sections.push_back(Section(window, sections.size(), "SOUND", settings_sections_no, basic, &sec_font, &cursor_section));
-	this->sliders_sound.push_back(Slider_option(window, sections[sections.size() - 1].shape(), &slider_base, &slider_black, &slider_volume, &sec_font, settings_sound, 0, "Volume", 10));
-	this->yes_no_buttons.push_back(Yes_no_option(window, sections[sections.size() - 1].shape(), &yes_color, &yes_grey, &sec_font, settings_sound, 1, "EFECTS", true));
-	this->yes_no_buttons.push_back(Yes_no_option(window, sections[sections.size() - 1].shape(), &yes_color, &yes_grey, &sec_font, settings_sound, 2, "MUSIC", false));
+	this->sliders_sound.push_back(Slider_option(window, sections[sections.size() - 1].shape(), &slider_base, &slider_black, &slider_volume, &sec_font, settings_sound, 0, "Volume", user_settings.vol));
+	this->yes_no_buttons.push_back(Yes_no_option(window, sections[sections.size() - 1].shape(), &yes_color, &yes_grey, &sec_font, settings_sound, 1, "EFECTS", user_settings.efect));
+	this->yes_no_buttons.push_back(Yes_no_option(window, sections[sections.size() - 1].shape(), &yes_color, &yes_grey, &sec_font, settings_sound, 2, "MUSIC", user_settings.music));
 
 	this->sections.push_back(Section(window, sections.size(), "DIFFICULTY", settings_sections_no, basic, &sec_font, &cursor_section));
 	this->buttons_diff.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "EASY", settings_resolution, buttons_diff.size(), diff_settings.one));
