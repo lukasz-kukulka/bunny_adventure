@@ -5,20 +5,36 @@
 #include "Exit.hpp"
 #include "Credits.hpp"
 #include "Settings_page.hpp"
+#include "Files_operations.hpp"
 #include <stdlib.h>
 #include <time.h> 
 extern sf::Vector2i mouse;
 
 int main()
 {
-    int menu_option = 0;
+    Files_operations* res_load = new Files_operations();
+    int menu_option = 0, res_width, res_height;
+    if (res_load->load_from_settings(1) == 1)
+    {
+        res_width = 1280;
+        res_height = 1024;
+    }
+    else if (res_load->load_from_settings(1) == 2)
+    {
+        res_width = 1600;
+        res_height = 900;
+    }
+    else if (res_load->load_from_settings(1) == 3)
+    {
+        res_width = 1920;
+        res_height = 1080;
+    }
+    delete res_load;
+
     srand(time(NULL));
-    // Create the main window
-    sf::RenderWindow window(sf::VideoMode(1200, 1080), "Bunny adventure");
-    // Limit the framerate to 60 frames per second
+    sf::RenderWindow window(sf::VideoMode(res_width, res_height), "Bunny adventure");
     window.setFramerateLimit(60);
     window.setMouseCursorVisible(false);
-
     sf::Texture texture;
     texture.loadFromFile("Textures/cursor.png");
     sf::Sprite sprite(texture);

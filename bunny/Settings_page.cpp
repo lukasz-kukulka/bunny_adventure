@@ -238,6 +238,26 @@ void Settings_page::objects_ini(sf::RenderWindow& window)
 
 }
 
+int Settings_page::resolution_load_width()
+{
+	if(user_settings.res == 1)
+		return 1280;
+	else if (user_settings.res == 2)
+		return 1600;
+	else if (user_settings.res == 3)
+		return 1920;
+}
+
+int Settings_page::resolution_load_height()
+{
+	if (user_settings.res == 1)
+		return 1024;
+	else if (user_settings.res == 2)
+		return 900;
+	else if (user_settings.res == 3)
+		return 1080;
+}
+
 void Settings_page::draw(sf::RenderWindow& window)
 {
 	window.draw(background_sprite);

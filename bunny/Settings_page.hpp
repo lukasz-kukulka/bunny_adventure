@@ -17,6 +17,8 @@ public:
 	void load_settings();
 	void settings_ini_button();
 	void objects_ini(sf::RenderWindow& window);
+	int resolution_load_width();
+	int resolution_load_height();
 	void draw(sf::RenderWindow& window);
 	~Settings_page();
 
