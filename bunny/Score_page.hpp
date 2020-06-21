@@ -6,6 +6,7 @@
 #include "Single_score_record.hpp"
 #include "Slider_score.hpp"
 #include "Button_option.hpp"
+#include "Files_operations.hpp"
 
 class Score_page :public Option
 {
@@ -24,5 +25,7 @@ private:
 	std::vector<Single_score_record>score_records;
 	std::vector<Slider_score>slider;
 	std::vector<Button_option>back_button;
+	Files_operations score_operations;
+	int no_single_score;
 };
 

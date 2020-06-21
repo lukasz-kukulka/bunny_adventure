@@ -11,7 +11,7 @@ public:
 	void draw(sf::RenderWindow& window);
 
 private:
-	sf::Texture up_tex, mid_tex, down_tex;
+	sf::Texture* up_tex,* mid_tex,* down_tex;
 	sf::Sprite slider_up, slider_mid, slider_down;
 	sf::RectangleShape rec_base, slider_shape;
 };

@@ -89,9 +89,9 @@ void Single_score_record::draw(sf::RenderWindow& window)
 	window.draw(date);
 	window.draw(score);
 	window.draw(trash);
-	window.draw(trash_sprite);
 	window.draw(name_text);
 	window.draw(score_text);
 	window.draw(date_text);
 	window.draw(delete_text);
+	window.draw(trash_sprite);
 }

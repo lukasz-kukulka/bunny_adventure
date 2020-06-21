@@ -2,6 +2,7 @@
 
 Score_page::Score_page(sf::RenderWindow& window)
 {
+	this->no_single_score = score_operations.how_many_record_score();
 	this->base_rec.setSize(sf::Vector2f(window.getSize().x - 154, window.getSize().y - 300));
 	this->base_rec.setPosition(52, 50);
 	this->base_rec.setFillColor(sf::Color(255, 255, 255, 55));
@@ -35,22 +36,13 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 
 void Score_page::objects_ini(sf::RenderWindow& window)
 {
-	//Slider_score(sf::RenderWindow & window, sf::RectangleShape & base, sf::Texture * up, sf::Texture * mid, sf::Texture * down);
 	this->slider.push_back(Slider_score(window, base_rec, &up_slider, &mid_slider, &down_slider));
-	this->score_records.push_back(Single_score_record(window, &trash_tex, &butler, base_rec, score_records.size()));
-	this->score_records.push_back(Single_score_record(window, &trash_tex, &butler, base_rec, score_records.size()));
-	this->score_records.push_back(Single_score_record(window, &trash_tex, &butler, base_rec, score_records.size()));
-	this->score_records.push_back(Single_score_record(window, &trash_tex, &butler, base_rec, score_records.size()));
-	this->score_records.push_back(Single_score_record(window, &trash_tex, &butler, base_rec, score_records.size()));
-
-	this->back_button.push_back(Button_option(window, base_rec, &back_button_tex,
-		&back_button_grey_tex, &button_font, "EXIT", 1, 55, false));
-
-
-
-
-	//Button_option(sf::RenderWindow & window, sf::RectangleShape work_space, sf::Texture * texture, sf::Texture * texture_grey,
-	//	sf::Font * font, std::string text_button, int how_many, int index, bool true_false);
+	for (int i = 0; i < 15; i++)
+	{
+		std::cout << i <<"\n";
+		this->score_records.push_back(Single_score_record(window, &trash_tex, &butler, base_rec, score_records.size()));
+	}
+	this->back_button.push_back(Button_option(window, base_rec, &back_button_tex, &back_button_grey_tex, &button_font, "EXIT", 1, 55, false));
 }
 
 void Score_page::draw(sf::RenderWindow& window)
