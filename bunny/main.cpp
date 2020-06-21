@@ -6,6 +6,7 @@
 #include "Credits.hpp"
 #include "Settings_page.hpp"
 #include "Files_operations.hpp"
+#include "Score_page.hpp"
 #include <stdlib.h>
 #include <time.h> 
 extern sf::Vector2i mouse;
@@ -13,7 +14,7 @@ extern sf::Vector2i mouse;
 int main()
 {
     Files_operations* res_load = new Files_operations();
-    int menu_option = 0, res_width, res_height;
+    int menu_option = 0, res_width = 1280, res_height = 1024;
     if (res_load->load_from_settings(1) == 1)
     {
         res_width = 1280;
@@ -30,6 +31,7 @@ int main()
         res_height = 1080;
     }
     delete res_load;
+    res_load = 0;
 
     srand(time(NULL));
     sf::RenderWindow window(sf::VideoMode(res_width, res_height), "Bunny adventure");
@@ -42,6 +44,7 @@ int main()
     Interface inter(window);
     Credits credits(window);
     Settings_page settings_page(window);
+    Score_page score_page(window);
     Option* go_to_option = &inter;
     
     while (window.isOpen())
@@ -66,7 +69,8 @@ int main()
 
             case 2: //High score
             {
-
+                go_to_option = &score_page;
+                menu_option = go_to_option->system(window, mouse);
                 break;
             }
 
