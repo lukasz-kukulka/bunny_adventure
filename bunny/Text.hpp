@@ -5,7 +5,7 @@
 class Text
 {
 public:
-	Text(sf::RenderWindow&, sf::Font*, std::string, int, int, int, int, int);
+	Text(sf::RenderWindow&, sf::Font*, std::string, int, int, int, int);
 	void create_single(sf::RenderWindow&);
 	void reset();
 	void draw(sf::RenderWindow&);
