@@ -9,6 +9,7 @@ Settings_page::Settings_page(sf::RenderWindow& window)
 	this->settings_control_columns = 3;
 	this->max_row_control = 3;
 	this->settings_summary = 3;
+	this->time_save_begin = sf::seconds(3.0f);
 	this->temp_settings = settings_deffault = { 1, 10, true, true, 1 };
 	this->res_settings = diff_settings = { false, false, false };
 	this->background.loadFromFile("Textures/Credits/back.jpg");
@@ -23,10 +24,14 @@ Settings_page::Settings_page(sf::RenderWindow& window)
 	this->yes_color.loadFromFile("Textures/Settings/yes.png");
 	this->yes_grey.loadFromFile("Textures/Settings/yes_grey.png");
 
-	this->background_sprite.setTexture(background);
+	this->background_sprite_settings.setTexture(background);
 	this->basic.setSize(sf::Vector2f(window.getSize().x - 50, window.getSize().y - 50));
 	this->basic.setPosition(window.getSize().x / 2 - basic.getGlobalBounds().width / 2, window.getSize().y / 2 - basic.getGlobalBounds().height / 2);
 	this->basic.setFillColor(sf::Color(255, 255, 255, 0));
+
+	this->save_back_rec.setSize(sf::Vector2f(0, 0));
+	this->save_back_rec.setPosition(0, 0);
+	this->save_back_rec.setFillColor(sf::Color(0, 0, 0, 200));
 
 	this->button_font.loadFromFile("Fonts/flut.ttf");
 	this->sec_font.loadFromFile("Fonts/beachday.ttf");
@@ -40,7 +45,7 @@ Settings_page::Settings_page(sf::RenderWindow& window)
 
 int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
-
+	time_save = time_save_begin + clock_save.getElapsedTime();
 	for (int i = 0; i < sections.size(); i++)
 	{
 		sections[i].system(window, mouse);
@@ -56,7 +61,6 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 				buttons_resolution[j].changing_status(user_settings.res);
 			}
 		}
-		std::cout << user_settings.res << " ---------------- " << user_settings.res << "\n";
 	}
 	
 	for (int i = 0; i < buttons_diff.size(); i++)
@@ -81,22 +85,18 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		if (settings_sound_save == 1)
 		{
 			user_settings.efect = false;
-			//std::cout << yes_no_buttons[i].system(window, mouse) << " ---------------- " << user_settings.efect << "\n";
 		}
 		else if (settings_sound_save == 2)
 		{
 			user_settings.efect = true;
-			//std::cout << yes_no_buttons[i].system(window, mouse) << " ---------------- " << user_settings.efect << "\n";
 		}	
 		else if (settings_sound_save == 3)
 		{
 			user_settings.music = false;
-			//std::cout << yes_no_buttons[i].system(window, mouse) << " ---------------- " << user_settings.music << "\n";
 		}
 		else if (settings_sound_save == 4)
 		{
 			user_settings.music = true;
-			//std::cout << yes_no_buttons[i].system(window, mouse) << " ---------------- " << user_settings.music << "\n";
 		}
 	}
 	for (int i = 0; i < buttons_save_back.size(); i++)
@@ -104,8 +104,11 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		press_save_back = buttons_save_back[i].system(window, mouse);
 		if (press_save_back == 1)
 		{
-			
-			settings_ini->save_settings(user_settings.res, user_settings.vol, user_settings.efect, user_settings.music, user_settings.dif);
+			this->settings_ini->save_settings(user_settings.res, user_settings.vol, user_settings.efect, user_settings.music, user_settings.dif);
+			this->save_button_press = true;
+			this->clock_save.restart();
+			this->time_save_begin = sf::seconds(0.0f);
+			this->save_back_rec.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
 		}
 		else if (press_save_back == 2)
 		{
@@ -121,6 +124,22 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			return 0;
 		}
 	}
+
+	if (time_save.asSeconds() < 4)
+	{
+		if (time_save.asSeconds() <= 3)
+		{
+			this->texts.push_back(Text(window, &sec_font, "SETTING SAVED", window.getSize().x / 2, window.getSize().y / 10 * 4, window.getSize().y / 20, 3));
+			this->texts.push_back(Text(window, &sec_font, "SOME SETTING NEED RESTART PROGRAM", window.getSize().x / 2, window.getSize().y / 10 * 5, window.getSize().y / 30, 3));
+		}
+		else
+		{
+			this->save_back_rec.setSize(sf::Vector2f(0, 0));
+			this->texts.erase(texts.begin(), texts.end());
+			this->save_button_press = false;
+		}	
+	}
+		
 	return 3;
 }
 
@@ -235,7 +254,6 @@ void Settings_page::objects_ini(sf::RenderWindow& window)
 	this->buttons_save_back.push_back(Button_option(window, sections[sections.size() - 1].shape(), &save_exit_button, &save_exit_button_grey, &button_font, "SAVE", settings_summary, buttons_save_back.size(), false));
 	this->buttons_save_back.push_back(Button_option(window, sections[sections.size() - 1].shape(), &save_exit_button, &save_exit_button_grey, &button_font, "DEFAULT", settings_summary, buttons_save_back.size(), false));
 	this->buttons_save_back.push_back(Button_option(window, sections[sections.size() - 1].shape(), &save_exit_button, &save_exit_button_grey, &button_font, "EXIT", settings_summary, buttons_save_back.size(), false));
-
 }
 
 int Settings_page::resolution_load_width()
@@ -260,7 +278,7 @@ int Settings_page::resolution_load_height()
 
 void Settings_page::draw(sf::RenderWindow& window)
 {
-	window.draw(background_sprite);
+	window.draw(background_sprite_settings);
 	window.draw(basic);
 	for (int i = 0; i < sections.size(); i++)
 	{
@@ -289,6 +307,13 @@ void Settings_page::draw(sf::RenderWindow& window)
 	for (int i = 0; i < buttons_save_back.size(); i++)
 	{
 		buttons_save_back[i].draw(window);
+	}
+
+	window.draw(save_back_rec);
+
+	for (int i = 0; i < texts.size(); i++)
+	{
+		texts[i].draw(window);
 	}
 }
 
