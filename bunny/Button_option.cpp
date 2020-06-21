@@ -22,6 +22,11 @@ Button_option::Button_option(sf::RenderWindow& window, sf::RectangleShape space_
 		single_workspace.getGlobalBounds().width / button_sprite.getGlobalBounds().width / 2.5);
 	this->button_sprite.setPosition(single_workspace.getPosition().x + single_workspace.getGlobalBounds().width/2 - button_sprite.getGlobalBounds().width / 2, 
 		single_workspace.getPosition().y + single_workspace.getGlobalBounds().height / 2 - button_sprite.getGlobalBounds().height / 2);
+	if (perm_index == 56)
+	{
+		this->button_sprite.setScale(1.0, 1.0);
+		this->button_sprite.setPosition(window.getSize().x / 2 - button_sprite.getGlobalBounds(). width / 2, work_space.getPosition().y + work_space.getGlobalBounds().height + 30);
+	}
 
 	this->button_text.setFont(*font);
 	this->button_text.setString(text_button);
