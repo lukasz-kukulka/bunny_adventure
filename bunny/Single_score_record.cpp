@@ -1,6 +1,6 @@
 #include "Single_score_record.hpp"
 
-Single_score_record::Single_score_record(sf::RenderWindow& window, sf::Texture* trash_tex, sf::Font* font, sf::RectangleShape& base_rec, uint16_t index)
+Single_score_record::Single_score_record(sf::RenderWindow& window, sf::Texture* trash_tex, sf::Font* font, sf::RectangleShape& base_rec, uint16_t index, std::string name_load, std::string date_load, std::string score_load)
 {
 	this->base_shape = base_rec;
 	this->index = index;
@@ -18,7 +18,7 @@ Single_score_record::Single_score_record(sf::RenderWindow& window, sf::Texture* 
 	this->name.setOutlineColor(sf::Color(0, 0, 0, 111));
 
 	this->name_text.setFont(*font);
-	this->name_text.setString("NAME_TEST");
+	this->name_text.setString(name_load);
 	this->name_text.setCharacterSize(window.getSize().y / 40);
 	this->name_text.setFillColor(sf::Color(0, 77, 0, 255));
 	this->name_text.setOutlineThickness(1);
@@ -33,7 +33,7 @@ Single_score_record::Single_score_record(sf::RenderWindow& window, sf::Texture* 
 	this->date.setOutlineColor(sf::Color(0, 0, 0, 111));
 
 	this->date_text.setFont(*font);
-	this->date_text.setString("DATE_TEST");
+	this->date_text.setString(date_load);
 	this->date_text.setCharacterSize(window.getSize().y / 40);
 	this->date_text.setFillColor(sf::Color(0, 0, 88, 255));
 	this->date_text.setOutlineThickness(1);
@@ -48,7 +48,7 @@ Single_score_record::Single_score_record(sf::RenderWindow& window, sf::Texture* 
 	this->score.setOutlineColor(sf::Color(0, 0, 0, 111));
 
 	this->score_text.setFont(*font);
-	this->score_text.setString("0000000");
+	this->score_text.setString(score_load);
 	this->score_text.setCharacterSize(window.getSize().y / 40);
 	this->score_text.setFillColor(sf::Color(177, 0, 0, 255));
 	this->score_text.setOutlineThickness(1);

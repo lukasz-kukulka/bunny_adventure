@@ -13,25 +13,24 @@ extern sf::Vector2i mouse;
 
 int main()
 {
-    Files_operations* res_load = new Files_operations();
+    Files_operations res_load;
     int menu_option = 0, res_width = 1280, res_height = 1024;
-    if (res_load->load_from_settings(1) == 1)
+    if (res_load.load_from_settings(1) == 1)
     {
         res_width = 1280;
         res_height = 1024;
     }
-    else if (res_load->load_from_settings(1) == 2)
+    else if (res_load.load_from_settings(1) == 2)
     {
         res_width = 1600;
         res_height = 900;
     }
-    else if (res_load->load_from_settings(1) == 3)
+    else if (res_load.load_from_settings(1) == 3)
     {
         res_width = 1920;
         res_height = 1080;
     }
-    delete res_load;
-    res_load = 0;
+
 
     srand(time(NULL));
     sf::RenderWindow window(sf::VideoMode(res_width, res_height), "Bunny adventure");

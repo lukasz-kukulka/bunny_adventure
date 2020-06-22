@@ -86,27 +86,7 @@ std::string Files_operations::load_score(int row_number)
     {
         if (no_line == row_number)
         {
-            switch (row_number)
-            {
-
-            case 1:
-            {
-                return line;
-            }
-
-            case 2:
-            {
-                return line;
-            }
-
-            case 3:
-            {
-                return line;
-            }
-
-            default:
-                return 0;
-            }
+            return line;
         }
         no_line++;
     }

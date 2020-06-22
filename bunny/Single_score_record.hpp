@@ -3,7 +3,7 @@
 class Single_score_record
 {
 public:
-	Single_score_record(sf::RenderWindow& window, sf::Texture* trash_tex, sf::Font* font, sf::RectangleShape& base_rec, uint16_t index);
+	Single_score_record(sf::RenderWindow& window, sf::Texture* trash_tex, sf::Font* font, sf::RectangleShape& base_rec, uint16_t index, std::string name_load, std::string date_load, std::string score_load);
 	int system(sf::RenderWindow& window, sf::Vector2i mouse);
 
 	void draw(sf::RenderWindow& window);
