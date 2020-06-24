@@ -1,12 +1,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
+#include <SFML/System.hpp> // ??
+#include <SFML/Window.hpp> //??
 #include "Option.hpp"
 #include "Single_score_record.hpp"
 #include "Slider_score.hpp"
 #include "Button_option.hpp"
 #include "Files_operations.hpp"
+#include <stdio.h> // do usuniecia 
 
 class Score_page :public Option
 {

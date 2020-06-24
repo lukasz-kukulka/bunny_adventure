@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-
+#include <iostream>
 
 class Slider_score
 {
@@ -18,5 +18,6 @@ private:
 	sf::RectangleShape rec_base, slider_shape;
 	sf::Event event;
 	bool slider_on_off;
+	int return_index;
 };
 
