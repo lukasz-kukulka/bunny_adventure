@@ -23,6 +23,8 @@ private:
 	sf::Sprite background_sprite_bunny;
 	sf::Font butler, button_font;
 	sf::RectangleShape base_rec;
+	sf::Clock move_record_clock;
+	sf::Time move_record_time;
 	std::vector<Single_score_record>score_records;
 	std::vector<Slider_score>slider;
 	std::vector<Button_option>back_button;

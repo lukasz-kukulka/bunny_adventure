@@ -29,6 +29,7 @@ Score_page::Score_page(sf::RenderWindow& window)
 
 int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
+	move_record_time = move_record_clock.getElapsedTime();
 	for (int i = 0; i < back_button.size(); i++)
 	{
 		if (back_button[i].system(window, mouse) == 56)
@@ -37,20 +38,22 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	for (int i = 0; i < slider.size(); i++)
 	{
 		
-		if (slider[i].system(window, mouse) == 2 && score_records[0].visible_status() != true) // down
+		if (slider[i].system(window, mouse) == 2 && score_records[0].visible_status() != true && move_record_time.asMilliseconds() >= 100) // down
 		{
 			for (int j = score_records.size() - 1; j >= 0 ; j--)
 			{
 				//std::cout<< j << " --------------------- CZY JEST TRUE\n";
 				score_records[j].move_down(window);
+				move_record_clock.restart();
 			}
 			//std::cout << "KONIEC\n";
 		}
-		else if (slider[i].system(window, mouse) == 1 && score_records[score_records.size() - 1].visible_status() != true) // up
+		else if (slider[i].system(window, mouse) == 1 && score_records[score_records.size() - 1].visible_status() != true && move_record_time.asMilliseconds() >= 100) // up
 		{
 			for (int j = 0; j < score_records.size(); j++)
 			{
 				score_records[j].move_up(window);
+				move_record_clock.restart();
 			}	
 		}
 		else if (slider[i].system(window, mouse) == 3) // mid
