@@ -88,11 +88,10 @@ bool Single_score_record::visible_status()
 
 void Single_score_record::move_up(sf::RenderWindow& window)
 {
-	//if (move_record_time.asMilliseconds() >= 200)
-	//{
+
 		objects_visible(window);
 		this->all_record.setPosition(all_record.getPosition().x, all_record.getPosition().y - size_single_record);
-		std::cout<<index <<". " << all_record.getPosition().y << " - UP \n";
+
 		this->name.setPosition(all_record.getPosition().x, all_record.getPosition().y);
 		this->name_text.setPosition(name.getPosition().x + name.getSize().x / 2 - name_text.getGlobalBounds().width / 2,
 			name.getPosition().y + name.getSize().y / 2 - name_text.getGlobalBounds().height / 2);
@@ -108,17 +107,14 @@ void Single_score_record::move_up(sf::RenderWindow& window)
 		this->delete_text.setPosition(trash.getPosition().x + trash.getSize().x / 2 - delete_text.getGlobalBounds().width / 2,
 			trash_sprite.getPosition().y + trash_sprite.getGlobalBounds().height);
 		objects_unvisible(window);
-		//move_record_clock.restart();
-	//}
+
 }
 
 void Single_score_record::move_down(sf::RenderWindow& window)
 {
-	//if (move_record_time.asMilliseconds() >= 200)
-	//{
+
 		objects_visible(window);
 		this->all_record.setPosition(all_record.getPosition().x, all_record.getPosition().y + size_single_record);
-		std::cout << index << " = "<< all_record.getPosition().y << " - DOWN \n";
 		this->name.setPosition(all_record.getPosition().x, all_record.getPosition().y);
 		this->name_text.setPosition(name.getPosition().x + name.getSize().x / 2 - name_text.getGlobalBounds().width / 2,
 			name.getPosition().y + name.getSize().y / 2 - name_text.getGlobalBounds().height / 2);
@@ -133,10 +129,8 @@ void Single_score_record::move_down(sf::RenderWindow& window)
 			trash.getPosition().y + 2);
 		this->delete_text.setPosition(trash.getPosition().x + trash.getSize().x / 2 - delete_text.getGlobalBounds().width / 2,
 			trash_sprite.getPosition().y + trash_sprite.getGlobalBounds().height);
-		//std::cout << "position: " << all_record.getPosition().y << "\n";
 		objects_unvisible(window);
-		//move_record_clock.restart();
-	//}
+
 }
 
 void Single_score_record::objects_ini(sf::RenderWindow& window)

@@ -21,65 +21,62 @@ int Slider_score::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	{
 		if (event.type == sf::Event::Closed)
 			window.close();
-		if (mouse.x > slider_shape.getPosition().x && mouse.x < slider_shape.getPosition().x + slider_shape.getGlobalBounds().width &&
-			mouse.y > slider_shape.getPosition().y && mouse.y < slider_shape.getPosition().y + slider_shape.getGlobalBounds().height)
-		{
+
 			this->slider_shape.setOutlineThickness(2);
-		if (mouse.x > slider_down.getPosition().x && mouse.x < slider_down.getPosition().x + slider_down.getGlobalBounds().width &&
-				mouse.y > slider_down.getPosition().y && mouse.y < slider_down.getPosition().y + slider_down.getGlobalBounds().height)
+			if (mouse.x > slider_down.getPosition().x && mouse.x < slider_down.getPosition().x + slider_down.getGlobalBounds().width &&
+				mouse.y > slider_down.getPosition().y && mouse.y < slider_down.getPosition().y + slider_down.getGlobalBounds().height &&
+				sf::Mouse::isButtonPressed(sf::Mouse::Left) && slider_on_off == true)
 			{
-				if (event.type == sf::Event::MouseButtonPressed && slider_on_off == true)
-				{
-					this->slider_down.setTexture(*down_tex_press);
-					this->return_index = 1;
-				}
-				if (event.type == sf::Event::MouseButtonReleased && slider_on_off == true)
-				{
-					objects_ini(window);
-					this->return_index = 0;
-				}
+
+				this->slider_down.setTexture(*down_tex_press);
+				this->return_index = 1;
 			}
-			if (mouse.x > slider_up.getPosition().x && mouse.x < slider_up.getPosition().x + slider_up.getGlobalBounds().width &&
-				mouse.y > slider_up.getPosition().y && mouse.y < slider_up.getPosition().y + slider_up.getGlobalBounds().height)
+			else if (mouse.x > slider_up.getPosition().x && mouse.x < slider_up.getPosition().x + slider_up.getGlobalBounds().width &&
+				mouse.y > slider_up.getPosition().y && mouse.y < slider_up.getPosition().y + slider_up.getGlobalBounds().height &&
+				sf::Mouse::isButtonPressed(sf::Mouse::Left) && slider_on_off == true)
 			{
-				if (event.type == sf::Event::MouseButtonPressed && slider_on_off == true)
-				{
-					this->slider_up.setTexture(*up_tex_press);
-					this->return_index = 2;
-				}
-				if (event.type == sf::Event::MouseButtonReleased && slider_on_off == true)
-				{
-					objects_ini(window);
-					this->return_index = 0;
-				}
+
+				this->slider_up.setTexture(*up_tex_press);
+				this->return_index = 2;
 			}
-			if (mouse.x > slider_mid.getPosition().x && mouse.x < slider_mid.getPosition().x + slider_mid.getGlobalBounds().width &&
-				mouse.y > slider_mid.getPosition().y && mouse.y < slider_mid.getPosition().y + slider_mid.getGlobalBounds().height)
+			else if (mouse.x > slider_mid.getPosition().x && mouse.x < slider_mid.getPosition().x + slider_mid.getGlobalBounds().width &&
+				mouse.y > slider_mid.getPosition().y && mouse.y < slider_mid.getPosition().y + slider_mid.getGlobalBounds().height &&
+				sf::Mouse::isButtonPressed(sf::Mouse::Left) && slider_on_off == true && mouse.y > move_slider_shape.getPosition().y)
 			{
-				if (event.type == sf::Event::MouseButtonPressed && slider_on_off == true)
+				this->slider_mid.setTexture(*mid_tex_press);
+				this->slider_mid.setPosition(slider_mid.getPosition().x, mouse.y - slider_mid.getGlobalBounds().height / 2);
+				if (slider_mid.getPosition().y + slider_mid.getGlobalBounds().height > move_slider_shape.getPosition().y + move_slider_shape.getGlobalBounds().height)
 				{
-					this->slider_mid.setTexture(*mid_tex_press);
-					this->return_index = 3;
+					this->slider_mid.setPosition(slider_mid.getPosition().x, move_slider_shape.getPosition().y + move_slider_shape.getGlobalBounds().height - slider_mid.getGlobalBounds().height);
 				}
-				if (event.type == sf::Event::MouseButtonReleased && slider_on_off == true)
+				if (slider_mid.getPosition().y < move_slider_shape.getPosition().y)
 				{
-					objects_ini(window);
-					this->return_index = 0;
+					this->slider_mid.setPosition(slider_mid.getPosition().x, move_slider_shape.getPosition().y);
 				}
+				
+				if (mouse.y < move_slider_shape.getPosition().y + 1)
+				{
+					std::cout << " --------------------- CZY JEST TRUE\n";
+					break;
+				}
+					
 			}
-			if (event.type == sf::Event::MouseButtonReleased && slider_on_off == true)
+			else if (event.type == sf::Event::MouseButtonReleased && slider_on_off == true)
 			{
-				objects_ini(window);
+				this->slider_mid.setTexture(*mid_tex);
+				this->slider_down.setTexture(*down_tex);
+				this->slider_up.setTexture(*up_tex);
 				this->return_index = 0;
 			}
-		}
-		else
-		{
-			objects_ini(window);
-			this->return_index = 0;
-		}
+
+
 	}
 	return this->return_index;
+}
+
+int Slider_score::position_mid_slider()
+{
+	return slider_mid.getPosition().y + slider_mid.getGlobalBounds().height / 2;
 }
 
 void Slider_score::objects_ini(sf::RenderWindow& window)
@@ -98,6 +95,12 @@ void Slider_score::objects_ini(sf::RenderWindow& window)
 
 	this->slider_down.setTexture(*down_tex);
 	this->slider_down.setPosition(slider_shape.getPosition().x, slider_shape.getPosition().y + slider_shape.getGlobalBounds().height - slider_down.getGlobalBounds().height - 2);
+
+	this->move_slider_shape.setSize(sf::Vector2f(slider_shape.getSize().x, slider_down.getPosition().y - slider_up.getPosition().y - slider_up.getGlobalBounds().height));
+	this->move_slider_shape.setPosition(slider_shape.getPosition().x, slider_up.getPosition().y + slider_up.getGlobalBounds().height);
+	this->move_slider_shape.setFillColor(sf::Color(0, 0, 0, 0));
+	this->move_slider_shape.setOutlineThickness(0);
+	this->move_slider_shape.setOutlineColor(sf::Color(0, 0, 0, 255));
 }
 
 void Slider_score::draw(sf::RenderWindow& window)
@@ -107,5 +110,6 @@ void Slider_score::draw(sf::RenderWindow& window)
 	window.draw(slider_mid);
 	window.draw(slider_up);
 	window.draw(rec_base);
-	
+	window.draw(move_slider_shape);
+
 }
