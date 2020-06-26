@@ -9,14 +9,16 @@ public:
 		sf::Texture* up_texture_press, sf::Texture* mid_texture_press, sf::Texture* down_texture_press, bool enable_slider);
 
 	int system(sf::RenderWindow& window, sf::Vector2i mouse);
-	int position_mid_slider();
+	sf::RectangleShape position_mid_slider();
+	int slider_mid_position();
+	void change_position_mid_slider(int pos_y);
 	void objects_ini(sf::RenderWindow& window);
 	void draw(sf::RenderWindow& window);
 
 private:
 	sf::Texture* up_tex,* mid_tex,* down_tex, * up_tex_press, * mid_tex_press, * down_tex_press;
 	sf::Sprite slider_up, slider_mid, slider_down;
-	sf::RectangleShape rec_base, slider_shape, move_slider_shape;
+	sf::RectangleShape rec_base, slider_shape, move_slider_shape, animation_space_single;
 	sf::Event event;
 	bool slider_on_off;
 	int return_index, distance_bettwen_mouse_and_mid;

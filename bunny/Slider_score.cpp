@@ -21,62 +21,63 @@ int Slider_score::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	{
 		if (event.type == sf::Event::Closed)
 			window.close();
-
-			this->slider_shape.setOutlineThickness(2);
-			if (mouse.x > slider_down.getPosition().x && mouse.x < slider_down.getPosition().x + slider_down.getGlobalBounds().width &&
-				mouse.y > slider_down.getPosition().y && mouse.y < slider_down.getPosition().y + slider_down.getGlobalBounds().height &&
-				sf::Mouse::isButtonPressed(sf::Mouse::Left) && slider_on_off == true)
+		this->slider_shape.setOutlineThickness(2);
+		if (mouse.x > slider_down.getPosition().x && mouse.x < slider_down.getPosition().x + slider_down.getGlobalBounds().width &&
+			mouse.y > slider_down.getPosition().y && mouse.y < slider_down.getPosition().y + slider_down.getGlobalBounds().height &&
+			sf::Mouse::isButtonPressed(sf::Mouse::Left) && slider_on_off == true && event.type != sf::Event::MouseButtonReleased)
+		{
+			this->slider_down.setTexture(*down_tex_press);
+			this->return_index = 1;
+		}
+		
+		else if (mouse.x > slider_up.getPosition().x && mouse.x < slider_up.getPosition().x + slider_up.getGlobalBounds().width &&
+			mouse.y > slider_up.getPosition().y && mouse.y < slider_up.getPosition().y + slider_up.getGlobalBounds().height &&
+			sf::Mouse::isButtonPressed(sf::Mouse::Left) && slider_on_off == true)
+		{
+			this->slider_up.setTexture(*up_tex_press);
+			this->return_index = 2;
+		}
+		else if (mouse.x > slider_mid.getPosition().x && mouse.x < slider_mid.getPosition().x + slider_mid.getGlobalBounds().width &&
+			mouse.y > slider_mid.getPosition().y && mouse.y < slider_mid.getPosition().y + slider_mid.getGlobalBounds().height &&
+			sf::Mouse::isButtonPressed(sf::Mouse::Left) && slider_on_off == true)
+		{
+			this->slider_mid.setTexture(*mid_tex_press);
+			this->slider_mid.setPosition(slider_mid.getPosition().x, mouse.y - slider_mid.getGlobalBounds().height / 2);
+			if (slider_mid.getPosition().y + slider_mid.getGlobalBounds().height > move_slider_shape.getPosition().y + move_slider_shape.getGlobalBounds().height)
 			{
-
-				this->slider_down.setTexture(*down_tex_press);
-				this->return_index = 1;
+				this->slider_mid.setPosition(slider_mid.getPosition().x, move_slider_shape.getPosition().y + move_slider_shape.getGlobalBounds().height - slider_mid.getGlobalBounds().height);
 			}
-			else if (mouse.x > slider_up.getPosition().x && mouse.x < slider_up.getPosition().x + slider_up.getGlobalBounds().width &&
-				mouse.y > slider_up.getPosition().y && mouse.y < slider_up.getPosition().y + slider_up.getGlobalBounds().height &&
-				sf::Mouse::isButtonPressed(sf::Mouse::Left) && slider_on_off == true)
+			if (slider_mid.getPosition().y < move_slider_shape.getPosition().y)
 			{
-
-				this->slider_up.setTexture(*up_tex_press);
-				this->return_index = 2;
+				this->slider_mid.setPosition(slider_mid.getPosition().x, move_slider_shape.getPosition().y);
 			}
-			else if (mouse.x > slider_mid.getPosition().x && mouse.x < slider_mid.getPosition().x + slider_mid.getGlobalBounds().width &&
-				mouse.y > slider_mid.getPosition().y && mouse.y < slider_mid.getPosition().y + slider_mid.getGlobalBounds().height &&
-				sf::Mouse::isButtonPressed(sf::Mouse::Left) && slider_on_off == true && mouse.y > move_slider_shape.getPosition().y)
-			{
-				this->slider_mid.setTexture(*mid_tex_press);
-				this->slider_mid.setPosition(slider_mid.getPosition().x, mouse.y - slider_mid.getGlobalBounds().height / 2);
-				if (slider_mid.getPosition().y + slider_mid.getGlobalBounds().height > move_slider_shape.getPosition().y + move_slider_shape.getGlobalBounds().height)
-				{
-					this->slider_mid.setPosition(slider_mid.getPosition().x, move_slider_shape.getPosition().y + move_slider_shape.getGlobalBounds().height - slider_mid.getGlobalBounds().height);
-				}
-				if (slider_mid.getPosition().y < move_slider_shape.getPosition().y)
-				{
-					this->slider_mid.setPosition(slider_mid.getPosition().x, move_slider_shape.getPosition().y);
-				}
-				
-				if (mouse.y < move_slider_shape.getPosition().y + 1)
-				{
-					std::cout << " --------------------- CZY JEST TRUE\n";
-					break;
-				}
-					
-			}
-			else if (event.type == sf::Event::MouseButtonReleased && slider_on_off == true)
-			{
-				this->slider_mid.setTexture(*mid_tex);
-				this->slider_down.setTexture(*down_tex);
-				this->slider_up.setTexture(*up_tex);
-				this->return_index = 0;
-			}
-
-
+			this->return_index = 3;
+		}
+		else
+		{
+			event.type == sf::Event::MouseButtonReleased;
+			this->slider_mid.setTexture(*mid_tex);
+			this->slider_down.setTexture(*down_tex);
+			this->slider_up.setTexture(*up_tex);
+			this->return_index = 0;
+		}
 	}
 	return this->return_index;
 }
 
-int Slider_score::position_mid_slider()
+sf::RectangleShape Slider_score::position_mid_slider()
 {
-	return slider_mid.getPosition().y + slider_mid.getGlobalBounds().height / 2;
+	return animation_space_single;
+}
+
+int Slider_score::slider_mid_position()
+{
+	return slider_mid.getPosition().y;
+}
+
+void Slider_score::change_position_mid_slider(int pos_y)
+{
+	this->slider_mid.setPosition(slider_mid.getPosition().x, move_slider_shape.getPosition().y + pos_y);
 }
 
 void Slider_score::objects_ini(sf::RenderWindow& window)
@@ -101,6 +102,10 @@ void Slider_score::objects_ini(sf::RenderWindow& window)
 	this->move_slider_shape.setFillColor(sf::Color(0, 0, 0, 0));
 	this->move_slider_shape.setOutlineThickness(0);
 	this->move_slider_shape.setOutlineColor(sf::Color(0, 0, 0, 255));
+
+	this->animation_space_single.setSize(sf::Vector2f(move_slider_shape.getSize().x, move_slider_shape.getSize().y - slider_mid.getGlobalBounds().height));
+	this->animation_space_single.setPosition(slider_shape.getPosition().x, slider_up.getPosition().y + slider_up.getGlobalBounds().height + slider_mid.getGlobalBounds().height / 2);
+	this->animation_space_single.setFillColor(sf::Color(0, 0, 255, 111));
 }
 
 void Slider_score::draw(sf::RenderWindow& window)
@@ -111,5 +116,6 @@ void Slider_score::draw(sf::RenderWindow& window)
 	window.draw(slider_up);
 	window.draw(rec_base);
 	window.draw(move_slider_shape);
+	window.draw(animation_space_single);
 
 }
