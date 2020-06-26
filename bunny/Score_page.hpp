@@ -29,6 +29,6 @@ private:
 	std::vector<Slider_score>slider;
 	std::vector<Button_option>back_button;
 	Files_operations score_operations;
-	int no_single_score, how_many_record_before, extra_record_number, unit_mid_slider;
+	int no_single_score, how_many_record_before, extra_record_number, unit_mid_slider, slider_mid_position, slider_mid_position_checked;
 };
 

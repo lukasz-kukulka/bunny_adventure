@@ -72,7 +72,7 @@ sf::RectangleShape Slider_score::position_mid_slider()
 
 int Slider_score::slider_mid_position()
 {
-	return slider_mid.getPosition().y;
+	return slider_mid.getPosition().y + slider_mid.getGlobalBounds().height / 2 - animation_space_single.getPosition().y;
 }
 
 void Slider_score::change_position_mid_slider(int pos_y)
@@ -105,7 +105,7 @@ void Slider_score::objects_ini(sf::RenderWindow& window)
 
 	this->animation_space_single.setSize(sf::Vector2f(move_slider_shape.getSize().x, move_slider_shape.getSize().y - slider_mid.getGlobalBounds().height));
 	this->animation_space_single.setPosition(slider_shape.getPosition().x, slider_up.getPosition().y + slider_up.getGlobalBounds().height + slider_mid.getGlobalBounds().height / 2);
-	this->animation_space_single.setFillColor(sf::Color(0, 0, 255, 111));
+	this->animation_space_single.setFillColor(sf::Color(0, 0, 0, 0));
 }
 
 void Slider_score::draw(sf::RenderWindow& window)
