@@ -26,6 +26,27 @@ int Single_score_record::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	{
 		objects_visible(window);
 	}
+	if (mouse.x > trash.getPosition().x && mouse.x < trash.getPosition().x + trash.getGlobalBounds().width &&
+		mouse.y > trash.getPosition().y && mouse.y < trash.getPosition().y + trash.getGlobalBounds().height)
+	{
+		this->trash.setFillColor(sf::Color(255, 255, 255, 222));
+		this->trash_sprite.setScale(window.getSize().y / 1000.0, window.getSize().y / 1000.0);
+		this->trash_sprite.setPosition(trash.getPosition().x + trash.getSize().x / 2 - trash_sprite.getGlobalBounds().width / 2,
+			trash.getPosition().y + 2);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			return 1;
+		}
+
+	}
+	else
+	{
+		this->trash.setFillColor(sf::Color(255, 255, 255, 111));
+		this->trash_sprite.setPosition(trash.getPosition().x + trash.getSize().x / 2 - trash_sprite.getGlobalBounds().width / 2,
+			trash.getPosition().y + 2);
+
+		return 0;
+	}
 
 	return 0;
 }
@@ -196,6 +217,7 @@ void Single_score_record::objects_ini(sf::RenderWindow& window)
 	this->trash_sprite.setScale(window.getSize().y / 1500.0, window.getSize().y / 1500.0);
 	this->trash_sprite.setPosition(trash.getPosition().x + trash.getSize().x / 2 - trash_sprite.getGlobalBounds().width / 2,
 		trash.getPosition().y + 2);
+	//this->trash_sprite.setOrigin(sf::Vector2f(trash_sprite.getGlobalBounds().width / 2, trash_sprite.getGlobalBounds().height / 2));
 
 	this->delete_text.setFont(*font);
 	this->delete_text.setString("Delete");

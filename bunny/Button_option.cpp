@@ -27,10 +27,16 @@ Button_option::Button_option(sf::RenderWindow& window, sf::RectangleShape space_
 		this->button_sprite.setScale(1.0, 1.0);
 		this->button_sprite.setPosition(window.getSize().x / 2 - button_sprite.getGlobalBounds(). width / 2, work_space.getPosition().y + work_space.getGlobalBounds().height + 30);
 	}
+	else if (perm_index == 12 || perm_index == 13)
+	{
+		this->button_sprite.setScale(1.0, 1.0);
+		this->button_sprite.setPosition(window.getSize().x / 3 * (perm_index - 11) - button_sprite.getGlobalBounds().width / 2, window.getSize().y - 230);
+		std::cout << "BUTTON TEST\n";
+	}
 
 	this->button_text.setFont(*font);
 	this->button_text.setString(text_button);
-	if (text_button == "SAVE" || text_button == "EXIT" || text_button == "DEFAULT")
+	if (text_button == "SAVE" || text_button == "EXIT" || text_button == "DEFAULT" || perm_index == 12 || perm_index == 13)
 		this->button_text.setCharacterSize(button_sprite.getGlobalBounds().height / 40 * 10);
 	else 
 		this->button_text.setCharacterSize(button_sprite.getGlobalBounds().height / 40 * 5);

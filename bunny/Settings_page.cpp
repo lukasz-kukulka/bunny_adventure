@@ -125,9 +125,9 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		}
 	}
 
-	if (time_save.asSeconds() < 4)
+	if (time_save.asSeconds() < 4 && save_button_press == true)
 	{
-		if (time_save.asSeconds() <= 3)
+		if (time_save.asSeconds() <= 2)
 		{
 			this->texts.push_back(Text(window, &sec_font, "SETTING SAVED", window.getSize().x / 2, window.getSize().y / 10 * 4, window.getSize().y / 20, 3));
 			this->texts.push_back(Text(window, &sec_font, "SOME SETTING NEED RESTART PROGRAM", window.getSize().x / 2, window.getSize().y / 10 * 5, window.getSize().y / 30, 3));
@@ -320,5 +320,5 @@ void Settings_page::draw(sf::RenderWindow& window)
 Settings_page::~Settings_page()
 {
 	delete settings_ini;
-	settings_ini = 0;
+	settings_ini = nullptr;
 }

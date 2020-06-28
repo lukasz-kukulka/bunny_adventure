@@ -32,68 +32,99 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	move_record_time = move_record_clock.getElapsedTime();
 	how_many_record_before = 0;
 
-	for (int i = 0; i < back_button.size(); i++)
+
+	if (this->detete_record_enagled == true)
 	{
-		if (back_button[i].system(window, mouse) == 56)
-			return 0;
-	}
-	for (int i = 0; i < slider.size(); i++)
-	{
-		if (slider[i].system(window, mouse) == 1 || slider[i].system(window, mouse) == 2)
+		for (int i = 0; i < back_button.size(); i++)
 		{
-			for (int z = 0; z < extra_record_number; z++)
+			if (back_button[i].system(window, mouse) == 56)
+				return 0;
+		}
+		for (int i = 0; i < slider.size(); i++)
+		{
+			if (slider[i].system(window, mouse) == 1 || slider[i].system(window, mouse) == 2)
 			{
-				if (score_records[z].visible_status() == false)
+				for (int z = 0; z < extra_record_number; z++)
 				{
-					how_many_record_before++;
+					if (score_records[z].visible_status() == false)
+					{
+						how_many_record_before++;
+					}
 				}
-			}
-			if (slider[i].system(window, mouse) == 2 && score_records[0].visible_status() != true && move_record_time.asMilliseconds() >= 100) // down
-			{
-				for (int j = score_records.size() - 1; j >= 0; j--)
+				if (slider[i].system(window, mouse) == 2 && score_records[0].visible_status() != true && move_record_time.asMilliseconds() >= 100) // down
 				{
-					score_records[j].move_down(window);
-					move_record_clock.restart();
-				}
+					for (int j = score_records.size() - 1; j >= 0; j--)
+					{
+						score_records[j].move_down(window);
+						move_record_clock.restart();
+					}
 
-			}
-			else if (slider[i].system(window, mouse) == 1 && score_records[score_records.size() - 1].visible_status() != true && move_record_time.asMilliseconds() >= 100) // up
-			{
-				for (int j = 0; j < score_records.size(); j++)
-				{
-					score_records[j].move_up(window);
-					move_record_clock.restart();
 				}
+				else if (slider[i].system(window, mouse) == 1 && score_records[score_records.size() - 1].visible_status() != true && move_record_time.asMilliseconds() >= 100) // up
+				{
+					for (int j = 0; j < score_records.size(); j++)
+					{
+						score_records[j].move_up(window);
+						move_record_clock.restart();
+					}
 
+				}
+				slider[i].change_position_mid_slider((how_many_record_before)*unit_mid_slider);
 			}
-			slider[i].change_position_mid_slider((how_many_record_before)*unit_mid_slider);
+
+			if (slider[i].system(window, mouse) == 3) // mid
+			{
+				if (slider[i].slider_mid_position() / unit_mid_slider + 1 > slider_mid_position_checked / unit_mid_slider)
+				{
+					for (int j = 0; j < score_records.size(); j++)
+					{
+						score_records[j].move_up(window);;
+					}
+					slider_mid_position_checked = slider_mid_position_checked + unit_mid_slider;
+				}
+				if (slider[i].slider_mid_position() / unit_mid_slider + 1 < slider_mid_position_checked / unit_mid_slider)
+				{
+					for (int j = 0; j < score_records.size(); j++)
+					{
+						score_records[j].move_down(window);
+					}
+					slider_mid_position_checked = slider_mid_position_checked - unit_mid_slider;
+				}
+				//std::cout << "TEST" << std::endl;
+			}
 		}
 
-		if (slider[i].system(window, mouse) == 3) // mid
+		for (int i = 0; i < score_records.size(); i++)
 		{
-			if (slider[i].slider_mid_position() / unit_mid_slider + 1> slider_mid_position_checked / unit_mid_slider)
-			{
-				for (int j = 0; j < score_records.size(); j++)
-				{
-					score_records[j].move_up(window);;
-				}
-				slider_mid_position_checked = slider_mid_position_checked + unit_mid_slider;
+			if (score_records[i].system(window, mouse) == 1)
+			{ 
+				this->detete_record_enagled = false;
 			}
-			if (slider[i].slider_mid_position() / unit_mid_slider + 1 < slider_mid_position_checked / unit_mid_slider)
-			{
-				for (int j = 0; j < score_records.size(); j++)
-				{
-					score_records[j].move_down(window);
-				}
-				slider_mid_position_checked = slider_mid_position_checked - unit_mid_slider;	
-			}
-			//std::cout << "TEST" << std::endl;
 		}
 	}
-	
-	for (int i = 0; i < score_records.size(); i++)
+	else
 	{
-		score_records[i].system(window, mouse);
+		if (screen_delete_enabled == true)
+		{
+			screen_del.push_back(Confirm_screen(window, &button_font, "ARE YOU SURE YOU WANA DELETE THIS RECORD?", &back_button_tex, &back_button_grey_tex));
+			screen_delete_enabled = false;
+		}
+		
+		for (int i = 0; i < screen_del.size(); i++)
+		{
+			int button_index = screen_del[i].system(window, mouse);
+			if (button_index == 1)
+			{
+				std::cout << "DELETE\n";
+			}
+			if (button_index == 2)
+			{
+				this->screen_delete_enabled = true;
+				this->detete_record_enagled = true;
+				this->screen_del.erase(screen_del.begin(), screen_del.end());
+				return 2;
+			}
+		}
 	}
 
 
@@ -106,6 +137,8 @@ void Score_page::objects_ini(sf::RenderWindow& window)
 	this->background_sprite_bunny.setTexture(background_tex);
 	this->extra_record_number = no_single_score - 15;
 	this->slider_mid_position = 0;
+	this->detete_record_enagled = true;
+	this->screen_delete_enabled = true;
 	
 	if (no_single_score < 15)
 	{
@@ -147,5 +180,9 @@ void Score_page::draw(sf::RenderWindow& window)
 	for (int i = 0; i < back_button.size(); i++)
 	{
 		back_button[i].draw(window);
+	}
+	for (int i = 0; i < screen_del.size(); i++)
+	{
+		screen_del[i].draw(window);
 	}
 }

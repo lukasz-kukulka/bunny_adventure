@@ -8,6 +8,7 @@
 #include "Button_option.hpp"
 #include "Files_operations.hpp"
 #include <stdio.h> // do usuniecia 
+#include "Confirm_screen.hpp"
 
 class Score_page :public Option
 {
@@ -28,7 +29,9 @@ private:
 	std::vector<Single_score_record>score_records;
 	std::vector<Slider_score>slider;
 	std::vector<Button_option>back_button;
+	std::vector<Confirm_screen>screen_del;
 	Files_operations score_operations;
 	int no_single_score, how_many_record_before, extra_record_number, unit_mid_slider, slider_mid_position, slider_mid_position_checked;
+	bool detete_record_enagled, screen_delete_enabled;
 };
 
