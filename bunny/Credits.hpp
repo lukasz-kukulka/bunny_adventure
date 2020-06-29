@@ -3,6 +3,7 @@
 #include "Option.hpp"
 #include "Text.hpp"
 #include "Button.hpp"
+#include "Files_operations.hpp"
 
 class Credits :public Option
 {

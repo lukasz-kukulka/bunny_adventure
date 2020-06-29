@@ -9,6 +9,7 @@
 #include "Text_settings.hpp"
 #include "Files_operations.hpp"
 #include "Text.hpp"
+#include "Files_operations.hpp"
 
 class Settings_page :public Option
 {

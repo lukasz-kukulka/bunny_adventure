@@ -90,7 +90,6 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 					}
 					slider_mid_position_checked = slider_mid_position_checked - unit_mid_slider;
 				}
-				//std::cout << "TEST" << std::endl;
 			}
 		}
 
@@ -99,6 +98,7 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			if (score_records[i].system(window, mouse) == 1)
 			{ 
 				this->detete_record_enagled = false;
+				this->score_to_delete = score_records[i].index_out();
 			}
 		}
 	}
@@ -115,7 +115,13 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			int button_index = screen_del[i].system(window, mouse);
 			if (button_index == 1)
 			{
-				std::cout << "DELETE\n";
+				this->score_records.erase(score_records.begin() +  score_to_delete);
+				this->screen_delete_enabled = true;
+				this->detete_record_enagled = true;
+				this->screen_del.erase(screen_del.begin(), screen_del.end());
+				this->score_operations.delete_record(score_to_delete);
+				this->objects_ini(window);
+				return 2;
 			}
 			if (button_index == 2)
 			{
@@ -133,13 +139,27 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 
 void Score_page::objects_ini(sf::RenderWindow& window)
 {
+	for (int i = 0; i < slider.size(); i++)
+	{
+		slider.erase(slider.begin(), slider.end());
+	}
+
+	for (int i = 0; i < score_records.size(); i++)
+	{
+		score_records.erase(score_records.begin(), score_records.end());
+	}
+
+	for (int i = 0; i < back_button.size(); i++)
+	{
+		back_button.erase(back_button.begin(), back_button.end());
+	}
 	this->no_single_score = score_operations.how_many_record_score();
 	this->background_sprite_bunny.setTexture(background_tex);
 	this->extra_record_number = no_single_score - 15;
 	this->slider_mid_position = 0;
 	this->detete_record_enagled = true;
 	this->screen_delete_enabled = true;
-	
+
 	if (no_single_score < 15)
 	{
 		this->slider.push_back(Slider_score(window, base_rec, &up_slider_grey, &mid_slider_grey, &down_slider_grey, &up_slider_press, &mid_slider_press, &down_slider_press, false));

@@ -31,7 +31,8 @@ int main()
         res_height = 1080;
     }
 
-
+    //Files_operations *res_load_new;
+    //res_load_new = &res_load
     srand(time(NULL));
     sf::RenderWindow window(sf::VideoMode(res_width, res_height), "Bunny adventure");
     window.setFramerateLimit(60);
