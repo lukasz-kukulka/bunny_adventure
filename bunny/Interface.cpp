@@ -3,7 +3,6 @@
 Interface::Interface(sf::RenderWindow& window)
 {
 	this->end_animation = false;
-
 	background_tex.loadFromFile("Textures/Menu/background1.jpg");
 	background_sprite.setTexture(background_tex);
 	background_sprite.setScale(1.0 / 1080.0 * window.getSize().y, 1.0 / 1080.0 * window.getSize().y);
@@ -24,11 +23,12 @@ Interface::Interface(sf::RenderWindow& window)
 
 	font_menu_button.loadFromFile("Fonts/avocado.ttf");
 	button_confirm_font.loadFromFile("Fonts/bongus.ttf");
-    //#include <random>
-	//#include <chrono>
-	//std::default_random_engine generator;
-	//std::uniform_int_distribution<int> third_plan_tree_x{ 0, win_size_X };
-	//std::uniform_int_distribution<int> third_plan_tree_y{ win_size_Y/ win_size_Y + 100 , win_size_Y-100};
+
+	buffer_menu.loadFromFile("Sound/Menu/click.wav");
+	click_sound.setBuffer(buffer_menu);
+	buffer_menu_choise.loadFromFile("Sound/Menu/choise.wav");
+	choise_sound.setBuffer(buffer_menu_choise);
+	choise_sound.setVolume(25.f);
 
 	button_menu.push_back(Menu(window, &menu_button_left, &menu_button_mid, &menu_button_right, &arrow_left, &arrow_right, &font_menu_button, button_menu.size(), "New game"));
 	button_menu.push_back(Menu(window, &menu_button_left, &menu_button_mid, &menu_button_right, &arrow_left, &arrow_right, &font_menu_button, button_menu.size(), "Best Score"));
@@ -65,6 +65,7 @@ int Interface::system(sf::RenderWindow& window, sf::Vector2i mouse)
 
 						else if (button_answer == 1)
 						{
+							choise_sound.play();
 							buttons.erase(buttons.begin(), buttons.end());
 							exit_objects[0].no_exit();
 							end_animation = false;
@@ -84,16 +85,39 @@ int Interface::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	{
 		for (int i = 0; i < button_menu.size(); i++)
 		{
-			if (button_menu[i].mark(window, mouse) != 0 && button_menu[i].mark(window, mouse) != 5)
+			//std::cout << button_menu[i].mark(window, mouse) << " = "<< i << " " << play_click[i] << "\n";
+			if (button_menu[i].mark(window, mouse) >= 10 && play_click[i] == true)
+			{
+				this->click_sound.play();
+				for (int j = 0; j < button_menu.size(); j++)
+				{
+					if (j == i)
+						this->play_click[j] = false;
+					else
+						this->play_click[j] = true;
+				}					
+			}
+
+			if (button_menu[i].mark(window, mouse) > 0 && button_menu[i].mark(window, mouse) < 5)
+			{
+				choise_sound.play();
 				return button_menu[i].mark(window, mouse);
+			}
 			else if (button_menu[i].mark(window, mouse) == 5)
+			{
+				choise_sound.play();
 				end_animation = true;
+			}
+				
+
 			for (auto i : button_menu)
 				i.mark(window, mouse);
+
+			
 		}
 		return 0;
 	}
-	
+
 }
 
 void Interface::draw(sf::RenderWindow& window)
@@ -105,9 +129,4 @@ void Interface::draw(sf::RenderWindow& window)
 		i.draw(window);
 	for (auto i : buttons)
 		i.draw(window);
-	//for (int i = 0; i < buttons.size(); i++)
-	//{
-	//	buttons[i].draw(window);
-	//}
-
 }

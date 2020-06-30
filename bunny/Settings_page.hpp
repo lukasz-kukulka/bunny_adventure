@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
+#include <SFML/Audio.hpp>
 #include "Option.hpp"
 #include "Section.hpp"
 #include "Button_option.hpp"
@@ -33,6 +34,8 @@ private:
 	sf::Font sec_font, button_font, game_font, kids_font;
 	sf::Time time_save, time_save_begin;
 	sf::Clock clock_save;
+	sf::SoundBuffer button_buffer, slider_buffer, save_buffer, buffer_choise;
+	sf::Sound button_sound, slider_sound, save_sound, sound_choise;
 	std::vector<Section>sections;
 	std::vector<Button_option>buttons_resolution;
 	std::vector<Button_option>buttons_diff;

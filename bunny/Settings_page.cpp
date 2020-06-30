@@ -24,6 +24,7 @@ Settings_page::Settings_page(sf::RenderWindow& window)
 	this->yes_color.loadFromFile("Textures/Settings/yes.png");
 	this->yes_grey.loadFromFile("Textures/Settings/yes_grey.png");
 
+
 	this->background_sprite_settings.setTexture(background);
 	this->basic.setSize(sf::Vector2f(window.getSize().x - 50, window.getSize().y - 50));
 	this->basic.setPosition(window.getSize().x / 2 - basic.getGlobalBounds().width / 2, window.getSize().y / 2 - basic.getGlobalBounds().height / 2);
@@ -41,6 +42,19 @@ Settings_page::Settings_page(sf::RenderWindow& window)
 	this->load_settings();
 	this->settings_ini_button();
 	this->objects_ini(window);
+
+	this->button_buffer.loadFromFile("Sound/Menu/options_button.wav");
+	this->button_sound.setBuffer(button_buffer);
+	this->button_sound.setVolume(15.f);
+	this->slider_buffer.loadFromFile("Sound/Menu/slider.wav");
+	this->slider_sound.setBuffer(slider_buffer);
+	this->slider_sound.setVolume(15.f);
+	this->save_buffer.loadFromFile("Sound/Menu/save_file.wav");
+	this->save_sound.setBuffer(save_buffer);
+	this->save_sound.setVolume(15.f);
+	this->buffer_choise.loadFromFile("Sound/Menu/choise.wav");
+	this->sound_choise.setBuffer(buffer_choise);
+	this->sound_choise.setVolume(25.f);
 }
 
 int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
@@ -55,6 +69,7 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		temp_settings.res = buttons_resolution[i].system(window, mouse);
 		if (temp_settings.res != 0)
 		{
+			button_sound.play();
 			for (int j = 0; j < buttons_resolution.size(); j++)
 			{
 				user_settings.res = temp_settings.res;
@@ -68,6 +83,7 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		temp_settings.dif = buttons_diff[i].system(window, mouse);
 		if (temp_settings.dif != 0)
 		{
+			button_sound.play();
 			for (int j = 0; j < buttons_diff.size(); j++)
 			{
 				user_settings.dif = temp_settings.dif;
@@ -77,11 +93,24 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	}
 	for (int i = 0; i < sliders_sound.size(); i++)
 	{
-		user_settings.vol = sliders_sound[i].system(window, mouse);
+		if (user_settings.vol != sliders_sound[i].system(window, mouse))
+		{
+			this->user_settings.vol = sliders_sound[i].system(window, mouse);
+			this->slider_sound.play();
+			this->slider_sound.setVolume(15.f / 100 * user_settings.vol);
+			this->button_sound.setVolume(15.f / 100 * user_settings.vol);
+			this->save_sound.setVolume(15.f / 100 * user_settings.vol);
+		}
+		
 	}
 	for (int i = 0; i < yes_no_buttons.size(); i++)
 	{
+		
 		settings_sound_save = yes_no_buttons[i].system(window, mouse);
+		if (settings_sound_save >= 1 && settings_sound_save <= 4)
+		{
+			button_sound.play();
+		}
 		if (settings_sound_save == 1)
 		{
 			user_settings.efect = false;
@@ -104,6 +133,7 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		press_save_back = buttons_save_back[i].system(window, mouse);
 		if (press_save_back == 1)
 		{
+			sound_choise.play();
 			this->settings_ini->save_settings(user_settings.res, user_settings.vol, user_settings.efect, user_settings.music, user_settings.dif);
 			this->save_button_press = true;
 			this->clock_save.restart();
@@ -112,12 +142,14 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		}
 		else if (press_save_back == 2)
 		{
+			sound_choise.play();
 			user_settings = settings_deffault;
 			settings_ini_button();
 			objects_ini(window);
 		}
 		else if (press_save_back == 3)
 		{
+			sound_choise.play();
 			load_settings();
 			settings_ini_button();
 			objects_ini(window);
@@ -137,6 +169,7 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			this->save_back_rec.setSize(sf::Vector2f(0, 0));
 			this->texts.erase(texts.begin(), texts.end());
 			this->save_button_press = false;
+			this->save_sound.play();
 		}	
 	}
 		

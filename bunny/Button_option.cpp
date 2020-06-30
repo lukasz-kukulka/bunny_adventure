@@ -49,8 +49,8 @@ Button_option::Button_option(sf::RenderWindow& window, sf::RectangleShape space_
 
 int Button_option::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
-	sf::Event event;
 	
+	sf::Event event;
 	if (mouse.x > button_sprite.getPosition().x && mouse.x < button_sprite.getPosition().x + button_sprite.getGlobalBounds().width &&
 		mouse.y > button_sprite.getPosition().y && mouse.y < button_sprite.getPosition().y + button_sprite.getGlobalBounds().height)
 	{
@@ -68,6 +68,7 @@ int Button_option::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	}
 	else
 	{
+;
 		if (enabled_button == true)
 			this->button_sprite.setTexture(*button_color);
 		else

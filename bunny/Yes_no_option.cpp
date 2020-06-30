@@ -12,6 +12,7 @@ Yes_no_option::Yes_no_option(sf::RenderWindow& window, sf::RectangleShape work_s
 	this->single_workspace.setOutlineThickness(1);
 	this->single_workspace.setOutlineColor(sf::Color(0, 0, 0, 0));
 
+
 	if (enabled == true)
 	{
 		this->yes_button.setTexture(*yes_tex);

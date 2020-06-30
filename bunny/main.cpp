@@ -15,6 +15,7 @@ int main()
 {
     Files_operations res_load;
     int menu_option = 0, res_width = 1280, res_height = 1024;
+    bool music_play = true;
     if (res_load.load_from_settings(1) == 1)
     {
         res_width = 1280;
@@ -40,18 +41,21 @@ int main()
     sf::Texture texture;
     texture.loadFromFile("Textures/cursor.png");
     sf::Sprite sprite(texture);
-
+    sf::Music music;
+    music.openFromFile("Sound/Menu/music_menu.wav");
+    music.setLoop(true);
+    music.setVolume(10);
     Interface inter(window);
     Credits credits(window);
     Settings_page settings_page(window);
     Score_page score_page(window);
     Option* go_to_option = &inter;
-    
     while (window.isOpen())
     {
         sprite.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)));
         sf::Vector2i mouse = sf::Mouse::getPosition(window);
-        //std::cout << menu_option << "  -  ";
+        music.setVolume(10.0f / 100 * res_load.load_from_settings(2));
+        //std::cout << music.getVolume() << "\n";
         switch (menu_option)
         {
             case 0: //menu interface
@@ -63,7 +67,14 @@ int main()
         
             case 1: //Game
             {
-            
+                if (music.getVolume() <= 1) //zwiekszyæ volume
+                {
+                    music.pause();
+                }
+                else
+                {
+                    music.setVolume(music.getVolume() - 0.4);
+                }
                 break;
             }
 
@@ -98,6 +109,17 @@ int main()
                 break;
         }
 
+        if (res_load.load_from_settings(4) == true && music_play == true)
+        {
+            music.play();
+            music_play = false;
+        }
+        else if (res_load.load_from_settings(4) == false)
+        {
+            music.pause();
+            music_play = true;
+        }
+
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -108,8 +130,6 @@ int main()
         // Clear screen
         window.clear();
         go_to_option->draw(window);
-        //inter.draw(window);
-        // Update the window
         window.draw(sprite);
         window.display();
     }

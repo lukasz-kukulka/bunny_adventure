@@ -98,7 +98,6 @@ void Files_operations::save_score_reset()
 {
     std::fstream file;
     file.open("score.txt", std::ios::out | std::ios::trunc);
-    std::cout << records.size() << "in save \n";
     for (int i = 0; i < records.size(); i++)
     {
         file << records[i].name_out() << std::endl;
@@ -120,9 +119,7 @@ void Files_operations::delete_record(int index)
 
 int Files_operations::how_many_record_score()
 {
-    
     this->record_ini();
-    std::cout << records.size() << "in how many \n";
     int record_size = records.size();
     records.erase(records.begin(), records.end());
     return record_size;
@@ -131,7 +128,6 @@ int Files_operations::how_many_record_score()
 
 void Files_operations::record_ini()
 {
-    std::cout << records.size() << "in INI \n";
     no_line = 1;
 	std::string line;
 	std::fstream file;
