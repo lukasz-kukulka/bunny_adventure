@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Option.hpp"
 #include "Text.hpp"
 #include "Button.hpp"
@@ -19,5 +20,7 @@ private:
 	sf::Sprite background_sprite;
 	std::vector<Text>texts;
 	std::vector<Button>buttons;
+	sf::SoundBuffer button_buffer;
+	sf::Sound button_sound;
 };
 

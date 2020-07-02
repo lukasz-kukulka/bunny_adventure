@@ -17,8 +17,6 @@ Slider_score::Slider_score(sf::RenderWindow& window, sf::RectangleShape& base, s
 
 int Slider_score::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
-
-	std::cout << "(1. return - " << return_index << ") \n";
 	while (window.pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)

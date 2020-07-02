@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <SFML/System.hpp> // ??
 #include <SFML/Window.hpp> //??
 #include "Option.hpp"
@@ -27,6 +28,8 @@ private:
 	sf::RectangleShape base_rec, size_no_extra_records;
 	sf::Clock move_record_clock;
 	sf::Time move_record_time;
+	sf::SoundBuffer button_buffer, delete_buffer;
+	sf::Sound button_sound, delete_sound;
 	std::vector<Single_score_record>score_records;
 	std::vector<Slider_score>slider;
 	std::vector<Button_option>back_button;

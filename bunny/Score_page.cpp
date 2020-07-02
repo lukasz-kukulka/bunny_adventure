@@ -8,6 +8,13 @@ Score_page::Score_page(sf::RenderWindow& window)
 	this->base_rec.setOutlineThickness(0);
 	this->base_rec.setOutlineColor(sf::Color(0, 0, 0, 111));
 
+	this->button_buffer.loadFromFile("Sound/Menu/choise.wav");
+	this->button_sound.setBuffer(button_buffer);
+	this->button_sound.setVolume(15.f);
+	this->delete_buffer.loadFromFile("Sound/Menu/save_file.wav");
+	this->delete_sound.setBuffer(delete_buffer);
+	this->delete_sound.setVolume(15.f);
+
 	this->background_tex.loadFromFile("Textures/Credits/back.jpg");
 	this->trash_tex.loadFromFile("Textures/Score/trash.png");
 	this->down_slider.loadFromFile("Textures/Score/down.png");
@@ -39,7 +46,11 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		for (int i = 0; i < back_button.size(); i++)
 		{
 			if (back_button[i].system(window, mouse) == 56)
+			{
+				button_sound.play();
 				return 0;
+			}
+				
 		}
 		for (int i = 0; i < slider.size(); i++)
 		{
@@ -75,7 +86,8 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			}
 			else if (slider_index == 3) // mid
 			{
-				if (slider[i].slider_mid_position() / unit_mid_slider + 1 > slider_mid_position_checked / unit_mid_slider)
+				
+				if (slider[i].slider_mid_position() / unit_mid_slider + 1 > slider_mid_position_checked / unit_mid_slider && score_records[score_records.size() - 1].visible_status() == false)
 				{
 					for (int j = 0; j < score_records.size(); j++)
 					{
@@ -83,7 +95,7 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 					}
 					slider_mid_position_checked = slider_mid_position_checked + unit_mid_slider;
 				}
-				else if (slider[i].slider_mid_position() / unit_mid_slider + 1 < slider_mid_position_checked / unit_mid_slider)
+				if (slider[i].slider_mid_position() / unit_mid_slider + 1 < slider_mid_position_checked / unit_mid_slider && score_records[0].visible_status() == false)
 				{
 					for (int j = 0; j < score_records.size(); j++)
 					{
@@ -123,6 +135,7 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 				this->screen_del.erase(screen_del.begin(), screen_del.end());
 				this->score_operations.delete_record(score_to_delete);
 				this->objects_ini(window);
+				this->delete_sound.play();
 				return 2;
 			}
 			if (button_index == 2)
@@ -130,6 +143,7 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 				this->screen_delete_enabled = true;
 				this->detete_record_enagled = true;
 				this->screen_del.erase(screen_del.begin(), screen_del.end());
+				this->button_sound.play();
 				return 2;
 			}
 		}
@@ -160,6 +174,9 @@ void Score_page::objects_ini(sf::RenderWindow& window)
 	this->detete_record_enagled = true;
 	this->screen_delete_enabled = true;
 	this->slider_index = 0;
+
+
+
 	if (no_single_score < 15)
 	{
 		this->slider.push_back(Slider_score(window, base_rec, &up_slider_grey, &mid_slider_grey, &down_slider_grey, &up_slider_press, &mid_slider_press, &down_slider_press, false));

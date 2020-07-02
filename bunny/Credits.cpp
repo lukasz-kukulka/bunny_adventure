@@ -13,6 +13,10 @@ Credits::Credits(sf::RenderWindow& window)
 	this->good_mor.loadFromFile("Fonts/good_mor.ttf");
 	this->font_button.loadFromFile("Fonts/bongus.ttf");
 
+	this->button_buffer.loadFromFile("Sound/Menu/choise.wav");
+	this->button_sound.setBuffer(button_buffer);
+	this->button_sound.setVolume(15.f);
+
 	this->texts.push_back(Text(window, &good_mor, " - SCENARY - ", 0, window.getSize().y / 70 * 2, window.getSize().y / 30, 2));
 	this->texts.push_back(Text(window, &cat_font, "LUKASZ KUKULKA", 0, window.getSize().y / 70 * 7, window.getSize().y / 70, 1));
 
@@ -49,6 +53,7 @@ int Credits::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	{
 		if (buttons[i].system(window, mouse) == 5)
 		{
+			button_sound.play();
 			for (int j = 0; j < texts.size(); j++)
 			{
 				texts[j].reset();
