@@ -17,17 +17,43 @@ Slider_score::Slider_score(sf::RenderWindow& window, sf::RectangleShape& base, s
 
 int Slider_score::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
+
+	std::cout << "(1. return - " << return_index << ") \n";
 	while (window.pollEvent(event))
 	{
 		if (event.type == sf::Event::Closed)
 			window.close();
+		if (event.type == sf::Event::MouseWheelMoved)
+		{
+			if (event.mouseWheel.delta < 0)
+			{
+				return 1;
+			}
+			else if (event.mouseWheel.delta > 0)
+			{
+				return 2;
+			}
+		}
+		if (event.type == sf::Event::MouseWheelScrolled)
+		{
+			if (event.mouseWheel.delta < 0)
+			{
+				return 1;
+			}
+			else if (event.mouseWheel.delta > 0)
+			{
+				return 2;
+			}
+
+		}		
+	}
 		this->slider_shape.setOutlineThickness(2);
 		if (mouse.x > slider_down.getPosition().x && mouse.x < slider_down.getPosition().x + slider_down.getGlobalBounds().width &&
 			mouse.y > slider_down.getPosition().y && mouse.y < slider_down.getPosition().y + slider_down.getGlobalBounds().height &&
 			sf::Mouse::isButtonPressed(sf::Mouse::Left) && slider_on_off == true && event.type != sf::Event::MouseButtonReleased)
 		{
 			this->slider_down.setTexture(*down_tex_press);
-			this->return_index = 1;
+			return 1;
 		}
 		
 		else if (mouse.x > slider_up.getPosition().x && mouse.x < slider_up.getPosition().x + slider_up.getGlobalBounds().width &&
@@ -35,7 +61,7 @@ int Slider_score::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			sf::Mouse::isButtonPressed(sf::Mouse::Left) && slider_on_off == true)
 		{
 			this->slider_up.setTexture(*up_tex_press);
-			this->return_index = 2;
+			return 2;
 		}
 		else if (mouse.x > slider_mid.getPosition().x && mouse.x < slider_mid.getPosition().x + slider_mid.getGlobalBounds().width &&
 			mouse.y > slider_mid.getPosition().y && mouse.y < slider_mid.getPosition().y + slider_mid.getGlobalBounds().height &&
@@ -51,7 +77,7 @@ int Slider_score::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			{
 				this->slider_mid.setPosition(slider_mid.getPosition().x, move_slider_shape.getPosition().y);
 			}
-			this->return_index = 3;
+			return 3;
 		}
 		else
 		{
@@ -59,10 +85,10 @@ int Slider_score::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			this->slider_mid.setTexture(*mid_tex);
 			this->slider_down.setTexture(*down_tex);
 			this->slider_up.setTexture(*up_tex);
-			this->return_index = 0;
+			return 0;
 		}
-	}
-	return this->return_index;
+
+
 }
 
 sf::RectangleShape Slider_score::position_mid_slider()
@@ -107,6 +133,7 @@ void Slider_score::objects_ini(sf::RenderWindow& window)
 	this->animation_space_single.setPosition(slider_shape.getPosition().x, slider_up.getPosition().y + slider_up.getGlobalBounds().height + slider_mid.getGlobalBounds().height / 2);
 	this->animation_space_single.setFillColor(sf::Color(0, 0, 0, 0));
 }
+
 
 void Slider_score::draw(sf::RenderWindow& window)
 {

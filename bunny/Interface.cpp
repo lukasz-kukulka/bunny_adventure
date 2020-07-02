@@ -26,9 +26,10 @@ Interface::Interface(sf::RenderWindow& window)
 
 	buffer_menu.loadFromFile("Sound/Menu/click.wav");
 	click_sound.setBuffer(buffer_menu);
+	click_sound.setVolume(15.f);
 	buffer_menu_choise.loadFromFile("Sound/Menu/choise.wav");
 	choise_sound.setBuffer(buffer_menu_choise);
-	choise_sound.setVolume(25.f);
+	choise_sound.setVolume(15.f);
 
 	button_menu.push_back(Menu(window, &menu_button_left, &menu_button_mid, &menu_button_right, &arrow_left, &arrow_right, &font_menu_button, button_menu.size(), "New game"));
 	button_menu.push_back(Menu(window, &menu_button_left, &menu_button_mid, &menu_button_right, &arrow_left, &arrow_right, &font_menu_button, button_menu.size(), "Best Score"));
@@ -85,7 +86,6 @@ int Interface::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	{
 		for (int i = 0; i < button_menu.size(); i++)
 		{
-			//std::cout << button_menu[i].mark(window, mouse) << " = "<< i << " " << play_click[i] << "\n";
 			if (button_menu[i].mark(window, mouse) >= 10 && play_click[i] == true)
 			{
 				this->click_sound.play();

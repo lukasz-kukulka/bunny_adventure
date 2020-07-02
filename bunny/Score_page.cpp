@@ -33,6 +33,7 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	how_many_record_before = 0;
 
 
+
 	if (this->detete_record_enagled == true)
 	{
 		for (int i = 0; i < back_button.size(); i++)
@@ -42,7 +43,8 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		}
 		for (int i = 0; i < slider.size(); i++)
 		{
-			if (slider[i].system(window, mouse) == 1 || slider[i].system(window, mouse) == 2)
+			slider_index = slider[i].system(window, mouse);
+			if (slider_index == 1 || slider_index == 2)
 			{
 				for (int z = 0; z < extra_record_number; z++)
 				{
@@ -51,7 +53,7 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 						how_many_record_before++;
 					}
 				}
-				if (slider[i].system(window, mouse) == 2 && score_records[0].visible_status() != true && move_record_time.asMilliseconds() >= 100) // down
+				if (slider_index == 2 && score_records[0].visible_status() != true && move_record_time.asMilliseconds() >= 100) // down
 				{
 					for (int j = score_records.size() - 1; j >= 0; j--)
 					{
@@ -60,7 +62,7 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 					}
 
 				}
-				else if (slider[i].system(window, mouse) == 1 && score_records[score_records.size() - 1].visible_status() != true && move_record_time.asMilliseconds() >= 100) // up
+				else if (slider_index == 1 && score_records[score_records.size() - 1].visible_status() != true && move_record_time.asMilliseconds() >= 100) // up
 				{
 					for (int j = 0; j < score_records.size(); j++)
 					{
@@ -71,8 +73,7 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 				}
 				slider[i].change_position_mid_slider((how_many_record_before)*unit_mid_slider);
 			}
-
-			if (slider[i].system(window, mouse) == 3) // mid
+			else if (slider_index == 3) // mid
 			{
 				if (slider[i].slider_mid_position() / unit_mid_slider + 1 > slider_mid_position_checked / unit_mid_slider)
 				{
@@ -82,7 +83,7 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 					}
 					slider_mid_position_checked = slider_mid_position_checked + unit_mid_slider;
 				}
-				if (slider[i].slider_mid_position() / unit_mid_slider + 1 < slider_mid_position_checked / unit_mid_slider)
+				else if (slider[i].slider_mid_position() / unit_mid_slider + 1 < slider_mid_position_checked / unit_mid_slider)
 				{
 					for (int j = 0; j < score_records.size(); j++)
 					{
@@ -102,6 +103,7 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			}
 		}
 	}
+
 	else
 	{
 		if (screen_delete_enabled == true)
@@ -132,8 +134,6 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			}
 		}
 	}
-
-
 	return 2;
 }
 
@@ -159,7 +159,7 @@ void Score_page::objects_ini(sf::RenderWindow& window)
 	this->slider_mid_position = 0;
 	this->detete_record_enagled = true;
 	this->screen_delete_enabled = true;
-
+	this->slider_index = 0;
 	if (no_single_score < 15)
 	{
 		this->slider.push_back(Slider_score(window, base_rec, &up_slider_grey, &mid_slider_grey, &down_slider_grey, &up_slider_press, &mid_slider_press, &down_slider_press, false));

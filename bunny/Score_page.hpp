@@ -32,7 +32,8 @@ private:
 	std::vector<Button_option>back_button;
 	std::vector<Confirm_screen>screen_del;
 	Files_operations score_operations;
-	int no_single_score, how_many_record_before, extra_record_number, unit_mid_slider, slider_mid_position, slider_mid_position_checked, score_to_delete;
+	sf::Event event;
+	int no_single_score, how_many_record_before, extra_record_number, unit_mid_slider, slider_mid_position, slider_mid_position_checked, score_to_delete, slider_index;
 	bool detete_record_enagled, screen_delete_enabled;
 };
 

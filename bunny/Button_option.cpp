@@ -9,7 +9,6 @@ Button_option::Button_option(sf::RenderWindow& window, sf::RectangleShape space_
 	this->enabled_button = true_false;
 	this->perm_index = index + 1;
 
-
 	this->single_workspace.setSize(sf::Vector2f(work_space.getSize().x / how_many, work_space.getSize().y));
 	this->single_workspace.setPosition(work_space.getPosition().x + single_workspace.getSize().x * index, work_space.getPosition().y);
 	this->single_workspace.setFillColor(sf::Color(255, 255, 255, 0));
@@ -68,11 +67,11 @@ int Button_option::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	}
 	else
 	{
-;
 		if (enabled_button == true)
 			this->button_sprite.setTexture(*button_color);
 		else
 			this->button_sprite.setTexture(*button_grey);
+		return 0;
 	}
 
 

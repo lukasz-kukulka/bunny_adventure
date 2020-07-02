@@ -54,7 +54,7 @@ Settings_page::Settings_page(sf::RenderWindow& window)
 	this->save_sound.setVolume(15.f);
 	this->buffer_choise.loadFromFile("Sound/Menu/choise.wav");
 	this->sound_choise.setBuffer(buffer_choise);
-	this->sound_choise.setVolume(25.f);
+	this->sound_choise.setVolume(15.f);
 }
 
 int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
@@ -70,6 +70,7 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		if (temp_settings.res != 0)
 		{
 			button_sound.play();
+
 			for (int j = 0; j < buttons_resolution.size(); j++)
 			{
 				user_settings.res = temp_settings.res;
@@ -100,6 +101,7 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			this->slider_sound.setVolume(15.f / 100 * user_settings.vol);
 			this->button_sound.setVolume(15.f / 100 * user_settings.vol);
 			this->save_sound.setVolume(15.f / 100 * user_settings.vol);
+			this->sound_choise.setVolume(15.f / 100 * user_settings.vol);
 		}
 		
 	}
@@ -131,7 +133,18 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	for (int i = 0; i < buttons_save_back.size(); i++)
 	{
 		press_save_back = buttons_save_back[i].system(window, mouse);
-		if (press_save_back == 1)
+		if (press_save_back >= 10 && play_click[i] == true)
+		{
+			this->button_sound.play();
+			for (int j = 0; j < buttons_save_back.size(); j++)
+			{
+				if (j == i)
+					this->play_click[j] = false;
+				else
+					this->play_click[j] = true;
+			}
+		}
+		else if (press_save_back == 1)
 		{
 			sound_choise.play();
 			this->settings_ini->save_settings(user_settings.res, user_settings.vol, user_settings.efect, user_settings.music, user_settings.dif);
@@ -164,12 +177,13 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			this->texts.push_back(Text(window, &sec_font, "SETTING SAVED", window.getSize().x / 2, window.getSize().y / 10 * 4, window.getSize().y / 20, 3));
 			this->texts.push_back(Text(window, &sec_font, "SOME SETTING NEED RESTART PROGRAM", window.getSize().x / 2, window.getSize().y / 10 * 5, window.getSize().y / 30, 3));
 		}
-		else
+		else if(time_save.asSeconds() > 2)
 		{
 			this->save_back_rec.setSize(sf::Vector2f(0, 0));
 			this->texts.erase(texts.begin(), texts.end());
 			this->save_button_press = false;
 			this->save_sound.play();
+			return 3;
 		}	
 	}
 		
