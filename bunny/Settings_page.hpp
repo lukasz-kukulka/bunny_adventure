@@ -23,6 +23,7 @@ public:
 	void objects_ini(sf::RenderWindow& window);
 	int resolution_load_width();
 	int resolution_load_height();
+	void settings(int volume);
 	void draw(sf::RenderWindow& window);
 	~Settings_page();
 

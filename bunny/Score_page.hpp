@@ -18,6 +18,7 @@ public:
 	Score_page(sf::RenderWindow& window);
 	int system(sf::RenderWindow& window, sf::Vector2i mouse);
 	void objects_ini(sf::RenderWindow& window);
+	void settings(int volume);
 	void draw(sf::RenderWindow& window);
 
 private:

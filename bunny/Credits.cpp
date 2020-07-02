@@ -64,6 +64,11 @@ int Credits::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	return 4;
 }
 
+void Credits::settings(int volume)
+{
+	this->button_sound.setVolume(15.f / 100 * volume);
+}
+
 void Credits::draw(sf::RenderWindow& window)
 {
 	window.draw(background_sprite);

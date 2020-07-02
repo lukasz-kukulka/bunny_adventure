@@ -323,6 +323,14 @@ int Settings_page::resolution_load_height()
 		return 1080;
 }
 
+void Settings_page::settings(int volume)
+{
+	this->slider_sound.setVolume(15.f / 100 * volume);
+	this->button_sound.setVolume(15.f / 100 * volume);
+	this->save_sound.setVolume(15.f / 100 * volume);
+	this->sound_choise.setVolume(15.f / 100 * volume);
+}
+
 void Settings_page::draw(sf::RenderWindow& window)
 {
 	window.draw(background_sprite_settings);

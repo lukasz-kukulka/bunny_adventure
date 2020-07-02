@@ -62,6 +62,7 @@ int main()
             {
                 go_to_option = &inter;
                 menu_option = go_to_option->system(window, mouse);
+                go_to_option->settings(res_load.load_from_settings(2));
                 break;
             }
         
@@ -82,6 +83,7 @@ int main()
             {
                 go_to_option = &score_page;
                 menu_option = go_to_option->system(window, mouse);
+                go_to_option->settings(res_load.load_from_settings(2));
                 break;
             }
 
@@ -89,6 +91,7 @@ int main()
             {
                 go_to_option = &settings_page;
                 menu_option = go_to_option->system(window, mouse);
+                go_to_option->settings(res_load.load_from_settings(2));
                 break;
             }
 
@@ -96,6 +99,7 @@ int main()
             {
                 go_to_option = &credits;
                 menu_option = go_to_option->system(window, mouse);
+                go_to_option->settings(res_load.load_from_settings(2));
                 break;
             }
 

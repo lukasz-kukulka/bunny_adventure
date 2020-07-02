@@ -202,6 +202,12 @@ void Score_page::objects_ini(sf::RenderWindow& window)
 	
 }
 
+void Score_page::settings(int volume)
+{
+	this->button_sound.setVolume(15.f / 100 * volume);
+	this->delete_sound.setVolume(15.f / 100 * volume);
+}
+
 void Score_page::draw(sf::RenderWindow& window)
 {
 	window.draw(background_sprite_bunny);

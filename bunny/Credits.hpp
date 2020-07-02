@@ -12,6 +12,7 @@ public:
 	Credits(sf::RenderWindow&);
 
 	int system(sf::RenderWindow&, sf::Vector2i);
+	void settings(int volume);
 	void draw(sf::RenderWindow&);
 
 private:

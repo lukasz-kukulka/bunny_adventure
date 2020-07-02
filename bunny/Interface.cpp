@@ -120,6 +120,12 @@ int Interface::system(sf::RenderWindow& window, sf::Vector2i mouse)
 
 }
 
+void Interface::settings(int volume)
+{
+	click_sound.setVolume(15.f / 100 * volume);
+	choise_sound.setVolume(15.f / 100 * volume);
+}
+
 void Interface::draw(sf::RenderWindow& window)
 {
 	window.draw(background_sprite);
