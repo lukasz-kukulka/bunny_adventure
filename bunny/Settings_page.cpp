@@ -25,25 +25,23 @@ Settings_page::Settings_page(sf::RenderWindow& window): Load_from_files(window)
 	this->load_settings();
 	this->settings_ini_button();
 	this->objects_ini(window);
-
-
 }
 
-int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
+uint8_t Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
 	time_save = time_save_begin + clock_save.getElapsedTime();
-	for (int i = 0; i < sections.size(); i++)
+	for (uint8_t i = 0; i < sections.size(); i++)
 	{
 		sections[i].system(window, mouse);
 	}
-	for (int i = 0; i < buttons_resolution.size(); i++)
+	for (uint8_t i = 0; i < buttons_resolution.size(); i++)
 	{
 		temp_settings.res = buttons_resolution[i].system(window, mouse);
 		if (temp_settings.res != 0)
 		{
 			button_sound.play();
 
-			for (int j = 0; j < buttons_resolution.size(); j++)
+			for (uint8_t j = 0; j < buttons_resolution.size(); j++)
 			{
 				user_settings.res = temp_settings.res;
 				buttons_resolution[j].changing_status(user_settings.res);
@@ -51,20 +49,20 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		}
 	}
 	
-	for (int i = 0; i < buttons_diff.size(); i++)
+	for (uint8_t i = 0; i < buttons_diff.size(); i++)
 	{
 		temp_settings.dif = buttons_diff[i].system(window, mouse);
 		if (temp_settings.dif != 0)
 		{
 			button_sound.play();
-			for (int j = 0; j < buttons_diff.size(); j++)
+			for (uint8_t j = 0; j < buttons_diff.size(); j++)
 			{
 				user_settings.dif = temp_settings.dif;
 				buttons_diff[j].changing_status(user_settings.dif);
 			}
 		}
 	}
-	for (int i = 0; i < sliders_sound.size(); i++)
+	for (uint8_t i = 0; i < sliders_sound.size(); i++)
 	{
 		if (user_settings.vol != sliders_sound[i].system(window, mouse))
 		{
@@ -77,7 +75,7 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		}
 		
 	}
-	for (int i = 0; i < yes_no_buttons.size(); i++)
+	for (uint8_t i = 0; i < yes_no_buttons.size(); i++)
 	{
 		
 		settings_sound_save = yes_no_buttons[i].system(window, mouse);
@@ -102,13 +100,13 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			user_settings.music = true;
 		}
 	}
-	for (int i = 0; i < buttons_save_back.size(); i++)
+	for (uint8_t i = 0; i < buttons_save_back.size(); i++)
 	{
 		press_save_back = buttons_save_back[i].system(window, mouse);
 		if (press_save_back >= 10 && play_click[i] == true)
 		{
 			this->button_sound.play();
-			for (int j = 0; j < buttons_save_back.size(); j++)
+			for (uint8_t j = 0; j < buttons_save_back.size(); j++)
 			{
 				if (j == i)
 					this->play_click[j] = false;
@@ -214,31 +212,31 @@ void Settings_page::settings_ini_button()
 
 void Settings_page::objects_ini(sf::RenderWindow& window)
 {
-	for (int i = 0; i < sections.size(); i++)
+	for (uint8_t i = 0; i < sections.size(); i++)
 	{
 		sections.erase(sections.begin(), sections.end());
 	}
-	for (int i = 0; i < buttons_resolution.size(); i++)
+	for (uint8_t i = 0; i < buttons_resolution.size(); i++)
 	{
 		buttons_resolution.erase(buttons_resolution.begin(), buttons_resolution.end());
 	}
-	for (int i = 0; i < buttons_diff.size(); i++)
+	for (uint8_t i = 0; i < buttons_diff.size(); i++)
 	{
 		buttons_diff.erase(buttons_diff.begin(), buttons_diff.end());
 	}
-	for (int i = 0; i < sliders_sound.size(); i++)
+	for (uint8_t i = 0; i < sliders_sound.size(); i++)
 	{
 		sliders_sound.erase(sliders_sound.begin(), sliders_sound.end());
 	}
-	for (int i = 0; i < yes_no_buttons.size(); i++)
+	for (uint8_t i = 0; i < yes_no_buttons.size(); i++)
 	{
 		yes_no_buttons.erase(yes_no_buttons.begin(), yes_no_buttons.end());
 	}
-	for (int i = 0; i < text_control.size(); i++)
+	for (uint8_t i = 0; i < text_control.size(); i++)
 	{
 		text_control.erase(text_control.begin(), text_control.end());
 	}
-	for (int i = 0; i < buttons_save_back.size(); i++)
+	for (uint8_t i = 0; i < buttons_save_back.size(); i++)
 	{
 		buttons_save_back.erase(buttons_save_back.begin(), buttons_save_back.end());
 	}
@@ -275,7 +273,7 @@ void Settings_page::objects_ini(sf::RenderWindow& window)
 	this->buttons_save_back.push_back(Button_option(window, sections[sections.size() - 1].shape(), &save_exit_button, &save_exit_button_grey, &cat_font, "EXIT", settings_summary, buttons_save_back.size(), false));
 }
 
-int Settings_page::resolution_load_width()
+uint16_t Settings_page::resolution_load_width()
 {
 	if(user_settings.res == 1)
 		return 1280;
@@ -285,7 +283,7 @@ int Settings_page::resolution_load_width()
 		return 1920;
 }
 
-int Settings_page::resolution_load_height()
+uint16_t Settings_page::resolution_load_height()
 {
 	if (user_settings.res == 1)
 		return 1024;
@@ -295,7 +293,7 @@ int Settings_page::resolution_load_height()
 		return 1080;
 }
 
-void Settings_page::settings(int volume)
+void Settings_page::settings(uint8_t volume)
 {
 	this->slider_sound.setVolume(15.f / 100 * volume);
 	this->button_sound.setVolume(15.f / 100 * volume);
@@ -307,38 +305,38 @@ void Settings_page::draw(sf::RenderWindow& window)
 {
 	window.draw(background_sprite_settings);
 	window.draw(basic);
-	for (int i = 0; i < sections.size(); i++)
+	for (uint8_t i = 0; i < sections.size(); i++)
 	{
 		sections[i].draw(window);
 	}
-	for (int i = 0; i < buttons_resolution.size(); i++)
+	for (uint8_t i = 0; i < buttons_resolution.size(); i++)
 	{
 		buttons_resolution[i].draw(window);
 	}
-	for (int i = 0; i < buttons_diff.size(); i++)
+	for (uint8_t i = 0; i < buttons_diff.size(); i++)
 	{
 		buttons_diff[i].draw(window);
 	}
-	for (int i = 0; i < sliders_sound.size(); i++)
+	for (uint8_t i = 0; i < sliders_sound.size(); i++)
 	{
 		sliders_sound[i].draw(window);
 	}
-	for (int i = 0; i < yes_no_buttons.size(); i++)
+	for (uint8_t i = 0; i < yes_no_buttons.size(); i++)
 	{
 		yes_no_buttons[i].draw(window);
 	}
-	for (int i = 0; i < text_control.size(); i++)
+	for (uint8_t i = 0; i < text_control.size(); i++)
 	{
 		text_control[i].draw(window);
 	}
-	for (int i = 0; i < buttons_save_back.size(); i++)
+	for (uint8_t i = 0; i < buttons_save_back.size(); i++)
 	{
 		buttons_save_back[i].draw(window);
 	}
 
 	window.draw(save_back_rec);
 
-	for (int i = 0; i < texts.size(); i++)
+	for (uint8_t i = 0; i < texts.size(); i++)
 	{
 		texts[i].draw(window);
 	}

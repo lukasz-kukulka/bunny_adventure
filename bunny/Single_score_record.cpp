@@ -11,11 +11,11 @@ Single_score_record::Single_score_record(sf::RenderWindow& window, sf::Texture* 
 	this->base_shape = base_rec;
 	this->index = index;
 	this->visible_score = visible_record;
-	size_single_record = base_shape.getSize().y / 15;
+	this->size_single_record = base_shape.getSize().y / 15;
 	objects_ini(window);
 }
 
-int Single_score_record::system(sf::RenderWindow& window, sf::Vector2i mouse)
+uint8_t Single_score_record::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
 	//move_record_time = move_record_clock.getElapsedTime();
 	if (all_record.getPosition().y + 10 < base_shape.getPosition().y || all_record.getPosition().y + 10 > base_shape.getPosition().y + base_shape.getSize().y)
@@ -97,7 +97,7 @@ void Single_score_record::objects_unvisible(sf::RenderWindow& window)
 	this->visible_score = false;
 }
 
-int Single_score_record::index_out()
+uint8_t Single_score_record::index_out()
 {
 	return index;
 }
@@ -109,7 +109,6 @@ bool Single_score_record::visible_status()
 
 void Single_score_record::move_up(sf::RenderWindow& window)
 {
-
 		objects_visible(window);
 		this->all_record.setPosition(all_record.getPosition().x, all_record.getPosition().y - size_single_record);
 
@@ -128,12 +127,10 @@ void Single_score_record::move_up(sf::RenderWindow& window)
 		this->delete_text.setPosition(trash.getPosition().x + trash.getSize().x / 2 - delete_text.getGlobalBounds().width / 2,
 			trash_sprite.getPosition().y + trash_sprite.getGlobalBounds().height);
 		objects_unvisible(window);
-
 }
 
 void Single_score_record::move_down(sf::RenderWindow& window)
 {
-
 		objects_visible(window);
 		this->all_record.setPosition(all_record.getPosition().x, all_record.getPosition().y + size_single_record);
 		this->name.setPosition(all_record.getPosition().x, all_record.getPosition().y);
@@ -151,7 +148,6 @@ void Single_score_record::move_down(sf::RenderWindow& window)
 		this->delete_text.setPosition(trash.getPosition().x + trash.getSize().x / 2 - delete_text.getGlobalBounds().width / 2,
 			trash_sprite.getPosition().y + trash_sprite.getGlobalBounds().height);
 		objects_unvisible(window);
-
 }
 
 void Single_score_record::objects_ini(sf::RenderWindow& window)
@@ -217,7 +213,6 @@ void Single_score_record::objects_ini(sf::RenderWindow& window)
 	this->trash_sprite.setScale(window.getSize().y / 1500.0, window.getSize().y / 1500.0);
 	this->trash_sprite.setPosition(trash.getPosition().x + trash.getSize().x / 2 - trash_sprite.getGlobalBounds().width / 2,
 		trash.getPosition().y + 2);
-	//this->trash_sprite.setOrigin(sf::Vector2f(trash_sprite.getGlobalBounds().width / 2, trash_sprite.getGlobalBounds().height / 2));
 
 	this->delete_text.setFont(*font);
 	this->delete_text.setString("Delete");

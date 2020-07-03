@@ -1,6 +1,6 @@
 #include "Text.hpp"
 
-Text::Text(sf::RenderWindow& window, sf::Font* font, std::string text_string, int pos_x, int pos_y, int text_size, int type_sub)
+Text::Text(sf::RenderWindow& window, sf::Font* font, std::string text_string, uint16_t pos_x, uint16_t pos_y, uint8_t text_size, uint8_t type_sub)
 {
 	this->type_sub = type_sub;
 	this->iterator = 0;
@@ -10,7 +10,6 @@ Text::Text(sf::RenderWindow& window, sf::Font* font, std::string text_string, in
 	this->single_font = *font;
 	this->temp_text = text_string;
 	this->text.setFont(*font);
-	//this->text.setString(text);
 	this->text.setCharacterSize(text_size);
 	this->text.setFillColor(sf::Color(255, 117, 111, 255));
 	this->text.setOutlineThickness(2);
@@ -26,7 +25,6 @@ Text::Text(sf::RenderWindow& window, sf::Font* font, std::string text_string, in
 		this->text.setString(temp_text);
 		this->text.setPosition(pos_x - text.getGlobalBounds().width / 2, pos_y);
 	}
-		
 }
 
 void Text::create_single(sf::RenderWindow& window)
@@ -44,12 +42,10 @@ void Text::reset()
 	iterator = 0;
 }
 
-
-
 void Text::draw(sf::RenderWindow& window)
 {
 	window.draw(text);
-	for (int i = 0; i < singles.size(); i++)
+	for (uint8_t i = 0; i < singles.size(); i++)
 	{
 		singles[i].draw(window);
 	}

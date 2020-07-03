@@ -15,7 +15,7 @@ Slider_score::Slider_score(sf::RenderWindow& window, sf::RectangleShape& base, s
 	this->objects_ini(window);
 }
 
-int Slider_score::system(sf::RenderWindow& window, sf::Vector2i mouse)
+uint8_t Slider_score::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
 	while (window.pollEvent(event))
 	{
@@ -85,8 +85,6 @@ int Slider_score::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			this->slider_up.setTexture(*up_tex);
 			return 0;
 		}
-
-
 }
 
 sf::RectangleShape Slider_score::position_mid_slider()
@@ -94,12 +92,12 @@ sf::RectangleShape Slider_score::position_mid_slider()
 	return animation_space_single;
 }
 
-int Slider_score::slider_mid_position()
+uint16_t Slider_score::slider_mid_position()
 {
 	return slider_mid.getPosition().y + slider_mid.getGlobalBounds().height / 2 - animation_space_single.getPosition().y;
 }
 
-void Slider_score::change_position_mid_slider(int pos_y)
+void Slider_score::change_position_mid_slider(uint16_t pos_y)
 {
 	this->slider_mid.setPosition(slider_mid.getPosition().x, move_slider_shape.getPosition().y + pos_y);
 }
@@ -142,5 +140,4 @@ void Slider_score::draw(sf::RenderWindow& window)
 	window.draw(rec_base);
 	window.draw(move_slider_shape);
 	window.draw(animation_space_single);
-
 }

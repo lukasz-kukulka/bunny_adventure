@@ -1,6 +1,6 @@
 #include "Button_option.hpp"
 
-Button_option::Button_option(sf::RenderWindow& window, sf::RectangleShape space_work, sf::Texture* texture_color, sf::Texture* texture_grey, sf::Font* font, std::string text_button, int how_many, int index, bool true_false)
+Button_option::Button_option(sf::RenderWindow& window, sf::RectangleShape space_work, sf::Texture* texture_color, sf::Texture* texture_grey, sf::Font* font, std::string text_button, uint8_t how_many, uint8_t index, bool true_false)
 {
 	this->work_space = space_work;
 	this->how_many = how_many;
@@ -21,6 +21,7 @@ Button_option::Button_option(sf::RenderWindow& window, sf::RectangleShape space_
 		single_workspace.getGlobalBounds().width / button_sprite.getGlobalBounds().width / 2.5);
 	this->button_sprite.setPosition(single_workspace.getPosition().x + single_workspace.getGlobalBounds().width/2 - button_sprite.getGlobalBounds().width / 2, 
 		single_workspace.getPosition().y + single_workspace.getGlobalBounds().height / 2 - button_sprite.getGlobalBounds().height / 2);
+
 	if (perm_index == 56)
 	{
 		this->button_sprite.setScale(1.0, 1.0);
@@ -46,10 +47,8 @@ Button_option::Button_option(sf::RenderWindow& window, sf::RectangleShape space_
 		button_sprite.getPosition().y + button_sprite.getGlobalBounds().height / 5 * 3 - button_text.getGlobalBounds().height / 2);
 }
 
-int Button_option::system(sf::RenderWindow& window, sf::Vector2i mouse)
+uint8_t Button_option::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
-	
-	sf::Event event;
 	if (mouse.x > button_sprite.getPosition().x && mouse.x < button_sprite.getPosition().x + button_sprite.getGlobalBounds().width &&
 		mouse.y > button_sprite.getPosition().y && mouse.y < button_sprite.getPosition().y + button_sprite.getGlobalBounds().height)
 	{
@@ -73,12 +72,10 @@ int Button_option::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			this->button_sprite.setTexture(*button_grey);
 		return 0;
 	}
-
-
 	return 0;
 }
 
-void Button_option::changing_status(int index)
+void Button_option::changing_status(uint8_t index)
 {
 	if (perm_index == index)
 		enabled_button = true;

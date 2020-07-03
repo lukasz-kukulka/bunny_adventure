@@ -32,11 +32,11 @@ Exit::Exit(sf::RenderWindow& window, sf::Texture* texture_bunny, sf::Texture* te
 	this->ask.setFillColor(sf::Color(0, 0, 0, 255));
 }
 
-int Exit::system(sf::RenderWindow& window, sf::Vector2i mouse)
+uint8_t Exit::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
 	if (transparent <= 251)
 	{
-		transparent = transparent + 4;
+		this->transparent = transparent + 4;
 		this->cloud_sprite.setColor(sf::Color(255, 255, 255, transparent));
 		this->bunny_sprite.setColor(sf::Color(188, 255, 255, transparent));
 		this->forest_tex.setColor(sf::Color(188, 255, 255, transparent));
@@ -51,20 +51,19 @@ int Exit::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	}
 }
 
-int Exit::sub()
+uint8_t Exit::sub()
 {
-	single_ask = full_ask.substr(0, single_ask.size() + 1);
+	this->single_ask = full_ask.substr(0, single_ask.size() + 1);
 	this->ask.setString(single_ask);
-	
 	return 5;
 }
 
-int Exit::fox_pos_X_out()
+uint16_t Exit::fox_pos_X_out()
 {
 	return bunny_sprite.getPosition().x;
 }
 
-int Exit::fox_pos_Y_out()
+uint16_t Exit::fox_pos_Y_out()
 {
 	return bunny_sprite.getPosition().y + bunny_sprite.getGlobalBounds().height/3*2;
 }

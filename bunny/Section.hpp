@@ -4,9 +4,8 @@
 class Section
 {
 public:
-	Section(sf::RenderWindow& window, int index_section, std::string title, int limit_section, sf::RectangleShape& basic, sf::Font* font, sf::Texture* arrow);
-
-	int system(sf::RenderWindow&, sf::Vector2i);
+	Section(sf::RenderWindow& window, uint8_t index_section, std::string title, uint8_t limit_section, sf::RectangleShape& basic, sf::Font* font, sf::Texture* arrow);
+	uint8_t system(sf::RenderWindow&, sf::Vector2i);
 	sf::RectangleShape shape();
 	void draw(sf::RenderWindow&);
 private:

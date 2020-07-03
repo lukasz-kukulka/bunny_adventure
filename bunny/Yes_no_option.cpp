@@ -1,6 +1,6 @@
 #include "Yes_no_option.hpp"
 
-Yes_no_option::Yes_no_option(sf::RenderWindow& window, sf::RectangleShape work_space, sf::Texture* yes_tex, sf::Texture* no_tex, sf::Font* font, int volume, int index, std::string text_title, bool enabled)
+Yes_no_option::Yes_no_option(sf::RenderWindow& window, sf::RectangleShape work_space, sf::Texture* yes_tex, sf::Texture* no_tex, sf::Font* font, uint8_t volume, uint8_t index, std::string text_title, bool enabled)
 {
 	this->work_space = work_space;
 	this->yes_tex = yes_tex;
@@ -12,7 +12,6 @@ Yes_no_option::Yes_no_option(sf::RenderWindow& window, sf::RectangleShape work_s
 	this->single_workspace.setOutlineThickness(1);
 	this->single_workspace.setOutlineColor(sf::Color(0, 0, 0, 0));
 
-
 	if (enabled == true)
 	{
 		this->yes_button.setTexture(*yes_tex);
@@ -23,6 +22,7 @@ Yes_no_option::Yes_no_option(sf::RenderWindow& window, sf::RectangleShape work_s
 		this->yes_button.setTexture(*no_tex);
 		this->yes_button_bool = false;
 	}
+
 	this->yes_button.setScale(single_workspace.getGlobalBounds().width * 0.12 / yes_button.getGlobalBounds().width,
 		single_workspace.getGlobalBounds().width * 0.12 / yes_button.getGlobalBounds().height);
 	this->yes_button.setPosition(single_workspace.getPosition().x + single_workspace.getGlobalBounds().width / 4 - yes_button.getGlobalBounds().width / 2,
@@ -39,6 +39,7 @@ Yes_no_option::Yes_no_option(sf::RenderWindow& window, sf::RectangleShape work_s
 		this->no_button.setTexture(*yes_tex);
 		this->no_button_bool = true;
 	}
+
 	this->no_button.setScale(single_workspace.getGlobalBounds().width * 0.12 / no_button.getGlobalBounds().width,
 		single_workspace.getGlobalBounds().width * 0.12 / no_button.getGlobalBounds().height);
 	this->no_button.setPosition(single_workspace.getPosition().x + single_workspace.getGlobalBounds().width / 4 * 3 - no_button.getGlobalBounds().width / 2,
@@ -70,7 +71,7 @@ Yes_no_option::Yes_no_option(sf::RenderWindow& window, sf::RectangleShape work_s
 	this->title.setPosition(single_workspace.getPosition().x + single_workspace.getGlobalBounds().width / 2 - title.getGlobalBounds().width / 2, single_workspace.getPosition().y);
 }
 
-int Yes_no_option::system(sf::RenderWindow& window, sf::Vector2i mouse)
+uint8_t Yes_no_option::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
 	if (mouse.x > yes_button.getPosition().x && mouse.x <  yes_button.getPosition().x + yes_button.getGlobalBounds().width &&
 		mouse.y >  yes_button.getPosition().y && mouse.y < yes_button.getPosition().y + yes_button.getGlobalBounds().height)
@@ -124,8 +125,6 @@ int Yes_no_option::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		this->off_text.setPosition(single_workspace.getPosition().x + single_workspace.getGlobalBounds().width / 4 * 3 - off_text.getGlobalBounds().width / 2,
 			single_workspace.getPosition().y + single_workspace.getGlobalBounds().height / 4 * 3 - off_text.getGlobalBounds().height / 2);
 	}
-		
-
 	return 10;
 }
 

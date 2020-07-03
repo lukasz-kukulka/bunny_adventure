@@ -5,10 +5,10 @@ class Single_score_record
 {
 public:
 	Single_score_record(sf::RenderWindow& window, sf::Texture* trash_tex, sf::Font* font, sf::RectangleShape& base_rec, uint16_t index, std::string name_load, std::string date_load, std::string score_load, bool visible_record);
-	int system(sf::RenderWindow& window, sf::Vector2i mouse);
+	uint8_t system(sf::RenderWindow& window, sf::Vector2i mouse);
 	void objects_visible(sf::RenderWindow& window);
 	void objects_unvisible(sf::RenderWindow& window);
-	int index_out();
+	uint8_t index_out();
 	bool visible_status();
 	void move_up(sf::RenderWindow& window);
 	void move_down(sf::RenderWindow& window);
@@ -25,6 +25,6 @@ private:
 	sf::Text name_text, score_text, date_text, delete_text;
 	std::string name_load, date_load, score_load;
 	bool visible_score;
-	uint16_t index, size_single_record;
+	uint8_t index, size_single_record;
 };
 

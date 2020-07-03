@@ -11,16 +11,13 @@ class Credits :public Option, public Load_from_files
 {
 public:
 	Credits(sf::RenderWindow&);
-
-	int system(sf::RenderWindow&, sf::Vector2i);
-	void settings(int volume);
+	uint8_t system(sf::RenderWindow&, sf::Vector2i);
+	void settings(uint8_t volume);
 	void draw(sf::RenderWindow&);
 
 private:
 	sf::Sprite background_sprite;
 	std::vector<Text>texts;
 	std::vector<Button>buttons;
-	sf::SoundBuffer button_buffer;
-	sf::Sound button_sound;
 };
 

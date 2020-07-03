@@ -1,6 +1,6 @@
 #include "Button.hpp"
 
-Button::Button(sf::RenderWindow& window, sf::Texture* texture, sf::Font* font, std::string sub, int index, int pos_x, int pos_y)
+Button::Button(sf::RenderWindow& window, sf::Texture* texture, sf::Font* font, std::string sub, uint8_t index, uint16_t pos_x, uint16_t pos_y)
 {
 	this->button_index = index + 1;
 
@@ -20,10 +20,8 @@ Button::Button(sf::RenderWindow& window, sf::Texture* texture, sf::Font* font, s
 		button_sprite.getPosition().y + button_sprite.getGlobalBounds().height / 2 - button_text.getGlobalBounds().height/2);
 }
 
-int Button::system(sf::RenderWindow& window, sf::Vector2i mouse)
+uint8_t Button::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
-
-	sf::Event event;
 	if (mouse.x > button_sprite.getPosition().x && mouse.x < button_sprite.getPosition().x + button_sprite.getGlobalBounds().width &&
 		mouse.y > button_sprite.getPosition().y && mouse.y < button_sprite.getPosition().y + button_sprite.getGlobalBounds().height)
 	{
@@ -34,7 +32,6 @@ int Button::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		{
 			if (event.type == sf::Event::MouseButtonReleased)
 			{
-
 				if (event.mouseButton.button == sf::Mouse::Left && button_index == 1)
 				{
 					return 5;
@@ -45,15 +42,6 @@ int Button::system(sf::RenderWindow& window, sf::Vector2i mouse)
 				}
 			}
 		}
-
-		//if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && button_index == 1)
-		//{
-		//	return 5;
-		//}
-		//else if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && button_index == 2)
-		//{
-		//	return 1;
-		//}
 	}
 	else
 	{

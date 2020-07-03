@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Menu.hpp"
 
-Menu::Menu(sf::RenderWindow& window, sf::Texture *texture_left, sf::Texture *texture_mid, sf::Texture *texture_right, sf::Texture* arrow_left, sf::Texture* arrow_right, sf::Font *font, int index, std::string sub)
+Menu::Menu(sf::RenderWindow& window, sf::Texture *texture_left, sf::Texture *texture_mid, sf::Texture *texture_right, sf::Texture* arrow_left, sf::Texture* arrow_right, sf::Font *font, uint8_t index, std::string sub)
 {
 	this->index_number = index;
 	this->arrow_left = arrow_left;
@@ -38,7 +38,7 @@ Menu::Menu(sf::RenderWindow& window, sf::Texture *texture_left, sf::Texture *tex
 	this->scale_mid_sprite_x_mark = button_sprite_mid.getScale().x + 0.2;
 }
 
-int Menu::mark(sf::RenderWindow& window, sf::Vector2i mouse)
+uint8_t Menu::mark(sf::RenderWindow& window, sf::Vector2i mouse)
 {
 	
 
@@ -67,8 +67,6 @@ int Menu::mark(sf::RenderWindow& window, sf::Vector2i mouse)
 			return_index = index_number + 1;
 			return return_index;
 		}
-
-		
 	}
 	else
 	{
@@ -91,22 +89,22 @@ int Menu::mark(sf::RenderWindow& window, sf::Vector2i mouse)
 	return return_index;
 }
 
-int Menu::begin_button_x()
+uint16_t Menu::begin_button_x()
 {
 	return button_sprite_left.getPosition().x;
 }
 
-int Menu::end_button_x()
+uint16_t Menu::end_button_x()
 {
 	return button_sprite_right.getPosition().x + button_sprite_right.getGlobalBounds().width;
 }
 
-int Menu::begin_button_y()
+uint16_t Menu::begin_button_y()
 {
 	return button_sprite_left.getPosition().y;
 }
 
-double Menu::scale()
+float Menu::scale()
 {
 	return button_sprite_left.getScale().x;
 }

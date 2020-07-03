@@ -53,9 +53,6 @@ Load_from_files::Load_from_files(sf::RenderWindow& window)
 	this->slider_sound.setBuffer(slider_buffer);
 	this->slider_sound.setVolume(15.f);
 
-
-
-
 	this->font_menu_button.loadFromFile("Fonts/avocado.ttf");
 	this->button_confirm_font.loadFromFile("Fonts/bongus.ttf");
 	this->cat_font.loadFromFile("Fonts/flut.ttf");

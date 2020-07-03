@@ -10,16 +10,13 @@ Score_page::Score_page(sf::RenderWindow& window): Load_from_files(window)
 	this->objects_ini(window);
 }
 
-int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
+uint8_t Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
 	move_record_time = move_record_clock.getElapsedTime();
 	how_many_record_before = 0;
-
-
-
 	if (this->detete_record_enagled == true)
 	{
-		for (int i = 0; i < back_button.size(); i++)
+		for (uint8_t i = 0; i < back_button.size(); i++)
 		{
 			if (back_button[i].system(window, mouse) == 56)
 			{
@@ -28,12 +25,12 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			}
 				
 		}
-		for (int i = 0; i < slider.size(); i++)
+		for (uint8_t i = 0; i < slider.size(); i++)
 		{
 			slider_index = slider[i].system(window, mouse);
 			if (slider_index == 1 || slider_index == 2)
 			{
-				for (int z = 0; z < extra_record_number; z++)
+				for (uint16_t z = 0; z < extra_record_number; z++)
 				{
 					if (score_records[z].visible_status() == false)
 					{
@@ -42,7 +39,7 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 				}
 				if (slider_index == 2 && score_records[0].visible_status() != true && move_record_time.asMilliseconds() >= 100) // down
 				{
-					for (int j = score_records.size() - 1; j >= 0; j--)
+					for (uint16_t j = score_records.size() - 1; j >= 0; j--)
 					{
 						score_records[j].move_down(window);
 						move_record_clock.restart();
@@ -51,7 +48,7 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 				}
 				else if (slider_index == 1 && score_records[score_records.size() - 1].visible_status() != true && move_record_time.asMilliseconds() >= 100) // up
 				{
-					for (int j = 0; j < score_records.size(); j++)
+					for (uint16_t j = 0; j < score_records.size(); j++)
 					{
 						score_records[j].move_up(window);
 						move_record_clock.restart();
@@ -65,7 +62,7 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 				
 				if (slider[i].slider_mid_position() / unit_mid_slider + 1 > slider_mid_position_checked / unit_mid_slider && score_records[score_records.size() - 1].visible_status() == false)
 				{
-					for (int j = 0; j < score_records.size(); j++)
+					for (uint16_t j = 0; j < score_records.size(); j++)
 					{
 						score_records[j].move_up(window);;
 					}
@@ -73,7 +70,7 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 				}
 				if (slider[i].slider_mid_position() / unit_mid_slider + 1 < slider_mid_position_checked / unit_mid_slider && score_records[0].visible_status() == false)
 				{
-					for (int j = 0; j < score_records.size(); j++)
+					for (uint16_t j = 0; j < score_records.size(); j++)
 					{
 						score_records[j].move_down(window);
 					}
@@ -82,7 +79,7 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			}
 		}
 
-		for (int i = 0; i < score_records.size(); i++)
+		for (uint16_t i = 0; i < score_records.size(); i++)
 		{
 			if (score_records[i].system(window, mouse) == 1)
 			{ 
@@ -100,9 +97,9 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			screen_delete_enabled = false;
 		}
 		
-		for (int i = 0; i < screen_del.size(); i++)
+		for (uint8_t i = 0; i < screen_del.size(); i++)
 		{
-			int button_index = screen_del[i].system(window, mouse);
+			uint8_t button_index = screen_del[i].system(window, mouse);
 			if (button_index == 1)
 			{
 				this->score_records.erase(score_records.begin() +  score_to_delete);
@@ -129,17 +126,17 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 
 void Score_page::objects_ini(sf::RenderWindow& window)
 {
-	for (int i = 0; i < slider.size(); i++)
+	for (uint8_t i = 0; i < slider.size(); i++)
 	{
 		slider.erase(slider.begin(), slider.end());
 	}
 
-	for (int i = 0; i < score_records.size(); i++)
+	for (uint16_t i = 0; i < score_records.size(); i++)
 	{
 		score_records.erase(score_records.begin(), score_records.end());
 	}
 
-	for (int i = 0; i < back_button.size(); i++)
+	for (uint8_t i = 0; i < back_button.size(); i++)
 	{
 		back_button.erase(back_button.begin(), back_button.end());
 	}
@@ -165,7 +162,7 @@ void Score_page::objects_ini(sf::RenderWindow& window)
 		this->slider_mid_position_checked = unit_mid_slider;
 	}
 
-	for (int i = 0; i < no_single_score; i++)
+	for (uint16_t i = 0; i < no_single_score; i++)
 	{
 		if(score_records.size() < 15)
 			this->score_records.push_back(Single_score_record(window, &trash_tex, &butler, base_rec, score_records.size(), score_operations.load_score(i * 3 + 1), 
@@ -175,10 +172,9 @@ void Score_page::objects_ini(sf::RenderWindow& window)
 				score_operations.load_score(i * 3 + 2), score_operations.load_score(i * 3 + 3), false));
 	}
 	this->back_button.push_back(Button_option(window, base_rec, &back_button_tex, &back_button_grey_tex, &cat_font, "EXIT", 1, 55, false));
-	
 }
 
-void Score_page::settings(int volume)
+void Score_page::settings(uint8_t volume)
 {
 	this->choise_sound.setVolume(15.f / 100 * volume);
 	this->delete_sound.setVolume(15.f / 100 * volume);
@@ -188,19 +184,19 @@ void Score_page::draw(sf::RenderWindow& window)
 {
 	window.draw(background_sprite_bunny);
 	window.draw(base_rec);
-	for (int i = 0; i < score_records.size(); i++)
+	for (uint16_t i = 0; i < score_records.size(); i++)
 	{
 		score_records[i].draw(window);
 	}
-	for (int i = 0; i < slider.size(); i++)
+	for (uint8_t i = 0; i < slider.size(); i++)
 	{
 		slider[i].draw(window);
 	}
-	for (int i = 0; i < back_button.size(); i++)
+	for (uint8_t i = 0; i < back_button.size(); i++)
 	{
 		back_button[i].draw(window);
 	}
-	for (int i = 0; i < screen_del.size(); i++)
+	for (uint8_t i = 0; i < screen_del.size(); i++)
 	{
 		screen_del[i].draw(window);
 	}

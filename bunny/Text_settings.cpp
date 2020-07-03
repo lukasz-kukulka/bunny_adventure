@@ -1,6 +1,6 @@
 #include "Text_settings.hpp"
 
-Text_settings::Text_settings(sf::RenderWindow& window, sf::RectangleShape work_space, sf::Font* font, std::string text_control, int max_x, int max_y, int index_x, int index_y)
+Text_settings::Text_settings(sf::RenderWindow& window, sf::RectangleShape work_space, sf::Font* font, std::string text_control, uint8_t max_x, uint8_t max_y, uint8_t index_x, uint8_t index_y)
 {
 	this->work_space = work_space;
 
@@ -9,8 +9,6 @@ Text_settings::Text_settings(sf::RenderWindow& window, sf::RectangleShape work_s
 	this->single_workspace.setFillColor(sf::Color(255, 255, 255, 0));
 	this->single_workspace.setOutlineThickness(1);
 	this->single_workspace.setOutlineColor(sf::Color(0, 0, 0, 0));
-
-	//this->back_control;
 
 	this->control_text;
 	this->control_text.setFont(*font);
@@ -23,7 +21,7 @@ Text_settings::Text_settings(sf::RenderWindow& window, sf::RectangleShape work_s
 		single_workspace.getPosition().y + (single_workspace.getGlobalBounds().height / 3 * (index_y - 1)));
 }
 
-int Text_settings::system(sf::RenderWindow& window, sf::Vector2i mouse)
+uint8_t Text_settings::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
 	return 0;
 }

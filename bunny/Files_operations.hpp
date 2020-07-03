@@ -8,16 +8,16 @@ class Files_operations
 public:
 	Files_operations();
 
-	int load_from_settings(int row_number);
-	void save_settings(int res, int vol, bool efect, bool music, int diff);
-	std::string load_score(int row_number);
+	uint16_t load_from_settings(uint8_t row_number);
+	void save_settings(uint16_t res, uint8_t vol, bool efect, bool music, uint8_t diff);
+	std::string load_score(uint8_t row_number);
 	void save_score_reset();
-	void delete_record(int index);
-	int how_many_record_score();
+	void delete_record(uint16_t index);
+	uint16_t how_many_record_score();
 	void record_ini();
 
 private:
-	int no_line;
+	uint16_t no_line;
 	std::string name, data, score;
 	std::vector<Single_record_file>records;
 };

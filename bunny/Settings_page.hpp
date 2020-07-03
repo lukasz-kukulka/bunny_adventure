@@ -17,14 +17,13 @@ class Settings_page :public Option, public Load_from_files
 {
 public:
 	Settings_page(sf::RenderWindow&);
-
-	int system(sf::RenderWindow& window, sf::Vector2i mouse);
+	uint8_t system(sf::RenderWindow& window, sf::Vector2i mouse);
 	void load_settings();
 	void settings_ini_button();
 	void objects_ini(sf::RenderWindow& window);
-	int resolution_load_width();
-	int resolution_load_height();
-	void settings(int volume);
+	uint16_t resolution_load_width();
+	uint16_t resolution_load_height();
+	void settings(uint8_t volume);
 	void draw(sf::RenderWindow& window);
 	~Settings_page();
 
@@ -42,16 +41,16 @@ private:
 	std::vector<Text_settings>text_control;
 	std::vector<Button_option>buttons_save_back;
 	std::vector<Text>texts;
-	int settings_sections_no, settings_resolution, settings_sound, settings_dificult, settings_control_columns, settings_summary, max_row_control, settings_sound_save, press_save_back;
+	uint8_t settings_sections_no, settings_resolution, settings_sound, settings_dificult, settings_control_columns, settings_summary, max_row_control, settings_sound_save, press_save_back;
 	bool save_button_press, play_click[3] = { 1, 1, 1 };
 	Files_operations* settings_ini = new Files_operations();
 	
 	struct settings {
-		int res;
-		int vol;
+		uint8_t res;
+		uint8_t vol;
 		bool efect;
 		bool music;
-		int dif;
+		uint8_t dif;
 	} settings_deffault, user_settings, temp_settings;
 	
 	struct sections_settings {

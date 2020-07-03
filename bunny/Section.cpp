@@ -1,8 +1,7 @@
 #include "Section.hpp"
 
-Section::Section(sf::RenderWindow& window, int index_section, std::string title, int limit_section, sf::RectangleShape& basic, sf::Font* font, sf::Texture* arrow)
+Section::Section(sf::RenderWindow& window, uint8_t index_section, std::string title, uint8_t limit_section, sf::RectangleShape& basic, sf::Font* font, sf::Texture* arrow)
 {
-
 	this->basic_rec = basic;
 	this->section_rec.setSize(sf::Vector2f(basic.getSize().x, basic.getSize().y / limit_section));
 	this->section_rec.setPosition(basic.getPosition().x, basic.getPosition().y + index_section * section_rec.getGlobalBounds().height);
@@ -33,6 +32,7 @@ Section::Section(sf::RenderWindow& window, int index_section, std::string title,
 		this->funcion_rec.setSize(sf::Vector2f(section_rec.getSize().x / 10 * 9, section_rec.getSize().y));
 	else
 	this->funcion_rec.setSize(sf::Vector2f(section_rec.getSize().x / 10 * 9, section_rec.getSize().y / 3 * 2));
+
 	this->funcion_rec.setPosition(section_rec.getPosition().x + cursor_rec.getSize().x, section_rec.getPosition().y + top_rec.getSize().y);
 	this->funcion_rec.setFillColor(sf::Color(255, 255, 255, 0));
 	this->funcion_rec.setOutlineThickness(1);
@@ -49,7 +49,7 @@ Section::Section(sf::RenderWindow& window, int index_section, std::string title,
 }
 
 
-int Section::system(sf::RenderWindow& window, sf::Vector2i mouse)
+uint8_t Section::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
 	if (mouse.x > section_rec.getPosition().x && mouse.x < section_rec.getPosition().x + section_rec.getGlobalBounds().width &&
 		mouse.y > section_rec.getPosition().y && mouse.y < section_rec.getPosition().y + section_rec.getGlobalBounds().height)

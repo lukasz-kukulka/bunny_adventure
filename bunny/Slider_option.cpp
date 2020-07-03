@@ -1,6 +1,6 @@
 #include "Slider_option.hpp"
 
-Slider_option::Slider_option(sf::RenderWindow& window, sf::RectangleShape work_space, sf::Texture* slider, sf::Texture* slider_black_tex, sf::Texture* slider_bunny, sf::Font* font, int units, int index, std::string text_title, int volume_index)
+Slider_option::Slider_option(sf::RenderWindow& window, sf::RectangleShape work_space, sf::Texture* slider, sf::Texture* slider_black_tex, sf::Texture* slider_bunny, sf::Font* font, uint8_t units, uint8_t index, std::string text_title, uint8_t volume_index)
 {
 	this->volume_sound = volume_index;
 	this->work_space = work_space;
@@ -46,7 +46,7 @@ Slider_option::Slider_option(sf::RenderWindow& window, sf::RectangleShape work_s
 		single_workspace.getPosition().y + single_workspace.getGlobalBounds().height / 3 * 2);
 }
 
-int Slider_option::system(sf::RenderWindow& window, sf::Vector2i mouse)
+uint8_t Slider_option::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
 	if (mouse.x > slider_black.getPosition().x && mouse.x < slider_black.getPosition().x + slider_black.getGlobalBounds().width &&
 		mouse.y > slider_black.getPosition().y && mouse.y < slider_black.getPosition().y + slider_black.getGlobalBounds().height && sf::Mouse::isButtonPressed(sf::Mouse::Left))

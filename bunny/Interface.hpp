@@ -14,9 +14,8 @@ class Interface :public Option, public Load_from_files
 {
 public:
 	Interface(sf::RenderWindow&);
-
-	int system(sf::RenderWindow&, sf::Vector2i);
-	void settings(int volume);
+	uint8_t system(sf::RenderWindow&, sf::Vector2i);
+	void settings(uint8_t volume);
 	void draw(sf::RenderWindow&);
 
 private:
@@ -26,7 +25,7 @@ private:
 	std::vector<Button>buttons;
 	bool play_click[5] = {1, 1, 1, 1, 1};
 	bool end_animation;
-	int button_answer;
+	uint8_t button_answer;
 };
 
 

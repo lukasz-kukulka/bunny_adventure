@@ -5,8 +5,7 @@ class Confirm_screen
 {
 public:
 	Confirm_screen(sf::RenderWindow& window, sf::Font* font, std::string text_input, sf::Texture* tex_color, sf::Texture* tex_grey);
-
-	int system(sf::RenderWindow& window, sf::Vector2i mouse);
+	uint8_t system(sf::RenderWindow& window, sf::Vector2i mouse);
 	void objects_ini(sf::RenderWindow& window);
 	void draw(sf::RenderWindow& window);
 

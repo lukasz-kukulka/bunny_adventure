@@ -1,6 +1,6 @@
 #include "Single_text.hpp"
 
-Single_text::Single_text(sf::RenderWindow& window, sf::Font* font, std::string sub, int pos_x, int pos_y, int index, int text_size, int type_sub)
+Single_text::Single_text(sf::RenderWindow& window, sf::Font* font, std::string sub, uint16_t pos_x, uint16_t pos_y, uint8_t index, uint8_t text_size, uint8_t type_sub)
 {
 	this->index_object = index;
 	this->random_color_r = (rand() % 254) + 1;

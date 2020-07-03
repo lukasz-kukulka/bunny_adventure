@@ -14,7 +14,7 @@ extern sf::Vector2i mouse;
 int main()
 {
     Files_operations res_load;
-    int menu_option = 0, res_width = 1280, res_height = 1024;
+    uint16_t menu_option = 0, res_width = 1280, res_height = 1024;
     bool music_play = true;
     if (res_load.load_from_settings(1) == 1)
     {
@@ -55,7 +55,6 @@ int main()
         sprite.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)));
         sf::Vector2i mouse = sf::Mouse::getPosition(window);
         music.setVolume(10.0f / 100 * res_load.load_from_settings(2));
-        //std::cout << music.getVolume() << "\n";
         switch (menu_option)
         {
             case 0: //menu interface

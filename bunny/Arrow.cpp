@@ -1,6 +1,6 @@
 #include "Arrow.hpp"
 
-Arrow::Arrow(sf::Texture &texture, int pos_x, int pos_y, double scale_x, double scale_y)
+Arrow::Arrow(sf::Texture &texture, uint16_t pos_x, uint16_t pos_y, float scale_x, float scale_y)
 {
 	arrow_sprite.setTexture(texture);
 	arrow_sprite.setScale(scale_x, scale_y);
@@ -8,7 +8,7 @@ Arrow::Arrow(sf::Texture &texture, int pos_x, int pos_y, double scale_x, double 
 	arrow_sprite.setColor(sf::Color(255, 255, 255, 255));
 }
 
-int Arrow::global_x()
+uint16_t Arrow::global_x()
 {
 	return arrow_sprite.getGlobalBounds().width;
 }

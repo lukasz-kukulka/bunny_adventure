@@ -4,8 +4,6 @@ Credits::Credits(sf::RenderWindow& window) : Load_from_files(window)
 {
 	this->background_sprite.setTexture(background_tex);
 
-
-
 	this->texts.push_back(Text(window, &good_mor, " - SCENARY - ", 0, window.getSize().y / 70 * 2, window.getSize().y / 30, 2));
 	this->texts.push_back(Text(window, &cat_font, "LUKASZ KUKULKA", 0, window.getSize().y / 70 * 7, window.getSize().y / 70, 1));
 
@@ -26,24 +24,22 @@ Credits::Credits(sf::RenderWindow& window) : Load_from_files(window)
 	this->texts.push_back(Text(window, &cat_font, "THANKS FOR SUPORT TO MY FRIENDS:", 0, window.getSize().y / 70 * 62, window.getSize().y / 70, 1));
 	this->texts.push_back(Text(window, &cat_font, "MEDART, GOTRAN, ANIOL, VIX", 0, window.getSize().y / 70 * 65, window.getSize().y / 70, 1));
 
-
 	buttons.push_back(Button(window, &leaf, &button_confirm_font, "BACK", 0, window.getSize().x, 300));
 }
 
-int Credits::system(sf::RenderWindow& window, sf::Vector2i mouse)
+uint8_t Credits::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
-
-	for (int i = 0; i < texts.size(); i++)
+	for (uint8_t i = 0; i < texts.size(); i++)
 	{
 		texts[i].create_single(window);
 	}
 
-	for (int i = 0; i < buttons.size(); i++)
+	for (uint8_t i = 0; i < buttons.size(); i++)
 	{
 		if (buttons[i].system(window, mouse) == 5)
 		{
 			choise_sound.play();
-			for (int j = 0; j < texts.size(); j++)
+			for (uint8_t j = 0; j < texts.size(); j++)
 			{
 				texts[j].reset();
 			}
@@ -53,7 +49,7 @@ int Credits::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	return 4;
 }
 
-void Credits::settings(int volume)
+void Credits::settings(uint8_t volume)
 {
 	this->choise_sound.setVolume(15.f / 100 * volume);
 }
@@ -61,13 +57,11 @@ void Credits::settings(int volume)
 void Credits::draw(sf::RenderWindow& window)
 {
 	window.draw(background_sprite);
-
-	for (int i = 0; i < texts.size(); i++)
+	for (uint8_t i = 0; i < texts.size(); i++)
 	{
 		texts[i].draw(window);
 	}
-
-	for (int i = 0; i < buttons.size(); i++)
+	for (uint8_t i = 0; i < buttons.size(); i++)
 	{
 		buttons[i].draw(window);
 	}

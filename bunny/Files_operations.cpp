@@ -3,10 +3,9 @@
 Files_operations::Files_operations()
 {
     this->no_line = 1;
-    //std::cout << records.size() << "\n";
 }
 
-int Files_operations::load_from_settings(int row_number)
+uint16_t Files_operations::load_from_settings(uint8_t row_number)
 {
 	no_line = 1;
 	std::string line;
@@ -59,7 +58,7 @@ int Files_operations::load_from_settings(int row_number)
 	return 0;
 }
 
-void Files_operations::save_settings(int res, int vol, bool efect, bool music, int diff)
+void Files_operations::save_settings(uint16_t res, uint8_t vol, bool efect, bool music, uint8_t diff)
 {
     std::fstream file;
     file.open("settings.ini", std::ios::out | std::ios::trunc);
@@ -71,7 +70,7 @@ void Files_operations::save_settings(int res, int vol, bool efect, bool music, i
     file.close();
 }
 
-std::string Files_operations::load_score(int row_number)
+std::string Files_operations::load_score(uint8_t row_number)
 {
     no_line = 1;
     std::string line;
@@ -98,7 +97,7 @@ void Files_operations::save_score_reset()
 {
     std::fstream file;
     file.open("score.txt", std::ios::out | std::ios::trunc);
-    for (int i = 0; i < records.size(); i++)
+    for (uint16_t i = 0; i < records.size(); i++)
     {
         file << records[i].name_out() << std::endl;
         file << records[i].data_out() << std::endl;
@@ -108,7 +107,7 @@ void Files_operations::save_score_reset()
     file.close();
 }
 
-void Files_operations::delete_record(int index)
+void Files_operations::delete_record(uint16_t index)
 {
     this->record_ini();
     this->records.erase(records.begin() + index);
@@ -117,13 +116,12 @@ void Files_operations::delete_record(int index)
     this->records.erase(records.begin(), records.end());
 }
 
-int Files_operations::how_many_record_score()
+uint16_t Files_operations::how_many_record_score()
 {
     this->record_ini();
-    int record_size = records.size();
+    uint16_t record_size = records.size();
     records.erase(records.begin(), records.end());
     return record_size;
-    
 }
 
 void Files_operations::record_ini()
@@ -152,9 +150,7 @@ void Files_operations::record_ini()
             this->score = line;
             records.push_back(Single_record_file(name, data, score));
 		}
-
 		no_line++;
 	}
-    
 	file.close();
 }
