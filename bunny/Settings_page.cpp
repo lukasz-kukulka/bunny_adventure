@@ -1,6 +1,6 @@
 #include "Settings_page.hpp"
 
-Settings_page::Settings_page(sf::RenderWindow& window)
+Settings_page::Settings_page(sf::RenderWindow& window): Load_from_files(window)
 {
 	this->settings_sections_no = 5;
 	this->settings_resolution = 3;
@@ -12,20 +12,20 @@ Settings_page::Settings_page(sf::RenderWindow& window)
 	this->time_save_begin = sf::seconds(3.0f);
 	this->temp_settings = settings_deffault = { 1, 10, true, true, 1 };
 	this->res_settings = diff_settings = { false, false, false };
-	this->background.loadFromFile("Textures/Credits/back.jpg");
-	this->button_color.loadFromFile("Textures/Settings/button_color.png");
-	this->button_grey.loadFromFile("Textures/Settings/button_grey.png");
-	this->cursor_section.loadFromFile("Textures/Settings/id_rec.png");
-	this->save_exit_button.loadFromFile("Textures/Settings/control.png");
-	this->save_exit_button_grey.loadFromFile("Textures/Settings/control_grey.png");
-	this->slider_base.loadFromFile("Textures/Settings/slider.png");
-	this->slider_black.loadFromFile("Textures/Settings/slider_black.png");
-	this->slider_volume.loadFromFile("Textures/Settings/slider_bunny1.png");
-	this->yes_color.loadFromFile("Textures/Settings/yes.png");
-	this->yes_grey.loadFromFile("Textures/Settings/yes_grey.png");
+	//this->background.loadFromFile("Textures/Credits/back.jpg");
+	//this->button_color.loadFromFile("Textures/Settings/button_color.png");
+	//this->button_grey.loadFromFile("Textures/Settings/button_grey.png");
+	//this->cursor_section.loadFromFile("Textures/Settings/id_rec.png");
+	//this->save_exit_button.loadFromFile("Textures/Settings/control.png");
+	//this->save_exit_button_grey.loadFromFile("Textures/Settings/control_grey.png");
+	//this->slider_base.loadFromFile("Textures/Settings/slider.png");
+	//this->slider_black.loadFromFile("Textures/Settings/slider_black.png");
+	//this->slider_volume.loadFromFile("Textures/Settings/slider_bunny1.png");
+	//this->yes_color.loadFromFile("Textures/Settings/yes.png");
+	//this->yes_grey.loadFromFile("Textures/Settings/yes_grey.png");
 
 
-	this->background_sprite_settings.setTexture(background);
+	this->background_sprite_settings.setTexture(background_tex);
 	this->basic.setSize(sf::Vector2f(window.getSize().x - 50, window.getSize().y - 50));
 	this->basic.setPosition(window.getSize().x / 2 - basic.getGlobalBounds().width / 2, window.getSize().y / 2 - basic.getGlobalBounds().height / 2);
 	this->basic.setFillColor(sf::Color(255, 255, 255, 0));

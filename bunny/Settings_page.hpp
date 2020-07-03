@@ -11,8 +11,9 @@
 #include "Files_operations.hpp"
 #include "Text.hpp"
 #include "Files_operations.hpp"
+#include "Load_from_files.hpp"
 
-class Settings_page :public Option
+class Settings_page :public Option, public Load_from_files
 {
 public:
 	Settings_page(sf::RenderWindow&);
@@ -28,7 +29,6 @@ public:
 	~Settings_page();
 
 private:
-	sf::Texture background, button_color, button_grey, slider_base, slider_black, slider_volume, yes_color, yes_grey, cursor_section, save_exit_button, save_exit_button_grey;
 	sf::Sprite background_sprite_settings;
 	sf::RectangleShape basic;
 	sf::RectangleShape save_back_rec;

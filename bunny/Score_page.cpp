@@ -1,6 +1,6 @@
 #include "Score_page.hpp"
 
-Score_page::Score_page(sf::RenderWindow& window)
+Score_page::Score_page(sf::RenderWindow& window): Load_from_files(window)
 {
 	this->base_rec.setSize(sf::Vector2f(window.getSize().x - 154, window.getSize().y - 300));
 	this->base_rec.setPosition(52, 50);
@@ -15,23 +15,9 @@ Score_page::Score_page(sf::RenderWindow& window)
 	this->delete_sound.setBuffer(delete_buffer);
 	this->delete_sound.setVolume(15.f);
 
-	this->background_tex.loadFromFile("Textures/Credits/back.jpg");
-	this->trash_tex.loadFromFile("Textures/Score/trash.png");
-	this->down_slider.loadFromFile("Textures/Score/down.png");
-	this->up_slider.loadFromFile("Textures/Score/up.png");
-	this->mid_slider.loadFromFile("Textures/Score/slider.png");
-	this->down_slider_press.loadFromFile("Textures/Score/down_press.png");
-	this->up_slider_press.loadFromFile("Textures/Score/up_press.png");
-	this->mid_slider_press.loadFromFile("Textures/Score/slider_press.png");
-	this->down_slider_grey.loadFromFile("Textures/Score/down_grey.png");
-	this->up_slider_grey.loadFromFile("Textures/Score/up_grey.png");
-	this->mid_slider_grey.loadFromFile("Textures/Score/slider_grey.png");
-	this->back_button_tex.loadFromFile("Textures/Settings/control.png");
-	this->back_button_grey_tex.loadFromFile("Textures/Settings/control_grey.png");
 	this->button_font.loadFromFile("Fonts/flut.ttf");
 	this->butler.loadFromFile("Fonts/butler.ttf");
 	this->objects_ini(window);
-	
 }
 
 int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)

@@ -1,13 +1,8 @@
 #include "Credits.hpp"
 
-Credits::Credits(sf::RenderWindow& window)
+Credits::Credits(sf::RenderWindow& window) : Load_from_files(window)
 {
-	this->background_tex.loadFromFile("Textures/Credits/back.jpg");
 	this->background_sprite.setTexture(background_tex);
-	//this->background_sprite.setColor(sf::Color(188,188,188,188));
-
-	this->cat_tex.loadFromFile("Textures/Credits/cat.png");
-	this->leaf.loadFromFile("Textures/Menu/leaf.png");
 
 	this->cat_font.loadFromFile("Fonts/flut.ttf");
 	this->good_mor.loadFromFile("Fonts/good_mor.ttf");

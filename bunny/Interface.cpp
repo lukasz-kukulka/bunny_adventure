@@ -1,22 +1,11 @@
 #include "Interface.hpp"
 
-Interface::Interface(sf::RenderWindow& window)
+Interface::Interface(sf::RenderWindow& window) : Load_from_files(window)
 {
 	this->end_animation = false;
-	background_tex.loadFromFile("Textures/Menu/background1.jpg");
-	background_sprite.setTexture(background_tex);
+	background_sprite.setTexture(background_base);
 	background_sprite.setScale(1.0 / 1080.0 * window.getSize().y, 1.0 / 1080.0 * window.getSize().y);
 	background_sprite.setPosition(window.getSize().x - background_sprite.getGlobalBounds().width, background_sprite.getPosition().y);
-
-	menu_button_left.loadFromFile("Textures/Menu/left_button_blue.png");
-	menu_button_mid.loadFromFile("Textures/Menu/mid_button_blue.png");
-	menu_button_right.loadFromFile("Textures/Menu/right_button_blue.png");
-
-	leaf.loadFromFile("Textures/Menu/leaf.png");
-
-	jaguar.loadFromFile("Textures/Menu/Jaguar.png");
-	cloud.loadFromFile("Textures/Menu/cloud.png");
-	forest.loadFromFile("Textures/Menu/forest1.png");
 
 	arrow_left.loadFromFile("Textures/Menu/arrow_left.png");
 	arrow_right.loadFromFile("Textures/Menu/arrow_right.png");

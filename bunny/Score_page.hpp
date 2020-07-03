@@ -11,8 +11,9 @@
 #include <stdio.h> // do usuniecia 
 #include "Confirm_screen.hpp"
 #include "Files_operations.hpp"
+#include "Load_from_files.hpp"
 
-class Score_page :public Option
+class Score_page :public Option, public Load_from_files
 {
 public:
 	Score_page(sf::RenderWindow& window);
@@ -22,8 +23,6 @@ public:
 	void draw(sf::RenderWindow& window);
 
 private:
-	sf::Texture trash_tex, background_tex, down_slider, mid_slider, up_slider, back_button_tex, back_button_grey_tex, down_slider_grey, mid_slider_grey, up_slider_grey, 
-		down_slider_press, mid_slider_press, up_slider_press;
 	sf::Sprite background_sprite_bunny;
 	sf::Font butler, button_font;
 	sf::RectangleShape base_rec, size_no_extra_records;

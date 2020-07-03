@@ -8,8 +8,9 @@
 #include "Files_operations.hpp"
 #include <SFML/Audio.hpp>
 #include "Files_operations.hpp"
+#include "Load_from_files.hpp"
 
-class Interface :public Option
+class Interface :public Option, public Load_from_files
 {
 public:
 	Interface(sf::RenderWindow&);
@@ -19,7 +20,6 @@ public:
 	void draw(sf::RenderWindow&);
 
 private:
-	sf::Texture background_tex, menu_button_left, menu_button_mid, menu_button_right, arrow_left, arrow_right, jaguar, cloud, forest, leaf;
 	sf::Sprite background_sprite;
 	sf::Font font_menu_button, button_confirm_font;
 	sf::SoundBuffer buffer_menu, buffer_menu_choise;

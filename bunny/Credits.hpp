@@ -5,8 +5,9 @@
 #include "Text.hpp"
 #include "Button.hpp"
 #include "Files_operations.hpp"
+#include "Load_from_files.hpp"
 
-class Credits :public Option
+class Credits :public Option, public Load_from_files
 {
 public:
 	Credits(sf::RenderWindow&);
@@ -17,7 +18,6 @@ public:
 
 private:
 	sf::Font cat_font, good_mor, font_button;
-	sf::Texture background_tex, cat_tex, leaf;
 	sf::Sprite background_sprite;
 	std::vector<Text>texts;
 	std::vector<Button>buttons;
