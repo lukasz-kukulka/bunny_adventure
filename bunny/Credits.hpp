@@ -17,7 +17,6 @@ public:
 	void draw(sf::RenderWindow&);
 
 private:
-	sf::Font cat_font, good_mor, font_button;
 	sf::Sprite background_sprite;
 	std::vector<Text>texts;
 	std::vector<Button>buttons;

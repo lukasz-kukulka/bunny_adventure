@@ -7,19 +7,6 @@ Interface::Interface(sf::RenderWindow& window) : Load_from_files(window)
 	background_sprite.setScale(1.0 / 1080.0 * window.getSize().y, 1.0 / 1080.0 * window.getSize().y);
 	background_sprite.setPosition(window.getSize().x - background_sprite.getGlobalBounds().width, background_sprite.getPosition().y);
 
-	arrow_left.loadFromFile("Textures/Menu/arrow_left.png");
-	arrow_right.loadFromFile("Textures/Menu/arrow_right.png");
-
-	font_menu_button.loadFromFile("Fonts/avocado.ttf");
-	button_confirm_font.loadFromFile("Fonts/bongus.ttf");
-
-	buffer_menu.loadFromFile("Sound/Menu/click.wav");
-	click_sound.setBuffer(buffer_menu);
-	click_sound.setVolume(15.f);
-	buffer_menu_choise.loadFromFile("Sound/Menu/choise.wav");
-	choise_sound.setBuffer(buffer_menu_choise);
-	choise_sound.setVolume(15.f);
-
 	button_menu.push_back(Menu(window, &menu_button_left, &menu_button_mid, &menu_button_right, &arrow_left, &arrow_right, &font_menu_button, button_menu.size(), "New game"));
 	button_menu.push_back(Menu(window, &menu_button_left, &menu_button_mid, &menu_button_right, &arrow_left, &arrow_right, &font_menu_button, button_menu.size(), "Best Score"));
 	button_menu.push_back(Menu(window, &menu_button_left, &menu_button_mid, &menu_button_right, &arrow_left, &arrow_right, &font_menu_button, button_menu.size(), "Settings"));

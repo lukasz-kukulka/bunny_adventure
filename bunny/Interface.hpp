@@ -21,9 +21,6 @@ public:
 
 private:
 	sf::Sprite background_sprite;
-	sf::Font font_menu_button, button_confirm_font;
-	sf::SoundBuffer buffer_menu, buffer_menu_choise;
-	sf::Sound click_sound, choise_sound;
 	std::vector<Menu>button_menu;
 	std::vector<Exit>exit_objects;
 	std::vector<Button>buttons;

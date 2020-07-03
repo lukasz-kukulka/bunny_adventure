@@ -36,4 +36,32 @@ Load_from_files::Load_from_files(sf::RenderWindow& window)
 	this->arrow_left.loadFromFile("Textures/Menu/arrow_left.png");
 	this->arrow_right.loadFromFile("Textures/Menu/arrow_right.png");
 	this->background_base.loadFromFile("Textures/Menu/background1.jpg");
+
+	this->buffer_menu.loadFromFile("Sound/Menu/click.wav");
+	this->click_sound.setBuffer(buffer_menu);
+	this->click_sound.setVolume(15.f);
+	this->buffer_menu_choise.loadFromFile("Sound/Menu/choise.wav");
+	this->choise_sound.setBuffer(buffer_menu_choise);
+	this->choise_sound.setVolume(15.f);
+	this->delete_buffer.loadFromFile("Sound/Menu/save_file.wav");
+	this->delete_sound.setBuffer(delete_buffer);
+	this->delete_sound.setVolume(15.f);
+	this->button_buffer.loadFromFile("Sound/Menu/options_button.wav"); 
+	this->button_sound.setBuffer(button_buffer);
+	this->button_sound.setVolume(15.f);
+	this->slider_buffer.loadFromFile("Sound/Menu/slider.wav");
+	this->slider_sound.setBuffer(slider_buffer);
+	this->slider_sound.setVolume(15.f);
+
+
+
+
+	this->font_menu_button.loadFromFile("Fonts/avocado.ttf");
+	this->button_confirm_font.loadFromFile("Fonts/bongus.ttf");
+	this->cat_font.loadFromFile("Fonts/flut.ttf");
+	this->good_mor.loadFromFile("Fonts/good_mor.ttf");
+	this->butler.loadFromFile("Fonts/butler.ttf");
+	this->sec_font.loadFromFile("Fonts/beachday.ttf");
+	this->game_font.loadFromFile("Fonts/game.ttf");
+	this->kids_font.loadFromFile("Fonts/kids.ttf");
 }

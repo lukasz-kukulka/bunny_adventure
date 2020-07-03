@@ -7,16 +7,6 @@ Score_page::Score_page(sf::RenderWindow& window): Load_from_files(window)
 	this->base_rec.setFillColor(sf::Color(255, 255, 255, 0));
 	this->base_rec.setOutlineThickness(0);
 	this->base_rec.setOutlineColor(sf::Color(0, 0, 0, 111));
-
-	this->button_buffer.loadFromFile("Sound/Menu/choise.wav");
-	this->button_sound.setBuffer(button_buffer);
-	this->button_sound.setVolume(15.f);
-	this->delete_buffer.loadFromFile("Sound/Menu/save_file.wav");
-	this->delete_sound.setBuffer(delete_buffer);
-	this->delete_sound.setVolume(15.f);
-
-	this->button_font.loadFromFile("Fonts/flut.ttf");
-	this->butler.loadFromFile("Fonts/butler.ttf");
 	this->objects_ini(window);
 }
 
@@ -33,7 +23,7 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		{
 			if (back_button[i].system(window, mouse) == 56)
 			{
-				button_sound.play();
+				choise_sound.play();
 				return 0;
 			}
 				
@@ -106,7 +96,7 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	{
 		if (screen_delete_enabled == true)
 		{
-			screen_del.push_back(Confirm_screen(window, &button_font, "ARE YOU SURE YOU WANA DELETE THIS RECORD?", &back_button_tex, &back_button_grey_tex));
+			screen_del.push_back(Confirm_screen(window, &cat_font, "ARE YOU SURE YOU WANA DELETE THIS RECORD?", &back_button_tex, &back_button_grey_tex));
 			screen_delete_enabled = false;
 		}
 		
@@ -129,7 +119,7 @@ int Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 				this->screen_delete_enabled = true;
 				this->detete_record_enagled = true;
 				this->screen_del.erase(screen_del.begin(), screen_del.end());
-				this->button_sound.play();
+				this->choise_sound.play();
 				return 2;
 			}
 		}
@@ -184,13 +174,13 @@ void Score_page::objects_ini(sf::RenderWindow& window)
 			this->score_records.push_back(Single_score_record(window, &trash_tex, &butler, base_rec, score_records.size(), score_operations.load_score(i * 3 + 1),
 				score_operations.load_score(i * 3 + 2), score_operations.load_score(i * 3 + 3), false));
 	}
-	this->back_button.push_back(Button_option(window, base_rec, &back_button_tex, &back_button_grey_tex, &button_font, "EXIT", 1, 55, false));
+	this->back_button.push_back(Button_option(window, base_rec, &back_button_tex, &back_button_grey_tex, &cat_font, "EXIT", 1, 55, false));
 	
 }
 
 void Score_page::settings(int volume)
 {
-	this->button_sound.setVolume(15.f / 100 * volume);
+	this->choise_sound.setVolume(15.f / 100 * volume);
 	this->delete_sound.setVolume(15.f / 100 * volume);
 }
 

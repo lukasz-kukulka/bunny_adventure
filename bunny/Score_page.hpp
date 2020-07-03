@@ -24,12 +24,9 @@ public:
 
 private:
 	sf::Sprite background_sprite_bunny;
-	sf::Font butler, button_font;
 	sf::RectangleShape base_rec, size_no_extra_records;
 	sf::Clock move_record_clock;
 	sf::Time move_record_time;
-	sf::SoundBuffer button_buffer, delete_buffer;
-	sf::Sound button_sound, delete_sound;
 	std::vector<Single_score_record>score_records;
 	std::vector<Slider_score>slider;
 	std::vector<Button_option>back_button;

@@ -12,18 +12,6 @@ Settings_page::Settings_page(sf::RenderWindow& window): Load_from_files(window)
 	this->time_save_begin = sf::seconds(3.0f);
 	this->temp_settings = settings_deffault = { 1, 10, true, true, 1 };
 	this->res_settings = diff_settings = { false, false, false };
-	//this->background.loadFromFile("Textures/Credits/back.jpg");
-	//this->button_color.loadFromFile("Textures/Settings/button_color.png");
-	//this->button_grey.loadFromFile("Textures/Settings/button_grey.png");
-	//this->cursor_section.loadFromFile("Textures/Settings/id_rec.png");
-	//this->save_exit_button.loadFromFile("Textures/Settings/control.png");
-	//this->save_exit_button_grey.loadFromFile("Textures/Settings/control_grey.png");
-	//this->slider_base.loadFromFile("Textures/Settings/slider.png");
-	//this->slider_black.loadFromFile("Textures/Settings/slider_black.png");
-	//this->slider_volume.loadFromFile("Textures/Settings/slider_bunny1.png");
-	//this->yes_color.loadFromFile("Textures/Settings/yes.png");
-	//this->yes_grey.loadFromFile("Textures/Settings/yes_grey.png");
-
 
 	this->background_sprite_settings.setTexture(background_tex);
 	this->basic.setSize(sf::Vector2f(window.getSize().x - 50, window.getSize().y - 50));
@@ -34,27 +22,11 @@ Settings_page::Settings_page(sf::RenderWindow& window): Load_from_files(window)
 	this->save_back_rec.setPosition(0, 0);
 	this->save_back_rec.setFillColor(sf::Color(0, 0, 0, 200));
 
-	this->button_font.loadFromFile("Fonts/flut.ttf");
-	this->sec_font.loadFromFile("Fonts/beachday.ttf");
-	this->game_font.loadFromFile("Fonts/game.ttf");
-	this->kids_font.loadFromFile("Fonts/kids.ttf"); 
-	
 	this->load_settings();
 	this->settings_ini_button();
 	this->objects_ini(window);
 
-	this->button_buffer.loadFromFile("Sound/Menu/options_button.wav");
-	this->button_sound.setBuffer(button_buffer);
-	this->button_sound.setVolume(15.f);
-	this->slider_buffer.loadFromFile("Sound/Menu/slider.wav");
-	this->slider_sound.setBuffer(slider_buffer);
-	this->slider_sound.setVolume(15.f);
-	this->save_buffer.loadFromFile("Sound/Menu/save_file.wav");
-	this->save_sound.setBuffer(save_buffer);
-	this->save_sound.setVolume(15.f);
-	this->buffer_choise.loadFromFile("Sound/Menu/choise.wav");
-	this->sound_choise.setBuffer(buffer_choise);
-	this->sound_choise.setVolume(15.f);
+
 }
 
 int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
@@ -100,8 +72,8 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			this->slider_sound.play();
 			this->slider_sound.setVolume(15.f / 100 * user_settings.vol);
 			this->button_sound.setVolume(15.f / 100 * user_settings.vol);
-			this->save_sound.setVolume(15.f / 100 * user_settings.vol);
-			this->sound_choise.setVolume(15.f / 100 * user_settings.vol);
+			this->delete_sound.setVolume(15.f / 100 * user_settings.vol);
+			this->choise_sound.setVolume(15.f / 100 * user_settings.vol);
 		}
 		
 	}
@@ -146,7 +118,7 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		}
 		else if (press_save_back == 1)
 		{
-			sound_choise.play();
+			choise_sound.play();
 			this->settings_ini->save_settings(user_settings.res, user_settings.vol, user_settings.efect, user_settings.music, user_settings.dif);
 			this->save_button_press = true;
 			this->clock_save.restart();
@@ -155,14 +127,14 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		}
 		else if (press_save_back == 2)
 		{
-			sound_choise.play();
+			choise_sound.play();
 			user_settings = settings_deffault;
 			settings_ini_button();
 			objects_ini(window);
 		}
 		else if (press_save_back == 3)
 		{
-			sound_choise.play();
+			choise_sound.play();
 			load_settings();
 			settings_ini_button();
 			objects_ini(window);
@@ -182,7 +154,7 @@ int Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			this->save_back_rec.setSize(sf::Vector2f(0, 0));
 			this->texts.erase(texts.begin(), texts.end());
 			this->save_button_press = false;
-			this->save_sound.play();
+			this->delete_sound.play();
 			return 3;
 		}	
 	}
@@ -272,9 +244,9 @@ void Settings_page::objects_ini(sf::RenderWindow& window)
 	}
 
 	this->sections.push_back(Section(window, sections.size(), "RESOLUTION", settings_sections_no, basic, &sec_font, &cursor_section));
-	this->buttons_resolution.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "1280 X 1024", settings_resolution, buttons_resolution.size(), res_settings.one));
-	this->buttons_resolution.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "1600 X 900", settings_resolution, buttons_resolution.size(), res_settings.two));
-	this->buttons_resolution.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "1920 X 1080", settings_resolution, buttons_resolution.size(), res_settings.three));
+	this->buttons_resolution.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &cat_font, "1280 X 1024", settings_resolution, buttons_resolution.size(), res_settings.one));
+	this->buttons_resolution.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &cat_font, "1600 X 900", settings_resolution, buttons_resolution.size(), res_settings.two));
+	this->buttons_resolution.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &cat_font, "1920 X 1080", settings_resolution, buttons_resolution.size(), res_settings.three));
 
 	this->sections.push_back(Section(window, sections.size(), "SOUND", settings_sections_no, basic, &sec_font, &cursor_section));
 	this->sliders_sound.push_back(Slider_option(window, sections[sections.size() - 1].shape(), &slider_base, &slider_black, &slider_volume, &sec_font, settings_sound, 0, "Volume", user_settings.vol));
@@ -282,9 +254,9 @@ void Settings_page::objects_ini(sf::RenderWindow& window)
 	this->yes_no_buttons.push_back(Yes_no_option(window, sections[sections.size() - 1].shape(), &yes_color, &yes_grey, &sec_font, settings_sound, 2, "MUSIC", user_settings.music));
 
 	this->sections.push_back(Section(window, sections.size(), "DIFFICULTY", settings_sections_no, basic, &sec_font, &cursor_section));
-	this->buttons_diff.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "EASY", settings_resolution, buttons_diff.size(), diff_settings.one));
-	this->buttons_diff.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "NORMAL", settings_resolution, buttons_diff.size(), diff_settings.two));
-	this->buttons_diff.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &button_font, "HARD", settings_resolution, buttons_diff.size(), diff_settings.three));
+	this->buttons_diff.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &cat_font, "EASY", settings_resolution, buttons_diff.size(), diff_settings.one));
+	this->buttons_diff.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &cat_font, "NORMAL", settings_resolution, buttons_diff.size(), diff_settings.two));
+	this->buttons_diff.push_back(Button_option(window, sections[sections.size() - 1].shape(), &button_color, &button_grey, &cat_font, "HARD", settings_resolution, buttons_diff.size(), diff_settings.three));
 
 	this->sections.push_back(Section(window, sections.size(), "CONTROL", settings_sections_no, basic, &sec_font, &cursor_section));
 	this->text_control.push_back(Text_settings(window, sections[sections.size() - 1].shape(), &game_font, "space - jump", settings_control_columns, max_row_control, 1, 1));
@@ -298,9 +270,9 @@ void Settings_page::objects_ini(sf::RenderWindow& window)
 	this->text_control.push_back(Text_settings(window, sections[sections.size() - 1].shape(), &game_font, "empty - empty", settings_control_columns, max_row_control, 3, 3));
 
 	this->sections.push_back(Section(window, sections.size(), "", settings_sections_no, basic, &sec_font, &cursor_section));
-	this->buttons_save_back.push_back(Button_option(window, sections[sections.size() - 1].shape(), &save_exit_button, &save_exit_button_grey, &button_font, "SAVE", settings_summary, buttons_save_back.size(), false));
-	this->buttons_save_back.push_back(Button_option(window, sections[sections.size() - 1].shape(), &save_exit_button, &save_exit_button_grey, &button_font, "DEFAULT", settings_summary, buttons_save_back.size(), false));
-	this->buttons_save_back.push_back(Button_option(window, sections[sections.size() - 1].shape(), &save_exit_button, &save_exit_button_grey, &button_font, "EXIT", settings_summary, buttons_save_back.size(), false));
+	this->buttons_save_back.push_back(Button_option(window, sections[sections.size() - 1].shape(), &save_exit_button, &save_exit_button_grey, &cat_font, "SAVE", settings_summary, buttons_save_back.size(), false));
+	this->buttons_save_back.push_back(Button_option(window, sections[sections.size() - 1].shape(), &save_exit_button, &save_exit_button_grey, &cat_font, "DEFAULT", settings_summary, buttons_save_back.size(), false));
+	this->buttons_save_back.push_back(Button_option(window, sections[sections.size() - 1].shape(), &save_exit_button, &save_exit_button_grey, &cat_font, "EXIT", settings_summary, buttons_save_back.size(), false));
 }
 
 int Settings_page::resolution_load_width()
@@ -327,8 +299,8 @@ void Settings_page::settings(int volume)
 {
 	this->slider_sound.setVolume(15.f / 100 * volume);
 	this->button_sound.setVolume(15.f / 100 * volume);
-	this->save_sound.setVolume(15.f / 100 * volume);
-	this->sound_choise.setVolume(15.f / 100 * volume);
+	this->delete_sound.setVolume(15.f / 100 * volume);
+	this->choise_sound.setVolume(15.f / 100 * volume);
 }
 
 void Settings_page::draw(sf::RenderWindow& window)
