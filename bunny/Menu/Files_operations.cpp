@@ -10,7 +10,7 @@ uint16_t Files_operations::load_from_settings(uint8_t row_number)
 	no_line = 1;
 	std::string line;
 	std::fstream file;
-	file.open("settings.ini", std::ios::in);
+	file.open("Settings/settings.ini", std::ios::in);
 	if (file.good() == false)
 	{
 		std::cout << "File not exist" << std::endl;
@@ -61,7 +61,7 @@ uint16_t Files_operations::load_from_settings(uint8_t row_number)
 void Files_operations::save_settings(uint16_t res, uint8_t vol, bool efect, bool music, uint8_t diff)
 {
     std::fstream file;
-    file.open("settings.ini", std::ios::out | std::ios::trunc);
+    file.open("Settings/settings.ini", std::ios::out | std::ios::trunc);
     file << res << std::endl;
     file << vol << std::endl;
     file << efect << std::endl;
@@ -75,7 +75,7 @@ std::string Files_operations::load_score(uint8_t row_number)
     no_line = 1;
     std::string line;
     std::fstream file;
-    file.open("score.txt", std::ios::in);
+    file.open("Settings/score.txt", std::ios::in);
     if (file.good() == false)
     {
         std::cout << "File not exist" << std::endl;
@@ -96,7 +96,7 @@ std::string Files_operations::load_score(uint8_t row_number)
 void Files_operations::save_score_reset()
 {
     std::fstream file;
-    file.open("score.txt", std::ios::out | std::ios::trunc);
+    file.open("Settings/score.txt", std::ios::out | std::ios::trunc);
     for (uint16_t i = 0; i < records.size(); i++)
     {
         file << records[i].name_out() << std::endl;
@@ -129,7 +129,7 @@ void Files_operations::record_ini()
     no_line = 1;
 	std::string line;
 	std::fstream file;
-	file.open("score.txt", std::ios::in);
+	file.open("Settings/score.txt", std::ios::in);
 	if (file.good() == false)
 	{
 		std::cout << "File not exist" << std::endl;

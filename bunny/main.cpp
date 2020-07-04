@@ -1,12 +1,13 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-#include "Option.hpp"
-#include "Interface.hpp"
-#include "Exit.hpp"
-#include "Credits.hpp"
-#include "Settings_page.hpp"
-#include "Files_operations.hpp"
-#include "Score_page.hpp"
+#include "Menu/Option.hpp"
+#include "Menu/Interface.hpp"
+#include "Menu/Exit.hpp"
+#include "Menu/Credits.hpp"
+#include "Menu/Settings_page.hpp"
+#include "Menu/Files_operations.hpp"
+#include "Menu/Score_page.hpp"
+#include "Game/Game_ini.hpp"
 #include <stdlib.h>
 #include <time.h> 
 extern sf::Vector2i mouse;
@@ -14,7 +15,7 @@ extern sf::Vector2i mouse;
 int main()
 {
     Files_operations res_load;
-    uint16_t menu_option = 0, res_width = 1280, res_height = 1024;
+    uint16_t menu_option = 1, res_width = 1280, res_height = 1024;
     bool music_play = true;
     if (res_load.load_from_settings(1) == 1)
     {
@@ -39,13 +40,14 @@ int main()
     window.setFramerateLimit(60);
     window.setMouseCursorVisible(false);
     sf::Texture texture;
-    texture.loadFromFile("Textures/cursor.png");
+    texture.loadFromFile("Menu/Textures/cursor.png");
     sf::Sprite sprite(texture);
     sf::Music music;
-    music.openFromFile("Sound/Menu/music_menu.wav");
+    music.openFromFile("Menu/Sound/Menu/music_menu.wav");
     music.setLoop(true);
     music.setVolume(10);
     Interface inter(window);
+    Game_ini game_ini(window);
     Credits credits(window);
     Settings_page settings_page(window);
     Score_page score_page(window);
@@ -67,13 +69,21 @@ int main()
         
             case 1: //Game
             {
+                music.pause();
+                go_to_option = &game_ini;
+                menu_option = go_to_option->system(window, mouse);
+                go_to_option->settings(res_load.load_from_settings(2));
+                break;
                 if (music.getVolume() <= 1) //zwiekszyæ volume
                 {
                     music.pause();
+                    
+
                 }
                 else
                 {
                     music.setVolume(music.getVolume() - 0.4);
+
                 }
                 break;
             }

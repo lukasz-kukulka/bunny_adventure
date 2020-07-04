@@ -12,3 +12,4 @@ public:
 private:
 	sf::Sprite arrow_sprite;
 };
+
