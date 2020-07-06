@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "../Menu/Option.hpp"
-#include "../Background.hpp"
+#include "Background.hpp"
 
 class Game_ini :public Option
 {
@@ -14,7 +14,7 @@ public:
 	void draw(sf::RenderWindow& window);
 
 private:
-	sf::Texture sky_texture;
+	sf::Texture sky_texture, forest_light_texture, forest_mid_texture, forest_dark_texture;
 	std::vector<Background>skys;
 
 	Option* go_to_option;
