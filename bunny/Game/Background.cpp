@@ -16,13 +16,10 @@ Background::Background(sf::RenderWindow& window, sf::Texture* back_tex, uint8_t 
 	{
 		this->back_sprite.setPosition(index * back_sprite.getGlobalBounds().width, window.getSize().y - back_sprite.getGlobalBounds().height);
 	}
-	
 }
 
 uint8_t Background::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
-
-
 	return 0;
 }
 
@@ -36,7 +33,9 @@ void Background::move_background(sf::RenderWindow& window, int8_t direct_x)
 	{
 		movment_pooint_x = 0;
 	}
+
 	this->movment_pooint_x = movment_pooint_x + direct_x * speed_f;
+
 	if (index == 0)
 	{
 		this->back_sprite.setPosition(movment_pooint_x, back_sprite.getPosition().y);
