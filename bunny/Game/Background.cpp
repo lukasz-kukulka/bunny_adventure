@@ -18,7 +18,7 @@ Background::Background(sf::RenderWindow& window, sf::Texture* back_tex, uint8_t 
 	}
 }
 
-uint8_t Background::system(sf::RenderWindow& window, sf::Vector2i mouse)
+uint8_t Background::system(sf::RenderWindow& window)
 {
 	return 0;
 }
