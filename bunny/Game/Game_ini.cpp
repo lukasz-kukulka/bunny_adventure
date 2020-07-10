@@ -3,11 +3,12 @@
 Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window, game_level), background_ini(window, game_level)
 {
 	this->bunny_tex.loadFromFile("Game/Textures/player.png");
-
+	
 	this->time_animation = 0;
 	this->objects_ini(window);
 	this->time_animation = {0};
 	this->game_level = 0;
+	
 	//usunac kursor
 }
 
@@ -26,7 +27,7 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		player_bunny[0].animation_play_method_right(false);
 	}
 	background_ini.system(window);
-	
+	level_ini.system();
 	time_animation = clock_animation.restart().asSeconds(); // ==============Player====================================================================
 	for (uint8_t i = 0; i < player_bunny.size(); i++)
 	{

@@ -4,6 +4,7 @@ Levels_ini::Levels_ini(sf::RenderWindow& window, uint8_t game_level) :test_lvl(w
 {
 	this->game_lvl = game_level;
 	this->choise_level = &test_lvl;
+	//std::cout << "--->" << static_cast<int>(game_level)  << std::endl;
 }
 
 uint8_t Levels_ini::system()
@@ -13,6 +14,7 @@ uint8_t Levels_ini::system()
 	case 0:
 	{
 		this->choise_level = &test_lvl;
+		this->choise_level->objects_ini();
 		break;
 	}
 	default:
