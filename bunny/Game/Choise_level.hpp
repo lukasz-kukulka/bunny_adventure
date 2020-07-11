@@ -7,6 +7,6 @@ public:
 	
 	virtual uint8_t system() = 0;
 	//virtual void settings(uint8_t) = 0;
-	virtual void objects_ini() = 0;
+	virtual void objects_ini(sf::RenderWindow&, sf::Vector2f) = 0;
 	virtual void draw(sf::RenderWindow&) = 0;
 };

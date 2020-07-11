@@ -27,7 +27,7 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		player_bunny[0].animation_play_method_right(false);
 	}
 	background_ini.system(window);
-	level_ini.system();
+	level_ini.system(window);
 	time_animation = clock_animation.restart().asSeconds(); // ==============Player====================================================================
 	for (uint8_t i = 0; i < player_bunny.size(); i++)
 	{
@@ -51,8 +51,8 @@ void Game_ini::settings(uint8_t volume)
 
 void Game_ini::draw(sf::RenderWindow& window)
 {
-	level_ini.draw(window);
 	background_ini.draw(window);
+	level_ini.draw(window);
 	for (auto i : player_bunny)
 		i.draw(window);
 }
