@@ -73,7 +73,7 @@ int main()
                 go_to_option = &game_ini;
                 menu_option = go_to_option->system(window, mouse);
                 go_to_option->settings(res_load.load_from_settings(2));
-                //sprite.setScale(0, 0);
+                sprite.setScale(0, 0);
                 break;
                 if (music.getVolume() <= 1) //zwiekszyæ volume
                 {

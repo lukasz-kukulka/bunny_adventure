@@ -12,6 +12,8 @@ public:
 	void animation_play_method_right(bool play);
 	void animation_play_method_left(bool play);
 	void objects_ini(sf::RenderWindow& window);
+	sf::Vector2i get_position();
+	sf::Vector2f get_global();
 	void draw(sf::RenderWindow& window);
 
 private:

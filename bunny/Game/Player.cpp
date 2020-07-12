@@ -19,6 +19,7 @@ void Player::animations(float time_animation)
 {
 	if (animation_plays_right == true)
 	{
+		this->player_sprite.move(2, 0);
 		this->animation_plays_left = false;
 		if (animation[0].system(time_animation, &player_sprite) == 1)
 		{
@@ -27,6 +28,7 @@ void Player::animations(float time_animation)
 	}
 	if (animation_plays_left == true)
 	{
+		this->player_sprite.move(-2, 0);
 		this->animation_plays_right = false;
 		if (animation[1].system(time_animation, &player_sprite) == 1)
 		{
@@ -39,8 +41,6 @@ void Player::animation_play_method_right(bool play)
 {
 	this->animation_plays_right = play;
 }
-
-
 
 void Player::animation_play_method_left(bool play)
 {
@@ -60,7 +60,15 @@ void Player::objects_ini(sf::RenderWindow& window)
 	this->animation.push_back(Animations(&player_sprite, steps_animation_right_left, 1));
 }
 
+sf::Vector2i Player::get_position()
+{
+	return sf::Vector2i(player_sprite.getPosition());
+}
 
+sf::Vector2f Player::get_global()
+{
+	return sf::Vector2f(player_sprite.getGlobalBounds().width, player_sprite.getGlobalBounds().height);
+}
 
 void Player::draw(sf::RenderWindow& window)
 {

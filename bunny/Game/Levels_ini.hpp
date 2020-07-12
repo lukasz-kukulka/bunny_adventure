@@ -6,9 +6,9 @@
 class Levels_ini
 {
 public:
-	Levels_ini(sf::RenderWindow& window, uint8_t game_level);
+	Levels_ini(sf::RenderWindow& window);
 
-	uint8_t system(sf::RenderWindow& window);
+	uint8_t system(sf::RenderWindow& window, uint8_t game_level);
 	void draw(sf::RenderWindow& window);
 
 private:

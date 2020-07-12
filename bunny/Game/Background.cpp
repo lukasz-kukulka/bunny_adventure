@@ -1,20 +1,21 @@
 #include "Background.hpp"
 
-Background::Background(sf::RenderWindow& window, sf::Texture* back_tex, uint8_t type_sprite, uint8_t index, uint8_t speed)
+Background::Background(sf::RenderWindow& window, sf::Texture* back_tex, uint8_t type_sprite, uint8_t index, float speed, sf::View& view_window)
 {
+	this->view = view_window;
 	this->index = index;
 	this->speed_f = 1.0 * window.getSize().x / (window.getSize().x / speed);
-	this->movment_pooint_x = 0;
+	this->movment_pooint_x = view.getCenter().x;
 	this->type_sprite = type_sprite;
 	this->back_sprite.setTexture(*back_tex);
 	this->back_sprite.setScale( window.getSize().x / back_sprite.getGlobalBounds().width, window.getSize().x / back_sprite.getGlobalBounds().width);
 	if (type_sprite == 0)
 	{
-		this->back_sprite.setPosition(index * back_sprite.getGlobalBounds().width, 0);
+		this->back_sprite.setPosition(movment_pooint_x - index * back_sprite.getGlobalBounds().width, 0);
 	}
 	else if (type_sprite == 1)
 	{
-		this->back_sprite.setPosition(index * back_sprite.getGlobalBounds().width, window.getSize().y - back_sprite.getGlobalBounds().height);
+		this->back_sprite.setPosition(movment_pooint_x - index * back_sprite.getGlobalBounds().width, window.getSize().y - back_sprite.getGlobalBounds().height);
 	}
 }
 
@@ -23,18 +24,18 @@ uint8_t Background::system(sf::RenderWindow& window)
 	return 0;
 }
 
-void Background::move_background(sf::RenderWindow& window, int8_t direct_x)
+void Background::move_background_view(int8_t direct_x)
 {
-	if (movment_pooint_x <= 0 && direct_x == (-1))
+	if (movment_pooint_x <= view.getCenter().x - view.getSize().x / 2 && direct_x == (-1))
 	{
-		movment_pooint_x = window.getSize().x;
+		movment_pooint_x = view.getCenter().x + view.getSize().x / 2;
 	}
-	else if (movment_pooint_x >= window.getSize().x && direct_x == 1)
+	else if (movment_pooint_x >= view.getCenter().x + view.getSize().x / 2 && direct_x == 1)
 	{
-		movment_pooint_x = 0;
+		movment_pooint_x = view.getCenter().x - view.getSize().x / 2;
 	}
 
-	this->movment_pooint_x = movment_pooint_x + direct_x * speed_f;
+	this->movment_pooint_x = movment_pooint_x + direct_x * speed_f / 10.0;
 
 	if (index == 0)
 	{

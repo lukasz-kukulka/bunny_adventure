@@ -1,14 +1,15 @@
 #include "Levels_ini.hpp"
 
-Levels_ini::Levels_ini(sf::RenderWindow& window, uint8_t game_level) :test_lvl(window)
+Levels_ini::Levels_ini(sf::RenderWindow& window) :test_lvl(window)
 {
-	this->game_lvl = game_level;
+	
 	this->choise_level = &test_lvl;
 	//std::cout << "--->" << static_cast<int>(game_level)  << std::endl;
 }
 
-uint8_t Levels_ini::system(sf::RenderWindow& window)
+uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
 {
+	this->game_lvl = game_level;
 	switch (game_lvl)
 	{
 	case 0:

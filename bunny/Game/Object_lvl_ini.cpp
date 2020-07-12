@@ -56,17 +56,8 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 				{
 					temp = line[i];
 					temp.append(line, i+1 , 2);
-					
-					
-					//if (temp != "000")
-					//{
-					//	//std::cout << temp <<"   <---- NIE zero \n";
-					//}
-					//else 
-					//std::cout << temp + "-----"<< "\n";static_cast<int>(no_tiles_row)
 					if (temp == "001")
 					{
-						//std::cout << static_cast<int>(no_line) << " ----- = " << window.getSize().y - size_board.y + no_line * 100.0f<< "\n";
 						tiles_tex.push_back(Single_tile(window, &tex001, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
 					}
@@ -221,9 +212,7 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 						no_tiles_row++;
 					}
 					i += 2;
-					
 				}
-				
 			}
 		no_line++;
 	}

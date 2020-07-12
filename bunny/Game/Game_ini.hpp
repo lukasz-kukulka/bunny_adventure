@@ -23,5 +23,6 @@ private:
 	sf::Clock clock_animation;
 	Levels_ini level_ini;
 	Background_ini background_ini;
+	sf::View view_game;
 };
 
