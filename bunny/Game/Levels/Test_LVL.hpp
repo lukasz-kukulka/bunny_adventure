@@ -10,6 +10,7 @@ public:
 
 	uint8_t system();
 	void objects_ini(sf::RenderWindow& window, sf::Vector2f size_board);
+	sf::Vector2i level_size();
 	void draw(sf::RenderWindow& window);
 
 private:

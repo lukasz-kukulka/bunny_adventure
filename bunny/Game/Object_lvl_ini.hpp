@@ -12,7 +12,6 @@ public:
 
 	uint8_t system(sf::RenderWindow& window);
 	void create_objects(sf::RenderWindow& window, std::string path_lvl, sf::Vector2f size_board);
-	void objects_ini(sf::RenderWindow& window);
 	void draw(sf::RenderWindow& window);
 
 private:

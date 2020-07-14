@@ -18,15 +18,19 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	{	
 		player_bunny[0].animation_play_method_left(false);
 		player_bunny[0].animation_play_method_right(true);
-		view_game.move(1.0, 0.0);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		player_bunny[0].animation_play_method_left(true);
 		player_bunny[0].animation_play_method_right(false);
-		view_game.move(-1.0, 0.0);
 	}
 
+	if (view_game.getCenter().x - view_game.getSize().x / 2 >= 0 || player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2 - view_game.getSize().x / 2 >= 0)
+	{
+		this->view_game.setCenter(player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2, view_game.getCenter().y);
+		
+	}
+	//std::cout << view_game.getCenter().x << "  ---    " << std::endl;
 	background_ini.system(window, view_game, game_level);
 	level_ini.system(window, game_level);
 
@@ -37,7 +41,7 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	} 
 
 	//this->view_game.setViewport(sf::FloatRect(0.25f, 0.25, 0.5f, 0.5f));
-	this->view_game.setCenter(player_bunny[0].get_position().x + player_bunny[0].get_global().x, view_game.getCenter().y);
+	
 	window.setView(view_game);
 	return 1;
 }

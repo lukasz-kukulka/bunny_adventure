@@ -22,6 +22,11 @@ void Test_LVL::objects_ini(sf::RenderWindow& window, sf::Vector2f size_board)
     }
 }
 
+sf::Vector2i Test_LVL::level_size()
+{
+    return sf::Vector2i(size_lvl);
+}
+
 void Test_LVL::draw(sf::RenderWindow& window)
 {
     lvl0.draw(window);

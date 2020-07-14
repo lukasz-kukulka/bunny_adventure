@@ -25,6 +25,11 @@ uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
 	return 0;
 }
 
+sf::Vector2i Levels_ini::level_size()
+{
+	return sf::Vector2i(test_lvl.level_size());
+}
+
 void Levels_ini::draw(sf::RenderWindow& window)
 {
 	switch (game_lvl)

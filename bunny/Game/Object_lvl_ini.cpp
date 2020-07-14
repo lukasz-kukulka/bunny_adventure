@@ -219,11 +219,6 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 	file.close();
 }
 
-void Object_lvl_ini::objects_ini(sf::RenderWindow& window)
-{
-		
-}
-
 void Object_lvl_ini::draw(sf::RenderWindow& window)
 {
 	for (auto i : tiles_tex)

@@ -22,18 +22,16 @@ uint8_t Background_ini::system(sf::RenderWindow& window, sf::View& view_game, ui
 	{
 		for (uint8_t i = 0; i < skys.size(); i++)
 		{
-			skys[i].move_background_view(-1);
+			skys[i].move_background_view(-1, view_window);
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		for (uint8_t i = 0; i < skys.size(); i++)
 		{
-			skys[i].move_background_view(1);
+			skys[i].move_background_view(1, view_window);
 		}
 	}
-	for (auto i : skys)
-		i.system(window);
 
 	return 0;
 }
@@ -52,6 +50,13 @@ void Background_ini::objects_ini(sf::RenderWindow& window)
 		this->skys.push_back(Background(window, &forest_light_texture, 1, 1, 4, view_window));
 	}
 }
+
+//void Background_ini::level_size(sf::Vector2i lvl_size)
+//{
+//
+//}
+
+
 
 void Background_ini::draw(sf::RenderWindow& window)
 {

@@ -37,6 +37,7 @@ int main()
     //res_load_new = &res_load
     srand(time(NULL));
     sf::RenderWindow window(sf::VideoMode(res_width, res_height), "Bunny adventure");
+    //window.setPosition(sf::Vector2i(0, 0));
     window.setFramerateLimit(60);
     window.setMouseCursorVisible(false);
     sf::Texture texture;
