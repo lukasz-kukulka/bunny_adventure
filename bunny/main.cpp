@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <time.h> 
 extern sf::Vector2i mouse;
-
+// naprawic blad z przewijaniem score
 int main()
 {
     Files_operations res_load;

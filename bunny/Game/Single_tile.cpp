@@ -10,6 +10,11 @@ Single_tile::Single_tile(sf::RenderWindow& window, sf::Texture* tex, sf::Vector2
 	//std::cout << position.x << " CREATE " << position.y << "\n";
 }
 
+sf::Sprite* Single_tile::shape_sprite()
+{
+	return &tile;
+}
+
 void Single_tile::draw(sf::RenderWindow& window)
 {
 	window.draw(tile);

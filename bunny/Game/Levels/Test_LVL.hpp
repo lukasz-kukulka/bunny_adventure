@@ -9,8 +9,9 @@ public:
 	Test_LVL(sf::RenderWindow& window);
 
 	uint8_t system();
-	void objects_ini(sf::RenderWindow& window, sf::Vector2f size_board);
-	sf::Vector2i level_size();
+	void objects_ini(sf::RenderWindow& window, sf::Vector2i size_board);
+	sf::Sprite* tiles(uint32_t index);
+	uint16_t no_til();
 	void draw(sf::RenderWindow& window);
 
 private:

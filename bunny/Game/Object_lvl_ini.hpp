@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Single_tile.hpp"
 #include <fstream>
+#include <vector>
 #include <iostream>
 #include <string>
 
@@ -12,6 +13,8 @@ public:
 
 	uint8_t system(sf::RenderWindow& window);
 	void create_objects(sf::RenderWindow& window, std::string path_lvl, sf::Vector2f size_board);
+	sf::Sprite* shape(uint32_t index);
+	uint16_t no_tiles();
 	void draw(sf::RenderWindow& window);
 
 private:

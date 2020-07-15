@@ -4,6 +4,7 @@
 #include "Background_ini.hpp"
 #include "Player.hpp"
 #include "Levels_ini.hpp"
+#include "Colisions.hpp"
 
 class Game_ini :public Option
 {
@@ -23,6 +24,7 @@ private:
 	sf::Clock clock_animation;
 	Levels_ini level_ini;
 	Background_ini background_ini;
+	Colisions colision;
 	sf::View view_game;
 };
 

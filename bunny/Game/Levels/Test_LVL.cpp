@@ -13,7 +13,7 @@ uint8_t Test_LVL::system()
     return 0;
 }
 
-void Test_LVL::objects_ini(sf::RenderWindow& window, sf::Vector2f size_board)
+void Test_LVL::objects_ini(sf::RenderWindow& window, sf::Vector2i size_board)
 {
     if (ini_object_true == true)
     {
@@ -22,9 +22,14 @@ void Test_LVL::objects_ini(sf::RenderWindow& window, sf::Vector2f size_board)
     }
 }
 
-sf::Vector2i Test_LVL::level_size()
+sf::Sprite* Test_LVL::tiles(uint32_t index)
 {
-    return sf::Vector2i(size_lvl);
+    return lvl0.shape(index);
+}
+
+uint16_t Test_LVL::no_til()
+{
+    return lvl0.no_tiles();
 }
 
 void Test_LVL::draw(sf::RenderWindow& window)

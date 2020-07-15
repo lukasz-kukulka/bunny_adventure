@@ -37,6 +37,11 @@ void Player::animations(float time_animation)
 	}
 }
 
+sf::Sprite* Player::shape_player()
+{
+	return &player_sprite;
+}
+
 void Player::animation_play_method_right(bool play)
 {
 	this->animation_plays_right = play;
@@ -54,7 +59,7 @@ void Player::objects_ini(sf::RenderWindow& window)
 
 	this->player_sprite.setTexture(*texture_animation);
 	this->player_sprite.setTextureRect(window_animation);
-	this->player_sprite.setPosition(window.getSize().x / 2 - player_sprite.getGlobalBounds().width / 2, window.getSize().y - 250);
+	this->player_sprite.setPosition(window.getSize().x / 2 - player_sprite.getGlobalBounds().width / 2, 250);
 
 	this->animation.push_back(Animations(&player_sprite, steps_animation_right_left, 0));
 	this->animation.push_back(Animations(&player_sprite, steps_animation_right_left, 1));

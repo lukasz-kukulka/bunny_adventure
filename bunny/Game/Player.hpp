@@ -9,6 +9,7 @@ public:
 
 	uint8_t system();
 	void animations(float time_animation);
+	sf::Sprite* shape_player();
 	void animation_play_method_right(bool play);
 	void animation_play_method_left(bool play);
 	void objects_ini(sf::RenderWindow& window);

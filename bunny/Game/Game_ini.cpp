@@ -1,6 +1,6 @@
 #include "Game_ini.hpp"
 
-Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(window)
+Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(window), colision()
 {
 	this->bunny_tex.loadFromFile("Game/Textures/player.png");
 	
@@ -25,7 +25,8 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		player_bunny[0].animation_play_method_right(false);
 	}
 
-	if (view_game.getCenter().x - view_game.getSize().x / 2 >= 0 || player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2 - view_game.getSize().x / 2 >= 0)
+	if (view_game.getCenter().x - view_game.getSize().x / 2 >= 0 || player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2 - view_game.getSize().x / 2 >= 0 && 
+		view_game.getCenter().x + view_game.getSize().x / 2 <= level_ini.level_size().x)
 	{
 		this->view_game.setCenter(player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2, view_game.getCenter().y);
 		
@@ -35,11 +36,17 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	level_ini.system(window, game_level);
 
 	time_animation = clock_animation.restart().asSeconds(); 
-	for (uint8_t i = 0; i < player_bunny.size(); i++)
+	for (uint8_t j = 0; j < player_bunny.size(); j++)
 	{
-		player_bunny[i].animations(time_animation);
+		player_bunny[j].animations(time_animation);
+		for (int i = 0; i < level_ini.no_tiles(); i++)
+		{
+			
+			colision.colision(window, player_bunny[j].shape_player(), level_ini.tiles(i));
+			
+		}
 	} 
-
+	colision.gravity(window, player_bunny[0].shape_player());
 	//this->view_game.setViewport(sf::FloatRect(0.25f, 0.25, 0.5f, 0.5f));
 	
 	window.setView(view_game);

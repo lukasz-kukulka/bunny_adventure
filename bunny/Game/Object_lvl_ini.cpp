@@ -219,6 +219,16 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 	file.close();
 }
 
+sf::Sprite* Object_lvl_ini::shape(uint32_t index)
+{
+	return tiles_tex[index].shape_sprite();
+}
+
+uint16_t Object_lvl_ini::no_tiles()
+{
+	return tiles_tex.size();
+}
+
 void Object_lvl_ini::draw(sf::RenderWindow& window)
 {
 	for (auto i : tiles_tex)
