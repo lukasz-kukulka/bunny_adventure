@@ -24,7 +24,12 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		player_bunny[0].animation_play_method_left(true);
 		player_bunny[0].animation_play_method_right(false);
 	}
-
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)/* && player_bunny[0].jump_available() == true*/ && colision.jump_player_available() == true)
+	{
+		player_bunny[0].jump_reset(5, colision.gravityY_out());
+		colision.jump_player_space_press(false);
+	}
+	std::cout << colision.jump_player_available() << std::endl;
 	if (view_game.getCenter().x - view_game.getSize().x / 2 >= 0 || player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2 - view_game.getSize().x / 2 >= 0 && 
 		view_game.getCenter().x + view_game.getSize().x / 2 <= level_ini.level_size().x)
 	{
@@ -38,6 +43,7 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	time_animation = clock_animation.restart().asSeconds(); 
 	for (uint8_t j = 0; j < player_bunny.size(); j++)
 	{
+		player_bunny[j].jump();
 		player_bunny[j].animations(time_animation);
 		for (int i = 0; i < level_ini.no_tiles(); i++)
 		{
@@ -47,6 +53,7 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		}
 	} 
 	colision.gravity(window, player_bunny[0].shape_player());
+	std::cout << " gravity " << std::endl;
 	//this->view_game.setViewport(sf::FloatRect(0.25f, 0.25, 0.5f, 0.5f));
 	
 	window.setView(view_game);

@@ -7,6 +7,10 @@ Player::Player(sf::RenderWindow& window, sf::Texture* bunny, float time_animatio
 	this->texture_animation = bunny;
 	this->animation_plays_right = false;
 	this->animation_plays_left = false;
+	this->jump_distans_max = 0;
+	this->jump_size = 0;
+	this->jump_true = true;
+	this->gravitY = 0;
 	objects_ini(window);
 }
 
@@ -63,6 +67,39 @@ void Player::objects_ini(sf::RenderWindow& window)
 
 	this->animation.push_back(Animations(&player_sprite, steps_animation_right_left, 0));
 	this->animation.push_back(Animations(&player_sprite, steps_animation_right_left, 1));
+}
+
+void Player::jump()
+{
+	//std::cout << " SPACE   " << static_cast<int>(jump_distans_max) << std::endl;
+	if (jump_distans_max > 0)
+	{
+		this->player_sprite.move(0, -(jump_size + gravitY));
+		this->jump_distans_max -= jump_size;
+	}
+	else
+	{
+		this->jump_distans_max = 0;
+		jump_true = true;
+	}
+		
+}
+
+void Player::jump_reset(uint8_t size_jump, int8_t gravityY)
+{
+	jump_true = false;
+	if (this->jump_distans_max <= size_jump)
+	{
+		//std::cout << " SPACE   " << jump_distans_max << std::endl;
+		this->jump_size = size_jump;
+		this->gravitY = gravityY;
+		this->jump_distans_max = 200;
+	}
+}
+
+bool Player::jump_available()
+{
+	return jump_true;
 }
 
 sf::Vector2i Player::get_position()
