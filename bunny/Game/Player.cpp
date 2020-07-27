@@ -2,6 +2,7 @@
 
 Player::Player(sf::RenderWindow& window, sf::Texture* bunny, float time_animation)
 {
+	this->animation_change = true;
 	this->steps_animation_right_left = 9;
 	this->time_animations = time_animation;
 	this->texture_animation = bunny;
@@ -11,6 +12,7 @@ Player::Player(sf::RenderWindow& window, sf::Texture* bunny, float time_animatio
 	this->jump_size = 0;
 	this->jump_true = true;
 	this->gravitY = 0;
+	this->directions = 0;
 	objects_ini(window);
 }
 
@@ -21,7 +23,7 @@ uint8_t Player::system()
 
 void Player::animations(float time_animation)
 {
-	if (animation_plays_right == true)
+	if (animation_plays_right == true && animation[0].end_animations() == true)
 	{
 		this->player_sprite.move(2, 0);
 		this->animation_plays_left = false;
@@ -30,7 +32,7 @@ void Player::animations(float time_animation)
 			this->animation_plays_right = false;
 		}
 	}
-	if (animation_plays_left == true)
+	if (animation_plays_left == true && animation[1].end_animations() == true)
 	{
 		this->player_sprite.move(-2, 0);
 		this->animation_plays_right = false;
@@ -69,6 +71,13 @@ void Player::objects_ini(sf::RenderWindow& window)
 	this->animation.push_back(Animations(&player_sprite, steps_animation_right_left, 1));
 }
 
+bool Player::animation_finish(uint8_t dir)
+{
+	return animation[dir].end_animations();
+}
+
+
+
 void Player::jump()
 {
 	//std::cout << " SPACE   " << static_cast<int>(jump_distans_max) << std::endl;
@@ -100,6 +109,13 @@ void Player::jump_reset(uint8_t size_jump, int8_t gravityY)
 bool Player::jump_available()
 {
 	return jump_true;
+}
+
+void Player::change_direction(uint8_t direction)
+{
+	this->directions = direction;
+	//std::cout << " Directions  " << static_cast<int>(directions) << std::endl;
+	this->animation[directions].diretion_change(directions, &player_sprite);
 }
 
 sf::Vector2i Player::get_position()

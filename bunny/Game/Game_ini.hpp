@@ -18,13 +18,14 @@ public:
 
 private:
 	uint8_t game_level;
-	float time_animation;
+	float time_animation, time_directions;
 	sf::Texture bunny_tex;
 	std::vector<Player>player_bunny;
-	sf::Clock clock_animation;
+	sf::Clock clock_animation, clock_directions;
 	Levels_ini level_ini;
 	Background_ini background_ini;
 	Colisions colision;
 	sf::View view_game;
+	bool direction_enabled;
 };
 

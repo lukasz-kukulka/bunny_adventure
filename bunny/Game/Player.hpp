@@ -13,9 +13,11 @@ public:
 	void animation_play_method_right(bool play);
 	void animation_play_method_left(bool play);
 	void objects_ini(sf::RenderWindow& window);
+	bool animation_finish(uint8_t dir);
 	void jump();
 	void jump_reset(uint8_t size_jump, int8_t gravityY);
 	bool jump_available();
+	void change_direction(uint8_t direction);
 	sf::Vector2i get_position();
 	sf::Vector2f get_global();
 	void draw(sf::RenderWindow& window);
@@ -25,10 +27,10 @@ private:
 	sf::IntRect window_animation;
 	sf::Sprite player_sprite;
 	std::vector<Animations>animation;
-	uint8_t steps_animation_right_left, jump_size;
+	uint8_t steps_animation_right_left, jump_size, directions;
 	int16_t jump_distans_max;
 	int8_t gravitY;
 	float time_animations;
-	bool animation_plays_right, animation_plays_left, jump_true;
+	bool animation_plays_right, animation_plays_left, jump_true, animation_change;
 };
 

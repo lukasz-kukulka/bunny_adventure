@@ -4,11 +4,14 @@
 class Animations
 {
 public:
-	Animations(sf::Sprite* object, uint8_t max_fram, uint8_t row);
+	Animations(sf::Sprite* object_sprite, uint8_t max_fram, uint8_t row);
 
 	uint8_t system(float next_frame_time, sf::Sprite* object_sprite);
 	void objects_ini(sf::RenderWindow& window);
 	void draw(sf::RenderWindow& window);
+	void diretion_change(uint8_t dir, sf::Sprite* object_sprite);
+	bool end_animations();
+	void end_animation_change(bool yes);
 
 private:
 	sf::Vector2f start_pos;
@@ -17,5 +20,6 @@ private:
 	float next_frame_time;
 	float time_temp;
 	int max_frame;
+	bool end_animation_player;
 };
 
