@@ -17,50 +17,47 @@ Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(
 uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
 	//std::cout << direction_enabled << std::endl;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player_bunny[0].animation_finish(0) == true)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{	
-		//player_bunny[0].animation_finish(true);
-		if (direction_enabled == true)
-		{
-			player_bunny[0].change_direction(0);
-			direction_enabled = false;
-		}
-		else if (time_directions >= 200)
-		{
-			player_bunny[0].animation_play_method_left(false);
-			player_bunny[0].animation_play_method_right(true);
-		}
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && player_bunny[0].animation_finish(1) == true)
-	{
-		//player_bunny[0].animation_finish(true);
+		
 		if (direction_enabled == true)
 		{
 			player_bunny[0].change_direction(1);
 			direction_enabled = false;
 		}
+		else if (time_directions >= 200)
+		{
+			player_bunny[0].animation_directon(1);
+		}
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		
+		if (direction_enabled == true)
+		{
+			player_bunny[0].change_direction(2);
+			direction_enabled = false;
+		}
 		
 		if (time_directions >= 200)
 		{
-			player_bunny[0].animation_play_method_left(true);
-			player_bunny[0].animation_play_method_right(false);
+			player_bunny[0].animation_directon(2);
 		}
 
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && colision.jump_player_available() == true)
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && colision.jump_player_available() == true && player_bunny[0].direction_player_out() == 100)
 	{
-		//player_bunny[0].animation_finish(true);
 		if (time_directions >= 100)
 		{
+
 			player_bunny[0].jump_reset(10, colision.gravityY_out());
-			colision.jump_player_space_press(false);
+			player_bunny[0].animation_directon(0);
 		}
 	}
 	else
 	{
 		time_directions = clock_directions.restart().asMilliseconds();
 		direction_enabled = true;
-		//player_bunny[0].animation_finish(false);
 	}
 	time_directions = clock_directions.getElapsedTime().asMilliseconds();
 	//std::cout << colision.jump_player_available() << std::endl;
@@ -77,7 +74,6 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	time_animation = clock_animation.restart().asSeconds(); 
 	for (uint8_t j = 0; j < player_bunny.size(); j++)
 	{
-		player_bunny[j].jump();
 		player_bunny[j].animations(time_animation);
 		for (int i = 0; i < level_ini.no_tiles(); i++)
 		{
