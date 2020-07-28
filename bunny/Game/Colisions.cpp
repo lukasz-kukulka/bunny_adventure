@@ -3,7 +3,6 @@
 Colisions::Colisions()
 {
 	this->gravityY = 10;
-	this->jump_available = false;
 }
 
 void Colisions::gravity(sf::RenderWindow& window, sf::Sprite* player)
@@ -20,20 +19,9 @@ void Colisions::colision(sf::RenderWindow& window, sf::Sprite* player, sf::Sprit
 	{
 		//std::cout << " test 1  " << std::endl;
 		player->setPosition(player->getPosition().x, tiles->getPosition().y - player->getGlobalBounds().height - gravityY);
-		this->jump_available = true;
 	}
 
 
-}
-
-bool Colisions::jump_player_available()
-{
-	return jump_available;
-}
-
-void Colisions::jump_player_space_press(bool reset)
-{
-	this->jump_available = reset;
 }
 
 int8_t Colisions::gravityY_out()

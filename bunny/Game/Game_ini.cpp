@@ -17,9 +17,8 @@ Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(
 uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
 	//std::cout << direction_enabled << std::endl;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-	{	
-		
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player_bunny[0].direction_player_out() == 100)
+	{
 		if (direction_enabled == true)
 		{
 			player_bunny[0].change_direction(1);
@@ -30,30 +29,44 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			player_bunny[0].animation_directon(1);
 		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && player_bunny[0].direction_player_out() == 100)
 	{
-		
 		if (direction_enabled == true)
 		{
 			player_bunny[0].change_direction(2);
 			direction_enabled = false;
 		}
-		
 		if (time_directions >= 200)
 		{
 			player_bunny[0].animation_directon(2);
 		}
-
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && colision.jump_player_available() == true && player_bunny[0].direction_player_out() == 100)
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && player_bunny[0].direction_player_out() == 100)
 	{
-		if (time_directions >= 100)
+		if (time_directions >= 20)
 		{
 
-			player_bunny[0].jump_reset(10, colision.gravityY_out());
+			player_bunny[0].jump_reset(10);
 			player_bunny[0].animation_directon(0);
 		}
 	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && player_bunny[0].direction_player_out() == 100 && player_bunny[0].direction_animation_begin() == 2)
+	{
+		//std::cout << player_bunny[0].direction_animation_begin() << std::endl;
+		if (time_directions >= 20)
+		{
+			player_bunny[0].animation_directon(3);
+		}
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && player_bunny[0].direction_player_out() == 100 && player_bunny[0].direction_animation_begin() == 1)
+	{
+		//std::cout << player_bunny[0].direction_animation_begin() << std::endl;
+		if (time_directions >= 20)
+		{
+			player_bunny[0].animation_directon(4);
+		}
+	}
+
 	else
 	{
 		time_directions = clock_directions.restart().asMilliseconds();
@@ -61,31 +74,32 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	}
 	time_directions = clock_directions.getElapsedTime().asMilliseconds();
 	//std::cout << colision.jump_player_available() << std::endl;
-	if (view_game.getCenter().x - view_game.getSize().x / 2 >= 0 || player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2 - view_game.getSize().x / 2 >= 0 && 
+	if (view_game.getCenter().x - view_game.getSize().x / 2 >= 0 || player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2 - view_game.getSize().x / 2 >= 0 &&
 		view_game.getCenter().x + view_game.getSize().x / 2 <= level_ini.level_size().x)
 	{
 		this->view_game.setCenter(player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2, view_game.getCenter().y);
-		
+
 	}
 
 	background_ini.system(window, view_game, game_level);
 	level_ini.system(window, game_level);
 
-	time_animation = clock_animation.restart().asSeconds(); 
+	time_animation = clock_animation.restart().asSeconds();
 	for (uint8_t j = 0; j < player_bunny.size(); j++)
 	{
 		player_bunny[j].animations(time_animation);
 		for (int i = 0; i < level_ini.no_tiles(); i++)
 		{
-			
+
 			colision.colision(window, player_bunny[j].shape_player(), level_ini.tiles(i));
-			
+
 		}
-	} 
+	}
 	colision.gravity(window, player_bunny[0].shape_player());
 	//std::cout << " gravity " << std::endl;
 	//this->view_game.setViewport(sf::FloatRect(0.25f, 0.25, 0.5f, 0.5f));
 	player_bunny[0].system();
+	player_bunny[0].gravity_insert(colision.gravityY_out());
 	window.setView(view_game);
 	return 1;
 }

@@ -11,12 +11,14 @@ public:
 	void animations(float time_animation);
 	sf::Sprite* shape_player();
 	void objects_ini(sf::RenderWindow& window);
-	void jump_reset(uint8_t size_jump, int8_t gravityY);
+	void jump_reset(uint8_t size_jump);
 	void change_direction(uint8_t direction);
 	void animation_directon(uint8_t dir);
 	uint8_t direction_player_out();
+	uint8_t direction_animation_begin();
 	sf::Vector2i get_position();
 	sf::Vector2f get_global();
+	void gravity_insert(int8_t grav);
 	void draw(sf::RenderWindow& window);
 
 private:

@@ -13,7 +13,7 @@ Player::Player(sf::RenderWindow& window, sf::Texture* bunny, float time_animatio
 	this->jump_size = 0;
 	this->jump_true = true;
 	this->gravitY = 0;
-	this->directions = 0;
+	this->directions = 1;
 	objects_ini(window);
 }
 
@@ -47,7 +47,7 @@ void Player::animations(float time_animation)
 	}
 	case 1:
 	{
-		this->player_sprite.move(2, 0);
+		this->player_sprite.move(3, 0);
 		if (animation[1].system(time_animation, &player_sprite) == 1)
 		{
 			this->direction_player = 100;
@@ -56,8 +56,26 @@ void Player::animations(float time_animation)
 	}
 	case 2:
 	{
-		this->player_sprite.move(-2, 0);
+		this->player_sprite.move(-3, 0);
 		if (animation[2].system(time_animation, &player_sprite) == 1)
+		{
+			this->direction_player = 100;
+		}
+		break;
+	}
+	case 3:
+	{
+		this->player_sprite.move(0, -1 - gravitY);
+		if (animation[3].system(time_animation, &player_sprite) == 1)
+		{
+			this->direction_player = 100;
+		}
+		break;
+	}
+	case 4:
+	{
+		this->player_sprite.move(0, -1 - gravitY);
+		if (animation[4].system(time_animation, &player_sprite) == 1)
 		{
 			this->direction_player = 100;
 		}
@@ -85,16 +103,16 @@ void Player::objects_ini(sf::RenderWindow& window)
 	this->animation.push_back(Animations(&player_sprite, steps_animation_right_left, 0));
 	this->animation.push_back(Animations(&player_sprite, steps_animation_right_left, 1));
 	this->animation.push_back(Animations(&player_sprite, steps_animation_right_left, 2));
+	this->animation.push_back(Animations(&player_sprite, steps_animation_right_left, 3));
+	this->animation.push_back(Animations(&player_sprite, steps_animation_right_left, 4));
 }
 
-void Player::jump_reset(uint8_t size_jump, int8_t gravityY)
+void Player::jump_reset(uint8_t size_jump)
 {
 	
 	if (this->jump_distans_max <= size_jump && jump_true == true)
 	{
-		//std::cout << " jump_reset   " << jump_true << std::endl;
 		this->jump_size = size_jump;
-		this->gravitY = gravityY;
 		this->jump_distans_max = 200;
 		this->jump_true = false;
 	}
@@ -117,6 +135,11 @@ uint8_t Player::direction_player_out()
 	return direction_player;
 }
 
+uint8_t Player::direction_animation_begin()
+{
+	return directions;
+}
+
 sf::Vector2i Player::get_position()
 {
 	return sf::Vector2i(player_sprite.getPosition());
@@ -125,6 +148,11 @@ sf::Vector2i Player::get_position()
 sf::Vector2f Player::get_global()
 {
 	return sf::Vector2f(player_sprite.getGlobalBounds().width, player_sprite.getGlobalBounds().height);
+}
+
+void Player::gravity_insert(int8_t grav)
+{
+	gravitY = grav;
 }
 
 void Player::draw(sf::RenderWindow& window)
