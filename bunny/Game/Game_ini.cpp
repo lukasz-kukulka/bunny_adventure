@@ -24,7 +24,7 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			player_bunny[0].change_direction(1);
 			direction_enabled = false;
 		}
-		else if (time_directions >= 200)
+		else if (time_directions >= 50)
 		{
 			player_bunny[0].animation_directon(1);
 		}
@@ -36,21 +36,21 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			player_bunny[0].change_direction(2);
 			direction_enabled = false;
 		}
-		if (time_directions >= 200)
+		if (time_directions >= 100)
 		{
 			player_bunny[0].animation_directon(2);
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && player_bunny[0].direction_player_out() == 100)
 	{
-		if (time_directions >= 20)
+		if (time_directions >= 100)
 		{
 
 			player_bunny[0].jump_reset(10);
 			player_bunny[0].animation_directon(0);
 		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && player_bunny[0].direction_player_out() == 100 && player_bunny[0].direction_animation_begin() == 2)
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && player_bunny[0].direction_player_out() == 100)
 	{
 		//std::cout << player_bunny[0].direction_animation_begin() << std::endl;
 		if (time_directions >= 20)
@@ -58,15 +58,13 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			player_bunny[0].animation_directon(3);
 		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && player_bunny[0].direction_player_out() == 100 && player_bunny[0].direction_animation_begin() == 1)
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && player_bunny[0].direction_player_out() == 100)
 	{
-		//std::cout << player_bunny[0].direction_animation_begin() << std::endl;
 		if (time_directions >= 20)
 		{
-			player_bunny[0].animation_directon(4);
+			player_bunny[0].animation_directon(6);
 		}
 	}
-
 	else
 	{
 		time_directions = clock_directions.restart().asMilliseconds();

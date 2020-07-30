@@ -65,20 +65,65 @@ void Player::animations(float time_animation)
 	}
 	case 3:
 	{
-		this->player_sprite.move(0, -1 - gravitY);
-		if (animation[3].system(time_animation, &player_sprite) == 1)
+		this->player_sprite.move(0, -2 - gravitY);
+		if (directions == 2)
 		{
-			this->direction_player = 100;
+			if (animation[3].system(time_animation, &player_sprite) == 1)
+			{
+				this->direction_player = 100;
+			}
+		}
+		if (directions == 1)
+		{
+			if (animation[4].system(time_animation, &player_sprite) == 1)
+			{
+				this->direction_player = 100;
+			}
 		}
 		break;
 	}
 	case 4:
 	{
-		this->player_sprite.move(0, -1 - gravitY);
-		if (animation[4].system(time_animation, &player_sprite) == 1)
+		
+		break;
+	}
+	case 5:
+	{
+
+		break;
+	}
+	case 6:
+	{
+		this->player_sprite.move(0, 2);
+		if (directions == 2)
 		{
-			this->direction_player = 100;
+			if (animation[3].system(time_animation, &player_sprite) == 1)
+			{
+				this->direction_player = 100;
+			}
 		}
+		if (directions == 1)
+		{
+			if (animation[4].system(time_animation, &player_sprite) == 1)
+			{
+				this->direction_player = 100;
+			}
+		}
+		break;
+	}
+	case 7:
+	{
+
+		break;
+	}
+	case 8:
+	{
+
+		break;
+	}
+	case 9:
+	{
+
 		break;
 	}
 	default:
