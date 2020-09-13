@@ -17,15 +17,21 @@ void Colisions::colision(sf::RenderWindow& window, sf::Sprite* player, sf::Sprit
 	{
 		player->setPosition(0, player->getPosition().y);
 	}
+
 	if (player->getPosition().y + player->getGlobalBounds().height >= tiles->getPosition().y &&
-		player->getPosition().y + player->getGlobalBounds().height < tiles->getPosition().y + tiles->getGlobalBounds().height / 2  &&
-		player->getPosition().x + player->getGlobalBounds().width > tiles->getPosition().x &&
-		player->getPosition().x < tiles->getPosition().x + tiles->getGlobalBounds().width)
+		player->getPosition().y + player->getGlobalBounds().height < tiles->getPosition().y + tiles->getGlobalBounds().height / 4  &&
+		player->getPosition().x + player->getGlobalBounds().width/3 > tiles->getPosition().x &&
+		player->getPosition().x < tiles->getPosition().x + tiles->getGlobalBounds().width/3*2)
 	{
 		player->setPosition(player->getPosition().x, tiles->getPosition().y - player->getGlobalBounds().height - gravityY);
 	}
-
-
+	else if (player->getPosition().y <= tiles->getPosition().y + tiles->getGlobalBounds().height - 10 &&
+		player->getPosition().y >= tiles->getPosition().y + tiles->getGlobalBounds().height - tiles->getGlobalBounds().height / 4 &&
+		player->getPosition().x + player->getGlobalBounds().width / 3 > tiles->getPosition().x &&
+		player->getPosition().x < tiles->getPosition().x + tiles->getGlobalBounds().width / 3 * 2)
+	{
+		player->setPosition(player->getPosition().x, tiles->getPosition().y + tiles->getGlobalBounds().height);
+	}
 }
 
 int8_t Colisions::gravityY_out()

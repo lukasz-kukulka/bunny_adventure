@@ -110,8 +110,6 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		}
 	}
 	colision.gravity(window, player_bunny[0].shape_player());
-	//std::cout << " gravity " << std::endl;
-	//this->view_game.setViewport(sf::FloatRect(0.25f, 0.25, 0.5f, 0.5f));
 	player_bunny[0].system();
 	player_bunny[0].gravity_insert(colision.gravityY_out());
 	window.setView(view_game);
