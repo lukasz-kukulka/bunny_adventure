@@ -20,7 +20,6 @@ uint8_t Animations::system(float next_frame_time, sf::Sprite* object_sprite)
 	this->time_temp += next_frame_time;
 	if (time_temp >= 0.1)
 	{
-		//this->end_animation_player = false;
 		this->window_animation_rec.left += window_animation_rec.width;
 		this->time_temp = 0;
 		object_sprite->setTextureRect(window_animation_rec);
@@ -28,11 +27,10 @@ uint8_t Animations::system(float next_frame_time, sf::Sprite* object_sprite)
 		{
 			window_animation_rec.left = 0.0f;
 			object_sprite->setTextureRect(window_animation_rec);
-			//end_animation_player = true;
+
 			return 1;
 		}
 	}
-	//std::cout << " innnnn  " << window_animation_rec.top << std::endl;
 	return 0;
 	
 }
@@ -44,12 +42,3 @@ void Animations::diretion_change(uint8_t dir, sf::Sprite* object_sprite)
 	object_sprite->setTextureRect(window_animation_rec);
 }
 
-//bool Animations::end_animations()
-//{
-//	return end_animation_player;
-//}
-
-//void Animations::end_animation_change(bool yes)
-//{
-//	this->end_animation_player = yes;
-//}

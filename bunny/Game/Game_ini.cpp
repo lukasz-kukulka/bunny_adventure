@@ -3,7 +3,7 @@
 Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(window), colision()
 {
 	this->bunny_tex.loadFromFile("Game/Textures/player.png");
-	
+
 	this->time_animation = 0;
 	this->time_directions = 0;
 	this->objects_ini(window);
@@ -16,8 +16,23 @@ Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(
 
 uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
-	//std::cout << direction_enabled << std::endl;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player_bunny[0].direction_player_out() == 100)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player_bunny[0].direction_player_out() == 100)
+	{
+		if (time_directions >= 20)
+		{
+			player_bunny[0].jump_reset(10);
+			player_bunny[0].animation_directon(4);
+		}
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && sf::Keyboard::isKeyPressed(sf::Keyboard::A) && player_bunny[0].direction_player_out() == 100)
+	{
+		if (time_directions >= 20)
+		{
+			player_bunny[0].jump_reset(10);
+			player_bunny[0].animation_directon(5);
+		}
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player_bunny[0].direction_player_out() == 100)
 	{
 		if (direction_enabled == true)
 		{
@@ -65,6 +80,7 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			player_bunny[0].animation_directon(6);
 		}
 	}
+
 	else
 	{
 		time_directions = clock_directions.restart().asMilliseconds();

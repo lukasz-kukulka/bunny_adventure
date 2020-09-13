@@ -24,25 +24,13 @@ uint8_t Player::system()
 
 void Player::animations(float time_animation)
 {
+
 	switch (direction_player)
 	{
 	case 0:
 	{
 		//std::cout << " SPACE   " << static_cast<int>(jump_distans_max) << std::endl;
-		if (jump_distans_max > 0)
-		{
-			this->player_sprite.move(0, -(jump_size + gravitY));
-			this->jump_distans_max -= jump_size;
-		}
-		else
-		{
-			this->jump_distans_max = 0;
-			this->jump_true = true;
-		}
-		if (animation[0].system(time_animation, &player_sprite) == 1)
-		{
-			this->direction_player = 100;
-		}
+		jump_limits(time_animation);
 		break;
 	}
 	case 1:
@@ -85,11 +73,23 @@ void Player::animations(float time_animation)
 	case 4:
 	{
 		
+		this->player_sprite.move(4, 0);
+		jump_limits(time_animation);
+		if (animation[1].system(time_animation, &player_sprite) == 1)
+		{
+			this->direction_player = 100;
+		}
 		break;
 	}
 	case 5:
 	{
-
+		
+		this->player_sprite.move(-4, 0);
+		jump_limits(time_animation);
+		if (animation[2].system(time_animation, &player_sprite) == 1)
+		{
+			this->direction_player = 100;
+		}
 		break;
 	}
 	case 6:
@@ -158,8 +158,26 @@ void Player::jump_reset(uint8_t size_jump)
 	if (this->jump_distans_max <= size_jump && jump_true == true)
 	{
 		this->jump_size = size_jump;
-		this->jump_distans_max = 200;
+		this->jump_distans_max = 300;
 		this->jump_true = false;
+	}
+}
+
+void Player::jump_limits(float time_animation)
+{
+	if (jump_distans_max > 0)
+	{
+		this->player_sprite.move(0, -(jump_size + gravitY));
+		this->jump_distans_max -= jump_size;
+	}
+	else
+	{
+		this->jump_distans_max = 0;
+		this->jump_true = true;
+	}
+	if (animation[0].system(time_animation, &player_sprite) == 1)
+	{
+		this->direction_player = 100;
 	}
 }
 

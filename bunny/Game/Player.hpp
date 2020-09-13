@@ -12,6 +12,7 @@ public:
 	sf::Sprite* shape_player();
 	void objects_ini(sf::RenderWindow& window);
 	void jump_reset(uint8_t size_jump);
+	void jump_limits(float time_animation);
 	void change_direction(uint8_t direction);
 	void animation_directon(uint8_t dir);
 	uint8_t direction_player_out();

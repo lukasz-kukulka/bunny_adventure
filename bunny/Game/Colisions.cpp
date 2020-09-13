@@ -8,16 +8,20 @@ Colisions::Colisions()
 void Colisions::gravity(sf::RenderWindow& window, sf::Sprite* player)
 {
 	player->move(0, gravityY);
+
 }
 
 void Colisions::colision(sf::RenderWindow& window, sf::Sprite* player, sf::Sprite* tiles)
 {
+	if (player->getPosition().x <= 0)
+	{
+		player->setPosition(0, player->getPosition().y);
+	}
 	if (player->getPosition().y + player->getGlobalBounds().height >= tiles->getPosition().y &&
 		player->getPosition().y + player->getGlobalBounds().height < tiles->getPosition().y + tiles->getGlobalBounds().height / 2  &&
 		player->getPosition().x + player->getGlobalBounds().width > tiles->getPosition().x &&
 		player->getPosition().x < tiles->getPosition().x + tiles->getGlobalBounds().width)
 	{
-		//std::cout << " test 1  " << std::endl;
 		player->setPosition(player->getPosition().x, tiles->getPosition().y - player->getGlobalBounds().height - gravityY);
 	}
 
