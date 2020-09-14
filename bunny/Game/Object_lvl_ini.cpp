@@ -56,6 +56,10 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 				{
 					temp = line[i];
 					temp.append(line, i+1 , 2);
+					if (temp == "000")
+					{
+						no_tiles_row++;
+					}
 					if (temp == "001")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex001, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
