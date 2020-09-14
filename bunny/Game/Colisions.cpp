@@ -24,6 +24,7 @@ void Colisions::colision(sf::RenderWindow& window, sf::Sprite* player, sf::Sprit
 		player->getPosition().x < tiles->getPosition().x + tiles->getGlobalBounds().width/3*2)
 	{
 		player->setPosition(player->getPosition().x, tiles->getPosition().y - player->getGlobalBounds().height - gravityY);
+		//std::cout << "gravitacja\n";
 	}
 	else if (player->getPosition().y <= tiles->getPosition().y + tiles->getGlobalBounds().height &&
 		player->getPosition().y >= tiles->getPosition().y + tiles->getGlobalBounds().height - tiles->getGlobalBounds().height / 4 &&
@@ -32,11 +33,12 @@ void Colisions::colision(sf::RenderWindow& window, sf::Sprite* player, sf::Sprit
 	{
 		player->setPosition(player->getPosition().x, tiles->getPosition().y + tiles->getGlobalBounds().height);
 	}
-	if (player->getPosition().x == tiles->getPosition().y - player->getGlobalBounds().height - gravityY &&
+	if (player->getPosition().y + player->getGlobalBounds().height == tiles->getPosition().y + tiles->getGlobalBounds().height &&
 		player->getPosition().x + player->getGlobalBounds().width >= tiles->getPosition().x &&
 		player->getPosition().x + player->getGlobalBounds().width <= tiles->getPosition().x + tiles->getGlobalBounds().width/4)
 	{
-		player->setPosition(tiles->getPosition().x + player->getGlobalBounds().height, player->getPosition().y);
+		//std::cout << "tak\n";
+		player->setPosition(tiles->getPosition().x - player->getGlobalBounds().width, player->getPosition().y);
 	}
 }
 
