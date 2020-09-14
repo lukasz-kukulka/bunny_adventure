@@ -19,26 +19,36 @@ void Colisions::colision(sf::RenderWindow& window, sf::Sprite* player, sf::Sprit
 	}
 
 	if (player->getPosition().y + player->getGlobalBounds().height >= tiles->getPosition().y &&
-		player->getPosition().y + player->getGlobalBounds().height < tiles->getPosition().y + tiles->getGlobalBounds().height / 4  &&
-		player->getPosition().x + player->getGlobalBounds().width/3 > tiles->getPosition().x &&
-		player->getPosition().x < tiles->getPosition().x + tiles->getGlobalBounds().width/3*2)
+		player->getPosition().y + player->getGlobalBounds().height < tiles->getPosition().y + tiles->getGlobalBounds().height  &&
+		player->getPosition().x + player->getGlobalBounds().width > tiles->getPosition().x &&
+		player->getPosition().x < tiles->getPosition().x + tiles->getGlobalBounds().width)
 	{
 		player->setPosition(player->getPosition().x, tiles->getPosition().y - player->getGlobalBounds().height - gravityY);
 		//std::cout << "gravitacja\n";
 	}
 	else if (player->getPosition().y <= tiles->getPosition().y + tiles->getGlobalBounds().height &&
-		player->getPosition().y >= tiles->getPosition().y + tiles->getGlobalBounds().height - tiles->getGlobalBounds().height / 4 &&
-		player->getPosition().x + player->getGlobalBounds().width / 3 > tiles->getPosition().x &&
-		player->getPosition().x < tiles->getPosition().x + tiles->getGlobalBounds().width / 3 * 2)
+		player->getPosition().y >= tiles->getPosition().y + tiles->getGlobalBounds().height - tiles->getGlobalBounds().height / 3 * 2&&
+		player->getPosition().x + player->getGlobalBounds().width > tiles->getPosition().x &&
+		player->getPosition().x < tiles->getPosition().x + tiles->getGlobalBounds().width)
 	{
 		player->setPosition(player->getPosition().x, tiles->getPosition().y + tiles->getGlobalBounds().height);
+		std::cout << "top\n";
 	}
 	if (player->getPosition().y + player->getGlobalBounds().height == tiles->getPosition().y + tiles->getGlobalBounds().height &&
+		player->getPosition().y + player->getGlobalBounds().height >= tiles->getPosition().y &&
 		player->getPosition().x + player->getGlobalBounds().width >= tiles->getPosition().x &&
-		player->getPosition().x + player->getGlobalBounds().width <= tiles->getPosition().x + tiles->getGlobalBounds().width/4)
+		player->getPosition().x + player->getGlobalBounds().width <= tiles->getPosition().x + tiles->getGlobalBounds().width / 3)
 	{
-		//std::cout << "tak\n";
 		player->setPosition(tiles->getPosition().x - player->getGlobalBounds().width, player->getPosition().y);
+		std::cout << "colision right\n";
+	}
+	else if (player->getPosition().y + player->getGlobalBounds().height == tiles->getPosition().y + tiles->getGlobalBounds().height &&
+		player->getPosition().y + player->getGlobalBounds().height >= tiles->getPosition().y + 10 && 
+		player->getPosition().x <= tiles->getPosition().x + tiles->getGlobalBounds().width &&
+		player->getPosition().x >= tiles->getPosition().x + tiles->getGlobalBounds().width / 3 * 2)
+	{
+		player->setPosition(tiles->getPosition().x + tiles->getGlobalBounds().width, player->getPosition().y);
+		std::cout << "colision left\n";
 	}
 }
 
