@@ -9,11 +9,11 @@ public:
 
 	void gravity(sf::RenderWindow& window, sf::Sprite* player);
 	void colision(sf::RenderWindow& window, sf::Sprite* player, sf::Sprite* tiles);
-	void draw(sf::RenderWindow& window);;
+	void draw(sf::RenderWindow& window);
 	int8_t gravityY_out();
 
 private:
-	int8_t gravityY;
+	int8_t gravityY, border;
 	bool jump_available;
 };
 
