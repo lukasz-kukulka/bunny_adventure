@@ -20,6 +20,7 @@ private:
 	uint8_t game_level;
 	float time_animation, time_directions;
 	sf::Texture bunny_tex;
+	sf::Event event;
 	std::vector<Player>player_bunny;
 	sf::Clock clock_animation, clock_directions;
 	Levels_ini level_ini;

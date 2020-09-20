@@ -15,6 +15,7 @@ public:
 	void jump_limits(float time_animation);
 	void change_direction(uint8_t direction);
 	void animation_directon(uint8_t dir);
+	void movement_enabled_changing(bool yes_no);
 	uint8_t direction_player_out();
 	uint8_t direction_animation_begin();
 	sf::Vector2i get_position();
@@ -31,6 +32,6 @@ private:
 	int16_t jump_distans_max;
 	int8_t gravitY, direction_player;
 	float time_animations;
-	bool animation_plays_right, animation_plays_left, jump_true;
+	bool animation_plays_right, animation_plays_left, jump_true, movement_enable;
 };
 

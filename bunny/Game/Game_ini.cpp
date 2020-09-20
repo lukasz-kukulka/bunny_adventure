@@ -16,36 +16,52 @@ Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(
 
 uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player_bunny[0].direction_player_out() == 100)
+	//std::cout << colision.player_stay_in_ground() << std::endl;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		if (time_directions >= 20)
+		player_bunny[0].movement_enabled_changing(true);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 		{
-			player_bunny[0].jump_reset(10);
-			player_bunny[0].animation_directon(4);
+			if (time_directions >= 100)
+			{
+				this->time_directions = 0;
+				player_bunny[0].animation_directon(4);
+				if (colision.player_stay_in_ground() == true)
+				{
+					player_bunny[0].jump_reset(10);
+				}
+			}
+			colision.player_stay_in_ground_change(false);
 		}
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && sf::Keyboard::isKeyPressed(sf::Keyboard::A) && player_bunny[0].direction_player_out() == 100)
-	{
-		if (time_directions >= 20)
-		{
-			player_bunny[0].jump_reset(10);
-			player_bunny[0].animation_directon(5);
-		}
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && player_bunny[0].direction_player_out() == 100)
-	{
+
 		if (direction_enabled == true)
 		{
 			player_bunny[0].change_direction(1);
 			direction_enabled = false;
 		}
-		else if (time_directions >= 50)
+		if (time_directions >= 100)
 		{
 			player_bunny[0].animation_directon(1);
+
 		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && player_bunny[0].direction_player_out() == 100)
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
+		player_bunny[0].movement_enabled_changing(true);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
+			if (time_directions >= 100)
+			{
+				this->time_directions = 0;
+				player_bunny[0].animation_directon(5);
+				if (colision.player_stay_in_ground() == true)
+				{
+					player_bunny[0].jump_reset(10);
+				}
+			}
+			colision.player_stay_in_ground_change(false);
+		}
+
 		if (direction_enabled == true)
 		{
 			player_bunny[0].change_direction(2);
@@ -54,20 +70,12 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		if (time_directions >= 100)
 		{
 			player_bunny[0].animation_directon(2);
-		}
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && player_bunny[0].direction_player_out() == 100)
-	{
-		if (time_directions >= 100)
-		{
 
-			player_bunny[0].jump_reset(10);
-			player_bunny[0].animation_directon(0);
 		}
+
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && player_bunny[0].direction_player_out() == 100)
 	{
-		//std::cout << player_bunny[0].direction_animation_begin() << std::endl;
 		if (time_directions >= 20)
 		{
 			player_bunny[0].animation_directon(3);
@@ -80,11 +88,16 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			player_bunny[0].animation_directon(6);
 		}
 	}
-
+	else if (event.type == sf::Event::KeyReleased)
+	{
+		player_bunny[0].movement_enabled_changing(false);
+	}
 	else
 	{
+		//std::cout << "TEST" << std::endl;
 		time_directions = clock_directions.restart().asMilliseconds();
 		direction_enabled = true;
+		player_bunny[0].movement_enabled_changing(false);
 	}
 	time_directions = clock_directions.getElapsedTime().asMilliseconds();
 	//std::cout << colision.jump_player_available() << std::endl;

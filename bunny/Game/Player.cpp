@@ -2,7 +2,8 @@
 
 Player::Player(sf::RenderWindow& window, sf::Texture* bunny, float time_animation)
 {
-	this->direction_player = 1;
+	this->movement_enable = false;
+	this->direction_player = 100;
 	this->steps_animation_right_left = 9;
 	this->lines_of_animations = 9;
 	this->time_animations = time_animation;
@@ -24,18 +25,35 @@ uint8_t Player::system()
 
 void Player::animations(float time_animation)
 {
-
+	//std::cout << "----->  " << static_cast<int>(direction_player) << std::endl;
 	switch (direction_player)
 	{
 	case 0:
 	{
-		//std::cout << " SPACE   " << static_cast<int>(jump_distans_max) << std::endl;
 		jump_limits(time_animation);
+		if (directions == 1)
+		{
+			if (animation[1].system(time_animation, &player_sprite) == 1)
+			{
+				this->direction_player = 100;
+			}
+		}
+		if (directions == 2)
+		{
+			if (animation[2].system(time_animation, &player_sprite) == 1)
+			{
+				this->direction_player = 100;
+			}
+		}
 		break;
 	}
 	case 1:
 	{
-		this->player_sprite.move(3, 0);
+		if (movement_enable == true)
+		{
+			this->player_sprite.move(3, 0);
+			//std::cout << "event";
+		}
 		if (animation[1].system(time_animation, &player_sprite) == 1)
 		{
 			this->direction_player = 100;
@@ -44,7 +62,11 @@ void Player::animations(float time_animation)
 	}
 	case 2:
 	{
-		this->player_sprite.move(-3, 0);
+		if (movement_enable == true)
+		{
+			this->player_sprite.move(-3, 0);
+		}
+		//this->player_sprite.move(-3, 0);
 		if (animation[2].system(time_animation, &player_sprite) == 1)
 		{
 			this->direction_player = 100;
@@ -72,8 +94,12 @@ void Player::animations(float time_animation)
 	}
 	case 4:
 	{
+		if (movement_enable == true)
+		{
+			this->player_sprite.move(4, 0);
+			//std::cout << "event";
+		}
 		
-		this->player_sprite.move(4, 0);
 		jump_limits(time_animation);
 		if (animation[1].system(time_animation, &player_sprite) == 1)
 		{
@@ -83,8 +109,12 @@ void Player::animations(float time_animation)
 	}
 	case 5:
 	{
-		
-		this->player_sprite.move(-4, 0);
+		if (movement_enable == true)
+		{
+			this->player_sprite.move(-4, 0);
+			//std::cout << "event";
+		}
+		//this->player_sprite.move(-4, 0);
 		jump_limits(time_animation);
 		if (animation[2].system(time_animation, &player_sprite) == 1)
 		{
@@ -129,6 +159,7 @@ void Player::animations(float time_animation)
 	default:
 		break;
 	}
+	//this->movement_enable = false;
 }
 
 sf::Sprite* Player::shape_player()
@@ -154,7 +185,6 @@ void Player::objects_ini(sf::RenderWindow& window)
 
 void Player::jump_reset(uint8_t size_jump)
 {
-	
 	if (this->jump_distans_max <= size_jump && jump_true == true)
 	{
 		this->jump_size = size_jump;
@@ -175,22 +205,26 @@ void Player::jump_limits(float time_animation)
 		this->jump_distans_max = 0;
 		this->jump_true = true;
 	}
-	if (animation[0].system(time_animation, &player_sprite) == 1)
-	{
-		this->direction_player = 100;
-	}
+	//if (animation[0].system(time_animation, &player_sprite) == 1)
+	//{
+	//	this->direction_player = 100;
+	//}
 }
 
 void Player::change_direction(uint8_t direction)
 {
 	this->directions = direction;
-	//std::cout << " Directions  " << static_cast<int>(directions) << std::endl;
 	this->animation[directions].diretion_change(directions, &player_sprite);
 }
 
 void Player::animation_directon(uint8_t dir)
 {
 	this->direction_player = dir;
+}
+
+void Player::movement_enabled_changing(bool yes_no)
+{
+	this->movement_enable = yes_no;
 }
 
 uint8_t Player::direction_player_out()
