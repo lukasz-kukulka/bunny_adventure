@@ -27,6 +27,6 @@ private:
 	Background_ini background_ini;
 	Colisions colision;
 	sf::View view_game;
-	bool direction_enabled;
+	bool direction_enabled, jump_enabled;
 };
 

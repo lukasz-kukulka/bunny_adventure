@@ -35,6 +35,11 @@ uint8_t Animations::system(float next_frame_time, sf::Sprite* object_sprite)
 	
 }
 
+void Animations::reset_animation()
+{
+	this->window_animation_rec.left = 0.0f;
+}
+
 void Animations::diretion_change(uint8_t dir, sf::Sprite* object_sprite)
 {
 	this->window_animation_rec.left = 0.0f;

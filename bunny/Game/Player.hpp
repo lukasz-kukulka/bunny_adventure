@@ -16,6 +16,7 @@ public:
 	void change_direction(uint8_t direction);
 	void animation_directon(uint8_t dir);
 	void movement_enabled_changing(bool yes_no);
+	void animation_reset(uint8_t with_animation);
 	uint8_t direction_player_out();
 	uint8_t direction_animation_begin();
 	sf::Vector2i get_position();

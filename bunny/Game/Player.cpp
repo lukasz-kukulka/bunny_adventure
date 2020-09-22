@@ -25,12 +25,14 @@ uint8_t Player::system()
 
 void Player::animations(float time_animation)
 {
-	//std::cout << "----->  " << static_cast<int>(direction_player) << std::endl;
+	std::cout << "----->  " << static_cast<int>(direction_player) << std::endl;
 	switch (direction_player)
 	{
 	case 0:
 	{
+
 		jump_limits(time_animation);
+
 		if (directions == 1)
 		{
 			if (animation[1].system(time_animation, &player_sprite) == 1)
@@ -225,6 +227,11 @@ void Player::animation_directon(uint8_t dir)
 void Player::movement_enabled_changing(bool yes_no)
 {
 	this->movement_enable = yes_no;
+}
+
+void Player::animation_reset(uint8_t with_animation)
+{
+	animation[with_animation].reset_animation();
 }
 
 uint8_t Player::direction_player_out()

@@ -3,7 +3,7 @@
 Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(window), colision()
 {
 	this->bunny_tex.loadFromFile("Game/Textures/player.png");
-
+	this->jump_enabled = false;
 	this->time_animation = 0;
 	this->time_directions = 0;
 	this->objects_ini(window);
@@ -16,39 +16,33 @@ Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(
 
 uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
+	//std::cout << static_cast<int>(colision.player_stay_in_ground());
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && player_bunny[0].direction_player_out() != 4 && colision.player_stay_in_ground() == true && player_bunny[0].direction_player_out() == 1)
+	{
+		player_bunny[0].animation_directon(4);
+		player_bunny[0].jump_reset(10);
+		player_bunny[0].animation_reset(1);
+		colision.player_stay_in_ground_change(false);
+	}
 	//std::cout << colision.player_stay_in_ground() << std::endl;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		player_bunny[0].movement_enabled_changing(true);
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-		{
-			if (time_directions >= 100)
-			{
-				this->time_directions = 0;
-				player_bunny[0].animation_directon(4);
-				if (colision.player_stay_in_ground() == true)
-				{
-					player_bunny[0].jump_reset(10);
-				}
-			}
-			colision.player_stay_in_ground_change(false);
-		}
-
 		if (direction_enabled == true)
 		{
 			player_bunny[0].change_direction(1);
 			direction_enabled = false;
 		}
-		if (time_directions >= 100)
+
+		if (player_bunny[0].direction_player_out() != 4 && time_directions >= 100)
 		{
 			player_bunny[0].animation_directon(1);
-
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		player_bunny[0].movement_enabled_changing(true);
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		if (jump_enabled == true)
 		{
 			if (time_directions >= 100)
 			{
@@ -60,6 +54,7 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 				}
 			}
 			colision.player_stay_in_ground_change(false);
+			this->jump_enabled = false;
 		}
 
 		if (direction_enabled == true)
