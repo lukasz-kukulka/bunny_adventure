@@ -30,7 +30,7 @@ private:
 	sf::Sprite player_sprite;
 	std::vector<Animations>animation;
 	uint8_t steps_animation_right_left, jump_size, directions, lines_of_animations;
-	int16_t jump_distans_max;
+	int16_t jump_distans_max, jump_start_position, jump_max_position;
 	int8_t gravitY, direction_player;
 	float time_animations;
 	bool animation_plays_right, animation_plays_left, jump_true, movement_enable;

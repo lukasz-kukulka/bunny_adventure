@@ -20,7 +20,6 @@ void Colisions::colision(sf::RenderWindow& window, sf::Sprite* player, sf::Sprit
 	{
 		player->setPosition(0, player->getPosition().y);
 	}
-	//this->ground_yes_no = false;
 	if (player->getPosition().y + player->getGlobalBounds().height >= tiles->getPosition().y &&
 		player->getPosition().y + player->getGlobalBounds().height < tiles->getPosition().y + tiles->getGlobalBounds().height  &&
 		player->getPosition().x + player->getGlobalBounds().width - border > tiles->getPosition().x &&
@@ -28,6 +27,7 @@ void Colisions::colision(sf::RenderWindow& window, sf::Sprite* player, sf::Sprit
 	{
 		player->setPosition(player->getPosition().x, tiles->getPosition().y - player->getGlobalBounds().height - gravityY);
 		this->ground_yes_no = true;
+		std::cout << ground_yes_no << " <------- GROUND ++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
 		
 	}
 	else if (player->getPosition().y + border <= tiles->getPosition().y + tiles->getGlobalBounds().height &&

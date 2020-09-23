@@ -15,6 +15,8 @@ Player::Player(sf::RenderWindow& window, sf::Texture* bunny, float time_animatio
 	this->jump_true = true;
 	this->gravitY = 0;
 	this->directions = 1;
+	this->jump_start_position = 0;
+	this->jump_max_position = 0;
 	objects_ini(window);
 }
 
@@ -25,14 +27,12 @@ uint8_t Player::system()
 
 void Player::animations(float time_animation)
 {
-	std::cout << "----->  " << static_cast<int>(direction_player) << std::endl;
+	//std::cout << "----->  " << static_cast<int>(direction_player) << std::endl;
 	switch (direction_player)
 	{
 	case 0:
 	{
-
 		jump_limits(time_animation);
-
 		if (directions == 1)
 		{
 			if (animation[1].system(time_animation, &player_sprite) == 1)
@@ -53,7 +53,8 @@ void Player::animations(float time_animation)
 	{
 		if (movement_enable == true)
 		{
-			this->player_sprite.move(3, 0);
+			//this->player_sprite.move(3, 0);
+			this->player_sprite.setPosition(player_sprite.getPosition().x + 3, player_sprite.getPosition().y);
 			//std::cout << "event";
 		}
 		if (animation[1].system(time_animation, &player_sprite) == 1)
@@ -66,7 +67,8 @@ void Player::animations(float time_animation)
 	{
 		if (movement_enable == true)
 		{
-			this->player_sprite.move(-3, 0);
+			this->player_sprite.setPosition(player_sprite.getPosition().x - 3, player_sprite.getPosition().y);
+			//this->player_sprite.move(-3, 0);
 		}
 		//this->player_sprite.move(-3, 0);
 		if (animation[2].system(time_animation, &player_sprite) == 1)
@@ -98,8 +100,8 @@ void Player::animations(float time_animation)
 	{
 		if (movement_enable == true)
 		{
-			this->player_sprite.move(4, 0);
-			//std::cout << "event";
+			this->player_sprite.setPosition(player_sprite.getPosition().x + 4, player_sprite.getPosition().y);
+			//this->player_sprite.move(4, 0);
 		}
 		
 		jump_limits(time_animation);
@@ -113,10 +115,9 @@ void Player::animations(float time_animation)
 	{
 		if (movement_enable == true)
 		{
-			this->player_sprite.move(-4, 0);
-			//std::cout << "event";
+			this->player_sprite.setPosition(player_sprite.getPosition().x - 4, player_sprite.getPosition().y);
+			//this->player_sprite.move(-4, 0);
 		}
-		//this->player_sprite.move(-4, 0);
 		jump_limits(time_animation);
 		if (animation[2].system(time_animation, &player_sprite) == 1)
 		{
@@ -191,16 +192,26 @@ void Player::jump_reset(uint8_t size_jump)
 	{
 		this->jump_size = size_jump;
 		this->jump_distans_max = 300;
+		this->jump_start_position = player_sprite.getPosition().y;
+		this->jump_max_position = player_sprite.getPosition().y - jump_distans_max;
 		this->jump_true = false;
 	}
 }
 
 void Player::jump_limits(float time_animation)
 {
-	if (jump_distans_max > 0)
+	if (jump_max_position < jump_start_position)
 	{
-		this->player_sprite.move(0, -(jump_size + gravitY));
-		this->jump_distans_max -= jump_size;
+		if (player_sprite.getPosition().y >= jump_max_position)
+		{
+			this->player_sprite.setPosition(player_sprite.getPosition().x, player_sprite.getPosition().y - (jump_size + gravitY));
+			//this->player_sprite.move(0, -(jump_size + gravitY));
+			this->jump_start_position -= jump_size;
+		}
+		else
+		{
+			this->jump_max_position = jump_start_position;
+		}
 	}
 	else
 	{

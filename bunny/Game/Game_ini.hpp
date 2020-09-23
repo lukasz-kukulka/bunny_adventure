@@ -20,6 +20,7 @@ private:
 	uint8_t game_level;
 	float time_animation, time_directions;
 	sf::Texture bunny_tex;
+	//sf::Vector2i level_size_map;
 	sf::Event event;
 	std::vector<Player>player_bunny;
 	sf::Clock clock_animation, clock_directions;
@@ -27,6 +28,6 @@ private:
 	Background_ini background_ini;
 	Colisions colision;
 	sf::View view_game;
-	bool direction_enabled, jump_enabled;
+	bool direction_enabled;
 };
 
