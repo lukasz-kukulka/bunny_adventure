@@ -16,7 +16,7 @@ Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(
 
 uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
-	//std::cout << static_cast<int>(colision.player_stay_in_ground());
+	//std::cout << static_cast<int>(level_ini.level_size().x);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		player_bunny[0].movement_enabled_changing(true);
@@ -75,7 +75,7 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && colision.player_stay_in_ground() == true)
 	{
-		player_bunny[0].animation_directon(0);
+		//player_bunny[0].animation_directon(0);
 		player_bunny[0].jump_reset(10);
 		player_bunny[0].animation_reset(1);
 		colision.player_stay_in_ground_change(false);
@@ -87,9 +87,10 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		player_bunny[0].movement_enabled_changing(false);
 	}
 	time_directions = clock_directions.getElapsedTime().asMilliseconds();
-	if (view_game.getCenter().x - view_game.getSize().x / 2 >= 0 || player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2 - view_game.getSize().x / 2 >= 0 &&
+	if ((view_game.getCenter().x - view_game.getSize().x / 2 >= 0 || player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2 - view_game.getSize().x / 2 >= 0) &&
 		view_game.getCenter().x + view_game.getSize().x / 2 <= level_ini.level_size().x)
 	{
+		std::cout << static_cast<int>(level_ini.level_size().x) << " ------ " << view_game.getCenter().x + view_game.getSize().x / 2 << std::endl;
 		this->view_game.setCenter(player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2, view_game.getCenter().y);
 
 	}
@@ -112,6 +113,7 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	player_bunny[0].system();
 	player_bunny[0].gravity_insert(colision.gravityY_out());
 	window.setView(view_game); 
+	this->colision.level_size_input(level_ini.level_size());
 	return 1;
 }
 

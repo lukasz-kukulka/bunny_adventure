@@ -4,6 +4,7 @@ Colisions::Colisions()
 {
 	this->gravityY = 10;
 	this->border = 20;
+	this->level_size = sf::Vector2i(10000, 0);// uwazac bo z ta wartoscia bedzie zaczynal player
 	this->ground_yes_no = false;
 }
 
@@ -20,6 +21,11 @@ void Colisions::colision(sf::RenderWindow& window, sf::Sprite* player, sf::Sprit
 	{
 		player->setPosition(0, player->getPosition().y);
 	}
+	if (player->getPosition().x + player->getGlobalBounds().width >= level_size.x)
+	{
+		//std::cout << level_size.x << std::endl;
+		player->setPosition(level_size.x - player->getGlobalBounds().width, player->getPosition().y);
+	}
 	if (player->getPosition().y + player->getGlobalBounds().height >= tiles->getPosition().y &&
 		player->getPosition().y + player->getGlobalBounds().height < tiles->getPosition().y + tiles->getGlobalBounds().height  &&
 		player->getPosition().x + player->getGlobalBounds().width - border > tiles->getPosition().x &&
@@ -27,7 +33,6 @@ void Colisions::colision(sf::RenderWindow& window, sf::Sprite* player, sf::Sprit
 	{
 		player->setPosition(player->getPosition().x, tiles->getPosition().y - player->getGlobalBounds().height - gravityY);
 		this->ground_yes_no = true;
-		std::cout << ground_yes_no << " <------- GROUND ++++++++++++++++++++++++++++++++++++++++++++" << std::endl;
 		
 	}
 	else if (player->getPosition().y + border <= tiles->getPosition().y + tiles->getGlobalBounds().height &&
@@ -65,6 +70,11 @@ bool Colisions::player_stay_in_ground()
 void Colisions::player_stay_in_ground_change(bool change)
 {
 	this->ground_yes_no = change;
+}
+
+void Colisions::level_size_input(sf::Vector2i size)
+{
+	this->level_size = size;
 }
 
 

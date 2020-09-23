@@ -205,7 +205,6 @@ void Player::jump_limits(float time_animation)
 		if (player_sprite.getPosition().y >= jump_max_position)
 		{
 			this->player_sprite.setPosition(player_sprite.getPosition().x, player_sprite.getPosition().y - (jump_size + gravitY));
-			//this->player_sprite.move(0, -(jump_size + gravitY));
 			this->jump_start_position -= jump_size;
 		}
 		else
@@ -218,10 +217,6 @@ void Player::jump_limits(float time_animation)
 		this->jump_distans_max = 0;
 		this->jump_true = true;
 	}
-	//if (animation[0].system(time_animation, &player_sprite) == 1)
-	//{
-	//	this->direction_player = 100;
-	//}
 }
 
 void Player::change_direction(uint8_t direction)
