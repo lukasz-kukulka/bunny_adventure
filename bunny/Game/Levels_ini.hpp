@@ -2,6 +2,8 @@
 #include <SFML/Graphics.hpp>
 #include "Choise_level.hpp"
 #include "Levels/Test_LVL.hpp"
+#include "Levels/Pick_lvl_test.hpp"
+
 
 class Levels_ini
 {
@@ -17,6 +19,7 @@ public:
 private:
 	Choise_level* choise_level;
 	Test_LVL test_lvl;
+	Pick_lvl_test pick_lvl_test;
 	uint8_t game_lvl;
 	sf::Vector2i lvl_size;
 	sf::Sprite* til_ini;

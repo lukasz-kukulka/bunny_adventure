@@ -2,11 +2,12 @@
 
 Background_ini::Background_ini(sf::RenderWindow& window)
 {
-	this->sky_texture.loadFromFile("Game/Textures/sky_back.jpg");
+	this->sky_texture.loadFromFile("Game/Textures/sky_back.png");
 	this->forest_dark_texture.loadFromFile("Game/Textures/forest_back_dark.png");
 	this->forest_mid_texture.loadFromFile("Game/Textures/forest_back_mid.png");
 	this->forest_light_texture.loadFromFile("Game/Textures/forest_back_light.png");
 	this->objects_ini_available = true;
+	this->game_lvl = 0;
 }
 
 uint8_t Background_ini::system(sf::RenderWindow& window, sf::View& view_game, uint8_t lvl)
@@ -60,6 +61,10 @@ void Background_ini::objects_ini(sf::RenderWindow& window)
 
 void Background_ini::draw(sf::RenderWindow& window)
 {
+	/*for (int i = 0; i < skys.size(); i++)
+	{
+		skys[i].draw(window);
+	}*/
 		for (auto i : skys)
 		i.draw(window);
 }

@@ -1,9 +1,10 @@
 #include "Levels_ini.hpp"
 
-Levels_ini::Levels_ini(sf::RenderWindow& window) :test_lvl(window)
+Levels_ini::Levels_ini(sf::RenderWindow& window) : test_lvl(window), pick_lvl_test(window)
 {
+	//pick_items = nullptr;
 	this->lvl_size = sf::Vector2i(0, 0);
-	this->choise_level = &test_lvl;
+	choise_level = &test_lvl;
 	this->no_til = 0;
 	//std::cout << "--->" << static_cast<int>(game_level)  << std::endl;
 }
@@ -15,9 +16,10 @@ uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
 	{
 	case 0:
 	{
-		this->lvl_size = sf::Vector2i(10000, 2000);
-		this->choise_level = &test_lvl;
-		this->choise_level->objects_ini(window, lvl_size);
+		lvl_size = sf::Vector2i(10000, 2000);
+		choise_level = &test_lvl;
+		choise_level->objects_ini(window, lvl_size);
+		pick_lvl_test.system();
 		
 		break;
 	}
@@ -35,15 +37,15 @@ sf::Vector2i Levels_ini::level_size()
 
 sf::Sprite* Levels_ini::tiles(uint32_t index)
 {
-	//choise_level->tiles(index);
-	this->til_ini = choise_level->tiles(index);
+	choise_level->tiles(index);
+	til_ini = choise_level->tiles(index);
 	//choise_level = nullptr;
 	return til_ini;
 }
 
 uint16_t Levels_ini::no_tiles()
 {
-	this->no_til = choise_level->no_til();
+	no_til = choise_level->no_til();
 	return no_til;
 }
 
@@ -53,9 +55,10 @@ void Levels_ini::draw(sf::RenderWindow& window)
 	{
 	case 0:
 	{
-		
-		this->choise_level = &test_lvl;
-		this->choise_level->draw(window);
+		//choise_pick_items = &pick_lvl_test;
+		choise_level = &test_lvl;
+		choise_level->draw(window);
+		//choise_pick_items->draw(window);
 		break;
 	}
 	default:
