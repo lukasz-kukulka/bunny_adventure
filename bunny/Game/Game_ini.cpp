@@ -14,6 +14,10 @@ Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(
 	window.setView(view_game);
 }
 
+//Game_ini::~Game_ini()
+//{
+//}
+
 uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
 	//std::cout << static_cast<int>(level_ini.level_size().x);

@@ -38,7 +38,6 @@ Object_lvl_ini::Object_lvl_ini(sf::RenderWindow& window)
 void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_lvl, sf::Vector2f size_board)
 {
 	no_line = 1;
-	std::string line, temp;
 	std::fstream file;
 	//std::cout << path_lvl << std::endl;
 	file.open(path_lvl, std::ios::in);
@@ -64,61 +63,75 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					{
 						tiles_tex.push_back(Single_tile(window, &tex001, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
+						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+
 					}
 					else if (temp == "002")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex002, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
+						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						
 					}
 					else if (temp == "003")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex003, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
+						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
 					}
 					else if (temp == "004")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex004, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
+						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
 					}
 					else if (temp == "005")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex005, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
+						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
 					}
 					else if (temp == "006")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex006, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
+						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
 					}
 					else if (temp == "007")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex007, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
+						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
 					}
 					else if (temp == "008")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex008, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
+						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
 					}
 					else if (temp == "009")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex009, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
+						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
 					}
 					else if (temp == "010")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex010, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
+						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
 					}
 					else if (temp == "011")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex011, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
+						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
 					}
 					else if (temp == "012")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex012, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
+						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
 					}
 					else if (temp == "013")
 					{
@@ -134,21 +147,25 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					{
 						tiles_tex.push_back(Single_tile(window, &tex015, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
+						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
 					}
 					else if (temp == "016")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex016, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
+						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
 					}
 					else if (temp == "017")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex017, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
+						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
 					}
 					else if (temp == "018")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex018, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
+						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
 					}
 					else if (temp == "020")
 					{
@@ -221,6 +238,7 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 		no_line++;
 	}
 	file.close();
+
 }
 
 sf::Sprite* Object_lvl_ini::shape(uint32_t index)
@@ -228,9 +246,23 @@ sf::Sprite* Object_lvl_ini::shape(uint32_t index)
 	return tiles_tex[index].shape_sprite();
 }
 
+void Object_lvl_ini::initialization_structure(std::string type, sf::Vector2i position_tile)
+{
+	struct_bonus_out.push_back(single_tile_out_for_bonus());
+	struct_bonus_out[struct_bonus_out.size() - 1].id = struct_bonus_out.size();
+	struct_bonus_out[struct_bonus_out.size() - 1].type = stoi(temp); //static_cast<int8_t>(temp);
+	struct_bonus_out[struct_bonus_out.size() - 1].x_position = position_tile.x;
+	struct_bonus_out[struct_bonus_out.size() - 1].y_position = position_tile.y;
+}
+
 uint16_t Object_lvl_ini::no_tiles()
 {
 	return tiles_tex.size();
+}
+
+single_tile_out_for_bonus Object_lvl_ini::tiles_setings_to_bonus(int16_t index)
+{
+	return struct_bonus_out[index];
 }
 
 void Object_lvl_ini::draw(sf::RenderWindow& window)

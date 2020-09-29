@@ -9,7 +9,7 @@ class Levels_ini
 {
 public:
 	Levels_ini(sf::RenderWindow& window);
-
+	//~Levels_ini();
 	uint8_t system(sf::RenderWindow& window, uint8_t game_level);
 	sf::Vector2i level_size();
 	sf::Sprite* tiles(uint32_t index);
@@ -20,7 +20,7 @@ private:
 	Choise_level* choise_level;
 	Test_LVL test_lvl;
 	Pick_lvl_test pick_lvl_test;
-	uint8_t game_lvl;
+	uint8_t game_lvl, level_indicator;
 	sf::Vector2i lvl_size;
 	sf::Sprite* til_ini;
 	//uint32_t no_tile;

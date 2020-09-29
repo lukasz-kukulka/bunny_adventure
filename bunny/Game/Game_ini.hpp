@@ -10,7 +10,7 @@ class Game_ini :public Option
 {
 public:
 	Game_ini(sf::RenderWindow& window);
-
+	//~Game_ini();
 	uint8_t system(sf::RenderWindow& window, sf::Vector2i mouse);
 	void objects_ini(sf::RenderWindow& window);
 	void settings(uint8_t volume);

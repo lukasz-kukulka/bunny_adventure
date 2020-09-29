@@ -15,6 +15,11 @@ sf::Sprite* Single_tile::shape_sprite()
 	return &tile;
 }
 
+sf::Vector2i Single_tile::position_tile()
+{
+	return sf::Vector2i(tile.getPosition().x, tile.getPosition().y);
+}
+
 void Single_tile::draw(sf::RenderWindow& window)
 {
 	window.draw(tile);
