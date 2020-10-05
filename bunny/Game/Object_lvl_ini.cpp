@@ -2,6 +2,7 @@
 
 Object_lvl_ini::Object_lvl_ini(sf::RenderWindow& window)
 {
+
 	this->tex001.loadFromFile("Game/Textures/Levels/001.png");
 	this->tex002.loadFromFile("Game/Textures/Levels/002.png");
 	this->tex003.loadFromFile("Game/Textures/Levels/003.png");
@@ -249,8 +250,8 @@ sf::Sprite* Object_lvl_ini::shape(uint32_t index)
 void Object_lvl_ini::initialization_structure(std::string type, sf::Vector2i position_tile)
 {
 	struct_bonus_out.push_back(single_tile_out_for_bonus());
-	struct_bonus_out[struct_bonus_out.size() - 1].id = struct_bonus_out.size();
-	struct_bonus_out[struct_bonus_out.size() - 1].type = stoi(temp); //static_cast<int8_t>(temp);
+	struct_bonus_out[struct_bonus_out.size() - 1].id = struct_bonus_out.size() - 1;
+	struct_bonus_out[struct_bonus_out.size() - 1].type = stoi(temp);
 	struct_bonus_out[struct_bonus_out.size() - 1].x_position = position_tile.x;
 	struct_bonus_out[struct_bonus_out.size() - 1].y_position = position_tile.y;
 }
@@ -260,7 +261,7 @@ uint16_t Object_lvl_ini::no_tiles()
 	return tiles_tex.size();
 }
 
-single_tile_out_for_bonus Object_lvl_ini::tiles_setings_to_bonus(int16_t index)
+single_tile_out_for_bonus Object_lvl_ini::tiles_setings_to_bonus(int index)
 {
 	return struct_bonus_out[index];
 }

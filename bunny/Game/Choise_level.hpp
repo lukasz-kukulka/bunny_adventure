@@ -10,4 +10,5 @@ public:
 	virtual sf::Sprite* tiles(uint32_t index) = 0;
 	virtual uint16_t no_til() = 0;
 	virtual void draw(sf::RenderWindow&) = 0;
+	virtual uint8_t bonus_size(uint8_t) = 0;
 };
