@@ -261,9 +261,14 @@ uint16_t Object_lvl_ini::no_tiles()
 	return tiles_tex.size();
 }
 
-single_tile_out_for_bonus Object_lvl_ini::tiles_setings_to_bonus(int index)
+single_tile_out_for_bonus Object_lvl_ini::tiles_setings_to_bonus(uint16_t index)
 {
 	return struct_bonus_out[index];
+}
+
+uint16_t Object_lvl_ini::no_bonuses()
+{
+	return struct_bonus_out.size();
 }
 
 void Object_lvl_ini::draw(sf::RenderWindow& window)

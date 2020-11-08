@@ -25,7 +25,8 @@ public:
 	sf::Sprite* shape(uint32_t index);
 	void initialization_structure(std::string type, sf::Vector2i position_tile);
 	uint16_t no_tiles();
-	single_tile_out_for_bonus tiles_setings_to_bonus(int index);
+	single_tile_out_for_bonus tiles_setings_to_bonus(uint16_t index);
+	uint16_t no_bonuses();
 	void draw(sf::RenderWindow& window);
 
 private:

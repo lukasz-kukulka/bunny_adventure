@@ -14,5 +14,69 @@ Pick_items_ini::Pick_items_ini(sf::RenderWindow& window)
 	this->awa509.loadFromFile("Game/Textures/Levels/Awards/awa509.png");
 	this->awa510.loadFromFile("Game/Textures/Levels/Awards/awa510.png");
 	this->awa511.loadFromFile("Game/Textures/Levels/Awards/awa511.png");
+	this->awa512.loadFromFile("Game/Textures/Levels/Awards/awa512.png");
+	
 }
+
+void Pick_items_ini::single_pick_items_ini(sf::RenderWindow& window, uint8_t type)
+{
+	if (type == 1)
+	{
+		
+		bonuses.push_back(Single_pick_bonus(window, &awa501, 1));
+	}
+	else if (type == 2)
+	{
+		std::cout << "TEST" << std::endl;
+		bonuses.push_back(Single_pick_bonus(window, &awa502, 2));
+	}
+	else if (type == 3)
+	{
+		bonuses.push_back(Single_pick_bonus(window, &awa503, 3));
+	}
+	else if (type == 4)
+	{
+		bonuses.push_back(Single_pick_bonus(window, &awa504, 4));
+	}
+	else if (type == 5)
+	{
+		bonuses.push_back(Single_pick_bonus(window, &awa505, 5));
+	}
+	else if (type == 6)
+	{
+		bonuses.push_back(Single_pick_bonus(window, &awa506, 6));
+	}
+	else if (type == 7)
+	{
+		bonuses.push_back(Single_pick_bonus(window, &awa507, 7));
+	}
+	else if (type == 8)
+	{
+		bonuses.push_back(Single_pick_bonus(window, &awa508, 8));
+	}
+	else if (type == 9)
+	{
+		bonuses.push_back(Single_pick_bonus(window, &awa509, 9));
+	}
+	else if (type == 10)
+	{
+		bonuses.push_back(Single_pick_bonus(window, &awa510, 10));
+	}
+	else if (type == 11)
+	{
+		bonuses.push_back(Single_pick_bonus(window, &awa511, 11));
+	}
+	else if (type == 12)
+	{
+		bonuses.push_back(Single_pick_bonus(window, &awa512, 12));
+	}
+	//bonuses.push_back(Single_pick_bonus(window, &))
+}
+
+void Pick_items_ini::draw(sf::RenderWindow& window)
+{
+	for (auto i : bonuses)
+		i.draw(window);
+}
+
 

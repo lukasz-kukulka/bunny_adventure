@@ -94,7 +94,7 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	if ((view_game.getCenter().x - view_game.getSize().x / 2 >= 0 || player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2 - view_game.getSize().x / 2 >= 0) &&
 		view_game.getCenter().x + view_game.getSize().x / 2 <= level_ini.level_size().x)
 	{
-		std::cout << static_cast<int>(level_ini.level_size().x) << " ------ " << view_game.getCenter().x + view_game.getSize().x / 2 << std::endl;
+		//std::cout << static_cast<int>(level_ini.level_size().x) << " ------ " << view_game.getCenter().x + view_game.getSize().x / 2 << std::endl;
 		this->view_game.setCenter(player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2, view_game.getCenter().y);
 
 	}
