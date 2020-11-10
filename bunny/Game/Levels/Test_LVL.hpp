@@ -12,7 +12,8 @@ public:
 	void objects_ini(sf::RenderWindow& window, sf::Vector2i size_board);
 	sf::Sprite* tiles(uint32_t index);
 	uint16_t no_til();
-	uint8_t bonus_size(uint8_t index);
+	single_tile_out_for_bonus bonus_parameters(uint16_t index);
+	//uint8_t bonus_size(uint8_t index);
 	void draw(sf::RenderWindow& window);
 
 private:
@@ -20,6 +21,5 @@ private:
 	std::string file_name;
 	Object_lvl_ini lvl0;
 	bool ini_object_true;
-	uint8_t bonus501, bonus502, bonus503, bonus504, bonus505, bonus506, bonus507, bonus508, bonus509, bonus510, bonus511, bonus512;
-
+	//std::vector<single_tile_out_for_bonus>bonuses;
 };

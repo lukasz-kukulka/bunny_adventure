@@ -17,6 +17,7 @@ public:
 	sf::Sprite* tiles(uint32_t index);
 	uint16_t no_tiles();
 	single_tile_out_for_bonus structure_bonuses(uint16_t index);
+	void bonus_vector();
 	uint16_t no_bonuses();
 	void draw(sf::RenderWindow& window);
 
@@ -32,5 +33,7 @@ private:
 	//uint32_t no_tile;
 	std::vector<single_tile_out_for_bonus>struct_bonus_out;
 	uint16_t no_til;
+	std::vector<single_tile_out_for_bonus>bonuses;
+	bool bonus_yes;
 };
 

@@ -18,16 +18,15 @@ Pick_items_ini::Pick_items_ini(sf::RenderWindow& window)
 	
 }
 
-void Pick_items_ini::single_pick_items_ini(sf::RenderWindow& window, uint8_t type)
+void Pick_items_ini::single_pick_items_ini(sf::RenderWindow& window, uint8_t type)// , single_tile_out_for_bonus index)
 {
 	if (type == 1)
 	{
-		
 		bonuses.push_back(Single_pick_bonus(window, &awa501, 1));
 	}
 	else if (type == 2)
 	{
-		std::cout << "TEST" << std::endl;
+		//std::cout << "TEST" << std::endl;
 		bonuses.push_back(Single_pick_bonus(window, &awa502, 2));
 	}
 	else if (type == 3)
@@ -71,6 +70,12 @@ void Pick_items_ini::single_pick_items_ini(sf::RenderWindow& window, uint8_t typ
 		bonuses.push_back(Single_pick_bonus(window, &awa512, 12));
 	}
 	//bonuses.push_back(Single_pick_bonus(window, &))
+}
+
+void Pick_items_ini::bonus_parameters_ini(single_tile_out_for_bonus index)
+{
+	tiles_parameters.push_back(single_tile_out_for_bonus(index));
+	std::cout << tiles_parameters.size() << std::endl;
 }
 
 void Pick_items_ini::draw(sf::RenderWindow& window)

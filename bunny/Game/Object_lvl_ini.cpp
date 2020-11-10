@@ -258,11 +258,13 @@ void Object_lvl_ini::initialization_structure(std::string type, sf::Vector2i pos
 
 uint16_t Object_lvl_ini::no_tiles()
 {
-	return tiles_tex.size();
+	return struct_bonus_out.size();
 }
 
 single_tile_out_for_bonus Object_lvl_ini::tiles_setings_to_bonus(uint16_t index)
 {
+	//std::cout << struct_bonus_out.size() << std::endl;
+	
 	return struct_bonus_out[index];
 }
 
