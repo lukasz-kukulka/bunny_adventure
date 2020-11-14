@@ -33,7 +33,7 @@ private:
 	//uint32_t no_tile;
 	std::vector<single_tile_out_for_bonus>struct_bonus_out;
 	uint16_t no_til;
-	std::vector<single_tile_out_for_bonus>bonuses;
+	std::vector<single_tile_out_for_bonus>bonuses; // do usuniecia na koniec
 	bool bonus_yes;
 };
 

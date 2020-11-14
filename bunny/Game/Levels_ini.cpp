@@ -47,7 +47,7 @@ uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
 		break;
 	}
 	choise_level->objects_ini(window, lvl_size);
-	choise_bonus->system();
+	
 	//choise_level->
 	//std::cout << no_tiles() << std::endl;
 	//std::cout << choise_level->bonus_parameters(no_tiles()-1).id << std::endl;
@@ -55,6 +55,7 @@ uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
 	{
 		bonus_vector();
 	}
+	choise_bonus->system();
 	return 0;
 }
 
@@ -87,10 +88,11 @@ void Levels_ini::bonus_vector()
 	//choise_bonus->bonus_parameters_ini(choise_level->bonus_parameters(i));
 	for (uint16_t i = 0; i < no_tiles(); i++)
 	{
-		bonuses.push_back(single_tile_out_for_bonus(choise_level->bonus_parameters(i)));
+		bonuses.push_back(single_tile_out_for_bonus(choise_level->bonus_parameters(i))); // do usuniêcia na koniec
 		choise_bonus->bonus_parameters_ini(choise_level->bonus_parameters(i));
 	}
 	bonus_yes = false;
+	pick_lvl_test.no_of_tiles(no_tiles());
 }
 
 uint16_t Levels_ini::no_bonuses()
@@ -104,9 +106,8 @@ void Levels_ini::draw(sf::RenderWindow& window)
 	{
 	case 0:
 	{
-		choise_bonus->draw(window);
 		choise_level->draw(window);
-
+		choise_bonus->draw(window);
 		break;
 	}
 	default:

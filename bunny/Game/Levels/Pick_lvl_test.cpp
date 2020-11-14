@@ -5,8 +5,8 @@ Pick_lvl_test::Pick_lvl_test(sf::RenderWindow& window)
     this->bonus501 = 0; // widogrona wisz¹ce !!!!!!!!!!!! musi byc u góry
     this->bonus502 = 0; // burak
     this->bonus503 = 0; // kolko - lisc zielony
-    this->bonus504 = 0; // marchewka
-    this->bonus505 = 0; // grzyb
+    this->bonus504 = 12; // marchewka
+    this->bonus505 = 3; // grzyb
     this->bonus506 = 0; // kolko - spirala
     this->bonus507 = 0; // kolko - lisc rozowy
     this->bonus508 = 0; // kolko - kropla
@@ -14,12 +14,13 @@ Pick_lvl_test::Pick_lvl_test(sf::RenderWindow& window)
     this->bonus510 = 0; // kolko - trybik
     this->bonus511 = 0; // ziemniak
     this->bonus512 = 0; // kociolek
-
+    this->bonus_quantity = bonus501 + bonus502 + bonus503 + bonus504 + bonus505 + bonus506 + bonus507 + bonus508 + bonus509 + bonus510 + bonus511 + bonus512;
     //this->no_tiles = 0;
 }
 
 uint8_t Pick_lvl_test::system()
 {
+    bonus_ini[0].system();
     return 0;
 }
 
@@ -78,11 +79,19 @@ void Pick_lvl_test::initialize_singe_bonus_item(sf::RenderWindow& window)
     {
         bonus_ini[0].single_pick_items_ini(window, 12);
     }
+
+    bonus_ini[0].bonus_quantity_in(bonus_quantity);
 }
 
 void Pick_lvl_test::bonus_parameters_ini(single_tile_out_for_bonus index)
 {
     bonus_ini[0].bonus_parameters_ini(index);
+}
+
+void Pick_lvl_test::no_of_tiles(uint16_t index)
+{
+    bonus_ini[0].no_of_tiles_in(index);
+    //std::cout << index + 1000 << std::endl;
 }
 
 //single_tile_out_for_bonus Pick_lvl_test::bonus_parameters_ini(uint16_t index)

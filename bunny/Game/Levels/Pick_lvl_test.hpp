@@ -12,9 +12,11 @@ public:
 	void initialize_pick_class(sf::RenderWindow& window);
 	void initialize_singe_bonus_item(sf::RenderWindow& window);
 	void bonus_parameters_ini(single_tile_out_for_bonus index);
+	void no_of_tiles(uint16_t index);
 	void draw(sf::RenderWindow& window);
 private:
 	uint8_t bonus501, bonus502, bonus503, bonus504, bonus505, bonus506, bonus507, bonus508, bonus509, bonus510, bonus511, bonus512;
+	uint16_t bonus_quantity;
 	//uint16_t no_tiles;
 	std::vector<Pick_items_ini>bonus_ini;
 	std::vector<single_tile_out_for_bonus>bonuses_vector;
