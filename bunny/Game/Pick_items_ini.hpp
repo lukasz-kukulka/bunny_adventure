@@ -25,5 +25,6 @@ private:
 	std::vector<int>teporary_tiles_tab;
 	uint16_t bonus_quantity, tiles_quantity, random_pos;
 	bool bonus_position_ini;
+
 };
 

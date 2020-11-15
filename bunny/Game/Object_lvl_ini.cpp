@@ -2,7 +2,7 @@
 
 Object_lvl_ini::Object_lvl_ini(sf::RenderWindow& window)
 {
-
+	this->add_bonus = true;
 	this->tex001.loadFromFile("Game/Textures/Levels/001.png");
 	this->tex002.loadFromFile("Game/Textures/Levels/002.png");
 	this->tex003.loadFromFile("Game/Textures/Levels/003.png");
@@ -64,75 +64,157 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					{
 						tiles_tex.push_back(Single_tile(window, &tex001, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
-						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
-
+						if (checking_colistion_bonus_with_tile() == true)
+						{
+							initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						}
+						else
+						{
+							this->add_bonus = true;
+						}
 					}
 					else if (temp == "002")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex002, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
-						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
-						
+						if (checking_colistion_bonus_with_tile() == true)
+						{
+							initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						}
+						else
+						{
+							this->add_bonus = true;
+						}						
 					}
 					else if (temp == "003")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex003, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
-						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						if (checking_colistion_bonus_with_tile() == true)
+						{
+							initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						}
+						else
+						{
+							this->add_bonus = true;
+						}
 					}
 					else if (temp == "004")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex004, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
-						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						if (checking_colistion_bonus_with_tile() == true)
+						{
+							initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						}
+						else
+						{
+							this->add_bonus = true;
+						}
 					}
 					else if (temp == "005")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex005, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
-						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						if (checking_colistion_bonus_with_tile() == true)
+						{
+							initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						}
+						else
+						{
+							this->add_bonus = true;
+						}
 					}
 					else if (temp == "006")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex006, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
-						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						if (checking_colistion_bonus_with_tile() == true)
+						{
+							initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						}
+						else
+						{
+							this->add_bonus = true;
+						}
 					}
 					else if (temp == "007")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex007, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
-						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						if (checking_colistion_bonus_with_tile() == true)
+						{
+							initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						}
+						else
+						{
+							this->add_bonus = true;
+						}
 					}
 					else if (temp == "008")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex008, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
-						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						if (checking_colistion_bonus_with_tile() == true)
+						{
+							initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						}
+						else
+						{
+							this->add_bonus = true;
+						}
 					}
 					else if (temp == "009")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex009, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
-						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						if (checking_colistion_bonus_with_tile() == true)
+						{
+							initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						}
+						else
+						{
+							this->add_bonus = true;
+						}
 					}
 					else if (temp == "010")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex010, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
-						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						if (checking_colistion_bonus_with_tile() == true)
+						{
+							initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						}
+						else
+						{
+							this->add_bonus = true;
+						}
 					}
 					else if (temp == "011")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex011, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
-						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						if (checking_colistion_bonus_with_tile() == true)
+						{
+							initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						}
+						else
+						{
+							this->add_bonus = true;
+						}
 					}
 					else if (temp == "012")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex012, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
-						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						if (checking_colistion_bonus_with_tile() == true)
+						{
+							initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						}
+						else
+						{
+							this->add_bonus = true;
+						}
 					}
 					else if (temp == "013")
 					{
@@ -148,25 +230,53 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					{
 						tiles_tex.push_back(Single_tile(window, &tex015, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
-						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						if (checking_colistion_bonus_with_tile() == true)
+						{
+							initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						}
+						else
+						{
+							this->add_bonus = true;
+						}
 					}
 					else if (temp == "016")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex016, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
-						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						if (checking_colistion_bonus_with_tile() == true)
+						{
+							initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						}
+						else
+						{
+							this->add_bonus = true;
+						}
 					}
 					else if (temp == "017")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex017, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
-						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						if (checking_colistion_bonus_with_tile() == true)
+						{
+							initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						}
+						else
+						{
+							this->add_bonus = true;
+						}
 					}
 					else if (temp == "018")
 					{
 						tiles_tex.push_back(Single_tile(window, &tex018, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
 						no_tiles_row++;
-						initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						if (checking_colistion_bonus_with_tile() == true)
+						{
+							initialization_structure(temp, tiles_tex[tiles_tex.size() - 1].position_tile());
+						}
+						else
+						{
+							this->add_bonus = true;
+						}
 					}
 					else if (temp == "020")
 					{
@@ -258,7 +368,7 @@ void Object_lvl_ini::initialization_structure(std::string type, sf::Vector2i pos
 
 uint16_t Object_lvl_ini::no_tiles()
 {
-	return struct_bonus_out.size();
+	return struct_bonus_out.size() - 1;
 }
 
 single_tile_out_for_bonus Object_lvl_ini::tiles_setings_to_bonus(uint16_t index)
@@ -266,6 +376,19 @@ single_tile_out_for_bonus Object_lvl_ini::tiles_setings_to_bonus(uint16_t index)
 	//std::cout << struct_bonus_out.size() << std::endl;
 	
 	return struct_bonus_out[index];
+}
+
+bool Object_lvl_ini::checking_colistion_bonus_with_tile()
+{
+	//std::cout << tiles_tex.size() << std::endl; //////////////////////////////////////////////////////////////////////////////////////////////
+	for (uint16_t i = 0; i < tiles_tex.size() - 1; i++)
+	{
+		if (tiles_tex[i].position_tile().x == tiles_tex[tiles_tex.size() - 1].position_tile().x && tiles_tex[i].position_tile().y == tiles_tex[tiles_tex.size() - 1].position_tile().y - 100)
+		{
+			this->add_bonus = false;
+		}
+	}
+	return add_bonus;
 }
 
 uint16_t Object_lvl_ini::no_bonuses()

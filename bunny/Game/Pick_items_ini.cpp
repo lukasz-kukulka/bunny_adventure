@@ -27,7 +27,7 @@ uint8_t Pick_items_ini::system()
 	{
 		std::random_device rd;
 		std::mt19937 mt(rd());
-		std::uniform_int_distribution<int>dist(0, no_of_tiles_out());
+		std::uniform_int_distribution<int>dist(0, no_of_tiles_out() - 2);
 		for (uint16_t i = bonuses.size(); i > 0; i--)
 		{
 			random_pos = dist(mt);
@@ -42,13 +42,14 @@ uint8_t Pick_items_ini::system()
 					break;
 				}
 			}
+			//std::cout << random_pos << std::endl;
 		}
 		for (uint16_t z = teporary_tiles_tab.size(); z > 0; z--)
 		{
 			bonuses[z - 1].changing_bonus_position(sf::Vector2f(tiles_parameters[teporary_tiles_tab[z - 1]].x_position,
 				tiles_parameters[teporary_tiles_tab[z - 1]].y_position - bonuses[z - 1].globalbound_out().y));
-			std::cout << bonuses[z - 1].position_out().y << std::endl;
-			//std::cout << teporary_tiles_tab[z -1]<< std::endl;
+			//std::cout << random_pos << std::endl;
+			//std::cout << teporary_tiles_tab[z - 1] << " ------- " << bonuses[z - 1].position_out().x << std::endl;
 		}
 		bonus_position_ini = false;
 
@@ -114,7 +115,7 @@ void Pick_items_ini::bonus_parameters_ini(single_tile_out_for_bonus index)
 {
 	tiles_parameters.push_back(single_tile_out_for_bonus(index));
 	tiles_parameters.push_back(single_tile_out_for_bonus(index));
-	tiles_parameters[tiles_parameters.size() - 1].x_position + 50;
+	tiles_parameters[tiles_parameters.size() - 1].x_position = tiles_parameters[tiles_parameters.size() - 1].x_position + 50;
 }
 
 void Pick_items_ini::bonus_quantity_in(uint16_t q)
@@ -124,11 +125,12 @@ void Pick_items_ini::bonus_quantity_in(uint16_t q)
 
 void Pick_items_ini::no_of_tiles_in(uint16_t index)
 {
-	this->tiles_quantity = index;
+	this->tiles_quantity = index * 2;
 }
 
 uint16_t Pick_items_ini::no_of_tiles_out()
 {
+	std::cout << tiles_parameters.size() << std::endl;
 	return tiles_quantity;
 }
 

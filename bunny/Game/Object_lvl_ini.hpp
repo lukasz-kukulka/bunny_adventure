@@ -26,6 +26,7 @@ public:
 	void initialization_structure(std::string type, sf::Vector2i position_tile);
 	uint16_t no_tiles();
 	single_tile_out_for_bonus tiles_setings_to_bonus(uint16_t index);
+	bool checking_colistion_bonus_with_tile();
 	uint16_t no_bonuses();
 	void draw(sf::RenderWindow& window);
 
@@ -36,5 +37,6 @@ private:
 	std::vector<single_tile_out_for_bonus>struct_bonus_out;
 	std::vector<Single_tile>tiles_tex;
 	std::string line, temp;
+	bool add_bonus;
 };
 
