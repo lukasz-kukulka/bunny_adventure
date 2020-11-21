@@ -128,10 +128,25 @@ void Pick_items_ini::no_of_tiles_in(uint16_t index)
 	this->tiles_quantity = index * 2;
 }
 
+sf::Sprite Pick_items_ini::bonus_sprite_out(uint16_t index)
+{
+	return bonuses[index].bonus_out();
+}
+
+uint16_t Pick_items_ini::no_of_bonus_out()
+{
+	return bonuses.size();
+}
+
 uint16_t Pick_items_ini::no_of_tiles_out()
 {
 	std::cout << tiles_parameters.size() << std::endl;
 	return tiles_quantity;
+}
+
+void Pick_items_ini::delete_bonus_ele(uint16_t element_index)
+{
+	bonuses.erase(bonuses.begin() + element_index);
 }
 
 void Pick_items_ini::draw(sf::RenderWindow& window)

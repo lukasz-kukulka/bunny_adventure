@@ -15,7 +15,10 @@ public:
 	void bonus_parameters_ini(single_tile_out_for_bonus index);
 	void bonus_quantity_in(uint16_t q);
 	void no_of_tiles_in(uint16_t index);
+	sf::Sprite bonus_sprite_out(uint16_t index);
+	uint16_t no_of_bonus_out();
 	uint16_t no_of_tiles_out();
+	void delete_bonus_ele(uint16_t element_index);
 	void draw(sf::RenderWindow& window);
 
 private:

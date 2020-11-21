@@ -13,6 +13,9 @@ public:
 	void initialize_singe_bonus_item(sf::RenderWindow& window);
 	void bonus_parameters_ini(single_tile_out_for_bonus index);
 	void no_of_tiles(uint16_t index);
+	sf::Sprite bonus_sprite_out(uint16_t index);
+	uint16_t no_of_bonus_out();
+	void delete_bonus_elements(uint16_t element_index);
 	void draw(sf::RenderWindow& window);
 private:
 	uint8_t bonus501, bonus502, bonus503, bonus504, bonus505, bonus506, bonus507, bonus508, bonus509, bonus510, bonus511, bonus512;

@@ -11,6 +11,7 @@ Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(
 	this->view_game.setCenter(sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2)); 
 	this->view_game.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
 	this->direction_enabled = true;
+	this->bonus_index = 0;
 	window.setView(view_game);
 }
 
@@ -20,7 +21,8 @@ Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(
 
 uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
-	//std::cout << static_cast<int>(level_ini.level_size().x);
+	//this->bonus_index++;
+	//std::cout << static_cast<int>(bonus_index) << std::endl;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		player_bunny[0].movement_enabled_changing(true);
@@ -118,6 +120,41 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	player_bunny[0].gravity_insert(colision.gravityY_out());
 	window.setView(view_game); 
 	this->colision.level_size_input(level_ini.level_size());
+	colision.no_of_bonus_in(level_ini.no_of_bonus_out());
+	//colision.bonus_index_incresed();
+	//colision.bonus_no_initialize();
+	//std::cout << colision.bonus_no_initialize() << std::endl;
+	//if (level_ini.no_of_bonus_out() != 0)
+	//{
+	//	player_bunny[0].
+	//}
+	colision.player_sprite_in(player_bunny[0].shape_player());
+	if (level_ini.no_of_bonus_out() != 0)
+	{
+		
+		//bonus_index++;
+		for (bonus_index = 0; bonus_index < level_ini.no_of_bonus_out() - 1; bonus_index++)
+		{
+			colision.bonus_sprite_in(level_ini.bonus_sprite_out(bonus_index));
+			colision.colision_bonus();
+			if (bonus_index >= level_ini.no_of_bonus_out())
+			{
+				bonus_index = 0;
+			}
+			if (colision.catch_bonus() == true)
+			{
+				level_ini.delete_bonus_yes(true);
+				level_ini.delete_bonus_ini(bonus_index);
+			}
+			else
+			{
+				level_ini.delete_bonus_yes(false);
+				
+			}
+		}
+	}
+
+	//std::cout << colision.catch_bonus() << std::endl;
 	return 1;
 }
 

@@ -17,7 +17,8 @@ public:
 	void draw(sf::RenderWindow&);
 
 private:
-	sf::Texture* arrow_left, * arrow_right;
+	sf::Texture* arrow_left;
+	sf::Texture* arrow_right;
 	sf::Sprite button_sprite_left, button_sprite_mid, button_sprite_right;
 	sf::Text text_menu;
 	uint8_t index_number, return_index;

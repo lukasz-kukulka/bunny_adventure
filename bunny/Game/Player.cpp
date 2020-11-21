@@ -2,7 +2,8 @@
 
 Player::Player(sf::RenderWindow& window, sf::Texture* bunny, float time_animation)
 {
-	this->movement_enable = false;
+	this->movement_enable = false; 
+	//std::cout << window_animation.top << std::endl;
 	this->direction_player = 100;
 	this->steps_animation_right_left = 9;
 	this->lines_of_animations = 9;
@@ -223,6 +224,7 @@ void Player::change_direction(uint8_t direction)
 {
 	this->directions = direction;
 	this->animation[directions].diretion_change(directions, &player_sprite);
+
 }
 
 void Player::animation_directon(uint8_t dir)

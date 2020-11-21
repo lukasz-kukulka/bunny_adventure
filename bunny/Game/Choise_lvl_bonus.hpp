@@ -10,6 +10,8 @@ public:
 	virtual void initialize_pick_class(sf::RenderWindow&) = 0;
 	virtual void initialize_singe_bonus_item(sf::RenderWindow& window) = 0;
 	virtual void bonus_parameters_ini(single_tile_out_for_bonus index) = 0;
+	virtual void delete_bonus_elements(uint16_t element_index) = 0;
+	//virtual sf::Sprite bonus_sprite_out(uint16_t index) = 0;
 	virtual void draw(sf::RenderWindow&) = 0;
 
 };

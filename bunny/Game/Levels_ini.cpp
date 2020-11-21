@@ -8,8 +8,9 @@ Levels_ini::Levels_ini(sf::RenderWindow& window) : test_lvl(window), pick_lvl_te
 	choise_level = nullptr;
 	choise_bonus = nullptr;
 	this->no_til = 0;
-	til_ini = nullptr;
+	this->bonus_delete_yes = false;
 	this->bonus_yes = true;
+	this->bonus_delete_element = 0;
 	//std::cout << "--->" << static_cast<int>(game_level)  << std::endl;
 }
 
@@ -56,6 +57,12 @@ uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
 		bonus_vector();
 	}
 	choise_bonus->system();
+	if (bonus_delete_yes == true)
+	{
+		choise_bonus->delete_bonus_elements(bonus_delete_element);
+	}
+
+	//choise_bonus->bonus_sprite_out
 	return 0;
 }
 
@@ -98,6 +105,29 @@ void Levels_ini::bonus_vector()
 uint16_t Levels_ini::no_bonuses()
 {
 	return 0;
+}
+
+sf::Sprite Levels_ini::bonus_sprite_out(uint16_t index)
+{
+
+	//std::cout << index << std::endl;
+	return pick_lvl_test.bonus_sprite_out(index);
+}
+
+uint16_t Levels_ini::no_of_bonus_out()
+{
+	//std::cout << pick_lvl_test.no_of_bonus_out() << std::endl;
+	return pick_lvl_test.no_of_bonus_out();
+}
+
+void Levels_ini::delete_bonus_yes(bool index)
+{
+	this->bonus_delete_yes = index;
+}
+
+void Levels_ini::delete_bonus_ini(uint16_t index)
+{
+	this->bonus_delete_element = index;
 }
 
 void Levels_ini::draw(sf::RenderWindow& window)

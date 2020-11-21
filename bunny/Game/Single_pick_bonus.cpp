@@ -23,6 +23,11 @@ sf::Vector2f Single_pick_bonus::globalbound_out()
 	return sf::Vector2f(bonus_sprite.getGlobalBounds().width, bonus_sprite.getGlobalBounds().height);
 }
 
+sf::Sprite Single_pick_bonus::bonus_out()
+{
+	return bonus_sprite;
+}
+
 void Single_pick_bonus::draw(sf::RenderWindow& window)
 {
 	window.draw(bonus_sprite);

@@ -355,6 +355,7 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 sf::Sprite* Object_lvl_ini::shape(uint32_t index)
 {
 	return tiles_tex[index].shape_sprite();
+	//static_assert()
 }
 
 void Object_lvl_ini::initialization_structure(std::string type, sf::Vector2i position_tile)
@@ -373,8 +374,9 @@ uint16_t Object_lvl_ini::no_tiles()
 
 single_tile_out_for_bonus Object_lvl_ini::tiles_setings_to_bonus(uint16_t index)
 {
+	//std::cout << struct_bonus_out[index].x_position << std::endl;
 	//std::cout << struct_bonus_out.size() << std::endl;
-	
+	//std::cout << struct_bonus_out[no_tiles() - 1].x_position << std::endl;
 	return struct_bonus_out[index];
 }
 

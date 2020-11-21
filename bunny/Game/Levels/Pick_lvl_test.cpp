@@ -94,6 +94,21 @@ void Pick_lvl_test::no_of_tiles(uint16_t index)
     //std::cout << index + 1000 << std::endl;
 }
 
+sf::Sprite Pick_lvl_test::bonus_sprite_out(uint16_t index)
+{
+    return bonus_ini[0].bonus_sprite_out(index);
+}
+
+uint16_t Pick_lvl_test::no_of_bonus_out()
+{
+    return bonus_ini[0].no_of_bonus_out();
+}
+
+void Pick_lvl_test::delete_bonus_elements(uint16_t element_index)
+{
+    bonus_ini[0].delete_bonus_ele(element_index);
+}
+
 //single_tile_out_for_bonus Pick_lvl_test::bonus_parameters_ini(uint16_t index)
 //{
 //    return single_tile_out_for_bonus();

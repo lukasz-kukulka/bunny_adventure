@@ -4,7 +4,7 @@
 class Arrow
 {
 public:
-	Arrow(sf::Texture&, uint16_t, uint16_t, float, float);
+	Arrow(sf::Texture*, uint16_t, uint16_t, float, float);
 
 	uint16_t global_x();
 	void draw(sf::RenderWindow&);

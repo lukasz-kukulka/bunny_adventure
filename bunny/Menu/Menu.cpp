@@ -58,8 +58,8 @@ uint8_t Menu::mark(sf::RenderWindow& window, sf::Vector2i mouse)
 		this->return_index = index_number + 10;
 		if (arrows.size() == 0)
 		{
-			arrows.push_back(Arrow(*arrow_right, button_sprite_right.getPosition().x + button_sprite_right.getGlobalBounds().width, button_sprite_left.getPosition().y, button_sprite_left.getScale().x, button_sprite_left.getScale().y));
-			arrows.push_back(Arrow(*arrow_left, button_sprite_left.getPosition().x - arrows[0].global_x(), button_sprite_left.getPosition().y, button_sprite_left.getScale().x, button_sprite_left.getScale().y));
+			arrows.push_back(Arrow(arrow_right, button_sprite_right.getPosition().x + button_sprite_right.getGlobalBounds().width, button_sprite_left.getPosition().y, button_sprite_left.getScale().x, button_sprite_left.getScale().y));
+			arrows.push_back(Arrow(arrow_left, button_sprite_left.getPosition().x - arrows[0].global_x(), button_sprite_left.getPosition().y, button_sprite_left.getScale().x, button_sprite_left.getScale().y));
 		}
 		
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))

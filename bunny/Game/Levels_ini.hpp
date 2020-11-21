@@ -19,6 +19,10 @@ public:
 	single_tile_out_for_bonus structure_bonuses(uint16_t index);
 	void bonus_vector();
 	uint16_t no_bonuses();
+	sf::Sprite bonus_sprite_out(uint16_t index);
+	uint16_t no_of_bonus_out();
+	void delete_bonus_yes(bool index);
+	void delete_bonus_ini(uint16_t index);
 	void draw(sf::RenderWindow& window);
 
 private:
@@ -32,8 +36,8 @@ private:
 	sf::Sprite* til_ini;
 	//uint32_t no_tile;
 	std::vector<single_tile_out_for_bonus>struct_bonus_out;
-	uint16_t no_til;
+	uint16_t no_til, bonus_delete_element;
 	std::vector<single_tile_out_for_bonus>bonuses; // do usuniecia na koniec
-	bool bonus_yes;
+	bool bonus_yes, bonus_delete_yes;
 };
 

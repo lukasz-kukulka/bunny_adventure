@@ -3,7 +3,7 @@
 #include "Menu/Option.hpp"
 #include "Menu/Interface.hpp"
 #include "Menu/Exit.hpp"
-#include "Menu/Credits.hpp"
+//#include "Menu/Credits.hpp"
 #include "Menu/Settings_page.hpp"
 #include "Menu/Files_operations.hpp"
 #include "Menu/Score_page.hpp"
@@ -50,7 +50,7 @@ int main()
     music.setVolume(10);
     Interface inter(window);
     Game_ini game_ini(window);
-    Credits credits(window);
+    //Credits credits(window);
     Settings_page settings_page(window);
     Score_page score_page(window);
     Option* go_to_option = &inter;
@@ -118,7 +118,7 @@ int main()
 
             case 4: //Credits                                 ///////////////////////////////////// ZMIENIC JAK W ! 1 i 0 case
             {
-                go_to_option = &credits;
+                //go_to_option = &credits;
 
                 break;
             }
