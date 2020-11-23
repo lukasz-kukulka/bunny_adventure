@@ -15,7 +15,7 @@ public:
 	void level_size_input(sf::Vector2i size);
 	void bonus_sprite_in(sf::Sprite bonus);
 	void no_of_bonus_in(uint16_t index);
-	void colision_bonus();
+	void colision_bonus(sf::Sprite* player);
 	//uint16_t bonus_no_initialize();
 	//void bonus_index_incresed();
 	bool catch_bonus();

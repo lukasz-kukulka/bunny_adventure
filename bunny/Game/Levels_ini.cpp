@@ -60,6 +60,7 @@ uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
 	if (bonus_delete_yes == true)
 	{
 		choise_bonus->delete_bonus_elements(bonus_delete_element);
+		delete_bonus_yes(false);
 	}
 
 	//choise_bonus->bonus_sprite_out

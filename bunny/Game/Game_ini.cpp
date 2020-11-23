@@ -105,21 +105,17 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	level_ini.system(window, game_level);
 
 	time_animation = clock_animation.restart().asSeconds();
-	for (uint8_t j = 0; j < player_bunny.size(); j++)
+
+	player_bunny[0].animations(time_animation);
+	for (int i = 0; i < level_ini.no_tiles(); i++)
 	{
-		player_bunny[j].animations(time_animation);
-		for (int i = 0; i < level_ini.no_tiles(); i++)
-		{
-
-			colision.colision(window, player_bunny[j].shape_player(), level_ini.tiles(i));
-
-		}
+		colision.colision(window, player_bunny[0].shape_player(), level_ini.tiles(i));
 	}
 	colision.gravity(window, player_bunny[0].shape_player());
 	player_bunny[0].system();
 	player_bunny[0].gravity_insert(colision.gravityY_out());
 	window.setView(view_game); 
-	this->colision.level_size_input(level_ini.level_size());
+	colision.level_size_input(level_ini.level_size());
 	colision.no_of_bonus_in(level_ini.no_of_bonus_out());
 	//colision.bonus_index_incresed();
 	//colision.bonus_no_initialize();
@@ -129,30 +125,37 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	//	player_bunny[0].
 	//}
 	colision.player_sprite_in(player_bunny[0].shape_player());
-	if (level_ini.no_of_bonus_out() != 0)
+	if (level_ini.no_of_bonus_out() > 0)
 	{
-		
 		//bonus_index++;
-		for (bonus_index = 0; bonus_index < level_ini.no_of_bonus_out() - 1; bonus_index++)
+		//std::cout << " ------------------------------------- NEW LOOP ----------------------------------------" << std::endl;
+		for (bonus_index = 0; bonus_index < level_ini.no_of_bonus_out(); bonus_index++)
 		{
 			colision.bonus_sprite_in(level_ini.bonus_sprite_out(bonus_index));
-			colision.colision_bonus();
-			if (bonus_index >= level_ini.no_of_bonus_out())
+			colision.colision_bonus(player_bunny[0].shape_player());
+
+			//std::cout << bonus_index << std::endl;
+
+			//std::cout << level_ini.no_of_bonus_out() << std::endl;
+			/*if (bonus_index >= level_ini.no_of_bonus_out())
 			{
 				bonus_index = 0;
-			}
+			}*/
 			if (colision.catch_bonus() == true)
 			{
 				level_ini.delete_bonus_yes(true);
 				level_ini.delete_bonus_ini(bonus_index);
+				break;
+				//bonus_index--;
 			}
 			else
 			{
-				level_ini.delete_bonus_yes(false);
-				
+				//level_ini.delete_bonus_yes(false);
 			}
 		}
 	}
+	else
+		std::cout << " >>>>>>>>>>>>>>>> DONE <<<<<<<<<<<<<<<<<<<<<<,";
 
 	//std::cout << colision.catch_bonus() << std::endl;
 	return 1;

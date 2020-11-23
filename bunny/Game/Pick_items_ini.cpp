@@ -108,6 +108,7 @@ void Pick_items_ini::single_pick_items_ini(sf::RenderWindow& window, uint8_t typ
 	{
 		bonuses.push_back(Single_pick_bonus(window, &awa512, 12));
 	}
+	//std::cout << bonuses.size() << std::endl;
 	//bonuses.push_back(Single_pick_bonus(window, &))
 }
 
@@ -140,13 +141,15 @@ uint16_t Pick_items_ini::no_of_bonus_out()
 
 uint16_t Pick_items_ini::no_of_tiles_out()
 {
-	std::cout << tiles_parameters.size() << std::endl;
+	//std::cout << tiles_parameters.size() << std::endl;
 	return tiles_quantity;
 }
 
 void Pick_items_ini::delete_bonus_ele(uint16_t element_index)
 {
+	//std::cout << "PROBA USUNIECIA: .... ";
 	bonuses.erase(bonuses.begin() + element_index);
+	//std::cout << "KTORY ELEMENT ->>> " << element_index << " ------   ile zostalo ->>> " << no_of_bonus_out() << std::endl;
 }
 
 void Pick_items_ini::draw(sf::RenderWindow& window)
