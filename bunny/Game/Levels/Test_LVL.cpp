@@ -24,6 +24,7 @@ void Test_LVL::objects_ini(sf::RenderWindow& window, sf::Vector2i size_board)
 
 sf::Sprite* Test_LVL::tiles(uint32_t index)
 {
+   
     return lvl0.shape(index);
 }
 
@@ -37,6 +38,11 @@ uint16_t Test_LVL::no_til()
 single_tile_out_for_bonus Test_LVL::bonus_parameters(uint16_t index)
 {
     return lvl0.tiles_setings_to_bonus(index);
+}
+
+uint16_t Test_LVL::bonus_size()
+{
+    return lvl0.no_bonuses();
 }
 
 //uint8_t Test_LVL::bonus_size(uint8_t index)

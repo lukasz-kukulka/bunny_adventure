@@ -354,6 +354,7 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 
 sf::Sprite* Object_lvl_ini::shape(uint32_t index)
 {
+	//std::cout << index << std::endl;
 	return tiles_tex[index].shape_sprite();
 	//static_assert()
 }
@@ -369,7 +370,11 @@ void Object_lvl_ini::initialization_structure(std::string type, sf::Vector2i pos
 
 uint16_t Object_lvl_ini::no_tiles()
 {
-	return struct_bonus_out.size() - 1;
+	//if (tiles_tex.size() == 0)
+		return tiles_tex.size();
+	//else
+	//std::cout << tiles_tex.size() << std::endl;
+		//return 25;
 }
 
 single_tile_out_for_bonus Object_lvl_ini::tiles_setings_to_bonus(uint16_t index)
@@ -383,7 +388,7 @@ single_tile_out_for_bonus Object_lvl_ini::tiles_setings_to_bonus(uint16_t index)
 bool Object_lvl_ini::checking_colistion_bonus_with_tile()
 {
 	//std::cout << tiles_tex.size() << std::endl; //////////////////////////////////////////////////////////////////////////////////////////////
-	for (uint16_t i = 0; i < tiles_tex.size() - 1; i++)
+	for (uint16_t i = 0; i < tiles_tex.size(); i++)
 	{
 		if (tiles_tex[i].position_tile().x == tiles_tex[tiles_tex.size() - 1].position_tile().x && tiles_tex[i].position_tile().y == tiles_tex[tiles_tex.size() - 1].position_tile().y - 100)
 		{

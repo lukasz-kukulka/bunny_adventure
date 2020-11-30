@@ -13,7 +13,7 @@ public:
 	sf::Sprite* tiles(uint32_t index);
 	uint16_t no_til();
 	single_tile_out_for_bonus bonus_parameters(uint16_t index);
-	//uint8_t bonus_size(uint8_t index);
+	uint16_t bonus_size();
 	void draw(sf::RenderWindow& window);
 
 private:

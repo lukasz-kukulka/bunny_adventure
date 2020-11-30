@@ -94,13 +94,13 @@ void Levels_ini::bonus_vector()
 {
 	//std::cout << no_tiles() << std::endl;
 	//choise_bonus->bonus_parameters_ini(choise_level->bonus_parameters(i));
-	for (uint16_t i = 0; i < no_tiles(); i++)
+	for (uint16_t i = 0; i < test_lvl.bonus_size(); i++)
 	{
-		bonuses.push_back(single_tile_out_for_bonus(choise_level->bonus_parameters(i))); // do usuniêcia na koniec
+		//bonuses.push_back(single_tile_out_for_bonus(choise_level->bonus_parameters(i))); // do usuniêcia na koniec
 		choise_bonus->bonus_parameters_ini(choise_level->bonus_parameters(i));
 	}
 	bonus_yes = false;
-	pick_lvl_test.no_of_tiles(no_tiles());
+	pick_lvl_test.no_of_tiles(test_lvl.bonus_size());
 }
 
 uint16_t Levels_ini::no_bonuses()
@@ -133,17 +133,19 @@ void Levels_ini::delete_bonus_ini(uint16_t index)
 
 void Levels_ini::draw(sf::RenderWindow& window)
 {
-	switch (game_lvl)
-	{
-	case 0:
-	{
-		choise_level->draw(window);
-		choise_bonus->draw(window);
-		break;
-	}
-	default:
-		break;
-	}
+	//switch (game_lvl)
+	//{
+	//case 0:
+	//{
+	//	
+	//	break;
+	//}
+	//default:
+	//	break;
+	//}
+	//system(window, 0);
+	choise_level->draw(window);
+	choise_bonus->draw(window);
 	//choise_level = nullptr;
 }
 
