@@ -144,8 +144,10 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			colision.colision_bonus();
 			if (colision.catch_bonus() == true)
 			{
-				level_ini.delete_bonus_yes(true);
+				level_ini.delete_bonus_yes(true, sf::Vector2f(player_bunny[0].get_position().x, player_bunny[0].get_position().y));
 				level_ini.delete_bonus_ini(bonus_index);
+				std::cout << "GameINI      --     " << bonus_index << std::endl;
+				colision.catch_bonus_in(false);
 				break;
 			}
 		}

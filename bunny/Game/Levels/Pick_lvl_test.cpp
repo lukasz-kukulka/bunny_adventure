@@ -99,6 +99,11 @@ sf::Sprite Pick_lvl_test::bonus_sprite_out(uint16_t index)
     return bonus_ini[0].bonus_sprite_out(index);
 }
 
+void Pick_lvl_test::player_mid_position(sf::Vector2f pos)
+{
+    bonus_ini[0].player_mid_position(pos);
+}
+
 uint16_t Pick_lvl_test::no_of_bonus_out()
 {
     return bonus_ini[0].no_of_bonus_out();

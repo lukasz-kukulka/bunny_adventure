@@ -21,7 +21,7 @@ public:
 	uint16_t no_bonuses();
 	sf::Sprite bonus_sprite_out(uint16_t index);
 	uint16_t no_of_bonus_out();
-	void delete_bonus_yes(bool index);
+	void delete_bonus_yes(bool index, sf::Vector2f player_middle_position);
 	void delete_bonus_ini(uint16_t index);
 	void draw(sf::RenderWindow& window);
 
@@ -33,6 +33,7 @@ private:
 	Pick_lvl_test pick_lvl_test;
 	uint8_t game_lvl, level_indicator;
 	sf::Vector2i lvl_size;
+	sf::Vector2f player_pos;
 	sf::Sprite* til_ini;
 	//uint32_t no_tile;
 	std::vector<single_tile_out_for_bonus>struct_bonus_out;

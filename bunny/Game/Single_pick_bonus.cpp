@@ -6,6 +6,9 @@ Single_pick_bonus::Single_pick_bonus(sf::RenderWindow& window, sf::Texture* text
 	//this->bonus_sprite.setScale(1.0 / (*tex).getSize().x * 100, 1.0 / (*tex).getSize().x * 100);
 	this->bonus_sprite.setPosition(sf::Vector2f(-1000, -1500));
 	//std::cout << "BONUS CREATE" << std::endl;
+	this->delete_item = false;
+	this->animation_finish = false;
+	this->animation_delete_start = false;
 }
 
 void Single_pick_bonus::changing_bonus_position(sf::Vector2f position)
@@ -26,6 +29,36 @@ sf::Vector2f Single_pick_bonus::globalbound_out()
 sf::Sprite Single_pick_bonus::bonus_out()
 {
 	return bonus_sprite;
+}
+
+bool Single_pick_bonus::if_can_you_delete_item()
+{
+	return delete_item;
+}
+
+void Single_pick_bonus::animation_delete()
+{
+	this->animation_delete_start = true;
+	//std::cout << "dupa" << std::endl;
+}
+
+void Single_pick_bonus::animation_ini(sf::Vector2f player_mid_pos)
+{
+	//std::cout << "tak" << std::endl;
+	if (animation_delete_start == true)
+	{
+		this->bonus_sprite.setScale(sf::Vector2f(bonus_sprite.getScale().x + 0.1, 1));
+		if (bonus_sprite.getScale().x > 3)
+		{
+			std::cout << "tak" << std::endl;
+			animation_finish = true;
+		}
+	}
+}
+
+bool Single_pick_bonus::animation_finish_out()
+{
+	return animation_finish;
 }
 
 void Single_pick_bonus::draw(sf::RenderWindow& window)

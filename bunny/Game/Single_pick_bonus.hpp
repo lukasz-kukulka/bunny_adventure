@@ -11,8 +11,14 @@ public:
 	sf::Vector2f position_out();
 	sf::Vector2f globalbound_out();
 	sf::Sprite bonus_out();
+	bool if_can_you_delete_item();
+	void animation_delete();
+	void animation_ini(sf::Vector2f player_mid_pos);
+	bool animation_finish_out();
 	void draw(sf::RenderWindow& window);
 private:
 	sf::Sprite bonus_sprite;
+	bool delete_item, animation_delete_start, animation_finish;
+
 };
 

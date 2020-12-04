@@ -37,7 +37,7 @@ void Colisions::colision(sf::RenderWindow& window)
 		player_sprite->getPosition().x + border < tile_sprite->getPosition().x + tile_sprite->getGlobalBounds().width)
 	{
 		player_sprite->setPosition(player_sprite->getPosition().x, tile_sprite->getPosition().y - player_sprite->getGlobalBounds().height - gravityY);
-		std::cout << "PLAYER ---> " << player_sprite->getPosition().x / 100 + player_sprite->getGlobalBounds().height << "    ========    tiles ---> " << tile_sprite->getPosition().x / 100 << std::endl;
+		//std::cout << "PLAYER ---> " << player_sprite->getPosition().x / 100 + player_sprite->getGlobalBounds().height << "    ========    tiles ---> " << tile_sprite->getPosition().x / 100 << std::endl;
 		//std::cout << "1" << std::endl;
 		this->ground_yes_no = true;
 		
@@ -115,12 +115,16 @@ void Colisions::colision_bonus()
 void Colisions::tile_sprite_in(sf::Sprite* tiles)
 {
 	tile_sprite = tiles;
-	std::cout << tile_sprite->getPosition().x << std::endl;
 }
 
 bool Colisions::catch_bonus()
 {
 	return catch_bonus_true;
+}
+
+void Colisions::catch_bonus_in(bool index)
+{
+	catch_bonus_true = false;
 }
 
 void Colisions::player_sprite_in(sf::Sprite* player)

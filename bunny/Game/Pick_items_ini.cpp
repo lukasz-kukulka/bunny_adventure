@@ -54,6 +54,7 @@ uint8_t Pick_items_ini::system()
 		bonus_position_ini = false;
 
 	}
+	animation_delete_bonus_ini();
 	return 0;
 }
 
@@ -145,11 +146,29 @@ uint16_t Pick_items_ini::no_of_tiles_out()
 	return tiles_quantity;
 }
 
+void Pick_items_ini::animation_delete_bonus_ini()
+{
+	for (int i = 0; i < bonuses.size() - 1; i++)
+	{
+		bonuses[i].animation_ini(position_player_middle);
+		if (bonuses[i].animation_finish_out() == true)
+		{
+			//std::cout << i << std::endl;
+			bonuses.erase(bonuses.begin() + i);
+			//i++;
+		}
+		//break;
+	}
+}
+
+void Pick_items_ini::player_mid_position(sf::Vector2f pos)
+{
+	this->position_player_middle = pos;
+}
+
 void Pick_items_ini::delete_bonus_ele(uint16_t element_index)
 {
-	//std::cout << "PROBA USUNIECIA: .... ";
-	bonuses.erase(bonuses.begin() + element_index);
-	//std::cout << "KTORY ELEMENT ->>> " << element_index << " ------   ile zostalo ->>> " << no_of_bonus_out() << std::endl;
+	bonuses[element_index].animation_delete();
 }
 
 void Pick_items_ini::draw(sf::RenderWindow& window)

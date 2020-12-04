@@ -20,6 +20,7 @@ public:
 	//uint16_t bonus_no_initialize();
 	//void bonus_index_incresed();
 	bool catch_bonus();
+	void catch_bonus_in(bool index);
 	void player_sprite_in(sf::Sprite* player);
 	void free_memory();
 	int8_t gravityY_out();
