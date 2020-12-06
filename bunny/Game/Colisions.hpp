@@ -20,7 +20,9 @@ public:
 	//uint16_t bonus_no_initialize();
 	//void bonus_index_incresed();
 	bool catch_bonus();
-	void catch_bonus_in(bool index);
+	bool catch_bonus_one_time();
+	void catch_bonus_one_time_in(bool index);
+	//void catch_change_to_false();
 	void player_sprite_in(sf::Sprite* player);
 	void free_memory();
 	int8_t gravityY_out();
@@ -32,6 +34,6 @@ private:
 	int8_t gravityY, border;
 	uint16_t bonus_quantity, bonus_number;
 	sf::Vector2i level_size;
-	bool jump_available, ground_yes_no, catch_bonus_true;
+	bool jump_available, ground_yes_no, catch_bonus_true, catch_bonus_one_time_true;
 };
 

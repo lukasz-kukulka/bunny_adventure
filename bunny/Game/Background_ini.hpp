@@ -8,7 +8,7 @@ public:
 	Background_ini(sf::RenderWindow& window);
 
 	uint8_t system(sf::RenderWindow& window, sf::View& view_game, uint8_t lvl);
-	void objects_ini(sf::RenderWindow& window);
+	void objects_ini(sf::RenderWindow& window, sf::View& view_game);
 	//void level_size(sf::Vector2i level_size);
 	void draw(sf::RenderWindow& window);
 

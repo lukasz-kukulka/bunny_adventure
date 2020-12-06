@@ -7,6 +7,7 @@ Colisions::Colisions()
 	this->level_size = sf::Vector2i(10000, 0);// uwazac bo z ta wartoscia bedzie zaczynal player
 	this->ground_yes_no = false;
 	this->catch_bonus_true = false;
+	this->catch_bonus_one_time_true = true;
 	this->bonus_quantity = 0;
 	this->bonus_number = 0;
 	//this->player_sprite = nullptr;
@@ -102,13 +103,15 @@ void Colisions::colision_bonus()
 		player_sprite->getPosition().y < bonus_sprite.getPosition().y + bonus_sprite.getGlobalBounds().height)
 	{
 		//std::cout << catch_bonus_true << std::endl;
-		//std::cout << "TAK" << std::endl;
+		//std::cout << bonus_sprite.getPosition().x << " ------- POSITION X "<< std::endl;
 		this->catch_bonus_true = true;
 
 	}
 	else
 	{
 		this->catch_bonus_true = false;
+		//this->catch_bonus_one_time_true = true;
+		//std::cout << "__________________________________________________________________________" << std::endl;
 	}
 }
 
@@ -122,10 +125,20 @@ bool Colisions::catch_bonus()
 	return catch_bonus_true;
 }
 
-void Colisions::catch_bonus_in(bool index)
+bool Colisions::catch_bonus_one_time()
 {
-	catch_bonus_true = false;
+	return catch_bonus_one_time_true;
 }
+
+void Colisions::catch_bonus_one_time_in(bool index)
+{
+	this->catch_bonus_one_time_true = index;
+}
+
+//void Colisions::catch_change_to_false()
+//{
+//	this->catch_bonus_true = false;
+//}
 
 void Colisions::player_sprite_in(sf::Sprite* player)
 {

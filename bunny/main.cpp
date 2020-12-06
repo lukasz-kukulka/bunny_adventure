@@ -51,7 +51,7 @@ int main()
     Interface inter(window);
     Game_ini game_ini(window);
     //Credits credits(window);
-    //Settings_page settings_page(window);
+    Settings_page settings_page(window);
     Score_page score_page(window);
     Option* go_to_option = &inter;
     while (window.isOpen())
@@ -110,7 +110,7 @@ int main()
 
             case 3: //Settings
             {
-                //go_to_option = &settings_page;                                 ///////////////////////////////////// ZMIENIC JAK W ! 1 i 0 case
+                go_to_option = &settings_page;                                 ///////////////////////////////////// ZMIENIC JAK W ! 1 i 0 case
                 //menu_option = go_to_option->system(window, mouse);
                 //go_to_option->settings(res_load.load_from_settings(2));
                 break;

@@ -132,22 +132,25 @@ void Levels_ini::delete_bonus_yes(bool index, sf::Vector2f player_middle_positio
 
 void Levels_ini::delete_bonus_ini(uint16_t index)
 {
+	
 	this->bonus_delete_element = index;
+	std::cout << bonus_delete_element << std::endl;
 }
 
 void Levels_ini::draw(sf::RenderWindow& window)
 {
-	//switch (game_lvl)
-	//{
-	//case 0:
-	//{
-	//	
-	//	break;
-	//}
-	//default:
-	//	break;
-	//}
-	//system(window, 0);
+	switch (game_lvl)
+	{
+	case 0:
+	{
+		choise_level = &test_lvl;
+		choise_bonus = &pick_lvl_test;
+		break;
+	}
+	default:
+		break;
+	}
+	system(window, 0);
 	choise_level->draw(window);
 	choise_bonus->draw(window);
 	//choise_level = nullptr;

@@ -12,12 +12,12 @@ Background_ini::Background_ini(sf::RenderWindow& window)
 
 uint8_t Background_ini::system(sf::RenderWindow& window, sf::View& view_game, uint8_t lvl)
 {
-	this->view_window = view_game;
+	view_window = view_game;
 	this->game_lvl = lvl;
 	if (objects_ini_available == true)
 	{
 		objects_ini_available = false;
-		this->objects_ini(window);
+		this->objects_ini(window, view_window);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
@@ -37,8 +37,9 @@ uint8_t Background_ini::system(sf::RenderWindow& window, sf::View& view_game, ui
 	return 0;
 }
 
-void Background_ini::objects_ini(sf::RenderWindow& window)
+void Background_ini::objects_ini(sf::RenderWindow& window, sf::View& view_game)
 {
+	view_window = view_game;
 	if (game_lvl == 0)
 	{
 		this->skys.push_back(Background(window, &sky_texture, 0, 0, 0.1, view_window));

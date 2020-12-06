@@ -21,7 +21,7 @@ Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(
 
 uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
-
+	window.setView(view_game);
 	//colision.player_sprite_in(player_bunny[0].shape_player());
 	//this->bonus_index++;
 	//std::cout << static_cast<int>(bonus_index) << std::endl;
@@ -119,7 +119,7 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	
 	player_bunny[0].system();
 	player_bunny[0].gravity_insert(colision.gravityY_out());
-	window.setView(view_game); 
+	//window.setView(view_game); 
 	colision.level_size_input(level_ini.level_size());
 	//std::cout << level_ini.level_size().x << std::endl;
 	colision.no_of_bonus_in(level_ini.no_of_bonus_out());    
@@ -138,16 +138,18 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 
 	if (level_ini.no_of_bonus_out() > 0)
 	{
-		for (bonus_index = 0; bonus_index < level_ini.no_of_bonus_out(); bonus_index++)
+		for (bonus_index = 0; bonus_index < level_ini.no_of_bonus_out() - 1; bonus_index++)
 		{
+			//std::cout << "-----------------------------------------" << bonus_index << std::endl;
 			colision.bonus_sprite_in(level_ini.bonus_sprite_out(bonus_index));
 			colision.colision_bonus();
-			if (colision.catch_bonus() == true)
+			if (colision.catch_bonus() == true && colision.catch_bonus_one_time() == true)
 			{
 				level_ini.delete_bonus_yes(true, sf::Vector2f(player_bunny[0].get_position().x, player_bunny[0].get_position().y));
 				level_ini.delete_bonus_ini(bonus_index);
-				std::cout << "GameINI      --     " << bonus_index << std::endl;
-				colision.catch_bonus_in(false);
+				//std::cout << "GameINI      --     " << bonus_index << std::endl;
+				//colision.catch_bonus_one_time_in(false);
+				//colision.catch_change_to_false();
 				break;
 			}
 		}

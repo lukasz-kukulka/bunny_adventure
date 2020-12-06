@@ -26,6 +26,7 @@ public:
 private:
 	sf::Texture awa501, awa502, awa503, awa504, awa505, awa506, awa507, awa508, awa509, awa510, awa511, awa512;
 	std::vector<Single_pick_bonus>bonuses;
+	//std::vector<Single_pick_bonus>bonuses_before_delete;
 	std::vector<single_tile_out_for_bonus>tiles_parameters;
 	std::vector<int>teporary_tiles_tab;
 	uint16_t bonus_quantity, tiles_quantity, random_pos;

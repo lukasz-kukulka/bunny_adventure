@@ -3,7 +3,7 @@
 Background::Background(sf::RenderWindow& window, sf::Texture* back_tex, uint8_t type_sprite, uint8_t index, float speed, sf::View& view_window)
 {
 	this->index = index;
-	this->speed_f = 1.0 * window.getSize().x / (window.getSize().x / speed);
+	this->speed_f = window.getSize().x / (window.getSize().x / speed);
 	this->movment_pooint_x = view_window.getCenter().x;
 	this->type_sprite = type_sprite;
 	this->back_sprite.setTexture(*back_tex);
