@@ -61,7 +61,7 @@ uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
 	{
 		choise_bonus->delete_bonus_elements(bonus_delete_element);
 		//std::cout << player_pos.x << std::endl;
-		delete_bonus_yes(false, sf::Vector2f(player_pos));
+		delete_bonus_yes(false, player_pos);
 		//bonus_delete_yes = false;
 	}
 
@@ -123,18 +123,18 @@ uint16_t Levels_ini::no_of_bonus_out()
 	return pick_lvl_test.no_of_bonus_out();
 }
 
-void Levels_ini::delete_bonus_yes(bool index, sf::Vector2f player_middle_position)
+void Levels_ini::delete_bonus_yes(bool index, sf::Sprite* player)
 {
-	player_pos = player_middle_position;
+	player_pos = player;
 	bonus_delete_yes = index;
-	pick_lvl_test.player_mid_position(sf::Vector2f(player_pos));
+	pick_lvl_test.player_mid_position(player_pos);
 }
 
 void Levels_ini::delete_bonus_ini(uint16_t index)
 {
 	
 	this->bonus_delete_element = index;
-	std::cout << bonus_delete_element << std::endl;
+	//std::cout << bonus_delete_element << std::endl;
 }
 
 void Levels_ini::draw(sf::RenderWindow& window)

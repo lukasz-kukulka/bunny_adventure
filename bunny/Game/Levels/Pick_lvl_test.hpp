@@ -14,7 +14,7 @@ public:
 	void bonus_parameters_ini(single_tile_out_for_bonus index);
 	void no_of_tiles(uint16_t index);
 	sf::Sprite bonus_sprite_out(uint16_t index);
-	void player_mid_position(sf::Vector2f pos);
+	void player_mid_position(sf::Sprite* player);
 	uint16_t no_of_bonus_out();
 	void delete_bonus_elements(uint16_t element_index);
 	void draw(sf::RenderWindow& window);

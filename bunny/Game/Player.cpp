@@ -55,7 +55,7 @@ void Player::animations(float time_animation)
 		if (movement_enable == true)
 		{
 			//this->player_sprite.move(3, 0);
-			this->player_sprite.setPosition(player_sprite.getPosition().x + 30, player_sprite.getPosition().y);
+			this->player_sprite.setPosition(player_sprite.getPosition().x + 3, player_sprite.getPosition().y);
 			//std::cout << "event";
 		}
 		if (animation[1].system(time_animation, &player_sprite) == 1)

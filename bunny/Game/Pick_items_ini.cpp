@@ -148,11 +148,11 @@ uint16_t Pick_items_ini::no_of_tiles_out()
 
 void Pick_items_ini::animation_delete_bonus_ini()
 {
-	for (int i = 0; i < bonuses.size() - 1; i++)
+	for (int i = 0; i < bonuses.size(); i++)
 	{
 		//std::cout << i << std::endl;
 		//std::cout << i << "PRAWDA CZY N*E________________________________ " << bonuses[i].animation_finish_out() << std::endl;
-		bonuses[i].animation_ini(position_player_middle);
+		bonuses[i].animation_ini(player_sprite_out());
 		if (bonuses[i].animation_finish_out() == true)
 		{
 			//std::cout << i << ".     PRAWDA CZY N*E________________________________ " << bonuses[i].animation_finish_out() << std::endl;
@@ -165,9 +165,14 @@ void Pick_items_ini::animation_delete_bonus_ini()
 	}
 }
 
-void Pick_items_ini::player_mid_position(sf::Vector2f pos)
+void Pick_items_ini::player_mid_position(sf::Sprite* player)
 {
-	this->position_player_middle = pos;
+	player_sprite = player;
+}
+
+sf::Sprite* Pick_items_ini::player_sprite_out()
+{
+	return player_sprite;
 }
 
 void Pick_items_ini::delete_bonus_ele(uint16_t element_index)

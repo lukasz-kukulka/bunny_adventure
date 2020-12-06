@@ -45,20 +45,76 @@ void Single_pick_bonus::animation_delete()
 	//std::cout << "dupa" << std::endl;
 }
 
-void Single_pick_bonus::animation_ini(sf::Vector2f player_mid_pos)
+void Single_pick_bonus::animation_ini(sf::Sprite* player)
 {
 	//std::cout << "tak" << std::endl;
+	
+	
 	if (animation_delete_start == true && animation_finish == false)
 	{
-		this->bonus_sprite.setScale(sf::Vector2f(bonus_sprite.getScale().x + 0.1, 1));
-
-		if (bonus_sprite.getScale().x > 3)
+		if (animation_steps == 0)
 		{
-			//std::cout << "single bonus ------ " << bonus_sprite.getPosition().x << std::endl;
+			if (animation_x_finished == false)
+			{
+				distanse_between_player_and_bonus_x = (player->getPosition().x + player->getGlobalBounds().width / 2) - (bonus_sprite.getPosition().x + bonus_sprite.getGlobalBounds().width / 2);
+			}
+
+			if (distanse_between_player_and_bonus_x <= movement_bonus_x && distanse_between_player_and_bonus_x >= (0 - movement_bonus_x))
+			{
+				bonus_sprite.setPosition(player->getPosition().x + player->getGlobalBounds().width / 2 - bonus_sprite.getGlobalBounds().width / 2, bonus_sprite.getPosition().y);
+				distanse_between_player_and_bonus_x = 0;
+				animation_x_finished = true;
+			}
+			else if (distanse_between_player_and_bonus_x >= movement_bonus_x)
+			{
+				bonus_sprite.setPosition(bonus_sprite.getPosition().x + movement_bonus_x, bonus_sprite.getPosition().y);
+			}
+			else if (distanse_between_player_and_bonus_x <  0 - movement_bonus_x)
+			{
+				bonus_sprite.setPosition(bonus_sprite.getPosition().x - movement_bonus_x, bonus_sprite.getPosition().y);
+			}
+
+			if (animation_y_finished == false)
+			{
+				distanse_between_player_and_bonus_y = -1 * player->getPosition().y - bonus_sprite.getPosition().y + bonus_sprite.getGlobalBounds().height;
+			}
+			if (distanse_between_player_and_bonus_y <= movement_bonus_y && distanse_between_player_and_bonus_y >= (0 - movement_bonus_y))
+			{
+				bonus_sprite.setPosition(bonus_sprite.getPosition().x, player->getPosition().y - bonus_sprite.getGlobalBounds().height);
+				this->distanse_between_player_and_bonus_y = 0;
+				animation_y_finished = true;
+			}
+			else if (distanse_between_player_and_bonus_y >= movement_bonus_y)
+			{
+				bonus_sprite.setPosition(bonus_sprite.getPosition().x, bonus_sprite.getPosition().y + movement_bonus_y);
+			}
+			else if (distanse_between_player_and_bonus_y < 0 - movement_bonus_y)
+			{
+				bonus_sprite.setPosition(bonus_sprite.getPosition().x, bonus_sprite.getPosition().y - movement_bonus_y);
+			}
+
+			if (distanse_between_player_and_bonus_x == 0 && distanse_between_player_and_bonus_y == 0)
+			{
+				animation_steps = 1;
+			}
+		}
+		if (animation_steps == 1)
+		{
+			this->bonus_sprite.setScale(sf::Vector2f(bonus_sprite.getScale().x - 0.01, bonus_sprite.getScale().y - 0.01));
+			if (bonus_sprite.getScale().x <= 0.02)
+			{
+				animation_steps = 2;
+			}
+		}
+
+		if (animation_steps == 2)
+		{
 			animation_finish = true;
 			animation_delete_start = false;
 		}
+		
 	}
+	
 }
 
 bool Single_pick_bonus::animation_finish_out()

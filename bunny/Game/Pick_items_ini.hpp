@@ -19,7 +19,8 @@ public:
 	uint16_t no_of_bonus_out();
 	uint16_t no_of_tiles_out();
 	void animation_delete_bonus_ini();
-	void player_mid_position(sf::Vector2f pos);
+	void player_mid_position(sf::Sprite* player);
+	sf::Sprite* player_sprite_out();
 	void delete_bonus_ele(uint16_t element_index);
 	void draw(sf::RenderWindow& window);
 
@@ -31,6 +32,7 @@ private:
 	std::vector<int>teporary_tiles_tab;
 	uint16_t bonus_quantity, tiles_quantity, random_pos;
 	sf::Vector2f position_player_middle;
+	sf::Sprite* player_sprite;
 	bool bonus_position_ini;
 
 };

@@ -99,9 +99,9 @@ sf::Sprite Pick_lvl_test::bonus_sprite_out(uint16_t index)
     return bonus_ini[0].bonus_sprite_out(index);
 }
 
-void Pick_lvl_test::player_mid_position(sf::Vector2f pos)
+void Pick_lvl_test::player_mid_position(sf::Sprite* player)
 {
-    bonus_ini[0].player_mid_position(pos);
+    bonus_ini[0].player_mid_position(player);
 }
 
 uint16_t Pick_lvl_test::no_of_bonus_out()
@@ -112,7 +112,7 @@ uint16_t Pick_lvl_test::no_of_bonus_out()
 void Pick_lvl_test::delete_bonus_elements(uint16_t element_index)
 {
     bonus_ini[0].delete_bonus_ele(element_index);
-    std::cout << "test_level PICK        " << element_index << std::endl;
+    //std::cout << "test_level PICK        " << element_index << std::endl;
 }
 
 //single_tile_out_for_bonus Pick_lvl_test::bonus_parameters_ini(uint16_t index)

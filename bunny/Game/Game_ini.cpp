@@ -138,16 +138,16 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 
 	if (level_ini.no_of_bonus_out() > 0)
 	{
-		for (bonus_index = 0; bonus_index < level_ini.no_of_bonus_out() - 1; bonus_index++)
+		for (bonus_index = 0; bonus_index < level_ini.no_of_bonus_out(); bonus_index++)
 		{
 			//std::cout << "-----------------------------------------" << bonus_index << std::endl;
 			colision.bonus_sprite_in(level_ini.bonus_sprite_out(bonus_index));
 			colision.colision_bonus();
 			if (colision.catch_bonus() == true && colision.catch_bonus_one_time() == true)
 			{
-				level_ini.delete_bonus_yes(true, sf::Vector2f(player_bunny[0].get_position().x, player_bunny[0].get_position().y));
+				level_ini.delete_bonus_yes(true, player_bunny[0].shape_player());
 				level_ini.delete_bonus_ini(bonus_index);
-				//std::cout << "GameINI      --     " << bonus_index << std::endl;
+				//std::cout << "NO_BONUS      "<< level_ini.no_of_bonus_out() << std::endl;
 				//colision.catch_bonus_one_time_in(false);
 				//colision.catch_change_to_false();
 				break;
