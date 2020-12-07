@@ -130,7 +130,26 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		for (int i = 0; i < level_ini.no_tiles(); i++)
 		{
 			colision.tile_sprite_in(level_ini.tiles(i));
-			//std::cout << i << std::endl;
+			//std::cout << level_ini.tiles_type(i) << std::endl;
+			colision.tiles_type_in(level_ini.tiles_type(i));
+			
+			if (level_ini.tiles_type(i) == 111)
+			{
+				//std::cout << i << " = i    tak :" << level_ini.tiles_type(i) << "  1tak :" << level_ini.tiles_type(i - level_ini.level_size().x / 100) << std::endl;
+				for (int j = 0; j < level_ini.no_tiles(); j++)
+				{
+					if (level_ini.tiles(i)->getPosition().x == level_ini.tiles(j)->getPosition().x &&
+						level_ini.tiles(i)->getPosition().y != level_ini.tiles(j)->getPosition().y - 100)
+					{
+						std::cout << "tak" << std::endl;
+						colision.ledder_gravity_ground(true);
+					}
+					else
+					{
+						colision.ledder_gravity_ground(false);
+					}
+				}
+			}
 			colision.colision(window);
 		}
 	}
@@ -147,9 +166,6 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			{
 				level_ini.delete_bonus_yes(true, player_bunny[0].shape_player());
 				level_ini.delete_bonus_ini(bonus_index);
-				//std::cout << "NO_BONUS      "<< level_ini.no_of_bonus_out() << std::endl;
-				//colision.catch_bonus_one_time_in(false);
-				//colision.catch_change_to_false();
 				break;
 			}
 		}

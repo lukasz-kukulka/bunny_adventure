@@ -64,7 +64,7 @@ uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
 		delete_bonus_yes(false, player_pos);
 		//bonus_delete_yes = false;
 	}
-
+	
 	//choise_bonus->bonus_sprite_out
 	return 0;
 }
@@ -135,6 +135,12 @@ void Levels_ini::delete_bonus_ini(uint16_t index)
 	
 	this->bonus_delete_element = index;
 	//std::cout << bonus_delete_element << std::endl;
+}
+
+uint16_t Levels_ini::tiles_type(uint16_t index)
+{
+	//std::cout << test_lvl.tiles_type(index) << std::endl;
+	return test_lvl.tiles_type(index);
 }
 
 void Levels_ini::draw(sf::RenderWindow& window)

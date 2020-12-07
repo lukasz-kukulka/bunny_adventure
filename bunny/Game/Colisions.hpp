@@ -25,6 +25,8 @@ public:
 	//void catch_change_to_false();
 	void player_sprite_in(sf::Sprite* player);
 	void free_memory();
+	void tiles_type_in(uint16_t value);
+	void ledder_gravity_ground(bool index);
 	int8_t gravityY_out();
 
 private:
@@ -32,8 +34,8 @@ private:
 	sf::Sprite* player_sprite;
 	sf::Sprite* tile_sprite;
 	int8_t gravityY, border;
-	uint16_t bonus_quantity, bonus_number;
+	uint16_t bonus_quantity, bonus_number, tiles_type{ 0 };
 	sf::Vector2i level_size;
-	bool jump_available, ground_yes_no, catch_bonus_true, catch_bonus_one_time_true;
+	bool jump_available, ground_yes_no, catch_bonus_true, catch_bonus_one_time_true, ledder_gravity_botton_bool{ false };
 };
 

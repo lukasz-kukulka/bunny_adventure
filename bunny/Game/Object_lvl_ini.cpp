@@ -34,6 +34,7 @@ Object_lvl_ini::Object_lvl_ini(sf::RenderWindow& window)
 	this->tex106.loadFromFile("Game/Textures/Levels/106.png");
 	this->tex107.loadFromFile("Game/Textures/Levels/107.png");
 	this->tex108.loadFromFile("Game/Textures/Levels/108.png");
+	this->tex111.loadFromFile("Game/Textures/Levels/111.png");
 }
 
 void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_lvl, sf::Vector2f size_board)
@@ -62,7 +63,7 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					}
 					if (temp == "001")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex001, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex001, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 						if (checking_colistion_bonus_with_tile() == true)
 						{
@@ -75,7 +76,7 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					}
 					else if (temp == "002")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex002, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex002, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 						if (checking_colistion_bonus_with_tile() == true)
 						{
@@ -88,7 +89,7 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					}
 					else if (temp == "003")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex003, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex003, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 						if (checking_colistion_bonus_with_tile() == true)
 						{
@@ -101,7 +102,7 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					}
 					else if (temp == "004")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex004, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex004, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 						if (checking_colistion_bonus_with_tile() == true)
 						{
@@ -114,7 +115,7 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					}
 					else if (temp == "005")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex005, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex005, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 						if (checking_colistion_bonus_with_tile() == true)
 						{
@@ -127,7 +128,7 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					}
 					else if (temp == "006")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex006, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex006, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 						if (checking_colistion_bonus_with_tile() == true)
 						{
@@ -140,7 +141,7 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					}
 					else if (temp == "007")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex007, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex007, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 						if (checking_colistion_bonus_with_tile() == true)
 						{
@@ -153,7 +154,7 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					}
 					else if (temp == "008")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex008, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex008, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 						if (checking_colistion_bonus_with_tile() == true)
 						{
@@ -166,7 +167,7 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					}
 					else if (temp == "009")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex009, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex009, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 						if (checking_colistion_bonus_with_tile() == true)
 						{
@@ -179,7 +180,7 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					}
 					else if (temp == "010")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex010, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex010, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 						if (checking_colistion_bonus_with_tile() == true)
 						{
@@ -192,7 +193,7 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					}
 					else if (temp == "011")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex011, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex011, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 						if (checking_colistion_bonus_with_tile() == true)
 						{
@@ -205,7 +206,7 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					}
 					else if (temp == "012")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex012, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex012, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 						if (checking_colistion_bonus_with_tile() == true)
 						{
@@ -218,17 +219,17 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					}
 					else if (temp == "013")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex013, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex013, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 					}
 					else if (temp == "014")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex014, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex014, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 					}
 					else if (temp == "015")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex015, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex015, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 						if (checking_colistion_bonus_with_tile() == true)
 						{
@@ -241,7 +242,7 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					}
 					else if (temp == "016")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex016, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex016, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 						if (checking_colistion_bonus_with_tile() == true)
 						{
@@ -254,7 +255,7 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					}
 					else if (temp == "017")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex017, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex017, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 						if (checking_colistion_bonus_with_tile() == true)
 						{
@@ -267,7 +268,7 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					}
 					else if (temp == "018")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex018, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex018, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 						if (checking_colistion_bonus_with_tile() == true)
 						{
@@ -280,67 +281,72 @@ void Object_lvl_ini::create_objects(sf::RenderWindow& window, std::string path_l
 					}
 					else if (temp == "020")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex020, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex020, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 					}
 					else if (temp == "021")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex021, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex021, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 					}
 					else if (temp == "022")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex022, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex022, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 					}
 					else if (temp == "023")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex023, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex023, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 					}
 					else if (temp == "024")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex024, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex024, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 					}
 					else if (temp == "101")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex101, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex101, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 					}
 					else if (temp == "102")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex102, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex102, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 					}
 					else if (temp == "103")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex103, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex103, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 					}
 					else if (temp == "104")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex104, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex104, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 					}
 					else if (temp == "105")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex105, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex105, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 					}
 					else if (temp == "106")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex106, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex106, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 					}
 					else if (temp == "107")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex107, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex107, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 					}
 					else if (temp == "108")
 					{
-						tiles_tex.push_back(Single_tile(window, &tex108, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f)));
+						tiles_tex.push_back(Single_tile(window, &tex108, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
+						no_tiles_row++;
+					}
+					else if (temp == "111")
+					{
+						tiles_tex.push_back(Single_tile(window, &tex111, sf::Vector2f(no_tiles_row * 100.0f, window.getSize().y - size_board.y + no_line * 100.0f), temp));
 						no_tiles_row++;
 					}
 					i += 2;
@@ -401,6 +407,11 @@ bool Object_lvl_ini::checking_colistion_bonus_with_tile()
 uint16_t Object_lvl_ini::no_bonuses()
 {
 	return struct_bonus_out.size();
+}
+
+uint16_t Object_lvl_ini::tiles_type(uint16_t index)
+{
+	return tiles_tex[index].return_type_tile();
 }
 
 void Object_lvl_ini::draw(sf::RenderWindow& window)

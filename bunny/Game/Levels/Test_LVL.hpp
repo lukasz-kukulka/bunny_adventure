@@ -14,6 +14,7 @@ public:
 	uint16_t no_til();
 	single_tile_out_for_bonus bonus_parameters(uint16_t index);
 	uint16_t bonus_size();
+	uint16_t tiles_type(uint16_t index);
 	void draw(sf::RenderWindow& window);
 
 private:

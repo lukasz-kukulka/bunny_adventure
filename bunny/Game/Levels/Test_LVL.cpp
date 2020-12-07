@@ -45,6 +45,11 @@ uint16_t Test_LVL::bonus_size()
     return lvl0.no_bonuses();
 }
 
+uint16_t Test_LVL::tiles_type(uint16_t index)
+{
+    return lvl0.tiles_type(index);
+}
+
 //uint8_t Test_LVL::bonus_size(uint8_t index)
 //{
 //    if (index == 1)

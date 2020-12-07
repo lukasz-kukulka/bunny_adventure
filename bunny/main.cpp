@@ -158,6 +158,6 @@ int main()
         window.draw(sprite);
         window.display();
     }
-    go_to_option = nullptr;
+    //go_to_option = nullptr;
     return 0;
 }
