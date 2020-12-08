@@ -130,26 +130,19 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		for (int i = 0; i < level_ini.no_tiles(); i++)
 		{
 			colision.tile_sprite_in(level_ini.tiles(i));
-			//std::cout << level_ini.tiles_type(i) << std::endl;
 			colision.tiles_type_in(level_ini.tiles_type(i));
 			
-			if (level_ini.tiles_type(i) == 111)
+			if (level_ini.tiles_type(i) == 111 && colision.ladder_colision(window) == 1)
 			{
-				//std::cout << i << " = i    tak :" << level_ini.tiles_type(i) << "  1tak :" << level_ini.tiles_type(i - level_ini.level_size().x / 100) << std::endl;
-				for (int j = 0; j < level_ini.no_tiles(); j++)
-				{
-					if (level_ini.tiles(i)->getPosition().x == level_ini.tiles(j)->getPosition().x &&
-						level_ini.tiles(i)->getPosition().y != level_ini.tiles(j)->getPosition().y - 100)
-					{
-						std::cout << "tak" << std::endl;
-						colision.ledder_gravity_ground(true);
-					}
-					else
-					{
-						colision.ledder_gravity_ground(false);
-					}
-				}
+				colision.gravity_change(0);
+				break;
 			}
+			else
+			{
+				colision.gravity_change(10);
+			}
+
+
 			colision.colision(window);
 		}
 	}

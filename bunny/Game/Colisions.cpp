@@ -24,6 +24,7 @@ void Colisions::colision(sf::RenderWindow& window)
 	//std::cout << "PLAYER ---> " << player_sprite->getPosition().x + player_sprite->getGlobalBounds().height << "    ========    tiles ---> " << tile_sprite->getPosition().x << std::endl;
 	//std::cout << level_size.x << std::endl;
 	//player_sprite = player;
+
 	if (player_sprite->getPosition().x <= 0)
 	{
 		player_sprite->setPosition(0, player_sprite->getPosition().y);
@@ -35,14 +36,22 @@ void Colisions::colision(sf::RenderWindow& window)
 	if (player_sprite->getPosition().y + player_sprite->getGlobalBounds().height >= tile_sprite->getPosition().y &&
 		player_sprite->getPosition().y + player_sprite->getGlobalBounds().height < tile_sprite->getPosition().y + tile_sprite->getGlobalBounds().height  &&
 		player_sprite->getPosition().x + player_sprite->getGlobalBounds().width - border > tile_sprite->getPosition().x &&
-		player_sprite->getPosition().x + border < tile_sprite->getPosition().x + tile_sprite->getGlobalBounds().width && tiles_type != 111 || ledder_gravity_botton_bool == true)
+		player_sprite->getPosition().x + border < tile_sprite->getPosition().x + tile_sprite->getGlobalBounds().width && tiles_type != 111)
 	{
+
 		player_sprite->setPosition(player_sprite->getPosition().x, tile_sprite->getPosition().y - player_sprite->getGlobalBounds().height - gravityY);
-		//std::cout << "PLAYER ---> " << player_sprite->getPosition().x / 100 + player_sprite->getGlobalBounds().height << "    ========    tiles ---> " << tile_sprite->getPosition().x / 100 << std::endl;
-		//std::cout << "1" << std::endl;
 		this->ground_yes_no = true;
+		//this->gravityY = 10;
 		
 	}
+	//else if (player_sprite->getPosition().y + player_sprite->getGlobalBounds().height > tile_sprite->getPosition().y - 1 &&
+	//	player_sprite->getPosition().x + player_sprite->getGlobalBounds().width - border > tile_sprite->getPosition().x &&
+	//	player_sprite->getPosition().x + border < tile_sprite->getPosition().x + tile_sprite->getGlobalBounds().width && tiles_type == 111)
+	//{
+	//	std::cout << "1" << std::endl;
+	//	this->gravityY = 10;
+	//}
+
 	else if (player_sprite->getPosition().y + border <= tile_sprite->getPosition().y + tile_sprite->getGlobalBounds().height &&
 		player_sprite->getPosition().y >= tile_sprite->getPosition().y + tile_sprite->getGlobalBounds().height - tile_sprite->getGlobalBounds().height / 3 * 2&&
 		player_sprite->getPosition().x + player_sprite->getGlobalBounds().width - border > tile_sprite->getPosition().x &&
@@ -51,6 +60,7 @@ void Colisions::colision(sf::RenderWindow& window)
 		player_sprite->setPosition(player_sprite->getPosition().x, tile_sprite->getPosition().y + tile_sprite->getGlobalBounds().height - border);
 		//std::cout << "2" << std::endl;
 	}
+
 	if (player_sprite->getPosition().y + player_sprite->getGlobalBounds().height == tile_sprite->getPosition().y + tile_sprite->getGlobalBounds().height &&
 		player_sprite->getPosition().y + player_sprite->getGlobalBounds().height >= tile_sprite->getPosition().y &&
 		player_sprite->getPosition().x + player_sprite->getGlobalBounds().width - border >= tile_sprite->getPosition().x &&
@@ -66,6 +76,21 @@ void Colisions::colision(sf::RenderWindow& window)
 	{
 		player_sprite->setPosition(tile_sprite->getPosition().x + tile_sprite->getGlobalBounds().width - border, player_sprite->getPosition().y);
 		//std::cout << "4" << std::endl;
+	}
+}
+
+uint8_t Colisions::ladder_colision(sf::RenderWindow& window)
+{
+	if (player_sprite->getPosition().y + player_sprite->getGlobalBounds().height >= tile_sprite->getPosition().y &&
+		player_sprite->getPosition().y + player_sprite->getGlobalBounds().height < tile_sprite->getPosition().y + tile_sprite->getGlobalBounds().height &&
+		player_sprite->getPosition().x + player_sprite->getGlobalBounds().width - border * 3 > tile_sprite->getPosition().x &&
+		player_sprite->getPosition().x + border * 3 < tile_sprite->getPosition().x + tile_sprite->getGlobalBounds().width)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
 	}
 }
 
@@ -158,4 +183,9 @@ void Colisions::ledder_gravity_ground(bool index)
 int8_t Colisions::gravityY_out()
 {
 	return gravityY;
+}
+
+void Colisions::gravity_change(uint8_t index)
+{
+	this->gravityY = index;
 }

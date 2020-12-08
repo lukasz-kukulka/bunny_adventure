@@ -9,6 +9,7 @@ public:
 
 	void gravity();
 	void colision(sf::RenderWindow& window);
+	uint8_t ladder_colision(sf::RenderWindow& window);
 	void draw(sf::RenderWindow& window);
 	bool player_stay_in_ground();
 	void player_stay_in_ground_change(bool change);
@@ -28,6 +29,7 @@ public:
 	void tiles_type_in(uint16_t value);
 	void ledder_gravity_ground(bool index);
 	int8_t gravityY_out();
+	void gravity_change(uint8_t index);
 
 private:
 	sf::Sprite bonus_sprite;
