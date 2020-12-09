@@ -67,14 +67,14 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			colision.player_stay_in_ground_change(false);
 		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && player_bunny[0].direction_player_out() == 100)
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && player_bunny[0].direction_player_out() == 100 && ladder_movement_enable == true)
 	{
 		if (time_directions >= 20)
 		{
 			player_bunny[0].animation_directon(3);
 		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && player_bunny[0].direction_player_out() == 100)
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && player_bunny[0].direction_player_out() == 100 && ladder_movement_enable == true)
 	{
 		if (time_directions >= 20)
 		{
@@ -124,28 +124,24 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	//std::cout << level_ini.level_size().x << std::endl;
 	colision.no_of_bonus_in(level_ini.no_of_bonus_out());    
 	colision.player_sprite_in(player_bunny[0].shape_player());
-	if (level_ini.no_tiles() > 0)
+	colision.gravity_change(10);
+	this->ladder_movement_enable = false;
+
+	//std::cout << level_ini.no_tiles() << std::endl;
+	for (int i = 0; i < level_ini.no_tiles(); i++)
 	{
-		//std::cout << level_ini.no_tiles() << std::endl;
-		for (int i = 0; i < level_ini.no_tiles(); i++)
+		colision.tile_sprite_in(level_ini.tiles(i));
+		colision.tiles_type_in(level_ini.tiles_type(i));
+
+		colision.colision(window);
+		if (colision.ladder_colision(window) == 1)
 		{
-			colision.tile_sprite_in(level_ini.tiles(i));
-			colision.tiles_type_in(level_ini.tiles_type(i));
-			
-			if (level_ini.tiles_type(i) == 111 && colision.ladder_colision(window) == 1)
-			{
-				colision.gravity_change(0);
-				break;
-			}
-			else
-			{
-				colision.gravity_change(10);
-			}
-
-
-			colision.colision(window);
+			//std::cout << "----------" << std::endl;
+			colision.gravity_change(0);
+			this->ladder_movement_enable = true;
 		}
 	}
+
 
 
 	if (level_ini.no_of_bonus_out() > 0)

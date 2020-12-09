@@ -82,14 +82,16 @@ void Colisions::colision(sf::RenderWindow& window)
 uint8_t Colisions::ladder_colision(sf::RenderWindow& window)
 {
 	if (player_sprite->getPosition().y + player_sprite->getGlobalBounds().height >= tile_sprite->getPosition().y &&
-		player_sprite->getPosition().y + player_sprite->getGlobalBounds().height < tile_sprite->getPosition().y + tile_sprite->getGlobalBounds().height &&
+		player_sprite->getPosition().y + player_sprite->getGlobalBounds().height <= tile_sprite->getPosition().y + tile_sprite->getGlobalBounds().height &&
 		player_sprite->getPosition().x + player_sprite->getGlobalBounds().width - border * 3 > tile_sprite->getPosition().x &&
-		player_sprite->getPosition().x + border * 3 < tile_sprite->getPosition().x + tile_sprite->getGlobalBounds().width)
+		player_sprite->getPosition().x + border * 3 < tile_sprite->getPosition().x + tile_sprite->getGlobalBounds().width && tiles_type == 111)
 	{
+		std::cout << "==" << static_cast<int>(tiles_type) << std::endl;
 		return 1;
 	}
 	else
 	{
+		//std::cout << "====================" << static_cast<int>(tiles_type) << std::endl;
 		return 0;
 	}
 }
