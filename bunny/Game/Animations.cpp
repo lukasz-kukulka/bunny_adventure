@@ -40,6 +40,11 @@ void Animations::reset_animation()
 	this->window_animation_rec.left = 0.0f;
 }
 
+void Animations::end_animation()
+{
+	this->window_animation_rec.left = max_frame * window_animation_rec.width;
+}
+
 void Animations::diretion_change(uint8_t dir, sf::Sprite* object_sprite)
 {
 	this->window_animation_rec.left = 0.0f;

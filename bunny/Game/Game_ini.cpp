@@ -69,9 +69,11 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && player_bunny[0].direction_player_out() == 100 && ladder_movement_enable == true)
 	{
+		player_bunny[0].movement_enabled_changing(true);
 		if (time_directions >= 20)
 		{
 			player_bunny[0].animation_directon(3);
+			colision.player_stay_in_ground_change(false);
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && player_bunny[0].direction_player_out() == 100 && ladder_movement_enable == true)
@@ -79,6 +81,7 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		if (time_directions >= 20)
 		{
 			player_bunny[0].animation_directon(6);
+			colision.player_stay_in_ground_change(false);
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && colision.player_stay_in_ground() == true)
@@ -98,9 +101,7 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	if ((view_game.getCenter().x - view_game.getSize().x / 2 >= 0 || player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2 - view_game.getSize().x / 2 >= 0) &&
 		view_game.getCenter().x + view_game.getSize().x / 2 <= level_ini.level_size().x)
 	{
-		//std::cout << static_cast<int>(level_ini.level_size().x) << " ------ " << view_game.getCenter().x + view_game.getSize().x / 2 << std::endl;
 		this->view_game.setCenter(player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2, view_game.getCenter().y);
-
 	}
 
 	background_ini.system(window, view_game, game_level);
@@ -109,14 +110,6 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	time_animation = clock_animation.restart().asSeconds();
 
 	player_bunny[0].animations(time_animation);
-	//for (int i = 0; i < level_ini.no_tiles(); i++)
-	//{
-	//	//player_bunny[0].get_position().y
-	//	//std::cout << "-----------------------" << level_ini.no_tiles() <<"   -----------     " << i << std::endl;
-	//	colision.colision(window, level_ini.tiles(i));
-	//	colision.tile_sprite_in(level_ini.tiles(i));
-	//}
-	
 	player_bunny[0].system();
 	player_bunny[0].gravity_insert(colision.gravityY_out());
 	//window.setView(view_game); 
@@ -141,7 +134,10 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			this->ladder_movement_enable = true;
 		}
 	}
-
+	if (ladder_movement_enable == false)
+	{
+		player_bunny[0].animation_finish(true);
+	}
 
 
 	if (level_ini.no_of_bonus_out() > 0)

@@ -9,6 +9,7 @@ public:
 	uint8_t system(float next_frame_time, sf::Sprite* object_sprite);
 	void objects_ini(sf::RenderWindow& window);
 	void reset_animation();
+	void end_animation();
 	void draw(sf::RenderWindow& window);
 	void diretion_change(uint8_t dir, sf::Sprite* object_sprite);
 	//bool end_animations();

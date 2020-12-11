@@ -22,6 +22,7 @@ public:
 	sf::Vector2i get_position();
 	sf::Vector2f get_global();
 	void gravity_insert(int8_t grav);
+	void animation_finish(bool index);
 	void draw(sf::RenderWindow& window);
 
 private:
@@ -33,6 +34,6 @@ private:
 	int16_t jump_distans_max, jump_start_position, jump_max_position;
 	int8_t gravitY, direction_player;
 	float time_animations;
-	bool animation_plays_right, animation_plays_left, jump_true, movement_enable;
+	bool animation_plays_right, animation_plays_left, jump_true, movement_enable, animation_end_variable{ false };
 };
 

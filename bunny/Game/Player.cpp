@@ -80,21 +80,39 @@ void Player::animations(float time_animation)
 	}
 	case 3:
 	{
-		this->player_sprite.move(0, -2 - gravitY);
-		if (directions == 2)
+		if (animation_end_variable == false)
 		{
-			if (animation[3].system(time_animation, &player_sprite) == 1)
+			this->player_sprite.move(0, -2 - gravitY);
+			if (directions == 2)
 			{
-				this->direction_player = 100;
+				if (animation[3].system(time_animation, &player_sprite) == 1)
+				{
+					this->direction_player = 100;
+				}
+			}
+			if (directions == 1)
+			{
+				if (animation[4].system(time_animation, &player_sprite) == 1)
+				{
+					this->direction_player = 100;
+				}
 			}
 		}
-		if (directions == 1)
+		else
 		{
-			if (animation[4].system(time_animation, &player_sprite) == 1)
+			this->player_sprite.move(0, 2 - gravitY);
+
+			if (directions == 2)
 			{
-				this->direction_player = 100;
+				animation[3].end_animation();
 			}
+			if (directions == 1)
+			{
+				animation[4].end_animation();
+			}
+			animation_end_variable = false;
 		}
+
 		break;
 	}
 	case 4:
@@ -265,6 +283,11 @@ sf::Vector2f Player::get_global()
 void Player::gravity_insert(int8_t grav)
 {
 	gravitY = grav;
+}
+
+void Player::animation_finish(bool index)
+{
+	this->animation_end_variable = true;
 }
 
 void Player::draw(sf::RenderWindow& window)
