@@ -86,12 +86,12 @@ uint8_t Colisions::ladder_colision(sf::RenderWindow& window)
 		player_sprite->getPosition().x + player_sprite->getGlobalBounds().width - border * 3 > tile_sprite->getPosition().x &&
 		player_sprite->getPosition().x + border * 3 < tile_sprite->getPosition().x + tile_sprite->getGlobalBounds().width && tiles_type == 111)
 	{
-		std::cout << "==" << static_cast<int>(tiles_type) << std::endl;
+		//std::cout << "==" << static_cast<int>(tiles_type) << std::endl;
 		return 1;
 	}
+
 	else
 	{
-		//std::cout << "====================" << static_cast<int>(tiles_type) << std::endl;
 		return 0;
 	}
 }

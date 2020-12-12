@@ -3,11 +3,11 @@
 Pick_lvl_test::Pick_lvl_test(sf::RenderWindow& window)
 {
     this->bonus501 = 0; // widogrona wisz¹ce !!!!!!!!!!!! musi byc u góry
-    this->bonus502 = 0; // burak
-    this->bonus503 = 0; // kolko - lisc zielony
-    this->bonus504 = 12; // marchewka
+    this->bonus502 = 3; // burak
+    this->bonus503 = 3; // kolko - lisc zielony
+    this->bonus504 = 3; // marchewka
     this->bonus505 = 3; // grzyb
-    this->bonus506 = 0; // kolko - spirala
+    this->bonus506 = 3; // kolko - spirala
     this->bonus507 = 0; // kolko - lisc rozowy
     this->bonus508 = 0; // kolko - kropla
     this->bonus509 = 0; // kolko - ogien
@@ -113,6 +113,16 @@ void Pick_lvl_test::delete_bonus_elements(uint16_t element_index)
 {
     bonus_ini[0].delete_bonus_ele(element_index);
     //std::cout << "test_level PICK        " << element_index << std::endl;
+}
+
+uint8_t Pick_lvl_test::type_item_bonus_out(uint16_t index)
+{
+    return bonus_ini[0].type_item_bonus_out(index);
+}
+
+bool Pick_lvl_test::confirm_bonus_delete()
+{
+    return bonus_ini[0].confirm_bonus_delete();
 }
 
 //single_tile_out_for_bonus Pick_lvl_test::bonus_parameters_ini(uint16_t index)

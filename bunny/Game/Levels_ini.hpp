@@ -24,6 +24,8 @@ public:
 	void delete_bonus_yes(bool index, sf::Sprite* player);
 	void delete_bonus_ini(uint16_t index);
 	uint16_t tiles_type(uint16_t index);
+	uint8_t type_item_bonus_out(uint16_t index);
+	bool confirm_bonus_delete();
 	void draw(sf::RenderWindow& window);
 
 private:

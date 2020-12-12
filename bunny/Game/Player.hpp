@@ -23,6 +23,9 @@ public:
 	sf::Vector2f get_global();
 	void gravity_insert(int8_t grav);
 	void animation_finish(bool index);
+	void add_player_points(uint16_t points);
+	unsigned int player_point_out();
+
 	void draw(sf::RenderWindow& window);
 
 private:
@@ -30,6 +33,7 @@ private:
 	sf::IntRect window_animation;
 	sf::Sprite player_sprite;
 	std::vector<Animations>animation;
+	unsigned int player_points{ 0 };
 	uint8_t steps_animation_right_left, jump_size, directions, lines_of_animations;
 	int16_t jump_distans_max, jump_start_position, jump_max_position;
 	int8_t gravitY, direction_player;

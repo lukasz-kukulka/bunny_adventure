@@ -21,6 +21,7 @@ Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(
 
 uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
+	//std::cout << player_bunny[0].player_point_out() << std::endl;
 	window.setView(view_game);
 	//colision.player_sprite_in(player_bunny[0].shape_player());
 	//this->bonus_index++;
@@ -119,7 +120,7 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	colision.player_sprite_in(player_bunny[0].shape_player());
 	colision.gravity_change(10);
 	this->ladder_movement_enable = false;
-
+	//this->ladder_movement_enable_animation = false;
 	//std::cout << level_ini.no_tiles() << std::endl;
 	for (int i = 0; i < level_ini.no_tiles(); i++)
 	{
@@ -133,6 +134,13 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			colision.gravity_change(0);
 			this->ladder_movement_enable = true;
 		}
+		//if (colision.ladder_colision(window) == 2)
+		//{
+		//	
+		//	//colision.gravity_change(0);
+		//	this->ladder_movement_enable_animation = true;
+		//}
+		//std::cout << "----------" << colision.ladder_colision(window) << std::endl;
 	}
 	if (ladder_movement_enable == false)
 	{
@@ -151,9 +159,18 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			{
 				level_ini.delete_bonus_yes(true, player_bunny[0].shape_player());
 				level_ini.delete_bonus_ini(bonus_index);
+				this->index_delete_bonus = level_ini.type_item_bonus_out(bonus_index);
+				//std::cout << "-----------------------------------------" << static_cast<int>( index_delete_bonus) << std::endl;
 				break;
 			}
 		}
+	}
+	if (level_ini.confirm_bonus_delete() == true && level_ini.no_of_bonus_out() > 0)
+	{
+		
+		//std::cout << level_ini.no_of_bonus_out() << "        ----------------------------------------- >>>>>>>>>>>>>>>>>>>     " << static_cast<int>(index_delete_bonus) << std::endl;
+		points_initialize(index_delete_bonus);
+		std::cout << player_bunny[0].player_point_out() << std::endl;
 	}
 	colision.gravity();
 	return 1;
@@ -167,6 +184,64 @@ void Game_ini::objects_ini(sf::RenderWindow& window)
 void Game_ini::settings(uint8_t volume)
 {
 
+}
+
+void Game_ini::points_initialize(uint16_t index)
+{
+	//std::cout << index << std::endl;
+			if (index == 1)
+			{
+				player_bunny[0].add_player_points(1);
+			}
+			else if (index == 2)
+			{
+				player_bunny[0].add_player_points(2);
+			}
+			else if (index == 3)
+			{
+				player_bunny[0].add_player_points(3);
+			}
+			else if (index == 4)
+			{
+				player_bunny[0].add_player_points(1);
+			}
+			else if (index == 5)
+			{
+				player_bunny[0].add_player_points(5);
+			}
+			else if (index == 6)
+			{
+				player_bunny[0].add_player_points(6);
+			}
+			else if (index == 7)
+			{
+				player_bunny[0].add_player_points(8);
+			}
+			else if (index == 8)
+			{
+				player_bunny[0].add_player_points(8);
+			}
+			else if (index == 9)
+			{
+				player_bunny[0].add_player_points(9);
+			}
+			else if (index == 10)
+			{
+				player_bunny[0].add_player_points(10);
+			}
+			else if (index == 11)
+			{
+				player_bunny[0].add_player_points(11);
+			}
+			else if (index == 12)
+			{
+				player_bunny[0].add_player_points(12);
+			}
+			//std::cout << "-----------------------------------------" << bonus_index << std::endl;
+
+		
+
+	
 }
 
 

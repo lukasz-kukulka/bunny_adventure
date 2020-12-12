@@ -100,7 +100,7 @@ void Player::animations(float time_animation)
 		}
 		else
 		{
-			this->player_sprite.move(0, 2 - gravitY);
+			//this->player_sprite.move(0, - 2 - gravitY);
 
 			if (directions == 2)
 			{
@@ -288,6 +288,16 @@ void Player::gravity_insert(int8_t grav)
 void Player::animation_finish(bool index)
 {
 	this->animation_end_variable = true;
+}
+
+void Player::add_player_points(uint16_t points)
+{
+	this->player_points = player_points + points;
+}
+
+unsigned int Player::player_point_out()
+{
+	return player_points;
 }
 
 void Player::draw(sf::RenderWindow& window)

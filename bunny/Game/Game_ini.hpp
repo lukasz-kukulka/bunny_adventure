@@ -14,10 +14,12 @@ public:
 	uint8_t system(sf::RenderWindow& window, sf::Vector2i mouse);
 	void objects_ini(sf::RenderWindow& window);
 	void settings(uint8_t volume);
+	void points_initialize(uint16_t index);
 	void draw(sf::RenderWindow& window);
 
 private:
 	uint8_t game_level;
+	uint8_t index_delete_bonus{ 0 };
 	uint16_t bonus_index;
 	float time_animation, time_directions;
 	sf::Texture bunny_tex;
@@ -29,6 +31,8 @@ private:
 	Background_ini background_ini;
 	Colisions colision;
 	sf::View view_game;
-	bool direction_enabled, ladder_movement_enable{ false };
+	bool direction_enabled;
+	bool ladder_movement_enable{ false };
+	bool confirm_delete_bonus_variable{ false };
 };
 

@@ -143,6 +143,16 @@ uint16_t Levels_ini::tiles_type(uint16_t index)
 	return test_lvl.tiles_type(index);
 }
 
+uint8_t Levels_ini::type_item_bonus_out(uint16_t index)
+{
+	return pick_lvl_test.type_item_bonus_out(index);
+}
+
+bool Levels_ini::confirm_bonus_delete()
+{
+	return pick_lvl_test.confirm_bonus_delete();
+}
+
 void Levels_ini::draw(sf::RenderWindow& window)
 {
 	switch (game_lvl)

@@ -150,6 +150,7 @@ void Pick_items_ini::animation_delete_bonus_ini()
 {
 	for (int i = 0; i < bonuses.size(); i++)
 	{
+		this->confirm_delete_variable = false;
 		//std::cout << i << std::endl;
 		//std::cout << i << "PRAWDA CZY N*E________________________________ " << bonuses[i].animation_finish_out() << std::endl;
 		bonuses[i].animation_ini(player_sprite_out());
@@ -158,8 +159,13 @@ void Pick_items_ini::animation_delete_bonus_ini()
 			//std::cout << i << ".     PRAWDA CZY N*E________________________________ " << bonuses[i].animation_finish_out() << std::endl;
 			//std::cout << "delete  -----> " << i << std::endl;
 			bonuses.erase(bonuses.begin() + i);
+			this->confirm_delete_variable = true;
 			//i=0;
 			break;
+		}
+		else
+		{
+			
 		}
 		
 	}
@@ -181,6 +187,16 @@ void Pick_items_ini::delete_bonus_ele(uint16_t element_index)
 	//bonuses.push_back(Single_pick_bonus(window, &awa510, 10));
 	bonuses[element_index].animation_delete();
 	
+}
+
+bool Pick_items_ini::confirm_bonus_delete()
+{
+	return confirm_delete_variable;
+}
+
+uint8_t Pick_items_ini::type_item_bonus_out(uint16_t index)
+{
+	return bonuses[index].type_item_out();
 }
 
 void Pick_items_ini::draw(sf::RenderWindow& window)

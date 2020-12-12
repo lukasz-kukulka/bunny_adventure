@@ -22,6 +22,8 @@ public:
 	void player_mid_position(sf::Sprite* player);
 	sf::Sprite* player_sprite_out();
 	void delete_bonus_ele(uint16_t element_index);
+	bool confirm_bonus_delete();
+	uint8_t type_item_bonus_out(uint16_t index);
 	void draw(sf::RenderWindow& window);
 
 private:
@@ -34,6 +36,7 @@ private:
 	sf::Vector2f position_player_middle;
 	sf::Sprite* player_sprite;
 	bool bonus_position_ini;
+	bool confirm_delete_variable{ false };
 
 };
 
