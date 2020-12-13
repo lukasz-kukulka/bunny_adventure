@@ -5,6 +5,7 @@
 #include "Player.hpp"
 #include "Levels_ini.hpp"
 #include "Colisions.hpp"
+#include "Interface_text.hpp"
 
 class Game_ini :public Option
 {
@@ -23,13 +24,13 @@ private:
 	uint16_t bonus_index;
 	float time_animation, time_directions;
 	sf::Texture bunny_tex;
-	//sf::Vector2i level_size_map;
 	sf::Event event;
 	std::vector<Player>player_bunny;
 	sf::Clock clock_animation, clock_directions;
 	Levels_ini level_ini;
 	Background_ini background_ini;
 	Colisions colision;
+	Interface_text interface_texts;
 	sf::View view_game;
 	bool direction_enabled;
 	bool ladder_movement_enable{ false };

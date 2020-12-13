@@ -1,6 +1,6 @@
 #include "Game_ini.hpp"
 
-Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(window), colision()
+Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(window), interface_texts(window), colision()
 {
 	this->bunny_tex.loadFromFile("Game/Textures/player.png");
 	this->time_animation = 0;
@@ -21,8 +21,10 @@ Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(
 
 uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
+	
 	//std::cout << player_bunny[0].player_point_out() << std::endl;
 	window.setView(view_game);
+	interface_texts.system(view_game);
 	//colision.player_sprite_in(player_bunny[0].shape_player());
 	//this->bonus_index++;
 	//std::cout << static_cast<int>(bonus_index) << std::endl;
@@ -172,6 +174,7 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		points_initialize(index_delete_bonus);
 		std::cout << player_bunny[0].player_point_out() << std::endl;
 	}
+	
 	colision.gravity();
 	return 1;
 }
@@ -251,4 +254,5 @@ void Game_ini::draw(sf::RenderWindow& window)
 	level_ini.draw(window);
 	for (auto i : player_bunny)
 		i.draw(window);
+	interface_texts.draw(window);
 }
