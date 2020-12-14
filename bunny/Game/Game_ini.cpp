@@ -174,7 +174,8 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		points_initialize(index_delete_bonus);
 		std::cout << player_bunny[0].player_point_out() << std::endl;
 	}
-	
+	interface_texts.score_points_in(player_bunny[0].player_point_out());
+
 	colision.gravity();
 	return 1;
 }

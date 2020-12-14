@@ -295,6 +295,16 @@ void Player::add_player_points(uint16_t points)
 	this->player_points = player_points + points;
 }
 
+uint8_t Player::no_of_life_out()
+{
+	return no_of_life;
+}
+
+void Player::no_of_life_change(int8_t life)
+{
+	this->no_of_life = no_of_life + life;
+}
+
 unsigned int Player::player_point_out()
 {
 	return player_points;

@@ -24,6 +24,8 @@ public:
 	void gravity_insert(int8_t grav);
 	void animation_finish(bool index);
 	void add_player_points(uint16_t points);
+	uint8_t no_of_life_out();
+	void no_of_life_change(int8_t life);
 	unsigned int player_point_out();
 
 	void draw(sf::RenderWindow& window);
@@ -34,7 +36,7 @@ private:
 	sf::Sprite player_sprite;
 	std::vector<Animations>animation;
 	unsigned int player_points{ 0 };
-	uint8_t steps_animation_right_left, jump_size, directions, lines_of_animations;
+	uint8_t steps_animation_right_left, jump_size, directions, lines_of_animations, no_of_life{ 3 };
 	int16_t jump_distans_max, jump_start_position, jump_max_position;
 	int8_t gravitY, direction_player;
 	float time_animations;
