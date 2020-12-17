@@ -26,6 +26,7 @@ public:
 	uint16_t tiles_type(uint16_t index);
 	uint8_t type_item_bonus_out(uint16_t index);
 	bool confirm_bonus_delete();
+	uint8_t no_of_level_out();
 	void draw(sf::RenderWindow& window);
 
 private:
@@ -41,7 +42,7 @@ private:
 	//uint32_t no_tile;
 	std::vector<single_tile_out_for_bonus>struct_bonus_out;
 	uint16_t no_til, bonus_delete_element;
-	
+	uint8_t no_of_level{ 0 };
 	//std::vector<single_tile_out_for_bonus>bonuses; // do usuniecia na koniec
 	bool bonus_yes, bonus_delete_yes;
 };

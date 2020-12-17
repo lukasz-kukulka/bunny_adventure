@@ -153,6 +153,11 @@ bool Levels_ini::confirm_bonus_delete()
 	return pick_lvl_test.confirm_bonus_delete();
 }
 
+uint8_t Levels_ini::no_of_level_out()
+{
+	return no_of_level;
+}
+
 void Levels_ini::draw(sf::RenderWindow& window)
 {
 	switch (game_lvl)
