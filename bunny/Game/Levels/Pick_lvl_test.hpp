@@ -8,7 +8,7 @@ class Pick_lvl_test : public Choise_lvl_bonus
 {
 public:
 	Pick_lvl_test(sf::RenderWindow& window);
-	uint8_t system();
+	uint8_t system(sf::RenderWindow& window);
 	void initialize_pick_class(sf::RenderWindow& window);
 	void initialize_singe_bonus_item(sf::RenderWindow& window);
 	void bonus_parameters_ini(single_tile_out_for_bonus index);

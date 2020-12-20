@@ -56,7 +56,7 @@ uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
 	{
 		bonus_vector();
 	}
-	choise_bonus->system();
+	choise_bonus->system(window);
 	if (bonus_delete_yes == true)
 	{
 		choise_bonus->delete_bonus_elements(bonus_delete_element);

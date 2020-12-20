@@ -3,13 +3,18 @@
 #include "Menu/Option.hpp"
 #include "Menu/Interface.hpp"
 #include "Menu/Exit.hpp"
-//#include "Menu/Credits.hpp"
+#include "Menu/Credits.hpp"
 #include "Menu/Settings_page.hpp"
 #include "Menu/Files_operations.hpp"
 #include "Menu/Score_page.hpp"
 #include "Game/Game_ini.hpp"
 #include <stdlib.h>
 #include <time.h> 
+
+// - load best score from file
+// - dellete in destructorone of class
+// - error with couting points
+
 extern sf::Vector2i mouse;
 // naprawic blad z przewijaniem score
 int main()
@@ -50,8 +55,8 @@ int main()
     music.setVolume(10);
     Interface inter(window);
     Game_ini game_ini(window);
-    //Credits credits(window);
-    //Settings_page settings_page(window);
+    Credits credits(window);
+    Settings_page settings_page(window);
     Score_page score_page(window);
     Option* go_to_option = &inter;
     while (window.isOpen())
@@ -110,15 +115,15 @@ int main()
 
             case 3: //Settings
             {
-                //go_to_option = &settings_page;                                 ///////////////////////////////////// ZMIENIC JAK W ! 1 i 0 case
-                //menu_option = go_to_option->system(window, mouse);
-                //go_to_option->settings(res_load.load_from_settings(2));
+                go_to_option = &settings_page;                                 ///////////////////////////////////// ZMIENIC JAK W ! 1 i 0 case
+                menu_option = go_to_option->system(window, mouse);
+                go_to_option->settings(res_load.load_from_settings(2));
                 break;
             }
 
             case 4: //Credits                                 ///////////////////////////////////// ZMIENIC JAK W ! 1 i 0 case
             {
-                //go_to_option = &credits;
+                go_to_option = &credits;
 
                 break;
             }

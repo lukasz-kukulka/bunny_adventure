@@ -18,9 +18,9 @@ Pick_lvl_test::Pick_lvl_test(sf::RenderWindow& window)
     //this->no_tiles = 0;
 }
 
-uint8_t Pick_lvl_test::system()
+uint8_t Pick_lvl_test::system(sf::RenderWindow& window)
 {
-    bonus_ini[0].system();
+    bonus_ini[0].system(window);
     return 0;
 }
 

@@ -15,14 +15,16 @@ Pick_items_ini::Pick_items_ini(sf::RenderWindow& window)
 	this->awa510.loadFromFile("Game/Textures/Levels/Awards/awa510.png");
 	this->awa511.loadFromFile("Game/Textures/Levels/Awards/awa511.png");
 	this->awa512.loadFromFile("Game/Textures/Levels/Awards/awa512.png");
+	this->font.loadFromFile("Game/Fonts/beachday.ttf");
 	this->bonus_quantity = 0;
 	this->tiles_quantity = 0;
 	this->bonus_position_ini = true;
 	this->random_pos = 0;
 }
 
-uint8_t Pick_items_ini::system()
+uint8_t Pick_items_ini::system(sf::RenderWindow& window)
 {
+
 	if (bonus_position_ini == true)
 	{
 		std::random_device rd;
@@ -54,7 +56,7 @@ uint8_t Pick_items_ini::system()
 		bonus_position_ini = false;
 
 	}
-	animation_delete_bonus_ini();
+	animation_delete_bonus_ini(window);
 	return 0;
 }
 
@@ -111,6 +113,7 @@ void Pick_items_ini::single_pick_items_ini(sf::RenderWindow& window, uint8_t typ
 	}
 	//std::cout << bonuses.size() << std::endl;
 	//bonuses.push_back(Single_pick_bonus(window, &))
+	bonus_info.push_back(Bonus_extra_effect(window, &font, sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2), type));
 }
 
 void Pick_items_ini::bonus_parameters_ini(single_tile_out_for_bonus index)
@@ -146,18 +149,24 @@ uint16_t Pick_items_ini::no_of_tiles_out()
 	return tiles_quantity;
 }
 
-void Pick_items_ini::animation_delete_bonus_ini()
+void Pick_items_ini::animation_delete_bonus_ini(sf::RenderWindow& window)
 {
+	//if (info_about_bonus == true)
+	//{
+
+	//}
 	for (int i = 0; i < bonuses.size(); i++)
 	{
 		this->confirm_delete_variable = false;
 		//std::cout << i << std::endl;
 		//std::cout << i << "PRAWDA CZY N*E________________________________ " << bonuses[i].animation_finish_out() << std::endl;
-		bonuses[i].animation_ini(player_sprite_out());
+		bonus_info[i].system(window);
+		bonuses[i].animation_ini(window ,player_sprite_out());
 		if (bonuses[i].animation_finish_out() == true)
 		{
 			//std::cout << i << ".     PRAWDA CZY N*E________________________________ " << bonuses[i].animation_finish_out() << std::endl;
 			//std::cout << "delete  -----> " << i << std::endl;
+			bonus_info.erase(bonus_info.begin() + i);
 			bonuses.erase(bonuses.begin() + i);
 			this->confirm_delete_variable = true;
 			//i=0;
@@ -186,6 +195,8 @@ void Pick_items_ini::delete_bonus_ele(uint16_t element_index)
 	//bonuses_before_delete.push_back(Single_pick_bonus()) = bonuses[element_index];
 	//bonuses.push_back(Single_pick_bonus(window, &awa510, 10));
 	bonuses[element_index].animation_delete();
+	bonus_info[element_index].can_delete_change(true);
+	//this->info_about_bonus = true;
 	
 }
 
@@ -202,6 +213,8 @@ uint8_t Pick_items_ini::type_item_bonus_out(uint16_t index)
 void Pick_items_ini::draw(sf::RenderWindow& window)
 {
 	for (auto i : bonuses)
+		i.draw(window);
+	for (auto i : bonus_info)
 		i.draw(window);
 }
 

@@ -12,6 +12,8 @@ Single_pick_bonus::Single_pick_bonus(sf::RenderWindow& window, sf::Texture* text
 	this->animation_delete_start = false;
 	this->type_item = type_of_item;
 	//sprite_tex = texture;
+	//this->font.loadFromFile("Game/Fonts/beachday.ttf");
+	//this->bonus_extra_efect_ini(window);
 }
 
 void Single_pick_bonus::changing_bonus_position(sf::Vector2f position)
@@ -45,15 +47,26 @@ void Single_pick_bonus::animation_delete()
 	//std::cout << "dupa" << std::endl;
 }
 
-void Single_pick_bonus::animation_ini(sf::Sprite* player)
+
+void Single_pick_bonus::animation_ini(sf::RenderWindow& window, sf::Sprite* player)
 {
 	//std::cout << "tak" << std::endl;
 	
 	
 	if (animation_delete_start == true && animation_finish == false)
 	{
+		//if (initialize_bonus_efect == true && bonus_extra_text[0].system(window) == 1)
+		//{
+		//	bonus_extra_text[0].system(window);
+		//}
+		//else
+		//{
+		//	this->initialize_bonus_efect = false;
+		//	//bonus_extra_text.erase(0);
+		//}
 		if (animation_steps == 0)
 		{
+
 			if (animation_x_finished == false)
 			{
 				distanse_between_player_and_bonus_x = (player->getPosition().x + player->getGlobalBounds().width / 2) - (bonus_sprite.getPosition().x + bonus_sprite.getGlobalBounds().width / 2);
@@ -122,6 +135,11 @@ bool Single_pick_bonus::animation_finish_out()
 	return animation_finish;
 }
 
+//void Single_pick_bonus::bonus_extra_efect_ini(sf::RenderWindow& window)
+//{
+//	
+//}
+
 uint8_t Single_pick_bonus::type_item_out()
 {
 	return type_item;
@@ -136,4 +154,9 @@ uint8_t Single_pick_bonus::type_item_out()
 void Single_pick_bonus::draw(sf::RenderWindow& window)
 {
 	window.draw(bonus_sprite);
+	//for (int i = 0; i < bonus_extra_text.size(); i++)
+	//{
+	//	bonus_extra_text[i].draw(window);
+	//}
+		
 }
