@@ -158,6 +158,11 @@ uint8_t Levels_ini::no_of_level_out()
 	return no_of_level;
 }
 
+void Levels_ini::view_ini(sf::View& view)
+{
+	pick_lvl_test.view_ini(view);
+}
+
 void Levels_ini::draw(sf::RenderWindow& window)
 {
 	switch (game_lvl)

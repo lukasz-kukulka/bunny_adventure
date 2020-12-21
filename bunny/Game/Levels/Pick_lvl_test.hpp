@@ -19,6 +19,7 @@ public:
 	void delete_bonus_elements(uint16_t element_index);
 	uint8_t type_item_bonus_out(uint16_t index);
 	bool confirm_bonus_delete();
+	void view_ini(sf::View& view);
 	void draw(sf::RenderWindow& window);
 private:
 	uint8_t bonus501, bonus502, bonus503, bonus504, bonus505, bonus506, bonus507, bonus508, bonus509, bonus510, bonus511, bonus512;

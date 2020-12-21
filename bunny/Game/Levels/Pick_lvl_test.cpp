@@ -125,6 +125,11 @@ bool Pick_lvl_test::confirm_bonus_delete()
     return bonus_ini[0].confirm_bonus_delete();
 }
 
+void Pick_lvl_test::view_ini(sf::View& view)
+{
+    bonus_ini[0].view_ini(view);
+}
+
 //single_tile_out_for_bonus Pick_lvl_test::bonus_parameters_ini(uint16_t index)
 //{
 //    return single_tile_out_for_bonus();

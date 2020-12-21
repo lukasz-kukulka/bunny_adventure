@@ -25,11 +25,13 @@ public:
 	void delete_bonus_ele(uint16_t element_index);
 	bool confirm_bonus_delete();
 	uint8_t type_item_bonus_out(uint16_t index);
+	void view_ini(sf::View& view);
 	void draw(sf::RenderWindow& window);
 
 private:
 	sf::Texture awa501, awa502, awa503, awa504, awa505, awa506, awa507, awa508, awa509, awa510, awa511, awa512;
 	sf::Font font;
+	sf::View view_window;
 	std::vector<Single_pick_bonus>bonuses;
 	//std::vector<Single_pick_bonus>bonuses_before_delete;
 	std::vector<single_tile_out_for_bonus>tiles_parameters;

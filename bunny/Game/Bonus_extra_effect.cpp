@@ -2,27 +2,28 @@
 
 Bonus_extra_effect::Bonus_extra_effect(sf::RenderWindow& window, sf::Font* font, sf::Vector2f position, uint8_t type_of_bonus)
 {
-
+	this->bonus_text.setString("test_test adasdsadsadas   dsadasdasdasd");
 	this->bonus_text.setCharacterSize(window.getSize().x / 50);
-	this->bonus_text.setPosition(position.x, position.y);
+	//this->bonus_text.setPosition(position.x - bonus_text.getGlobalBounds().width / 2, position.y);
 	this->bonus_text.setFont(*font);
 	
-	//this->bonus_text.setStyle(sf::Text::Bold);
-	this->bonus_text.setFillColor(sf::Color::White);
-	//this->bonus_text.setOutlineThickness(0);
+	this->bonus_text.setStyle(sf::Text::Bold);
+	this->bonus_text.setFillColor(sf::Color::Red);
+	this->bonus_text.setOutlineThickness(0);
 	this->bonus_text.setOutlineColor(sf::Color::Black);
 	this->bonus_text.setScale(0, 0);
-	this->bonus_text.setString("test_test adasdsadsadas   dsadasdasdasd");
+	
 }
 
-uint8_t Bonus_extra_effect::system(sf::RenderWindow& window)
+uint8_t Bonus_extra_effect::system(sf::View window)
 {
 	
 	if (bonus_text.getScale().x < 1 && can_delete == true)
 	{
 		std::cout << "STEP 1" << std::endl;
 		//this->bonus_text.setCharacterSize(window.getSize().x / 50);
-		this->bonus_text.setScale(bonus_text.getScale().x + 0.01, bonus_text.getScale().x + 0.01);
+		this->bonus_text.setScale(bonus_text.getScale().x + 0.03, bonus_text.getScale().x + 0.03);
+		this->bonus_text.setPosition(window.getCenter().x - bonus_text.getGlobalBounds().width / 2, window.getCenter().y);
 		this->bonus_text.setOutlineThickness(2);
 		return 1;
 	}

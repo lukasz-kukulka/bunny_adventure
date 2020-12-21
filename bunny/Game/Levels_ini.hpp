@@ -27,6 +27,7 @@ public:
 	uint8_t type_item_bonus_out(uint16_t index);
 	bool confirm_bonus_delete();
 	uint8_t no_of_level_out();
+	void view_ini(sf::View& view);
 	void draw(sf::RenderWindow& window);
 
 private:

@@ -6,7 +6,7 @@ class Bonus_extra_effect
 {
 public:
 	Bonus_extra_effect(sf::RenderWindow& window, sf::Font* font, sf::Vector2f position, uint8_t type_of_bonus);
-	uint8_t system(sf::RenderWindow& window);
+	uint8_t system(sf::View window);
 	void can_delete_change(bool index);
 	bool can_delete_out();
 	void draw(sf::RenderWindow& window);

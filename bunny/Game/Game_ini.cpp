@@ -177,6 +177,7 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	interface_texts.score_points_in(player_bunny[0].player_point_out());
 	interface_texts.no_of_level_in(level_ini.no_of_level_out());
 	colision.gravity();
+	level_ini.view_ini(view_game);
 	return 1;
 }
 
