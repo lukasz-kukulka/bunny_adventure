@@ -5,6 +5,7 @@
 #include "Levels/Test_LVL.hpp"
 #include "Levels/Pick_lvl_test.hpp"
 #include "Object_lvl_ini.hpp"
+#include "Level_end.hpp"
 
 
 class Levels_ini
@@ -27,6 +28,7 @@ public:
 	uint8_t type_item_bonus_out(uint16_t index);
 	bool confirm_bonus_delete();
 	uint8_t no_of_level_out();
+	uint8_t level_change(uint8_t index);
 	void view_ini(sf::View& view);
 	void draw(sf::RenderWindow& window);
 
@@ -42,6 +44,7 @@ private:
 	sf::Sprite* til_ini;
 	//uint32_t no_tile;
 	std::vector<single_tile_out_for_bonus>struct_bonus_out;
+	std::vector<Level_end>level_end_vector;
 	uint16_t no_til, bonus_delete_element;
 	uint8_t no_of_level{ 0 };
 	//std::vector<single_tile_out_for_bonus>bonuses; // do usuniecia na koniec

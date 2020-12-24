@@ -11,9 +11,11 @@
 #include <stdlib.h>
 #include <time.h> 
 
+// - add text depends of with bonus is
 // - load best score from file
 // - dellete in destructorone of class
 // - error with couting points
+// - check error with end of map
 
 extern sf::Vector2i mouse;
 // naprawic blad z przewijaniem score

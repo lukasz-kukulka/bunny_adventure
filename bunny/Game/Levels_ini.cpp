@@ -158,6 +158,11 @@ uint8_t Levels_ini::no_of_level_out()
 	return no_of_level;
 }
 
+uint8_t Levels_ini::level_change(uint8_t index)
+{
+	return 0;
+}
+
 void Levels_ini::view_ini(sf::View& view)
 {
 	pick_lvl_test.view_ini(view);
