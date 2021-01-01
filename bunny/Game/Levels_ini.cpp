@@ -11,6 +11,7 @@ Levels_ini::Levels_ini(sf::RenderWindow& window) : test_lvl(window), pick_lvl_te
 	this->bonus_delete_yes = false;
 	this->bonus_yes = true;
 	this->bonus_delete_element = 0;
+	this->font.loadFromFile("Game/Fonts/beachday.ttf");
 	//std::cout << "--->" << static_cast<int>(game_level)  << std::endl;
 }
 
@@ -66,6 +67,28 @@ uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
 	}
 	
 	//choise_bonus->bonus_sprite_out
+
+	if (pick_lvl_test.no_of_bonus_out() == 0)
+	{
+		
+		if (initialization_end_lvl_screen == false)
+		{
+			level_change();
+			initialization_end_lvl_screen = true;
+		}
+		else
+		{
+			level_end_vector[0].system(view_level_ini);
+		}
+		this->turn_off_all_functions = true;
+	}
+	else
+	{
+		start_new_lvl();
+		initialization_end_lvl_screen == true;
+		this->turn_off_all_functions = false;
+	}
+
 	return 0;
 }
 
@@ -119,6 +142,7 @@ sf::Sprite Levels_ini::bonus_sprite_out(uint16_t index)
 
 uint16_t Levels_ini::no_of_bonus_out()
 {
+
 	//std::cout << pick_lvl_test.no_of_bonus_out() << std::endl;
 	return pick_lvl_test.no_of_bonus_out();
 }
@@ -158,14 +182,29 @@ uint8_t Levels_ini::no_of_level_out()
 	return no_of_level;
 }
 
-uint8_t Levels_ini::level_change(uint8_t index)
+void Levels_ini::level_change()
 {
-	return 0;
+	level_end_vector.push_back(Level_end(view_level_ini, &font));
+	std::cout << " .. " << std::endl;
+}
+
+void Levels_ini::start_new_lvl()
+{
+	for (int i = 0; i < level_end_vector.size(); i++)
+	{
+		level_end_vector.erase(level_end_vector.begin());
+	}
 }
 
 void Levels_ini::view_ini(sf::View& view)
 {
-	pick_lvl_test.view_ini(view);
+	view_level_ini = view;
+	pick_lvl_test.view_ini(view_level_ini);
+}
+
+bool Levels_ini::turn_off_all_function_check()
+{
+	return turn_off_all_functions;
 }
 
 void Levels_ini::draw(sf::RenderWindow& window)
@@ -184,6 +223,7 @@ void Levels_ini::draw(sf::RenderWindow& window)
 	system(window, 0);
 	choise_level->draw(window);
 	choise_bonus->draw(window);
-	//choise_level = nullptr;
+	for (auto i : level_end_vector)
+		i.draw(window);
 }
 

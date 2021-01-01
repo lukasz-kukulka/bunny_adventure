@@ -3,11 +3,11 @@
 Pick_lvl_test::Pick_lvl_test(sf::RenderWindow& window)
 {
     this->bonus501 = 0; // widogrona wisz¹ce !!!!!!!!!!!! musi byc u góry
-    this->bonus502 = 3; // burak
-    this->bonus503 = 3; // kolko - lisc zielony
-    this->bonus504 = 3; // marchewka
-    this->bonus505 = 3; // grzyb
-    this->bonus506 = 3; // kolko - spirala
+    this->bonus502 = 1; // burak
+    this->bonus503 = 1; // kolko - lisc zielony
+    this->bonus504 = 0; // marchewka
+    this->bonus505 = 0; // grzyb
+    this->bonus506 = 0; // kolko - spirala
     this->bonus507 = 0; // kolko - lisc rozowy
     this->bonus508 = 0; // kolko - kropla
     this->bonus509 = 0; // kolko - ogien

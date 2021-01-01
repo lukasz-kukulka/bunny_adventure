@@ -11,14 +11,22 @@
 #include <stdlib.h>
 #include <time.h> 
 
+// - end lvl system <-- curently
+// - end game algorithm
+// - save score to file
+// - error with couting point for bonus
+// - menu to exit from game/to menu
+// - bonus anoucemenet one under another
+// - changing all loop for
 // - add text depends of with bonus is
 // - load best score from file
 // - dellete in destructorone of class
 // - error with couting points
 // - check error with end of map
+// naprawic blad z przewijaniem score
 
 extern sf::Vector2i mouse;
-// naprawic blad z przewijaniem score
+
 int main()
 {
     Files_operations res_load;

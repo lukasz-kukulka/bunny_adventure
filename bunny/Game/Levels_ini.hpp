@@ -28,8 +28,10 @@ public:
 	uint8_t type_item_bonus_out(uint16_t index);
 	bool confirm_bonus_delete();
 	uint8_t no_of_level_out();
-	uint8_t level_change(uint8_t index);
+	void level_change();
+	void start_new_lvl();
 	void view_ini(sf::View& view);
+	bool turn_off_all_function_check();
 	void draw(sf::RenderWindow& window);
 
 private:
@@ -39,15 +41,20 @@ private:
 	//std::vector<Pick_lvl_test>test_lvl_pick;
 	Pick_lvl_test pick_lvl_test;
 	uint8_t game_lvl, level_indicator;
+	sf::Font font;
 	sf::Vector2i lvl_size;
 	sf::Sprite* player_pos;
 	sf::Sprite* til_ini;
+	sf::View view_level_ini;
 	//uint32_t no_tile;
 	std::vector<single_tile_out_for_bonus>struct_bonus_out;
 	std::vector<Level_end>level_end_vector;
 	uint16_t no_til, bonus_delete_element;
 	uint8_t no_of_level{ 0 };
 	//std::vector<single_tile_out_for_bonus>bonuses; // do usuniecia na koniec
-	bool bonus_yes, bonus_delete_yes;
+	bool bonus_yes, bonus_delete_yes, level_time_change{ false };
+	bool turn_off_all_functions{ false };
+	bool initialization_end_lvl_screen{ false };
+
 };
 

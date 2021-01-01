@@ -28,78 +28,82 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	//colision.player_sprite_in(player_bunny[0].shape_player());
 	//this->bonus_index++;
 	//std::cout << static_cast<int>(bonus_index) << std::endl;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	if (level_ini.turn_off_all_function_check() == false)
 	{
-		player_bunny[0].movement_enabled_changing(true);
-		if (direction_enabled == true)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
-			player_bunny[0].change_direction(1);
-			direction_enabled = false;
-		}
+			player_bunny[0].movement_enabled_changing(true);
+			if (direction_enabled == true)
+			{
+				player_bunny[0].change_direction(1);
+				direction_enabled = false;
+			}
 
-		if (player_bunny[0].direction_player_out() != 4 && time_directions >= 100)
-		{
-			player_bunny[0].animation_directon(1);
+			if (player_bunny[0].direction_player_out() != 4 && time_directions >= 100)
+			{
+				player_bunny[0].animation_directon(1);
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && colision.player_stay_in_ground() == true)
+			{
+				player_bunny[0].animation_directon(4);
+				player_bunny[0].jump_reset(10);
+				player_bunny[0].animation_reset(1);
+				colision.player_stay_in_ground_change(false);
+			}
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && colision.player_stay_in_ground() == true)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		{
-			player_bunny[0].animation_directon(4);
+			player_bunny[0].movement_enabled_changing(true);
+			if (direction_enabled == true)
+			{
+				player_bunny[0].change_direction(2);
+				direction_enabled = false;
+			}
+			if (player_bunny[0].direction_player_out() != 5 && time_directions >= 100)
+			{
+				player_bunny[0].animation_directon(2);
+
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && colision.player_stay_in_ground() == true)
+			{
+				player_bunny[0].animation_directon(5);
+				player_bunny[0].jump_reset(10);
+				player_bunny[0].animation_reset(1);
+				colision.player_stay_in_ground_change(false);
+			}
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && player_bunny[0].direction_player_out() == 100 && ladder_movement_enable == true)
+		{
+			player_bunny[0].movement_enabled_changing(true);
+			if (time_directions >= 20)
+			{
+				player_bunny[0].animation_directon(3);
+				colision.player_stay_in_ground_change(false);
+			}
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && player_bunny[0].direction_player_out() == 100 && ladder_movement_enable == true)
+		{
+			if (time_directions >= 20)
+			{
+				player_bunny[0].animation_directon(6);
+				colision.player_stay_in_ground_change(false);
+			}
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && colision.player_stay_in_ground() == true)
+		{
+			//player_bunny[0].animation_directon(0);
 			player_bunny[0].jump_reset(10);
 			player_bunny[0].animation_reset(1);
 			colision.player_stay_in_ground_change(false);
 		}
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-	{
-		player_bunny[0].movement_enabled_changing(true);
-		if (direction_enabled == true)
+		else
 		{
-			player_bunny[0].change_direction(2);
-			direction_enabled = false;
-		}
-		if (player_bunny[0].direction_player_out() != 5 && time_directions >= 100)
-		{
-			player_bunny[0].animation_directon(2);
-
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && colision.player_stay_in_ground() == true)
-		{
-			player_bunny[0].animation_directon(5);
-			player_bunny[0].jump_reset(10);
-			player_bunny[0].animation_reset(1);
-			colision.player_stay_in_ground_change(false);
+			time_directions = clock_directions.restart().asMilliseconds();
+			direction_enabled = true;
+			player_bunny[0].movement_enabled_changing(false);
 		}
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && player_bunny[0].direction_player_out() == 100 && ladder_movement_enable == true)
-	{
-		player_bunny[0].movement_enabled_changing(true);
-		if (time_directions >= 20)
-		{
-			player_bunny[0].animation_directon(3);
-			colision.player_stay_in_ground_change(false);
-		}
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && player_bunny[0].direction_player_out() == 100 && ladder_movement_enable == true)
-	{
-		if (time_directions >= 20)
-		{
-			player_bunny[0].animation_directon(6);
-			colision.player_stay_in_ground_change(false);
-		}
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && colision.player_stay_in_ground() == true)
-	{
-		//player_bunny[0].animation_directon(0);
-		player_bunny[0].jump_reset(10);
-		player_bunny[0].animation_reset(1);
-		colision.player_stay_in_ground_change(false);
-	}
-	else
-	{
-		time_directions = clock_directions.restart().asMilliseconds();
-		direction_enabled = true;
-		player_bunny[0].movement_enabled_changing(false);
-	}
+	
 	time_directions = clock_directions.getElapsedTime().asMilliseconds();
 	if ((view_game.getCenter().x - view_game.getSize().x / 2 >= 0 || player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2 - view_game.getSize().x / 2 >= 0) &&
 		view_game.getCenter().x + view_game.getSize().x / 2 <= level_ini.level_size().x)
