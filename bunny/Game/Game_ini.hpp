@@ -35,5 +35,6 @@ private:
 	bool direction_enabled;
 	bool ladder_movement_enable{ false };
 	bool confirm_delete_bonus_variable{ false };
+	bool pressed_and_restart_new_level{ false };
 };
 

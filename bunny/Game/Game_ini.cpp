@@ -102,15 +102,26 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			direction_enabled = true;
 			player_bunny[0].movement_enabled_changing(false);
 		}
+		this->pressed_and_restart_new_level = false;
 	}
-	
+	else
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
+			if (pressed_and_restart_new_level == false)
+			{
+				level_ini.game_lvl_change(game_level + 1);
+			}
+			this->pressed_and_restart_new_level = true;
+		}
+	}
 	time_directions = clock_directions.getElapsedTime().asMilliseconds();
 	if ((view_game.getCenter().x - view_game.getSize().x / 2 >= 0 || player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2 - view_game.getSize().x / 2 >= 0) &&
 		view_game.getCenter().x + view_game.getSize().x / 2 <= level_ini.level_size().x)
 	{
 		this->view_game.setCenter(player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2, view_game.getCenter().y);
 	}
-
+	this->game_level = level_ini.game_lvl_out();
 	background_ini.system(window, view_game, game_level);
 	level_ini.system(window, game_level);
 

@@ -2,12 +2,11 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-class Level_end
+class Game_over
 {
 public:
-	Level_end(sf::View window, sf::Font* font, uint8_t level);
+	Game_over(sf::View window, sf::Font* fontl);
 	uint8_t system(sf::View& window);
-	uint8_t animation(sf::RenderWindow& window);
 	void draw(sf::RenderWindow& window);
 
 
@@ -16,4 +15,3 @@ private:
 	sf::RectangleShape rectangle;
 	sf::View viewWindow;
 };
-

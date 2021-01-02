@@ -11,8 +11,8 @@
 #include <stdlib.h>
 #include <time.h> 
 
-// - end lvl system <-- curently
-// - end game algorithm
+// - end lvl system <-- done
+// - end game algorithm <-- curently
 // - save score to file
 // - error with couting point for bonus
 // - menu to exit from game/to menu
@@ -23,7 +23,8 @@
 // - dellete in destructorone of class
 // - error with couting points
 // - check error with end of map
-// naprawic blad z przewijaniem score
+// - error with moving scroll bar
+// - create a base class level
 
 extern sf::Vector2i mouse;
 
