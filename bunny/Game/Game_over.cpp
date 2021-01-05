@@ -19,11 +19,24 @@ Game_over::Game_over(sf::View window, sf::Font* font)
 	this->info_text.setScale(1, 1);
 }
 
-uint8_t Game_over::system(sf::View& window)
+uint8_t Game_over::system()
 {
-	return 0;
+	//std::cout << "---> " << system_clock << std::endl;
+	this->system_clock++;
+	if (system_clock >= 30)
+	{
+		system_clock = 31;
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+	
 }
 
 void Game_over::draw(sf::RenderWindow& window)
 {
+	window.draw(rectangle);
+	window.draw(info_text);
 }

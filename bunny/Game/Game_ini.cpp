@@ -106,14 +106,24 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	}
 	else
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && level_ini.game_over_ini_out() == false)
 		{
 			if (pressed_and_restart_new_level == false)
 			{
-				level_ini.game_lvl_change(game_level + 1);
+				game_level++;
+				level_ini.game_lvl_change(game_level);
+				//std::cout << static_cast<int>(game_level) << std::endl;
+
 			}
 			this->pressed_and_restart_new_level = true;
 		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && level_ini.game_over_ini_out() == true)
+		{
+			return 5;
+		}
+
+
+			
 	}
 	time_directions = clock_directions.getElapsedTime().asMilliseconds();
 	if ((view_game.getCenter().x - view_game.getSize().x / 2 >= 0 || player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2 - view_game.getSize().x / 2 >= 0) &&
@@ -121,7 +131,7 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	{
 		this->view_game.setCenter(player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2, view_game.getCenter().y);
 	}
-	this->game_level = level_ini.game_lvl_out();
+	//this->game_level = level_ini.game_lvl_out();
 	background_ini.system(window, view_game, game_level);
 	level_ini.system(window, game_level);
 

@@ -35,6 +35,7 @@ public:
 	void game_lvl_change(uint8_t lvl);
 	void game_end_ini();
 	bool turn_off_all_function_check();
+	bool game_over_ini_out();
 	void draw(sf::RenderWindow& window);
 
 private:
@@ -56,6 +57,7 @@ private:
 	bool bonus_yes, bonus_delete_yes, level_time_change{ false };
 	bool turn_off_all_functions{ false };
 	bool initialization_end_lvl_screen{ false };
+	bool game_over_ini{ false };
 	uint8_t last_level{ 1 }; // Always one more then maximum level
 
 };

@@ -23,12 +23,14 @@ Levels_ini::Levels_ini(sf::RenderWindow& window) : test_lvl(window), pick_lvl_te
 uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
 {
 	this->game_lvl = game_level;
+	//std::cout << "--->  " << static_cast<int>(game_level) << std::endl;
 	switch (game_lvl)
 	{
 	case 0:
 	{
 		if (level_indicator != 0)
 		{
+			this->turn_off_all_functions = false;
 			//std::cout << "---> teste " << std::endl;
 			lvl_size = sf::Vector2i(10000, 2000);
 			choise_level = &test_lvl;
@@ -42,7 +44,22 @@ uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
 	}
 	default:
 	{
-		game_end_ini();
+		//std::cout << "---> test " << std::endl;
+		if (level_indicator != 99)
+		{
+			game_end_ini();
+			level_indicator = 99;
+		}
+		this->turn_off_all_functions = true;
+		for (int i = 0; i < game_over.size(); i++)
+		{
+			//game_over[i].system();
+			if (game_over[i].system() == 1)
+			{
+				//std::cout << "---> test " << std::endl;
+				this->game_over_ini = true;
+			}
+		}
 		break;
 	}
 		
@@ -72,7 +89,11 @@ uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
 		else
 		{
 			//std::cout << "---> 2 " << std::endl;
-			level_end_vector[0].system(view_level_ini);
+			for (int i = 0; i < level_end_vector.size(); i++)
+			{
+				level_end_vector[0].system(view_level_ini);
+			}
+			
 		}
 		this->turn_off_all_functions = true;
 		//std::cout << "---> 3 " << std::endl;
@@ -210,12 +231,19 @@ void Levels_ini::game_end_ini()
 {
 	start_new_lvl();
 	game_over.push_back(Game_over(view_level_ini, &font));
+	//if ()
 }
 
 bool Levels_ini::turn_off_all_function_check()
 {
 	return turn_off_all_functions;
 }
+
+bool Levels_ini::game_over_ini_out()
+{
+	return game_over_ini;
+}
+
 
 void Levels_ini::draw(sf::RenderWindow& window)
 {
@@ -230,10 +258,16 @@ void Levels_ini::draw(sf::RenderWindow& window)
 	default:
 		break;
 	}
-	system(window, 0);
-	choise_level->draw(window);
-	choise_bonus->draw(window);
+	//system(window, 0);
+	if (level_indicator != 99)
+	{
+		choise_level->draw(window);
+		choise_bonus->draw(window);
+	}
+
 	for (auto i : level_end_vector)
+		i.draw(window);
+	for (auto i : game_over)
 		i.draw(window);
 }
 

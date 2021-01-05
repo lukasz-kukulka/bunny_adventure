@@ -6,7 +6,7 @@ class Game_over
 {
 public:
 	Game_over(sf::View window, sf::Font* fontl);
-	uint8_t system(sf::View& window);
+	uint8_t system();
 	void draw(sf::RenderWindow& window);
 
 
@@ -14,4 +14,5 @@ private:
 	sf::Text info_text;
 	sf::RectangleShape rectangle;
 	sf::View viewWindow;
+	uint16_t system_clock{ 0 };
 };
