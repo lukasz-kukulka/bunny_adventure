@@ -200,7 +200,6 @@ uint8_t Levels_ini::no_of_level_out()
 void Levels_ini::level_change()
 {
 	level_end_vector.push_back(Level_end(view_level_ini, &font, game_lvl));
-	//std::cout << " .. " << std::endl;
 }
 
 void Levels_ini::start_new_lvl()
@@ -231,7 +230,6 @@ void Levels_ini::game_end_ini()
 {
 	start_new_lvl();
 	game_over.push_back(Game_over(view_level_ini, &font));
-	//if ()
 }
 
 bool Levels_ini::turn_off_all_function_check()

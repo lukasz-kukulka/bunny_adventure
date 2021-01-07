@@ -1,6 +1,6 @@
 #include "Game_ini.hpp"
 
-Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(window), interface_texts(window), colision()
+Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(window), interface_texts(window), colision(), file_operations()
 {
 	this->bunny_tex.loadFromFile("Game/Textures/player.png");
 	this->time_animation = 0;
@@ -13,6 +13,7 @@ Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(
 	this->direction_enabled = true;
 	this->bonus_index = 0;
 	window.setView(view_game);
+	interface_texts.best_score_in(file_operations.load_best_score());
 }
 
 //Game_ini::~Game_ini()

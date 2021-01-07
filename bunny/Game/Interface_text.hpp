@@ -10,8 +10,8 @@ public:
 	void system(sf::View& window);
 	void initialization_tiles_text(sf::RenderWindow& window);
 	void score_points_in(int points);
-	void life_player_in(uint8_t points);
 	void no_of_level_in(uint8_t index_level);
+	void best_score_in(std::string score);
 	void draw(sf::RenderWindow& window);
 
 
@@ -26,6 +26,6 @@ private:
 	uint8_t max_life{ 5 };
 	uint8_t min_life{ 1 };
 	uint8_t no_of_level{ 0 };
-
+	std::string best_score_string;
 };
 

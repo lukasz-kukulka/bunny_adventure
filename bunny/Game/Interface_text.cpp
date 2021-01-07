@@ -1,6 +1,6 @@
 #include "Interface_text.hpp"
 
-Interface_text::Interface_text(sf::RenderWindow& window)
+Interface_text::Interface_text(sf::RenderWindow& window) 
 {
 	this->font_points.loadFromFile("Game/Fonts/beachday.ttf");
 	this->rectangle_panel_top.setSize(sf::Vector2f(window.getSize().x - 100, window.getSize().y / 20));
@@ -15,7 +15,7 @@ void Interface_text::system(sf::View& window)
 	//for (int i = 0; i < text_tile.size(); i++)
 	//{
 		text_tile[0].system(window, sf::Vector2f(rectangle_panel_top.getPosition().x, rectangle_panel_top.getPosition().y), "Score: ", score_points);
-		text_tile[1].system(window, sf::Vector2f(rectangle_panel_top.getPosition().x + rectangle_panel_top.getGlobalBounds().width / 3, rectangle_panel_top.getPosition().y), "Best Score: ", "FROM FILE");
+		text_tile[1].system(window, sf::Vector2f(rectangle_panel_top.getPosition().x + rectangle_panel_top.getGlobalBounds().width / 3, rectangle_panel_top.getPosition().y), "Best Score: ", best_score_string);
 		text_tile[2].system(window, sf::Vector2f(rectangle_panel_top.getPosition().x + rectangle_panel_top.getGlobalBounds().width / 3 * 2, rectangle_panel_top.getPosition().y), "Level: ", std::to_string(no_of_level));
 	//}
 }
@@ -25,7 +25,7 @@ void Interface_text::initialization_tiles_text(sf::RenderWindow& window) // doda
 	text_tile.push_back(Singe_interface_tile(window, sf::Vector2f(rectangle_panel_top.getPosition().x, rectangle_panel_top.getPosition().y), "Score: ", "00000000",
 		sf::Vector2f(rectangle_panel_top.getGlobalBounds().width / 3, rectangle_panel_top.getGlobalBounds().height), &font_points));
 
-	text_tile.push_back(Singe_interface_tile(window, sf::Vector2f(rectangle_panel_top.getPosition().x + rectangle_panel_top.getGlobalBounds().width / 3, rectangle_panel_top.getPosition().y), "Lifes: ", "3 / 3",
+	text_tile.push_back(Singe_interface_tile(window, sf::Vector2f(rectangle_panel_top.getPosition().x + rectangle_panel_top.getGlobalBounds().width / 3, rectangle_panel_top.getPosition().y), "Best Score: ", "00000000",
 		sf::Vector2f(rectangle_panel_top.getGlobalBounds().width / 3, rectangle_panel_top.getGlobalBounds().height), &font_points));
 
 	text_tile.push_back(Singe_interface_tile(window, sf::Vector2f(rectangle_panel_top.getPosition().x + rectangle_panel_top.getGlobalBounds().width / 3 * 2, rectangle_panel_top.getPosition().y),
@@ -43,14 +43,14 @@ void Interface_text::score_points_in(int points)
 	}
 }
 
-void Interface_text::life_player_in(uint8_t points)
-{
-
-}
-
 void Interface_text::no_of_level_in(uint8_t index_level)
 {
 	this->no_of_level = index_level;
+}
+
+void Interface_text::best_score_in(std::string score)
+{
+	this->best_score_string = score;
 }
 
 void Interface_text::draw(sf::RenderWindow& window)

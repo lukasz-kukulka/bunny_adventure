@@ -12,7 +12,9 @@
 #include <time.h> 
 
 // - end lvl system <-- done
-// - end game algorithm <-- curently
+// - end game algorithm <-- done
+// - load score to interface from files<-- curently
+// - sort score in file
 // - save score to file
 // - error with couting point for bonus
 // - menu to exit from game/to menu
@@ -25,6 +27,7 @@
 // - check error with end of map
 // - error with moving scroll bar
 // - create a base class level
+// - add cmake
 
 extern sf::Vector2i mouse;
 

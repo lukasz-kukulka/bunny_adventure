@@ -93,6 +93,11 @@ std::string Files_operations::load_score(uint8_t row_number)
     return "cos";
 }
 
+std::string Files_operations::load_best_score()
+{
+    return "test_from_file";
+}
+
 void Files_operations::save_score_reset()
 {
     std::fstream file;

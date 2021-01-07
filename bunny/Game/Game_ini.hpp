@@ -6,12 +6,12 @@
 #include "Levels_ini.hpp"
 #include "Colisions.hpp"
 #include "Interface_text.hpp"
+#include "../Menu/Files_operations.hpp"
 
 class Game_ini :public Option
 {
 public:
 	Game_ini(sf::RenderWindow& window);
-	//~Game_ini();
 	uint8_t system(sf::RenderWindow& window, sf::Vector2i mouse);
 	void objects_ini(sf::RenderWindow& window);
 	void settings(uint8_t volume);
@@ -36,5 +36,6 @@ private:
 	bool ladder_movement_enable{ false };
 	bool confirm_delete_bonus_variable{ false };
 	bool pressed_and_restart_new_level{ false };
+	Files_operations file_operations;
 };
 
