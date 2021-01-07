@@ -95,7 +95,20 @@ std::string Files_operations::load_score(uint8_t row_number)
 
 std::string Files_operations::load_best_score()
 {
-    return "test_from_file";
+    no_line = 3;
+    std::string line;
+    std::fstream file;
+    file.open("Settings/score.txt", std::ios::in);
+    if (file.good() == false)
+    {
+        std::cout << "File not exist" << std::endl;
+        exit(0);
+    }
+    for (uint8_t i = 0; i < 3; i++)
+    {
+        getline(file, line);
+    }
+    return line;
 }
 
 void Files_operations::save_score_reset()
