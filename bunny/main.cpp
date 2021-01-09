@@ -13,8 +13,10 @@
 
 // - end lvl system <-- done
 // - end game algorithm <-- done
-// - load score to interface from files<-- curently
-// - sort score in file
+// - load score to interface from files <-- done
+// - sort score in file <-- done
+// - add enum in menu <-- curently
+// - optimalize save and load file with struct
 // - save score to file
 // - error with couting point for bonus
 // - menu to exit from game/to menu
@@ -27,8 +29,9 @@
 // - check error with end of map
 // - error with moving scroll bar
 // - create a base class level
+// - add where is posible const
 // - add cmake
-
+//int cosaa = 0;
 extern sf::Vector2i mouse;
 
 int main()
@@ -75,6 +78,7 @@ int main()
     Option* go_to_option = &inter;
     while (window.isOpen())
     {
+        //std::cout << "-----------------------------------------" << cosaa++ << std::endl;
         sprite.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)));
         sf::Vector2i mouse = sf::Mouse::getPosition(window);
         music.setVolume(10.0f / 100 * res_load.load_from_settings(2));

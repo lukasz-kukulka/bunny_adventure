@@ -1,6 +1,11 @@
 #include "Game_ini.hpp"
 
-Game_ini::Game_ini(sf::RenderWindow& window) :level_ini(window), background_ini(window), interface_texts(window), colision(), file_operations()
+Game_ini::Game_ini(sf::RenderWindow& window) 
+		: level_ini(window)
+		, background_ini(window)
+		, interface_texts(window)
+		, colision()
+		, file_operations()
 {
 	this->bunny_tex.loadFromFile("Game/Textures/player.png");
 	this->time_animation = 0;

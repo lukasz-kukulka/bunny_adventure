@@ -345,5 +345,5 @@ void Settings_page::draw(sf::RenderWindow& window)
 Settings_page::~Settings_page()
 {
 	delete settings_ini;
-	settings_ini = nullptr;
+	//settings_ini = nullptr;
 }

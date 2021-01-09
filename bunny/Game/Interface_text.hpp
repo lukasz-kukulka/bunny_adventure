@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Singe_interface_tile.hpp"
+#include "../Menu/Files_operations.hpp"
 #include <iostream>
 
 class Interface_text
@@ -23,6 +24,7 @@ private:
 	std::vector<Singe_interface_tile>text_tile;
 	std::string score_points{ };
 	sf::Texture life_texture;
+	Files_operations file_operations;
 	uint8_t max_life{ 5 };
 	uint8_t min_life{ 1 };
 	uint8_t no_of_level{ 0 };

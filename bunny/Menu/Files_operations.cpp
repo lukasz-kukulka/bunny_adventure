@@ -125,6 +125,28 @@ void Files_operations::save_score_reset()
     file.close();
 }
 
+void Files_operations::sort_best_score()
+{
+    uint16_t temp_loop = how_many_record_score();
+    record_ini();
+    temp_single_record.push_back(Single_record_file("0", "0", "0"));
+    std::cout << records.size() << std::endl;
+    for (uint16_t i = 0; i < temp_loop; i++)
+    {
+        for (uint16_t j = 1; j < temp_loop; j++)
+        {
+            if (stoi(records[j - 1].score_out()) < stoi(records[j].score_out()))
+            {
+                temp_single_record[0] = records[j - 1];
+                records[j - 1] = records[j];
+                records[j] = temp_single_record[0];
+                std::cout << "cos tam" << std::endl;
+            } 
+        }
+    }
+    save_score_reset();
+}
+
 void Files_operations::delete_record(uint16_t index)
 {
     this->record_ini();
