@@ -1,6 +1,8 @@
 #include "Settings_page.hpp"
 
-Settings_page::Settings_page(sf::RenderWindow& window): Load_from_files(window)
+Settings_page::Settings_page(sf::RenderWindow& window)
+		: Load_from_files(window)
+		, settings_ini()
 {
 	this->settings_sections_no = 5;
 	this->settings_resolution = 3;
@@ -117,7 +119,7 @@ uint8_t Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		else if (press_save_back == 1)
 		{
 			choise_sound.play();
-			this->settings_ini->save_settings(user_settings.res, user_settings.vol, user_settings.efect, user_settings.music, user_settings.dif);
+			this->settings_ini.save_settings(user_settings.res, user_settings.vol, user_settings.efect, user_settings.music, user_settings.dif);
 			this->save_button_press = true;
 			this->clock_save.restart();
 			this->time_save_begin = sf::seconds(0.0f);
@@ -162,11 +164,11 @@ uint8_t Settings_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 
 void Settings_page::load_settings()
 {
-	this->user_settings.res = settings_ini->load_from_settings(1);
-	this->user_settings.vol = settings_ini->load_from_settings(2);
-	this->user_settings.efect = settings_ini->load_from_settings(3);
-	this->user_settings.music = settings_ini->load_from_settings(4);
-	this->user_settings.dif = settings_ini->load_from_settings(5);
+	this->user_settings.res = settings_ini.load_from_settings(1);
+	this->user_settings.vol = settings_ini.load_from_settings(2);
+	this->user_settings.efect = settings_ini.load_from_settings(3);
+	this->user_settings.music = settings_ini.load_from_settings(4);
+	this->user_settings.dif = settings_ini.load_from_settings(5);
 }
 
 void Settings_page::settings_ini_button()
@@ -340,10 +342,4 @@ void Settings_page::draw(sf::RenderWindow& window)
 	{
 		texts[i].draw(window);
 	}
-}
-
-Settings_page::~Settings_page()
-{
-	delete settings_ini;
-	//settings_ini = nullptr;
 }

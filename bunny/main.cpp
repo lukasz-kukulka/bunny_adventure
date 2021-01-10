@@ -20,6 +20,7 @@
 // - save score to file
 // - error with couting point for bonus
 // - menu to exit from game/to menu
+// - close option
 // - bonus anoucemenet one under another
 // - changing all loop for
 // - add text depends of with bonus is
@@ -36,8 +37,21 @@ extern sf::Vector2i mouse;
 
 int main()
 {
+    enum menu_option_enum
+    {
+        interface_menu_option = 0,
+        game_option = 1,
+        high_score_option = 2,
+        setting_option = 3,
+        credits_option = 4,
+        close_option = 5,
+    } menu_option;
+    menu_option = game_option;
+
+
+
     Files_operations res_load;
-    uint16_t menu_option = 1, res_width = 1280, res_height = 1024;
+    uint16_t res_width = 1280, res_height = 1024;
     int8_t enabled_indicator = 99;
     bool music_play = true;
     if (res_load.load_from_settings(1) == 1)
@@ -84,20 +98,17 @@ int main()
         music.setVolume(10.0f / 100 * res_load.load_from_settings(2));
         switch (menu_option)
         {
-            case 0: //menu interface
+            case interface_menu_option:
             {
                 if (enabled_indicator != 0)
                 {
                     go_to_option = &inter;
                     enabled_indicator = 1;
                 }
-                
-                //menu_option = go_to_option->system(window, mouse);
-                //go_to_option->settings(res_load.load_from_settings(2));
                 break;
             }
         
-            case 1: //Game
+            case game_option:
             {
                 music.pause();
                 if (enabled_indicator != 1)
@@ -105,8 +116,6 @@ int main()
                     go_to_option = &game_ini;
                     enabled_indicator = 1;
                 }
-                //menu_option = go_to_option->system(window, mouse);
-                //go_to_option->settings(res_load.load_from_settings(2));
                 sprite.setScale(0, 0);
                 break;
                 if (music.getVolume() <= 1) //zwiekszyæ volume
@@ -123,30 +132,37 @@ int main()
                 break;
             }
 
-            case 2: //High score
+            case high_score_option:
             {
-                go_to_option = &score_page;                                 ///////////////////////////////////// ZMIENIC JAK W ! 1 i 0 case
-                //menu_option = go_to_option->system(window, mouse);
-                //go_to_option->settings(res_load.load_from_settings(2));
+                if (enabled_indicator != 2)
+                {
+                    go_to_option = &score_page;
+                    enabled_indicator = 2;
+                }   
                 break;
             }
 
-            case 3: //Settings
+            case setting_option:
             {
-                go_to_option = &settings_page;                                 ///////////////////////////////////// ZMIENIC JAK W ! 1 i 0 case
-                menu_option = go_to_option->system(window, mouse);
-                go_to_option->settings(res_load.load_from_settings(2));
+                if (enabled_indicator != 3)
+                {
+                    go_to_option = &settings_page;
+                    enabled_indicator = 3;
+                }
                 break;
             }
 
-            case 4: //Credits                                 ///////////////////////////////////// ZMIENIC JAK W ! 1 i 0 case
+            case credits_option:
             {
-                go_to_option = &credits;
-
+                if (enabled_indicator != 4)
+                {
+                    go_to_option = &credits;
+                    enabled_indicator = 4;
+                }
                 break;
             }
 
-            case 5://Close
+            case close_option:
             {
                 window.close();
                 break;
@@ -155,7 +171,7 @@ int main()
             default:
                 break;
         }
-        menu_option = go_to_option->system(window, mouse);
+        menu_option = menu_option_enum(go_to_option->system(window, mouse));
         go_to_option->settings(res_load.load_from_settings(2));
 
         if (res_load.load_from_settings(4) == true && music_play == true)
