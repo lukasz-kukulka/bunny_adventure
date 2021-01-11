@@ -6,8 +6,7 @@
 class Files_operations
 {
 public:
-	Files_operations();
-
+	void file_open(std::string path);
 	uint16_t load_from_settings(uint8_t row_number);
 	void save_settings(uint16_t res, uint8_t vol, bool efect, bool music, uint8_t diff);
 	std::string load_score(uint8_t row_number);
@@ -19,17 +18,10 @@ public:
 	void record_ini();
 
 private:
-	uint16_t no_line;
+	uint16_t no_line{ 1 };
 	std::string name, data, score;
+	//std::string line;
 	std::vector<Single_record_file>records;
 	std::vector<Single_record_file>temp_single_record;
-	//struct single_record_struct
-	//{
-	//	std::string name;
-	//	std::string data;
-	//	std::string score;
-	//};
-	//std::vector<single_record_struct>score_record_struct;
-	//std::string temp_string;
 };
 

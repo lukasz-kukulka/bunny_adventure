@@ -15,22 +15,24 @@
 // - end game algorithm <-- done
 // - load score to interface from files <-- done
 // - sort score in file <-- done
-// - add enum in menu <-- curently
-// - optimalize save and load file with struct
-// - save score to file
+// - add enum in menu <-- done
+// - optimalize save and load file <-- done
+// - save score to file <-- done
+// - optimalization main and level vitual class <-- curently
 // - error with couting point for bonus
 // - menu to exit from game/to menu
 // - close option
-// - bonus anoucemenet one under another
+// - bonus anoucemenet one under another and middlein screan
 // - changing all loop for
 // - add text depends of with bonus is
 // - load best score from file
-// - dellete in destructorone of class
+// - dellete in destructor one of class
 // - error with couting points
 // - check error with end of map
 // - error with moving scroll bar
 // - create a base class level
 // - add where is posible const
+// - check class load_from_file
 // - add cmake
 //int cosaa = 0;
 extern sf::Vector2i mouse;
@@ -86,8 +88,8 @@ int main()
     music.setVolume(10);
     Interface inter(window);
     Game_ini game_ini(window);
-    Credits credits(window);
-    Settings_page settings_page(window);
+    //Credits credits(window);
+    //Settings_page settings_page(window);
     Score_page score_page(window);
     Option* go_to_option = &inter;
     while (window.isOpen())
@@ -146,8 +148,8 @@ int main()
             {
                 if (enabled_indicator != 3)
                 {
-                    go_to_option = &settings_page;
-                    enabled_indicator = 3;
+                    //go_to_option = &settings_page;
+                    //enabled_indicator = 3;
                 }
                 break;
             }
@@ -156,8 +158,8 @@ int main()
             {
                 if (enabled_indicator != 4)
                 {
-                    go_to_option = &credits;
-                    enabled_indicator = 4;
+                    //go_to_option = &credits;
+                    //enabled_indicator = 4;
                 }
                 break;
             }

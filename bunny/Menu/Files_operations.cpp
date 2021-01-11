@@ -1,10 +1,5 @@
 #include "Files_operations.hpp"
 
-Files_operations::Files_operations()
-{
-    this->no_line = 1;
-}
-
 uint16_t Files_operations::load_from_settings(uint8_t row_number)
 {
 	no_line = 1;
@@ -140,10 +135,10 @@ void Files_operations::sort_best_score()
                 temp_single_record[0] = records[j - 1];
                 records[j - 1] = records[j];
                 records[j] = temp_single_record[0];
-                std::cout << "cos tam" << std::endl;
             } 
         }
     }
+    temp_single_record.erase(temp_single_record.begin());
     save_score_reset();
 }
 
@@ -151,7 +146,6 @@ void Files_operations::delete_record(uint16_t index)
 {
     this->record_ini();
     this->records.erase(records.begin() + index);
-    std::cout << records.size() << "in delete \n";
     this->save_score_reset();
     this->records.erase(records.begin(), records.end());
 }
