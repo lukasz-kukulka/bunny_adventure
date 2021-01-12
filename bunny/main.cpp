@@ -21,6 +21,7 @@
 // - optimalization main and level vitual class <-- curently
 // - error with couting point for bonus
 // - menu to exit from game/to menu
+// - error with out range of vector bonus
 // - close option
 // - bonus anoucemenet one under another and middlein screan
 // - changing all loop for
@@ -34,7 +35,7 @@
 // - add where is posible const
 // - check class load_from_file
 // - add cmake
-//int cosaa = 0;
+
 extern sf::Vector2i mouse;
 
 int main()
@@ -72,11 +73,8 @@ int main()
         res_height = 1080;
     }
 
-    //Files_operations *res_load_new;
-    //res_load_new = &res_load
     srand(time(NULL));
     sf::RenderWindow window(sf::VideoMode(res_width, res_height), "Bunny adventure");
-    //window.setPosition(sf::Vector2i(0, 0));
     window.setFramerateLimit(60);
     window.setMouseCursorVisible(false);
     sf::Texture texture;
@@ -94,7 +92,6 @@ int main()
     Option* go_to_option = &inter;
     while (window.isOpen())
     {
-        //std::cout << "-----------------------------------------" << cosaa++ << std::endl;
         sprite.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)));
         sf::Vector2i mouse = sf::Mouse::getPosition(window);
         music.setVolume(10.0f / 100 * res_load.load_from_settings(2));
@@ -123,13 +120,10 @@ int main()
                 if (music.getVolume() <= 1) //zwiekszyæ volume
                 {
                     music.pause();
-                    
-
                 }
                 else
                 {
                     music.setVolume(music.getVolume() - 0.4);
-
                 }
                 break;
             }
@@ -193,12 +187,11 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-        // Clear screen
         window.clear();
         go_to_option->draw(window);
         window.draw(sprite);
         window.display();
     }
-    //go_to_option = nullptr;
+    go_to_option = nullptr;
     return 0;
 }

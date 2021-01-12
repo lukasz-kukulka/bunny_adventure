@@ -2,28 +2,13 @@
 
 Levels_ini::Levels_ini(sf::RenderWindow& window) : test_lvl(window), pick_lvl_test(window)
 {
-	//pick_items = nullptr;
-	this->level_indicator = 99;                  // if lvl will be more than 99 changing this type ////////////////////////////////////
-	this->lvl_size = sf::Vector2i(0, 0);
-	choise_level = nullptr;
-	choise_bonus = nullptr;
-	this->no_til = 0;
-	this->bonus_delete_yes = false;
-	this->bonus_yes = true;
-	this->bonus_delete_element = 0;
 	this->font.loadFromFile("Game/Fonts/beachday.ttf");
 	//std::cout << "--->" << static_cast<int>(game_level)  << std::endl;
 }
 
-//Levels_ini::~Levels_ini()
-//{
-//	choise_level = nullptr;
-//}
-
 uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
 {
 	this->game_lvl = game_level;
-	//std::cout << "--->  " << static_cast<int>(game_level) << std::endl;
 	switch (game_lvl)
 	{
 	case 0:
@@ -31,7 +16,6 @@ uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
 		if (level_indicator != 0)
 		{
 			this->turn_off_all_functions = false;
-			//std::cout << "---> teste " << std::endl;
 			lvl_size = sf::Vector2i(10000, 2000);
 			choise_level = &test_lvl;
 			choise_bonus = &pick_lvl_test;
@@ -44,7 +28,6 @@ uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
 	}
 	default:
 	{
-		//std::cout << "---> test " << std::endl;
 		if (level_indicator != 99)
 		{
 			game_end_ini();
@@ -53,10 +36,8 @@ uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
 		this->turn_off_all_functions = true;
 		for (int i = 0; i < game_over.size(); i++)
 		{
-			//game_over[i].system();
 			if (game_over[i].system() == 1)
 			{
-				//std::cout << "---> test " << std::endl;
 				this->game_over_ini = true;
 			}
 		}
@@ -77,30 +58,26 @@ uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
 		delete_bonus_yes(false, player_pos);
 	}
 
-	if (pick_lvl_test.no_of_bonus_out() == 0)
+	if (choise_bonus->no_of_bonus_out() == 0)
 	{
 		
 		if (initialization_end_lvl_screen == false)
 		{
-			//std::cout << "---> 1 " << std::endl;
 			level_change();
 			initialization_end_lvl_screen = true;
 		}
 		else
 		{
-			//std::cout << "---> 2 " << std::endl;
 			for (int i = 0; i < level_end_vector.size(); i++)
 			{
 				level_end_vector[0].system(view_level_ini);
 			}
 			
 		}
-		this->turn_off_all_functions = true;
-		//std::cout << "---> 3 " << std::endl;
+		this->turn_off_all_functions = true;;
 	}
 	else
 	{
-		//std::cout << "---> 4 " << std::endl;
 		start_new_lvl();
 		initialization_end_lvl_screen == true;
 		this->turn_off_all_functions = false;
@@ -135,12 +112,12 @@ single_tile_out_for_bonus Levels_ini::structure_bonuses(uint16_t index)
 
 void Levels_ini::bonus_vector()
 {
-	for (uint16_t i = 0; i < test_lvl.bonus_size(); i++)
+	for (uint16_t i = 0; i < choise_level->bonus_size(); i++)
 	{
 		choise_bonus->bonus_parameters_ini(choise_level->bonus_parameters(i));
 	}
 	bonus_yes = false;
-	pick_lvl_test.no_of_tiles(test_lvl.bonus_size());
+	choise_bonus->no_of_tiles(choise_level->bonus_size());
 }
 
 uint16_t Levels_ini::no_bonuses()
@@ -150,46 +127,39 @@ uint16_t Levels_ini::no_bonuses()
 
 sf::Sprite Levels_ini::bonus_sprite_out(uint16_t index)
 {
-
-	//std::cout << index << std::endl;
-	return pick_lvl_test.bonus_sprite_out(index);
+	return choise_bonus->bonus_sprite_out(index);
 }
 
 uint16_t Levels_ini::no_of_bonus_out()
 {
-
-	//std::cout << pick_lvl_test.no_of_bonus_out() << std::endl;
-	return pick_lvl_test.no_of_bonus_out();
+	return choise_bonus->no_of_bonus_out();
 }
 
 void Levels_ini::delete_bonus_yes(bool index, sf::Sprite* player)
 {
 	player_pos = player;
 	bonus_delete_yes = index;
-	pick_lvl_test.player_mid_position(player_pos);
+	choise_bonus->player_mid_position(player_pos);
 }
 
 void Levels_ini::delete_bonus_ini(uint16_t index)
 {
-	
 	this->bonus_delete_element = index;
-	//std::cout << bonus_delete_element << std::endl;
 }
 
 uint16_t Levels_ini::tiles_type(uint16_t index)
 {
-	//std::cout << test_lvl.tiles_type(index) << std::endl;
-	return test_lvl.tiles_type(index);
+	return choise_level->tiles_type(index);
 }
 
 uint8_t Levels_ini::type_item_bonus_out(uint16_t index)
 {
-	return pick_lvl_test.type_item_bonus_out(index);
+	return choise_bonus->type_item_bonus_out(index);
 }
 
 bool Levels_ini::confirm_bonus_delete()
 {
-	return pick_lvl_test.confirm_bonus_delete();
+	return choise_bonus->confirm_bonus_delete();
 }
 
 uint8_t Levels_ini::no_of_level_out()
@@ -213,7 +183,7 @@ void Levels_ini::start_new_lvl()
 void Levels_ini::view_ini(sf::View& view)
 {
 	view_level_ini = view;
-	pick_lvl_test.view_ini(view_level_ini);
+	choise_bonus->view_ini(view_level_ini);
 }
 
 uint8_t Levels_ini::game_lvl_out()
@@ -245,23 +215,8 @@ bool Levels_ini::game_over_ini_out()
 
 void Levels_ini::draw(sf::RenderWindow& window)
 {
-	switch (game_lvl)
-	{
-	case 0:
-	{
-		choise_level = &test_lvl;
-		choise_bonus = &pick_lvl_test;
-		break;
-	}
-	default:
-		break;
-	}
-	//system(window, 0);
-	if (level_indicator != 99)
-	{
-		choise_level->draw(window);
-		choise_bonus->draw(window);
-	}
+	choise_level->draw(window);
+	choise_bonus->draw(window);
 
 	for (auto i : level_end_vector)
 		i.draw(window);

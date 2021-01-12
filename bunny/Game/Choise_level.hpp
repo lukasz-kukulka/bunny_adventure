@@ -11,6 +11,8 @@ public:
 	virtual sf::Sprite* tiles(uint32_t) = 0;
 	virtual uint16_t no_til() = 0;
 	virtual single_tile_out_for_bonus bonus_parameters(uint16_t index) = 0;
+	virtual uint16_t bonus_size() = 0;
+	virtual uint16_t tiles_type(uint16_t index) = 0;
 	virtual void draw(sf::RenderWindow&) = 0;
 	//virtual uint8_t bonus_size(uint8_t) = 0;
 };

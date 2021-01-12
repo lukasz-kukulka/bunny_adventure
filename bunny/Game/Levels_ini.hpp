@@ -39,22 +39,26 @@ public:
 	void draw(sf::RenderWindow& window);
 
 private:
-	Choise_level* choise_level;
-	Choise_lvl_bonus* choise_bonus;
+	Choise_level* choise_level{ nullptr };
+	Choise_lvl_bonus* choise_bonus{ nullptr };
 	Test_LVL test_lvl;
 	Pick_lvl_test pick_lvl_test;
-	uint8_t game_lvl{ 0 }, level_indicator;
+	uint8_t game_lvl{ 0 };
+	uint8_t level_indicator{ 99 };   // if lvl will be more levels than 99 changing this ////////////////////////////////////
 	sf::Font font;
-	sf::Vector2i lvl_size;
-	sf::Sprite* player_pos;
-	sf::Sprite* til_ini;
+	sf::Vector2i lvl_size{ sf::Vector2i(0, 0) };
+	sf::Sprite* player_pos{ nullptr };
+	sf::Sprite* til_ini{ nullptr };
 	sf::View view_level_ini;
 	std::vector<single_tile_out_for_bonus>struct_bonus_out;
 	std::vector<Level_end>level_end_vector;
 	std::vector<Game_over>game_over;
-	uint16_t no_til, bonus_delete_element;
+	uint16_t no_til{ 0 };
+	uint8_t bonus_delete_element{ 0 };
 	uint8_t no_of_level{ 0 };
-	bool bonus_yes, bonus_delete_yes, level_time_change{ false };
+	bool bonus_yes{ true };
+	bool bonus_delete_yes{ false };
+	bool level_time_change{ false };
 	bool turn_off_all_functions{ false };
 	bool initialization_end_lvl_screen{ false };
 	bool game_over_ini{ false };
