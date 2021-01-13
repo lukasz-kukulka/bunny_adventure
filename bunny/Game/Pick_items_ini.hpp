@@ -44,7 +44,7 @@ private:
 	bool confirm_delete_variable{ false };
 	bool animation_bonus_extra_effect{ false };
 	//bool info_about_bonus{ false };
-
+	int aaa{ 0 }; // temporary variable
 
 };
 

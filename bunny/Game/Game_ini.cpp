@@ -231,11 +231,11 @@ void Game_ini::points_initialize(uint16_t index)
 			}
 			else if (index == 2)
 			{
-				player_bunny[0].add_player_points(2);
+				player_bunny[0].add_player_points(1);
 			}
 			else if (index == 3)
 			{
-				player_bunny[0].add_player_points(3);
+				player_bunny[0].add_player_points(1);
 			}
 			else if (index == 4)
 			{
@@ -243,35 +243,35 @@ void Game_ini::points_initialize(uint16_t index)
 			}
 			else if (index == 5)
 			{
-				player_bunny[0].add_player_points(5);
+				player_bunny[0].add_player_points(1);
 			}
 			else if (index == 6)
 			{
-				player_bunny[0].add_player_points(6);
+				player_bunny[0].add_player_points(1);
 			}
 			else if (index == 7)
 			{
-				player_bunny[0].add_player_points(8);
+				player_bunny[0].add_player_points(1);
 			}
 			else if (index == 8)
 			{
-				player_bunny[0].add_player_points(8);
+				player_bunny[0].add_player_points(1);
 			}
 			else if (index == 9)
 			{
-				player_bunny[0].add_player_points(9);
+				player_bunny[0].add_player_points(1);
 			}
 			else if (index == 10)
 			{
-				player_bunny[0].add_player_points(10);
+				player_bunny[0].add_player_points(1);
 			}
 			else if (index == 11)
 			{
-				player_bunny[0].add_player_points(11);
+				player_bunny[0].add_player_points(1);
 			}
 			else if (index == 12)
 			{
-				player_bunny[0].add_player_points(12);
+				player_bunny[0].add_player_points(1);
 			}
 			//std::cout << "-----------------------------------------" << bonus_index << std::endl;
 

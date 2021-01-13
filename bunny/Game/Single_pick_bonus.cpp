@@ -53,7 +53,7 @@ void Single_pick_bonus::animation_ini(sf::RenderWindow& window, sf::Sprite* play
 	//std::cout << "tak" << std::endl;
 	
 	
-	if (animation_delete_start == true && animation_finish == false)
+	if (animation_delete_start == true) // && animation_finish == false
 	{
 		//if (initialize_bonus_efect == true && bonus_extra_text[0].system(window) == 1)
 		//{

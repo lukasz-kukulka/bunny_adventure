@@ -34,24 +34,20 @@ uint8_t Pick_items_ini::system(sf::RenderWindow& window)
 		{
 			random_pos = dist(mt);
 			teporary_tiles_tab.push_back(int(random_pos));
-			//std::cout << "STEP 1" << std::endl;
 			for (uint16_t j = teporary_tiles_tab.size() - 1; j > 0; j--)
 			{
 				if (random_pos == teporary_tiles_tab[j - 1])
 				{
 					teporary_tiles_tab.erase(teporary_tiles_tab.begin() + teporary_tiles_tab.size() - 1);
-					++i;
+					//++i;
 					break;
 				}
 			}
-			//std::cout << random_pos << std::endl;
 		}
 		for (uint16_t z = teporary_tiles_tab.size(); z > 0; z--)
 		{
 			bonuses[z - 1].changing_bonus_position(sf::Vector2f(tiles_parameters[teporary_tiles_tab[z - 1]].x_position,
 				tiles_parameters[teporary_tiles_tab[z - 1]].y_position - bonuses[z - 1].globalbound_out().y));
-			//std::cout << random_pos << std::endl;
-			//std::cout << teporary_tiles_tab[z - 1] << " ------- " << bonuses[z - 1].position_out().x << std::endl;
 		}
 		bonus_position_ini = false;
 
@@ -111,8 +107,6 @@ void Pick_items_ini::single_pick_items_ini(sf::RenderWindow& window, uint8_t typ
 	{
 		bonuses.push_back(Single_pick_bonus(window, &awa512, 12));
 	}
-	//std::cout << bonuses.size() << std::endl;
-	//bonuses.push_back(Single_pick_bonus(window, &))
 	bonus_info.push_back(Bonus_extra_effect(window, &font, sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2), type));
 }
 
@@ -151,30 +145,19 @@ uint16_t Pick_items_ini::no_of_tiles_out()
 
 void Pick_items_ini::animation_delete_bonus_ini(sf::RenderWindow& window)
 {
-	//if (info_about_bonus == true)
-	//{
-
-	//}
 	for (int i = 0; i < bonuses.size(); i++)
 	{
 		this->confirm_delete_variable = false;
 		//std::cout << i << std::endl;
-		//std::cout << i << "PRAWDA CZY N*E________________________________ " << bonuses[i].animation_finish_out() << std::endl;
 		bonus_info[i].system(view_window);
 		bonuses[i].animation_ini(window ,player_sprite_out());
 		if (bonuses[i].animation_finish_out() == true)
 		{
-			//std::cout << i << ".     PRAWDA CZY N*E________________________________ " << bonuses[i].animation_finish_out() << std::endl;
-			//std::cout << "delete  -----> " << i << std::endl;
 			bonus_info.erase(bonus_info.begin() + i);
 			bonuses.erase(bonuses.begin() + i);
 			this->confirm_delete_variable = true;
 			//i=0;
 			break;
-		}
-		else
-		{
-			
 		}
 		
 	}
@@ -192,12 +175,8 @@ sf::Sprite* Pick_items_ini::player_sprite_out()
 
 void Pick_items_ini::delete_bonus_ele(uint16_t element_index)
 {
-	//bonuses_before_delete.push_back(Single_pick_bonus()) = bonuses[element_index];
-	//bonuses.push_back(Single_pick_bonus(window, &awa510, 10));
 	bonuses[element_index].animation_delete();
 	bonus_info[element_index].can_delete_change(true);
-	//this->info_about_bonus = true;
-	
 }
 
 bool Pick_items_ini::confirm_bonus_delete()

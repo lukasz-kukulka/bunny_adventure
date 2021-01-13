@@ -18,22 +18,21 @@
 // - add enum in menu <-- done
 // - optimalize save and load file <-- done
 // - save score to file <-- done
-// - optimalization main and level vitual class <-- curently
-// - error with couting point for bonus
+// - optimalization main and level vitual class <-- done
+// - error with out range of vector bonus <-- done
+// - error with couting point for bonus <-- done
+// - error with pick up right items bonus <-- curently
 // - menu to exit from game/to menu
-// - error with out range of vector bonus
 // - close option
-// - bonus anoucemenet one under another and middlein screan
+// - bonus anoucemenet one under another and middle in screan
 // - changing all loop for
 // - add text depends of with bonus is
-// - load best score from file
 // - dellete in destructor one of class
-// - error with couting points
 // - check error with end of map
 // - error with moving scroll bar
 // - create a base class level
 // - add where is posible const
-// - check class load_from_file
+// - memory error - check class load_from_file this efect settings and credits
 // - add cmake
 
 extern sf::Vector2i mouse;
