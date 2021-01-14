@@ -159,7 +159,6 @@ void Pick_items_ini::animation_delete_bonus_ini(sf::RenderWindow& window)
 			//i=0;
 			break;
 		}
-		
 	}
 }
 
@@ -192,6 +191,16 @@ uint8_t Pick_items_ini::type_item_bonus_out(uint16_t index)
 void Pick_items_ini::view_ini(sf::View& view)
 {
 	view_window = view;
+}
+
+void Pick_items_ini::delete_bonus_item_confirm(uint16_t index)
+{
+	bonuses[index].delete_item_confirm();
+}
+
+bool Pick_items_ini::delete_bonus_item_confirm_out(uint16_t index)
+{
+	return bonuses[index].if_can_you_delete_item();
 }
 
 void Pick_items_ini::draw(sf::RenderWindow& window)

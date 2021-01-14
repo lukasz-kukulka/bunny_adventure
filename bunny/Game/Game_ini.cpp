@@ -188,11 +188,12 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			//std::cout << "-----------------------------------------" << bonus_index << std::endl;
 			colision.bonus_sprite_in(level_ini.bonus_sprite_out(bonus_index));
 			colision.colision_bonus();
-			if (colision.catch_bonus() == true && colision.catch_bonus_one_time() == true)
+			if (colision.catch_bonus() == true && level_ini.bonus_item_delete_confirm_out(bonus_index) == false)// && colision.catch_bonus_one_time() == true
 			{
 				level_ini.delete_bonus_yes(true, player_bunny[0].shape_player());
 				level_ini.delete_bonus_ini(bonus_index);
 				this->index_delete_bonus = level_ini.type_item_bonus_out(bonus_index);
+				level_ini.bonus_item_delete_confirm(bonus_index);
 				//std::cout << "-----------------------------------------" << static_cast<int>( index_delete_bonus) << std::endl;
 				break;
 			}

@@ -5,15 +5,15 @@ Pick_lvl_test::Pick_lvl_test(sf::RenderWindow& window)
     this->bonus501 = 0; // widogrona wisz¹ce !!!!!!!!!!!! musi byc u góry
     this->bonus502 = 10; // burak
     this->bonus503 = 10; // kolko - lisc zielony
-    this->bonus504 = 100; // marchewka
+    this->bonus504 = 10; // marchewka
     this->bonus505 = 10; // grzyb
-    this->bonus506 = 0; // kolko - spirala
-    this->bonus507 = 0; // kolko - lisc rozowy
-    this->bonus508 = 0; // kolko - kropla
+    this->bonus506 = 10; // kolko - spirala
+    this->bonus507 = 10; // kolko - lisc rozowy
+    this->bonus508 = 10; // kolko - kropla
     this->bonus509 = 10; // kolko - ogien
     this->bonus510 = 10; // kolko - trybik
-    this->bonus511 = 0; // ziemniak
-    this->bonus512 = 0; // kociolek
+    this->bonus511 = 10; // ziemniak
+    this->bonus512 = 10; // kociolek
     this->bonus_quantity = bonus501 + bonus502 + bonus503 + bonus504 + bonus505 + bonus506 + bonus507 + bonus508 + bonus509 + bonus510 + bonus511 + bonus512;
     //this->no_tiles = 0;
 }
@@ -128,6 +128,16 @@ bool Pick_lvl_test::confirm_bonus_delete()
 void Pick_lvl_test::view_ini(sf::View& view)
 {
     bonus_ini[0].view_ini(view);
+}
+
+void Pick_lvl_test::delete_bonus_item_confirm(uint16_t index)
+{
+    bonus_ini[0].delete_bonus_item_confirm(index);
+}
+
+bool Pick_lvl_test::delete_bonus_item_confirm_out(uint16_t index)
+{
+    return bonus_ini[0].delete_bonus_item_confirm_out(index);
 }
 
 //single_tile_out_for_bonus Pick_lvl_test::bonus_parameters_ini(uint16_t index)

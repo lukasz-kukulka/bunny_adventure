@@ -36,6 +36,8 @@ public:
 	void game_end_ini();
 	bool turn_off_all_function_check();
 	bool game_over_ini_out();
+	void bonus_item_delete_confirm(uint16_t index);
+	bool bonus_item_delete_confirm_out(uint16_t index);
 	void draw(sf::RenderWindow& window);
 
 private:

@@ -152,15 +152,15 @@ bool Colisions::catch_bonus()
 	return catch_bonus_true;
 }
 
-bool Colisions::catch_bonus_one_time()
-{
-	return catch_bonus_one_time_true;
-}
-
-void Colisions::catch_bonus_one_time_in(bool index)
-{
-	this->catch_bonus_one_time_true = index;
-}
+//bool Colisions::catch_bonus_one_time()
+//{
+//	return catch_bonus_one_time_true;
+//}
+//
+//void Colisions::catch_bonus_one_time_in(bool index)
+//{
+//	this->catch_bonus_one_time_true = index;
+//}
 
 //void Colisions::catch_change_to_false()
 //{

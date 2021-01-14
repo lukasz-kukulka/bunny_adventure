@@ -26,6 +26,8 @@ public:
 	bool confirm_bonus_delete();
 	uint8_t type_item_bonus_out(uint16_t index);
 	void view_ini(sf::View& view);
+	void delete_bonus_item_confirm(uint16_t index);
+	bool delete_bonus_item_confirm_out(uint16_t index);
 	void draw(sf::RenderWindow& window);
 
 private:
@@ -44,7 +46,7 @@ private:
 	bool confirm_delete_variable{ false };
 	bool animation_bonus_extra_effect{ false };
 	//bool info_about_bonus{ false };
-	int aaa{ 0 }; // temporary variable
+	//int aaa{ 0 }; // temporary variable
 
 };
 

@@ -135,6 +135,11 @@ bool Single_pick_bonus::animation_finish_out()
 	return animation_finish;
 }
 
+void Single_pick_bonus::delete_item_confirm()
+{
+	this->delete_item = true;
+}
+
 //void Single_pick_bonus::bonus_extra_efect_ini(sf::RenderWindow& window)
 //{
 //	

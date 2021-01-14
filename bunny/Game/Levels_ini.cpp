@@ -212,6 +212,16 @@ bool Levels_ini::game_over_ini_out()
 	return game_over_ini;
 }
 
+void Levels_ini::bonus_item_delete_confirm(uint16_t index)
+{
+	choise_bonus->delete_bonus_item_confirm(index);
+}
+
+bool Levels_ini::bonus_item_delete_confirm_out(uint16_t index)
+{
+	return choise_bonus->delete_bonus_item_confirm_out(index);
+}
+
 
 void Levels_ini::draw(sf::RenderWindow& window)
 {

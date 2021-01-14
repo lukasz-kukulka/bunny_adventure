@@ -21,7 +21,8 @@
 // - optimalization main and level vitual class <-- done
 // - error with out range of vector bonus <-- done
 // - error with couting point for bonus <-- done
-// - error with pick up right items bonus <-- curently
+// - error with pick up right items bonus <-- done
+// - error with desapeart bonus object <-- curently
 // - menu to exit from game/to menu
 // - close option
 // - bonus anoucemenet one under another and middle in screan

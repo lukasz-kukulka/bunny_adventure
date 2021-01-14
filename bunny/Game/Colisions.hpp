@@ -21,8 +21,8 @@ public:
 	//uint16_t bonus_no_initialize();
 	//void bonus_index_incresed();
 	bool catch_bonus();
-	bool catch_bonus_one_time();
-	void catch_bonus_one_time_in(bool index);
+	//bool catch_bonus_one_time();
+	//void catch_bonus_one_time_in(bool index);
 	//void catch_change_to_false();
 	void player_sprite_in(sf::Sprite* player);
 	void free_memory();

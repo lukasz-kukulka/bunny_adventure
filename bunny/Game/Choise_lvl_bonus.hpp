@@ -18,6 +18,8 @@ public:
 	virtual uint8_t type_item_bonus_out(uint16_t index)= 0;
 	virtual bool confirm_bonus_delete() = 0;
 	virtual void view_ini(sf::View& view) = 0;
+	virtual void delete_bonus_item_confirm(uint16_t index) = 0;
+	virtual bool delete_bonus_item_confirm_out(uint16_t index) = 0;
 	virtual void draw(sf::RenderWindow&) = 0;
 
 };
