@@ -32,6 +32,7 @@ uint8_t Pick_items_ini::system(sf::RenderWindow& window)
 		std::uniform_int_distribution<int>dist(0, no_of_tiles_out() - 2);
 		for (uint16_t i = bonuses.size(); i > 0; i--)
 		{
+
 			random_pos = dist(mt);
 			teporary_tiles_tab.push_back(int(random_pos));
 			for (uint16_t j = teporary_tiles_tab.size() - 1; j > 0; j--)
@@ -39,18 +40,24 @@ uint8_t Pick_items_ini::system(sf::RenderWindow& window)
 				if (random_pos == teporary_tiles_tab[j - 1])
 				{
 					teporary_tiles_tab.erase(teporary_tiles_tab.begin() + teporary_tiles_tab.size() - 1);
-					//++i;
+					j--;
+					i++;
 					break;
 				}
 			}
 		}
-		for (uint16_t z = teporary_tiles_tab.size(); z > 0; z--)
+		//for (uint16_t z = teporary_tiles_tab.size(); z > 0; z--)
+		//{
+		//	bonuses[z - 1].changing_bonus_position(sf::Vector2f(tiles_parameters[teporary_tiles_tab[z - 1]].x_position,
+		//		tiles_parameters[teporary_tiles_tab[z - 1]].y_position - bonuses[z - 1].globalbound_out().y));
+		//}
+		for (uint16_t i = 0; i < bonuses.size(); i++)
 		{
-			bonuses[z - 1].changing_bonus_position(sf::Vector2f(tiles_parameters[teporary_tiles_tab[z - 1]].x_position,
-				tiles_parameters[teporary_tiles_tab[z - 1]].y_position - bonuses[z - 1].globalbound_out().y));
+			bonuses[i].changing_bonus_position(sf::Vector2f(tiles_parameters[teporary_tiles_tab[i]].x_position,
+			tiles_parameters[teporary_tiles_tab[i]].y_position - bonuses[i].globalbound_out().y));
 		}
 		bonus_position_ini = false;
-
+		//std::cout << "TEST" << std::endl;
 	}
 	animation_delete_bonus_ini(window);
 	return 0;
@@ -145,14 +152,17 @@ uint16_t Pick_items_ini::no_of_tiles_out()
 
 void Pick_items_ini::animation_delete_bonus_ini(sf::RenderWindow& window)
 {
+	
 	for (int i = 0; i < bonuses.size(); i++)
 	{
+
 		this->confirm_delete_variable = false;
 		//std::cout << i << std::endl;
 		bonus_info[i].system(view_window);
 		bonuses[i].animation_ini(window ,player_sprite_out());
 		if (bonuses[i].animation_finish_out() == true)
 		{
+			std::cout << "SIZE = " << bonuses.size() << ", FIRST POSITION X = " << bonuses[0].position_out().x << ", FIRST POSITION Y = " << bonuses[0].position_out().y << std::endl;
 			bonus_info.erase(bonus_info.begin() + i);
 			bonuses.erase(bonuses.begin() + i);
 			this->confirm_delete_variable = true;
