@@ -22,8 +22,8 @@
 // - error with out range of vector bonus <-- done
 // - error with couting point for bonus <-- done
 // - error with pick up right items bonus <-- done
-// - error with desapeart bonus object <-- curently
-// - menu to exit from game/to menu
+// - error with desapeart bonus object <-- done
+// - menu to exit from game/to menu <-- curently
 // - close option
 // - bonus anoucemenet one under another and middle in screan
 // - changing all loop for

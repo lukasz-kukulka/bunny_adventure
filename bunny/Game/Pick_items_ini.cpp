@@ -162,7 +162,7 @@ void Pick_items_ini::animation_delete_bonus_ini(sf::RenderWindow& window)
 		bonuses[i].animation_ini(window ,player_sprite_out());
 		if (bonuses[i].animation_finish_out() == true)
 		{
-			std::cout << "SIZE = " << bonuses.size() << ", FIRST POSITION X = " << bonuses[0].position_out().x << ", FIRST POSITION Y = " << bonuses[0].position_out().y << std::endl;
+			//std::cout << "SIZE = " << bonuses.size() << ", FIRST POSITION X = " << bonuses[0].position_out().x << ", FIRST POSITION Y = " << bonuses[0].position_out().y << std::endl;
 			bonus_info.erase(bonus_info.begin() + i);
 			bonuses.erase(bonuses.begin() + i);
 			this->confirm_delete_variable = true;

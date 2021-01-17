@@ -7,6 +7,7 @@
 #include "Colisions.hpp"
 #include "Interface_text.hpp"
 #include "../Menu/Files_operations.hpp"
+#include "Menu_esc_in_game.hpp"
 
 class Game_ini :public Option
 {
@@ -30,12 +31,15 @@ private:
 	Levels_ini level_ini;
 	Background_ini background_ini;
 	Colisions colision;
+	std::vector<Menu_esc_in_game> menu_esc;
+	//Menu_esc_in_game menu_esc;
 	Interface_text interface_texts;
 	sf::View view_game;
 	bool direction_enabled;
 	bool ladder_movement_enable{ false };
 	bool confirm_delete_bonus_variable{ false };
 	bool pressed_and_restart_new_level{ false };
+	bool menu_esc_visible{ false };
 	Files_operations file_operations;
 };
 

@@ -19,6 +19,7 @@ Game_ini::Game_ini(sf::RenderWindow& window)
 	this->bonus_index = 0;
 	window.setView(view_game);
 	interface_texts.best_score_in(file_operations.load_best_score());
+	
 }
 
 //Game_ini::~Game_ini()
@@ -31,12 +32,34 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	//std::cout << player_bunny[0].player_point_out() << std::endl;
 	window.setView(view_game);
 	interface_texts.system(view_game);
+	//for (int i = 0; i < menu_esc.size(); i++)
+	//{
+	//	if (menu_esc[i].system(view_game) == 0)
+	//	{
+	//		menu_esc_visible = false;
+	//	}
+	//	else if (menu_esc[i].system(view_game) == 1)
+	//	{
+	//		menu_esc_visible = true;
+	//	}
+	//}
 	//colision.player_sprite_in(player_bunny[0].shape_player());
 	//this->bonus_index++;
 	//std::cout << static_cast<int>(bonus_index) << std::endl;
 	if (level_ini.turn_off_all_function_check() == false)
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		{
+			if (menu_esc.size() == 0)
+			{
+				menu_esc.push_back(Menu_esc_in_game(view_game, 0));
+			}
+			else if (menu_esc.size() == 1)
+			{
+				menu_esc.erase(menu_esc.begin());
+			}
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
 			player_bunny[0].movement_enabled_changing(true);
 			if (direction_enabled == true)
@@ -127,8 +150,6 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		{
 			return 5;
 		}
-
-
 			
 	}
 	time_directions = clock_directions.getElapsedTime().asMilliseconds();
@@ -289,4 +310,6 @@ void Game_ini::draw(sf::RenderWindow& window)
 	for (auto i : player_bunny)
 		i.draw(window);
 	interface_texts.draw(window);
+	for (auto i : menu_esc)
+		i.draw(window);
 }
