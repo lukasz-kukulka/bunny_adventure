@@ -48,15 +48,18 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	//std::cout << static_cast<int>(bonus_index) << std::endl;
 	if (level_ini.turn_off_all_function_check() == false)
 	{
+		time_menu = menu_clock.getElapsedTime().asMilliseconds();
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{
-			if (menu_esc.size() == 0)
+			if (menu_esc.size() == 0 && time_menu >= 300)
 			{
 				menu_esc.push_back(Menu_esc_in_game(view_game, 0));
+				time_menu = menu_clock.restart().asMilliseconds();
 			}
-			else if (menu_esc.size() == 1)
+			else if (menu_esc.size() == 1 && time_menu >= 300)
 			{
 				menu_esc.erase(menu_esc.begin());
+				time_menu = menu_clock.restart().asMilliseconds();
 			}
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))

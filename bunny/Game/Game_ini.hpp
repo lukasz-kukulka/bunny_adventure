@@ -24,10 +24,11 @@ private:
 	uint8_t index_delete_bonus{ 0 };
 	uint16_t bonus_index;
 	float time_animation, time_directions;
+	float time_menu{ 0 };
 	sf::Texture bunny_tex;
 	sf::Event event;
 	std::vector<Player>player_bunny;
-	sf::Clock clock_animation, clock_directions;
+	sf::Clock clock_animation, clock_directions, menu_clock;
 	Levels_ini level_ini;
 	Background_ini background_ini;
 	Colisions colision;
