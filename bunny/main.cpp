@@ -84,12 +84,13 @@ int main()
     music.openFromFile("Menu/Sound/Menu/music_menu.wav");
     music.setLoop(true);
     music.setVolume(10);
-    Interface inter(window);
+    //Interface inter(window);
     Game_ini game_ini(window);
     //Credits credits(window);
     //Settings_page settings_page(window);
-    Score_page score_page(window);
-    Option* go_to_option = &inter;
+    //Score_page score_page(window);
+    //Option* go_to_option = &inter;
+    Option* go_to_option = &game_ini;
     while (window.isOpen())
     {
         sprite.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)));
@@ -101,8 +102,8 @@ int main()
             {
                 if (enabled_indicator != 0)
                 {
-                    go_to_option = &inter;
-                    enabled_indicator = 1;
+                    //go_to_option = &inter;
+                    //enabled_indicator = 1;
                 }
                 break;
             }
@@ -132,8 +133,8 @@ int main()
             {
                 if (enabled_indicator != 2)
                 {
-                    go_to_option = &score_page;
-                    enabled_indicator = 2;
+                    //go_to_option = &score_page;
+                    //enabled_indicator = 2;
                 }   
                 break;
             }
@@ -192,6 +193,6 @@ int main()
         window.draw(sprite);
         window.display();
     }
-    go_to_option = nullptr;
+    //go_to_option = nullptr;
     return 0;
 }

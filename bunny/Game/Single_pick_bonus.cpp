@@ -16,6 +16,11 @@ Single_pick_bonus::Single_pick_bonus(sf::RenderWindow& window, sf::Texture* text
 	//this->bonus_extra_efect_ini(window);
 }
 
+Single_pick_bonus::~Single_pick_bonus()
+{
+
+}
+
 void Single_pick_bonus::changing_bonus_position(sf::Vector2f position)
 {
 	bonus_sprite.setPosition(sf::Vector2f(position.x, position.y));

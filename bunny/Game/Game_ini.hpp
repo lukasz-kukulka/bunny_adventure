@@ -20,11 +20,12 @@ public:
 	void draw(sf::RenderWindow& window);
 
 private:
+	sf::Font font_menu;
 	uint8_t game_level;
 	uint8_t index_delete_bonus{ 0 };
 	uint16_t bonus_index;
 	float time_animation, time_directions;
-	float time_menu{ 0 };
+	float time_menu;
 	sf::Texture bunny_tex;
 	sf::Event event;
 	std::vector<Player>player_bunny;

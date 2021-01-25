@@ -8,6 +8,7 @@ Game_ini::Game_ini(sf::RenderWindow& window)
 		, file_operations()
 {
 	this->bunny_tex.loadFromFile("Game/Textures/player.png");
+	this->font_menu.loadFromFile("Game/Fonts/butler.ttf");
 	this->time_animation = 0;
 	this->time_directions = 0;
 	this->objects_ini(window);
@@ -28,7 +29,7 @@ Game_ini::Game_ini(sf::RenderWindow& window)
 
 uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
-	
+	time_menu = menu_clock.getElapsedTime().asMilliseconds();
 	//std::cout << player_bunny[0].player_point_out() << std::endl;
 	window.setView(view_game);
 	interface_texts.system(view_game);
@@ -48,12 +49,12 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	//std::cout << static_cast<int>(bonus_index) << std::endl;
 	if (level_ini.turn_off_all_function_check() == false)
 	{
-		time_menu = menu_clock.getElapsedTime().asMilliseconds();
+		
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{
 			if (menu_esc.size() == 0 && time_menu >= 300)
 			{
-				menu_esc.push_back(Menu_esc_in_game(view_game, 0));
+				menu_esc.push_back(Menu_esc_in_game(view_game, 0, &font_menu));
 				time_menu = menu_clock.restart().asMilliseconds();
 			}
 			else if (menu_esc.size() == 1 && time_menu >= 300)
@@ -315,4 +316,5 @@ void Game_ini::draw(sf::RenderWindow& window)
 	interface_texts.draw(window);
 	for (auto i : menu_esc)
 		i.draw(window);
+
 }
