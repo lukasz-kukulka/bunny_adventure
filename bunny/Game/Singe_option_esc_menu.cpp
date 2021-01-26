@@ -13,9 +13,8 @@ Singe_option_esc_menu::Singe_option_esc_menu(sf::Font* font_text, sf::Vector2f p
 	this->mark_option.setPosition(pos.x, pos.y);
 	this->mark_option.setFillColor(sf::Color(0, 0, 0, 199));
 	if (mark_visible == true)
-		this->mark_option.setScale(sf::Vector2f(1, 1));
-	else
-		this->mark_option.setScale(sf::Vector2f(0, 0));
+		this->esc_option.setFillColor(sf::Color(255, 0, 0, 222));
+
 
 	this->text_menu.setString(name);
 	this->text_menu.setFont(*font_text);
@@ -32,13 +31,16 @@ Singe_option_esc_menu::Singe_option_esc_menu(sf::Font* font_text, sf::Vector2f p
 uint8_t Singe_option_esc_menu::system(sf::View& window, bool mark_on)
 {
 	this->mark_visible = mark_on;
+	//std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA     " << static_cast<int>(mark_visible) << std::endl;
 	if (mark_visible == true)
 	{
-		this->mark_option.setScale(sf::Vector2f(1.0, 1.0));
+		this->esc_option.setFillColor(sf::Color(255, 0, 0, 222));
+		//this->mark_option.setScale(sf::Vector2f(1.0, 1.0));
 	}
 	else
 	{
-		this->mark_option.setScale(sf::Vector2f(0, 0));
+		this->esc_option.setFillColor(sf::Color(255, 0, 0, 111));
+		//this->mark_option.setScale(sf::Vector2f(0, 0));
 	}
 
 	return 0;
@@ -47,7 +49,7 @@ uint8_t Singe_option_esc_menu::system(sf::View& window, bool mark_on)
 void Singe_option_esc_menu::draw(sf::RenderWindow& window)
 {
 	window.draw(esc_option);
-	window.draw(mark_option);
+	//window.draw(mark_option);
 	//text_menu.getFont();
 	window.draw(text_menu);
 }

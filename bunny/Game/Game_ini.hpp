@@ -22,6 +22,7 @@ public:
 private:
 	sf::Font font_menu;
 	uint8_t game_level;
+	int8_t position_esc_menu{ 0 };
 	uint8_t index_delete_bonus{ 0 };
 	uint16_t bonus_index;
 	float time_animation, time_directions;
@@ -42,6 +43,7 @@ private:
 	bool confirm_delete_bonus_variable{ false };
 	bool pressed_and_restart_new_level{ false };
 	bool menu_esc_visible{ false };
+	bool esc_stop_move{ false };
 	Files_operations file_operations;
 };
 

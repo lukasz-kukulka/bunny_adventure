@@ -15,16 +15,31 @@ Menu_esc_in_game::~Menu_esc_in_game()
 
 }
 
-uint8_t Menu_esc_in_game::system(sf::View& window, uint8_t mark_single_menu)
+uint8_t Menu_esc_in_game::system(sf::View& window, uint8_t position_menu)
 {
-	if (menu_visible == false)
+	//std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA     " << static_cast<int>( position_menu) << std::endl;
+	for (uint8_t i = 0; i < single_option.size(); i++)
 	{
-		return 0;
+		if (i == position_menu)
+		{
+			single_option[i].system(window, true);
+		}
+		else
+		{
+			single_option[i].system(window, false);
+		}
 	}
-	else
-	{
-		return 1;
-	}
+	//single_option[position_menu].system(window, true)
+	
+	return 0;
+	//if (menu_visible == false)
+	//{
+	//	return 0;
+	//}
+	//else
+	//{
+	//	return 1;
+	//}
 }
 
 void Menu_esc_in_game::objects_ini()
@@ -39,6 +54,11 @@ void Menu_esc_in_game::objects_ini()
 		sf::Vector2f(all_panel_top.getGlobalBounds().width, all_panel_top.getGlobalBounds().height / no_of_option_menu), "Exit game", 2, false));
 
 
+}
+
+uint8_t Menu_esc_in_game::no_of_option_menu_out()
+{
+	return no_of_option_menu;
 }
 
 void Menu_esc_in_game::draw(sf::RenderWindow& window)
