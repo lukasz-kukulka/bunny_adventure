@@ -17,29 +17,21 @@ Menu_esc_in_game::~Menu_esc_in_game()
 
 uint8_t Menu_esc_in_game::system(sf::View& window, uint8_t position_menu)
 {
-	//std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA     " << static_cast<int>( position_menu) << std::endl;
+	uint8_t temp_return{ 0 };
 	for (uint8_t i = 0; i < single_option.size(); i++)
 	{
 		if (i == position_menu)
 		{
 			single_option[i].system(window, true);
+			temp_return = i;
 		}
 		else
 		{
 			single_option[i].system(window, false);
 		}
 	}
-	//single_option[position_menu].system(window, true)
-	
-	return 0;
-	//if (menu_visible == false)
-	//{
-	//	return 0;
-	//}
-	//else
-	//{
-	//	return 1;
-	//}
+
+	return temp_return;
 }
 
 void Menu_esc_in_game::objects_ini()
@@ -52,8 +44,6 @@ void Menu_esc_in_game::objects_ini()
 
 	single_option.push_back(Singe_option_esc_menu(font, sf::Vector2f(all_panel_top.getPosition().x, all_panel_top.getPosition().y),
 		sf::Vector2f(all_panel_top.getGlobalBounds().width, all_panel_top.getGlobalBounds().height / no_of_option_menu), "Exit game", 2, false));
-
-
 }
 
 uint8_t Menu_esc_in_game::no_of_option_menu_out()

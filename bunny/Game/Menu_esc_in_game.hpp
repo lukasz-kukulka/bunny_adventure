@@ -16,7 +16,6 @@ public:
 private:
 	sf::RectangleShape all_panel_top;
 	sf::Font* font;
-	//bool menu_visible{ false };
 	std::vector<Singe_option_esc_menu>single_option;
 	uint8_t no_of_option_menu{ 3 };
 };

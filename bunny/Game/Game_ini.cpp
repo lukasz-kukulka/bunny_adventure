@@ -59,7 +59,23 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 				}
 				time_menu = menu_clock.restart().asMilliseconds();
 			}
-
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+			{
+				if (menu_esc[0].system(view_game, position_esc_menu) == 0)
+				{
+					menu_esc.erase(menu_esc.begin());
+					time_menu = menu_clock.restart().asMilliseconds();
+					this->esc_stop_move = false;
+				}
+				else if (menu_esc[0].system(view_game, position_esc_menu) == 1)
+				{
+					return 0;
+				}
+				else if (menu_esc[0].system(view_game, position_esc_menu) == 2)
+				{
+					return 5;
+				}
+			}
 		}
 		
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))

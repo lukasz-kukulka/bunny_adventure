@@ -1,5 +1,6 @@
 #include "Files_operations.hpp"
 
+
 uint16_t Files_operations::load_from_settings(uint8_t row_number)
 {
 	no_line = 1;
@@ -188,3 +189,5 @@ void Files_operations::record_ini()
 	}
 	file.close();
 }
+
+

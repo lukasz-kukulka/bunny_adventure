@@ -23,8 +23,8 @@
 // - error with couting point for bonus <-- done
 // - error with pick up right items bonus <-- done
 // - error with desapeart bonus object <-- done
-// - menu to exit from game/to menu <-- curently
-// - close option
+// - menu to exit from game/to menu <-- done
+// - close option <-- curently
 // - bonus anoucemenet one under another and middle in screan
 // - changing all loop for
 // - add text depends of with bonus is
@@ -102,6 +102,7 @@ int main()
             {
                 if (enabled_indicator != 0)
                 {
+                    std::cout <<    "  main -----------------------------------------  " << std::endl;
                     //go_to_option = &inter;
                     //enabled_indicator = 1;
                 }
@@ -193,6 +194,6 @@ int main()
         window.draw(sprite);
         window.display();
     }
-    //go_to_option = nullptr;
+    go_to_option = nullptr;
     return 0;
 }
