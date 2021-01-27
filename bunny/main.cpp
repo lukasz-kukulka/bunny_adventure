@@ -102,7 +102,6 @@ int main()
             {
                 if (enabled_indicator != 0)
                 {
-                    std::cout <<    "  main -----------------------------------------  " << std::endl;
                     //go_to_option = &inter;
                     //enabled_indicator = 1;
                 }

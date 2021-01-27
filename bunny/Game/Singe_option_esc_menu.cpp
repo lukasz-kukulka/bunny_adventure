@@ -31,7 +31,6 @@ Singe_option_esc_menu::Singe_option_esc_menu(sf::Font* font_text, sf::Vector2f p
 uint8_t Singe_option_esc_menu::system(sf::View& window, bool mark_on)
 {
 	this->mark_visible = mark_on;
-	//std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA     " << static_cast<int>(mark_visible) << std::endl;
 	if (mark_visible == true)
 	{
 		this->esc_option.setFillColor(sf::Color(255, 0, 0, 222));

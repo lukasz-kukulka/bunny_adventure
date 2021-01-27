@@ -37,46 +37,47 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	{
 		background_ini.system(window, view_game, game_level);
 	}
-	if (level_ini.turn_off_all_function_check() == false)
+	if (esc_stop_move == true)
 	{
-		if (esc_stop_move == true)
+		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) && time_menu >= 300)
 		{
-			if ((sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) && time_menu >= 300)
+			this->position_esc_menu--;
+			if (position_esc_menu < 0)
 			{
-				this->position_esc_menu--;
-				if (position_esc_menu < 0 )
-				{
-					position_esc_menu = 2;
-				}
-				time_menu = menu_clock.restart().asMilliseconds();
+				position_esc_menu = menu_esc[0].no_of_option_menu_out() - 1;
 			}
-			else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) && time_menu >= 300)
+			time_menu = menu_clock.restart().asMilliseconds();
+		}
+		else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) && time_menu >= 300)
+		{
+			this->position_esc_menu++;
+			if (position_esc_menu > menu_esc[0].no_of_option_menu_out() - 1)
 			{
-				this->position_esc_menu++;
-				if (position_esc_menu > menu_esc[0].no_of_option_menu_out() - 1)
-				{
-					position_esc_menu = 0;
-				}
-				time_menu = menu_clock.restart().asMilliseconds();
+				position_esc_menu = 0;
 			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+			time_menu = menu_clock.restart().asMilliseconds();
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && level_ini.turn_off_all_function_check() == false)
+		{
+			if (menu_esc[0].system(view_game, position_esc_menu) == 0)
 			{
-				if (menu_esc[0].system(view_game, position_esc_menu) == 0)
-				{
-					menu_esc.erase(menu_esc.begin());
-					time_menu = menu_clock.restart().asMilliseconds();
-					this->esc_stop_move = false;
-				}
-				else if (menu_esc[0].system(view_game, position_esc_menu) == 1)
-				{
-					return 0;
-				}
-				else if (menu_esc[0].system(view_game, position_esc_menu) == 2)
-				{
-					return 5;
-				}
+				menu_esc.erase(menu_esc.begin());
+				time_menu = menu_clock.restart().asMilliseconds();
+				this->esc_stop_move = false;
+			}
+			else if (menu_esc[0].system(view_game, position_esc_menu) == 1)
+			{
+				return 0;
+			}
+			else if (menu_esc[0].system(view_game, position_esc_menu) == 2)
+			{
+				return 5;
 			}
 		}
+	}
+	if (level_ini.turn_off_all_function_check() == false)
+	{
+
 		
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{
@@ -181,9 +182,33 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			}
 			this->pressed_and_restart_new_level = true;
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && level_ini.game_over_ini_out() == true)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && level_ini.game_over_ini_out() == true && time_menu >= 300)
 		{
-			return 5;
+			menu_esc.push_back(Menu_esc_in_game(view_game, 1, &font_menu));
+			time_menu = menu_clock.restart().asMilliseconds();
+			this->esc_stop_move = true;
+
+			//return 5;
+		}
+		if (esc_stop_move == true)
+		{
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && time_menu >= 300)
+			{
+				if (menu_esc[0].system(view_game, position_esc_menu) == 0)
+				{
+					menu_esc.erase(menu_esc.begin());
+					time_menu = menu_clock.restart().asMilliseconds();
+					this->esc_stop_move = false;
+					return 0;
+				}
+				else if (menu_esc[0].system(view_game, position_esc_menu) == 1)
+				{
+					menu_esc.erase(menu_esc.begin());
+					time_menu = menu_clock.restart().asMilliseconds();
+					this->esc_stop_move = false;
+					return 5;
+				}
+			}
 		}
 			
 	}
