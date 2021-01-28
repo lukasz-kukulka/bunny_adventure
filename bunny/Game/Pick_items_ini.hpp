@@ -12,7 +12,7 @@ public:
 	Pick_items_ini(sf::RenderWindow& window);
 	uint8_t system(sf::RenderWindow& window);
 	uint16_t number_of_items_calculated();
-	void single_pick_items_ini(sf::RenderWindow& window, uint8_t type);
+	void single_pick_items_ini(sf::RenderWindow& window, uint8_t type, std::string show_text);
 	void bonus_parameters_ini(single_tile_out_for_bonus index);
 	void bonus_quantity_in(uint16_t q);
 	void no_of_tiles_in(uint16_t index);

@@ -1,8 +1,8 @@
 #include "Bonus_extra_effect.hpp"
 
-Bonus_extra_effect::Bonus_extra_effect(sf::RenderWindow& window, sf::Font* font)
+Bonus_extra_effect::Bonus_extra_effect(sf::RenderWindow& window, sf::Font* font, std::string text)
 {
-	this->bonus_text.setString("test_test adasdsadsadas   dsadasdasdasd");
+	this->bonus_text.setString(text);
 	this->bonus_text.setCharacterSize(window.getSize().x / 50);
 	//this->bonus_text.setPosition(position.x - bonus_text.getGlobalBounds().width / 2, position.y);
 	this->bonus_text.setFont(*font);

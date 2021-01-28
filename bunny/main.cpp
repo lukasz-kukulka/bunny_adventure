@@ -25,8 +25,9 @@
 // - error with desapeart bonus object <-- done
 // - menu to exit from game/to menu <-- done
 // - close option <-- done
-// - bonus anoucemenet one under another and middle in screan <-- curently
-// - add text depends of with bonus is
+// - bonus anoucemenet one under another and middle in screan <-- done
+// - add text depends of with bonus is <-- done
+// - add text diferents colors bonus <-- curently
 // - dellete in destructor one of class
 // - check error with end of map
 // - error with moving scroll bar
