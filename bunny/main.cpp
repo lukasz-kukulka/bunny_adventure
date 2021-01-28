@@ -24,9 +24,8 @@
 // - error with pick up right items bonus <-- done
 // - error with desapeart bonus object <-- done
 // - menu to exit from game/to menu <-- done
-// - close option <-- curently
-// - bonus anoucemenet one under another and middle in screan
-// - changing all loop for
+// - close option <-- done
+// - bonus anoucemenet one under another and middle in screan <-- curently
 // - add text depends of with bonus is
 // - dellete in destructor one of class
 // - check error with end of map
@@ -34,6 +33,7 @@
 // - create a base class level
 // - add where is posible const
 // - memory error - check class load_from_file this efect settings and credits
+// - changing all loop for and clean project
 // - add cmake
 
 extern sf::Vector2i mouse;

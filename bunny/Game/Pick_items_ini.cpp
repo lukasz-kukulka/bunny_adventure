@@ -114,7 +114,7 @@ void Pick_items_ini::single_pick_items_ini(sf::RenderWindow& window, uint8_t typ
 	{
 		bonuses.push_back(Single_pick_bonus(window, &awa512, 12));
 	}
-	bonus_info.push_back(Bonus_extra_effect(window, &font, sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2), type));
+	bonus_info.push_back(Bonus_extra_effect(window, &font));
 }
 
 void Pick_items_ini::bonus_parameters_ini(single_tile_out_for_bonus index)
@@ -158,14 +158,28 @@ void Pick_items_ini::animation_delete_bonus_ini(sf::RenderWindow& window)
 
 		this->confirm_delete_variable = false;
 		//std::cout << i << std::endl;
-		bonus_info[i].system(view_window);
+		//bonus_info[i].system(view_window);
 		bonuses[i].animation_ini(window ,player_sprite_out());
 		if (bonuses[i].animation_finish_out() == true)
 		{
-			//std::cout << "SIZE = " << bonuses.size() << ", FIRST POSITION X = " << bonuses[0].position_out().x << ", FIRST POSITION Y = " << bonuses[0].position_out().y << std::endl;
-			bonus_info.erase(bonus_info.begin() + i);
+			//bonus_info.erase(bonus_info.begin() + i);
 			bonuses.erase(bonuses.begin() + i);
 			this->confirm_delete_variable = true;
+			//i=0;
+
+			break;
+		}
+	}
+	for (int i = 0; i < bonus_info.size(); i++)
+	{
+
+		//this->confirm_delete_variable = false;
+		//std::cout << i << std::endl;
+		bonus_info[i].system(view_window);
+		//bonuses[i].animation_ini(window, player_sprite_out());
+		if (bonus_info[i].system(view_window) == 1)
+		{
+			bonus_info.erase(bonus_info.begin() + i);
 			//i=0;
 			break;
 		}

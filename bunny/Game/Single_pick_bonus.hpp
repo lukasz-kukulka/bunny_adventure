@@ -24,6 +24,6 @@ private:
 	sf::Sprite bonus_sprite;
 	uint8_t type_item, animation_steps{ 0 };
 	bool delete_item, animation_delete_start, animation_finish, animation_x_finished{ false }, animation_y_finished{ false };
-	int8_t movement_bonus_x{ 2 }, movement_bonus_y{ 5 }, distanse_between_player_and_bonus_x{ 0 }, distanse_between_player_and_bonus_y{ -3 };
+	int8_t movement_bonus_x{ 3 }, movement_bonus_y{ 5 }, distanse_between_player_and_bonus_x{ 0 }, distanse_between_player_and_bonus_y{ -3 };
 };
 
