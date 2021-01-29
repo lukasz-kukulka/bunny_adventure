@@ -27,13 +27,15 @@
 // - close option <-- done
 // - bonus anoucemenet one under another and middle in screan <-- done
 // - add text depends of with bonus is <-- done
-// - add text diferents colors bonus <-- curently
-// - dellete in destructor one of class
+// - add text diferents colors bonus <-- done
+// - dellete in destructor one of class  <-- curently
 // - check error with end of map
-// - error with moving scroll bar
 // - create a base class level
 // - add where is posible const
+// - save score to file
 // - memory error - check class load_from_file this efect settings and credits
+// - error with moving scroll bar
+// - music
 // - changing all loop for and clean project
 // - add cmake
 

@@ -68,63 +68,63 @@ void Pick_items_ini::single_pick_items_ini(sf::RenderWindow& window, uint8_t typ
 	if (type == 1)
 	{
 		bonuses.push_back(Single_pick_bonus(window, &awa501, 1));
-		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text));
+		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text, 1));
 	}
 	else if (type == 2)
 	{
 		//std::cout << "TEST" << std::endl;
 		bonuses.push_back(Single_pick_bonus(window, &awa502, 2));
-		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text));
+		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text, 2));
 	}
 	else if (type == 3)
 	{
 		bonuses.push_back(Single_pick_bonus(window, &awa503, 3));
-		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text));
+		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text, 3));
 	}
 	else if (type == 4)
 	{
 		bonuses.push_back(Single_pick_bonus(window, &awa504, 4));
-		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text));
+		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text, 4));
 	}
 	else if (type == 5)
 	{
 		bonuses.push_back(Single_pick_bonus(window, &awa505, 5));
-		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text));
+		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text, 5));
 	}
 	else if (type == 6)
 	{
 		bonuses.push_back(Single_pick_bonus(window, &awa506, 6));
-		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text));
+		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text, 6));
 	}
 	else if (type == 7)
 	{
 		bonuses.push_back(Single_pick_bonus(window, &awa507, 7));
-		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text));
+		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text, 7));
 	}
 	else if (type == 8)
 	{
 		bonuses.push_back(Single_pick_bonus(window, &awa508, 8));
-		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text));
+		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text, 8));
 	}
 	else if (type == 9)
 	{
 		bonuses.push_back(Single_pick_bonus(window, &awa509, 9));
-		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text));
+		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text, 9));
 	}
 	else if (type == 10)
 	{
 		bonuses.push_back(Single_pick_bonus(window, &awa510, 10));
-		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text));
+		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text, 10));
 	}
 	else if (type == 11)
 	{
 		bonuses.push_back(Single_pick_bonus(window, &awa511, 11));
-		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text));
+		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text, 11));
 	}
 	else if (type == 12)
 	{
 		bonuses.push_back(Single_pick_bonus(window, &awa512, 12));
-		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text));
+		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text, 12));
 	}
 	
 }

@@ -5,7 +5,7 @@
 class Bonus_extra_effect
 {
 public:
-	Bonus_extra_effect(sf::RenderWindow& window, sf::Font* font, std::string text);
+	Bonus_extra_effect(sf::RenderWindow& window, sf::Font* font, std::string text, uint8_t type);
 	uint8_t system(sf::View window);
 	void can_delete_change(bool index);
 	bool can_delete_out();
