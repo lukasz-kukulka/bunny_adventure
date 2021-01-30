@@ -42,7 +42,7 @@ private:
 	std::vector<Text>texts;
 	uint8_t settings_sections_no, settings_resolution, settings_sound, settings_dificult, settings_control_columns, settings_summary, max_row_control, settings_sound_save, press_save_back;
 	bool save_button_press, play_click[3] = { 1, 1, 1 };
-	Files_operations settings_ini;// = new Files_operations(); ////////////////////check this
+	Files_operations settings_ini;
 	
 	struct settings {
 		uint8_t res;

@@ -28,8 +28,8 @@
 // - bonus anoucemenet one under another and middle in screan <-- done
 // - add text depends of with bonus is <-- done
 // - add text diferents colors bonus <-- done
-// - dellete in destructor one of class  <-- curently
-// - check error with end of map
+// - dellete in destructor one of class  <-- done
+// - check error with end of map <-- curently
 // - create a base class level
 // - add where is posible const
 // - save score to file

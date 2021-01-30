@@ -216,8 +216,11 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		menu_esc[0].system(view_game, position_esc_menu);
 	}
 	time_directions = clock_directions.getElapsedTime().asMilliseconds();
-	if ((view_game.getCenter().x - view_game.getSize().x / 2 >= 0 || player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2 - view_game.getSize().x / 2 >= 0) &&
-		view_game.getCenter().x + view_game.getSize().x / 2 <= level_ini.level_size().x)
+	//if ((view_game.getCenter().x - view_game.getSize().x / 2 >= 0 || player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2 - view_game.getSize().x / 2 >= 0) &&
+	//	view_game.getCenter().x + view_game.getSize().x / 2 <= level_ini.level_size().x)
+	if (view_game.getCenter().x - view_game.getSize().x / 2 >= 0 && view_game.getCenter().x + view_game.getSize().x / 2 <= level_ini.level_size().x && 
+		player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2 - view_game.getSize().x / 2 >= 0 && 
+		player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2 <= level_ini.level_size().x - view_game.getSize().x / 2)
 	{
 		this->view_game.setCenter(player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2, view_game.getCenter().y);
 	}
