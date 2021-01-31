@@ -107,6 +107,18 @@ std::string Files_operations::load_best_score()
     return line;
 }
 
+void Files_operations::add_new_score(uint32_t score)
+{
+    std::fstream file;
+    file.open("Settings/score.txt", std::ios::out | std::ios::app);
+    file << "Bunny" << std::endl;
+    file << "00.00.2021" << std::endl;
+    file << std::to_string(score) << std::endl;
+    //std::cout << records.size() << " II in save \n";
+    file.close();
+    sort_best_score();
+}
+
 void Files_operations::save_score_reset()
 {
     std::fstream file;
@@ -117,7 +129,7 @@ void Files_operations::save_score_reset()
         file << records[i].data_out() << std::endl;
         file << records[i].score_out() << std::endl;
     }
-    std::cout << records.size() << " II in save \n";
+    //std::cout << records.size() << " II in save \n";
     file.close();
 }
 
@@ -126,7 +138,7 @@ void Files_operations::sort_best_score()
     uint16_t temp_loop = how_many_record_score();
     record_ini();
     temp_single_record.push_back(Single_record_file("0", "0", "0"));
-    std::cout << records.size() << std::endl;
+    //std::cout << records.size() << std::endl;
     for (uint16_t i = 0; i < temp_loop; i++)
     {
         for (uint16_t j = 1; j < temp_loop; j++)

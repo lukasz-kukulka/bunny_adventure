@@ -11,6 +11,7 @@ public:
 	void save_settings(uint16_t res, uint8_t vol, bool efect, bool music, uint8_t diff);
 	std::string load_score(uint8_t row_number);
 	std::string load_best_score();
+	void add_new_score(uint32_t score);
 	void save_score_reset();
 	void sort_best_score();
 	void delete_record(uint16_t index);

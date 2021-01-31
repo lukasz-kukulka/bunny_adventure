@@ -24,10 +24,12 @@ void Interface_text::initialization_tiles_text(sf::RenderWindow& window) // doda
 	text_tile.push_back(Singe_interface_tile(window, sf::Vector2f(rectangle_panel_top.getPosition().x, rectangle_panel_top.getPosition().y), "Score: ", "00000000",
 		sf::Vector2f(rectangle_panel_top.getGlobalBounds().width / 3, rectangle_panel_top.getGlobalBounds().height), &font_points));
 
-	text_tile.push_back(Singe_interface_tile(window, sf::Vector2f(rectangle_panel_top.getPosition().x + rectangle_panel_top.getGlobalBounds().width / 3, rectangle_panel_top.getPosition().y), "Best Score: ", "00000000",
+	text_tile.push_back(Singe_interface_tile(window, sf::Vector2f(rectangle_panel_top.getPosition().x + rectangle_panel_top.getGlobalBounds().width / 3, 
+		rectangle_panel_top.getPosition().y), "Best Score: ", "00000000",
 		sf::Vector2f(rectangle_panel_top.getGlobalBounds().width / 3, rectangle_panel_top.getGlobalBounds().height), &font_points));
 
-	text_tile.push_back(Singe_interface_tile(window, sf::Vector2f(rectangle_panel_top.getPosition().x + rectangle_panel_top.getGlobalBounds().width / 3 * 2, rectangle_panel_top.getPosition().y),
+	text_tile.push_back(Singe_interface_tile(window, sf::Vector2f(rectangle_panel_top.getPosition().x + rectangle_panel_top.getGlobalBounds().width / 3 * 2, 
+		rectangle_panel_top.getPosition().y),
 		"Level: ", std::to_string(no_of_level), sf::Vector2f(rectangle_panel_top.getGlobalBounds().width / 3, rectangle_panel_top.getGlobalBounds().height), &font_points));
 }
 
@@ -47,9 +49,9 @@ void Interface_text::no_of_level_in(uint8_t index_level)
 	this->no_of_level = index_level;
 }
 
-void Interface_text::best_score_in(std::string score)
+void Interface_text::best_score_in(std::string* score)
 {
-	this->best_score_string = score;
+	this->best_score_string = *score;
 }
 
 void Interface_text::draw(sf::RenderWindow& window)

@@ -15,7 +15,8 @@ Pick_lvl_test::Pick_lvl_test(sf::RenderWindow& window)
     this->bonus511 = 10; // ziemniak
     this->bonus512 = 10; // kociolek
     this->bonus_quantity = bonus501 + bonus502 + bonus503 + bonus504 + bonus505 + bonus506 + bonus507 + bonus508 + bonus509 + bonus510 + bonus511 + bonus512;
-    //this->no_tiles = 0;
+
+    bonus_ini.push_back(Pick_items_ini(window));
 }
 
 uint8_t Pick_lvl_test::system(sf::RenderWindow& window)
@@ -26,7 +27,7 @@ uint8_t Pick_lvl_test::system(sf::RenderWindow& window)
 
 void Pick_lvl_test::initialize_pick_class(sf::RenderWindow& window)
 {
-    bonus_ini.push_back(Pick_items_ini(window));
+    
 }
 
 void Pick_lvl_test::initialize_singe_bonus_item(sf::RenderWindow& window)

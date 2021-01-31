@@ -19,7 +19,8 @@ Game_ini::Game_ini(sf::RenderWindow& window)
 	this->direction_enabled = true;
 	this->bonus_index = 0;
 	window.setView(view_game);
-	interface_texts.best_score_in(file_operations.load_best_score());
+	this->best_score_from_file = file_operations.load_best_score();
+	interface_texts.best_score_in(&best_score_from_file);
 	
 }
 
@@ -193,6 +194,14 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	}
 	else if (esc_stop_move == true)
 		{
+		if (game_over_frame_del == false)
+		{
+			level_ini.game_frame_delete();
+			file_operations.add_new_score(player_bunny[0].player_point_out());
+			game_over_frame_del = true;
+		}
+		
+		//level_ini.player_points_in(player_bunny[0].player_point_out());
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && time_menu >= 300)
 		{
 			if (menu_esc[0].system(view_game, position_esc_menu) == 0)
@@ -292,10 +301,11 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		
 		//std::cout << level_ini.no_of_bonus_out() << "        ----------------------------------------- >>>>>>>>>>>>>>>>>>>     " << static_cast<int>(index_delete_bonus) << std::endl;
 		points_initialize(index_delete_bonus);
-		std::cout << player_bunny[0].player_point_out() << std::endl;
+		//std::cout << player_bunny[0].player_point_out() << std::endl;
 	}
 	interface_texts.score_points_in(player_bunny[0].player_point_out());
 	interface_texts.no_of_level_in(level_ini.no_of_level_out());
+	level_ini.player_points_in(player_bunny[0].player_point_out());
 	colision.gravity();
 	level_ini.view_ini(view_game);
 	return 1;
@@ -313,60 +323,54 @@ void Game_ini::settings(uint8_t volume)
 
 void Game_ini::points_initialize(uint16_t index)
 {
-	//std::cout << index << std::endl;
-			if (index == 1)
-			{
-				player_bunny[0].add_player_points(1);
-			}
-			else if (index == 2)
-			{
-				player_bunny[0].add_player_points(1);
-			}
-			else if (index == 3)
-			{
-				player_bunny[0].add_player_points(1);
-			}
-			else if (index == 4)
-			{
-				player_bunny[0].add_player_points(1);
-			}
-			else if (index == 5)
-			{
-				player_bunny[0].add_player_points(1);
-			}
-			else if (index == 6)
-			{
-				player_bunny[0].add_player_points(1);
-			}
-			else if (index == 7)
-			{
-				player_bunny[0].add_player_points(1);
-			}
-			else if (index == 8)
-			{
-				player_bunny[0].add_player_points(1);
-			}
-			else if (index == 9)
-			{
-				player_bunny[0].add_player_points(1);
-			}
-			else if (index == 10)
-			{
-				player_bunny[0].add_player_points(1);
-			}
-			else if (index == 11)
-			{
-				player_bunny[0].add_player_points(1);
-			}
-			else if (index == 12)
-			{
-				player_bunny[0].add_player_points(1);
-			}
-			//std::cout << "-----------------------------------------" << bonus_index << std::endl;
-
-		
-
-	
+	if (index == 1)
+	{
+		player_bunny[0].add_player_points(1);
+	}
+	else if (index == 2)
+	{
+		player_bunny[0].add_player_points(1);
+	}
+	else if (index == 3)
+	{
+		player_bunny[0].add_player_points(1);
+	}
+	else if (index == 4)
+	{
+		player_bunny[0].add_player_points(1);
+	}
+	else if (index == 5)
+	{
+		player_bunny[0].add_player_points(1);
+	}
+	else if (index == 6)
+	{
+		player_bunny[0].add_player_points(1);
+	}
+	else if (index == 7)
+	{
+		player_bunny[0].add_player_points(1);
+	}
+	else if (index == 8)
+	{
+		player_bunny[0].add_player_points(1);
+	}
+	else if (index == 9)
+	{
+		player_bunny[0].add_player_points(1);
+	}
+	else if (index == 10)
+	{
+		player_bunny[0].add_player_points(1);
+	}
+	else if (index == 11)
+	{
+		player_bunny[0].add_player_points(1);
+	}
+	else if (index == 12)
+	{
+		player_bunny[0].add_player_points(1);
+	}
 }
 
 

@@ -28,15 +28,14 @@
 // - bonus anoucemenet one under another and middle in screan <-- done
 // - add text depends of with bonus is <-- done
 // - add text diferents colors bonus <-- done
-// - dellete in destructor one of class  <-- done
-// - check error with end of map <-- curently
-// - create a base class level
-// - add where is posible const
-// - save score to file
+// - dellete in destructor one of class <-- done
+// - check error with end of map <-- done
+// - save score to file <-- curently
 // - memory error - check class load_from_file this efect settings and credits
 // - error with moving scroll bar
 // - music
 // - changing all loop for and clean project
+// - add where is posible const
 // - add cmake
 
 extern sf::Vector2i mouse;

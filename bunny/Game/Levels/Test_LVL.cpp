@@ -50,61 +50,6 @@ uint16_t Test_LVL::tiles_type(uint16_t index)
     return lvl0.tiles_type(index);
 }
 
-//uint8_t Test_LVL::bonus_size(uint8_t index)
-//{
-//    if (index == 1)
-//    {
-//        return bonus501;
-//    }
-//    else if (index == 2)
-//    {
-//        return bonus502;
-//    }
-//    else if (index == 3)
-//    {
-//        return bonus503;
-//    }
-//    else if (index == 4)
-//    {
-//        return bonus504;
-//    }
-//    else if (index == 5)
-//    {
-//        return bonus505;
-//    }
-//    else if (index == 6)
-//    {
-//        return bonus506;
-//    }
-//    else if (index == 7)
-//    {
-//        return bonus507;
-//    }
-//    else if (index == 8)
-//    {
-//        return bonus508;
-//    }
-//    else if (index == 9)
-//    {
-//        return bonus509;
-//    }
-//    else if (index == 10)
-//    {
-//        return bonus510;
-//    }
-//    else if (index == 11)
-//    {
-//        return bonus511;
-//    }
-//    else if (index == 12)
-//    {
-//        return bonus512;
-//    }
-//    else
-//    {
-//        return 0;
-//    }
-//}
 
 void Test_LVL::draw(sf::RenderWindow& window)
 {

@@ -199,7 +199,12 @@ void Levels_ini::game_lvl_change(uint8_t lvl)
 void Levels_ini::game_end_ini()
 {
 	start_new_lvl();
-	game_over.push_back(Game_over(view_level_ini, &font));
+	game_over.push_back(Game_over(view_level_ini, &font, player_points));
+}
+
+void Levels_ini::game_frame_delete()
+{
+	game_over.erase(game_over.begin());
 }
 
 bool Levels_ini::turn_off_all_function_check()
@@ -220,6 +225,16 @@ void Levels_ini::bonus_item_delete_confirm(uint16_t index)
 bool Levels_ini::bonus_item_delete_confirm_out(uint16_t index)
 {
 	return choise_bonus->delete_bonus_item_confirm_out(index);
+}
+
+void Levels_ini::player_points_in(uint32_t points)
+{
+	this->player_points = points;
+}
+
+uint32_t Levels_ini::player_points_out()
+{
+	return player_points;
 }
 
 

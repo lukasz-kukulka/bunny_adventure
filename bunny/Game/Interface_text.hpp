@@ -12,7 +12,7 @@ public:
 	void initialization_tiles_text(sf::RenderWindow& window);
 	void score_points_in(int points);
 	void no_of_level_in(uint8_t index_level);
-	void best_score_in(std::string score);
+	void best_score_in(std::string* score);
 	void draw(sf::RenderWindow& window);
 
 

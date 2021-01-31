@@ -1,13 +1,13 @@
 #include "Game_over.hpp"
 
-Game_over::Game_over(sf::View window, sf::Font* font)
+Game_over::Game_over(sf::View window, sf::Font* font, uint32_t points)
 {
 	this->rectangle.setSize(sf::Vector2f(window.getSize().x - 200, window.getSize().y - 200));
 	this->rectangle.setOutlineColor(sf::Color(0, 0, 0, 255));
 	this->rectangle.setFillColor(sf::Color(0, 0, 0, 155));
 	this->rectangle.setPosition(window.getCenter().x - rectangle.getGlobalBounds().width / 2, window.getCenter().y - rectangle.getGlobalBounds().height / 2);
 
-	this->info_text.setString("Game over");
+	this->info_text.setString("Game over \n You get\n" + std::to_string(points) + " points\n press SPACE to continue");
 	this->info_text.setFont(*font);
 	this->info_text.setCharacterSize(window.getSize().x / 25);
 	this->info_text.setPosition(window.getCenter().x - info_text.getGlobalBounds().width / 2, window.getCenter().y - info_text.getGlobalBounds().height / 2);

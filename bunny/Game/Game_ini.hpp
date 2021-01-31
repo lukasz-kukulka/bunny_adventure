@@ -44,6 +44,8 @@ private:
 	bool pressed_and_restart_new_level{ false };
 	bool menu_esc_visible{ false };
 	bool esc_stop_move{ false };
+	bool game_over_frame_del{ false };
 	Files_operations file_operations;
+	std::string best_score_from_file;
 };
 

@@ -34,10 +34,13 @@ public:
 	uint8_t game_lvl_out();
 	void game_lvl_change(uint8_t lvl);
 	void game_end_ini();
+	void game_frame_delete();
 	bool turn_off_all_function_check();
 	bool game_over_ini_out();
 	void bonus_item_delete_confirm(uint16_t index);
 	bool bonus_item_delete_confirm_out(uint16_t index);
+	void player_points_in(uint32_t points);
+	uint32_t player_points_out();
 	void draw(sf::RenderWindow& window);
 
 private:
@@ -56,6 +59,7 @@ private:
 	std::vector<Level_end>level_end_vector;
 	std::vector<Game_over>game_over;
 	uint16_t no_til{ 0 };
+	uint32_t player_points{ 0 };
 	uint8_t bonus_delete_element{ 0 };
 	uint8_t no_of_level{ 0 };
 	bool bonus_yes{ true };
