@@ -30,9 +30,9 @@
 // - add text diferents colors bonus <-- done
 // - dellete in destructor one of class <-- done
 // - check error with end of map <-- done
-// - save score to file <-- curently
-// - memory error - check class load_from_file this efect settings and credits
-// - error with moving scroll bar
+// - save score to file <-- done
+// - memory error - check class load_from_file this efect settings and credits <-- done
+// - error with moving scroll bar <-- curently
 // - music
 // - changing all loop for and clean project
 // - add where is posible const
@@ -51,10 +51,10 @@ int main()
         credits_option = 4,
         close_option = 5,
     } menu_option;
-    menu_option = game_option;
+    menu_option = setting_option;
 
 
-
+    int menu_option_temp;
     Files_operations res_load;
     uint16_t res_width = 1280, res_height = 1024;
     int8_t enabled_indicator = 99;
@@ -86,11 +86,11 @@ int main()
     music.openFromFile("Menu/Sound/Menu/music_menu.wav");
     music.setLoop(true);
     music.setVolume(10);
-    //Interface inter(window);
+    Interface inter(window);
     Game_ini game_ini(window);
-    //Credits credits(window);
-    //Settings_page settings_page(window);
-    //Score_page score_page(window);
+    Credits credits(window);
+    Settings_page settings_page(window);
+    Score_page score_page(window);
     //Option* go_to_option = &inter;
     Option* go_to_option = &game_ini;
     while (window.isOpen())
@@ -104,8 +104,8 @@ int main()
             {
                 if (enabled_indicator != 0)
                 {
-                    //go_to_option = &inter;
-                    //enabled_indicator = 1;
+                    go_to_option = &inter;
+                    enabled_indicator = 0;
                 }
                 break;
             }
@@ -135,8 +135,8 @@ int main()
             {
                 if (enabled_indicator != 2)
                 {
-                    //go_to_option = &score_page;
-                    //enabled_indicator = 2;
+                    go_to_option = &score_page;
+                    enabled_indicator = 2;
                 }   
                 break;
             }
@@ -145,8 +145,8 @@ int main()
             {
                 if (enabled_indicator != 3)
                 {
-                    //go_to_option = &settings_page;
-                    //enabled_indicator = 3;
+                    go_to_option = &settings_page;
+                    enabled_indicator = 3;
                 }
                 break;
             }
@@ -155,8 +155,8 @@ int main()
             {
                 if (enabled_indicator != 4)
                 {
-                    //go_to_option = &credits;
-                    //enabled_indicator = 4;
+                    go_to_option = &credits;
+                    enabled_indicator = 4;
                 }
                 break;
             }
@@ -170,7 +170,9 @@ int main()
             default:
                 break;
         }
-        menu_option = menu_option_enum(go_to_option->system(window, mouse));
+        go_to_option->system(window, mouse);
+        //menu_option_temp = go_to_option->system(window, mouse);
+        //menu_option = menu_option_enum(menu_option_temp);
         go_to_option->settings(res_load.load_from_settings(2));
 
         if (res_load.load_from_settings(4) == true && music_play == true)

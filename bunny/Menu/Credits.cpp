@@ -24,7 +24,7 @@ Credits::Credits(sf::RenderWindow& window) : Load_from_files(window)
 	this->texts.push_back(Text(window, &cat_font, "THANKS FOR SUPORT TO MY FRIENDS:", 0, window.getSize().y / 70 * 62, window.getSize().y / 70, 1));
 	this->texts.push_back(Text(window, &cat_font, "MEDART, GOTRAN, ANIOL, VIX", 0, window.getSize().y / 70 * 65, window.getSize().y / 70, 1));
 
-	buttons.push_back(Button(window, &leaf, &button_confirm_font, "BACK", 0, window.getSize().x, 300));
+	this->buttons.push_back(Button(window, &leaf, &button_confirm_font, "BACK", 0, window.getSize().x, 300));
 }
 
 uint8_t Credits::system(sf::RenderWindow& window, sf::Vector2i mouse)
