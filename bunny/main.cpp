@@ -32,7 +32,7 @@
 // - check error with end of map <-- done
 // - save score to file <-- done
 // - memory error - check class load_from_file this efect settings and credits <-- done
-// - error with moving scroll bar <-- curently
+// - error with moving scroll bar and pointers to options <-- curently
 // - music
 // - changing all loop for and clean project
 // - add where is posible const
@@ -51,7 +51,7 @@ int main()
         credits_option = 4,
         close_option = 5,
     } menu_option;
-    menu_option = setting_option;
+    menu_option = interface_menu_option;
 
 
     int menu_option_temp;
@@ -86,13 +86,13 @@ int main()
     music.openFromFile("Menu/Sound/Menu/music_menu.wav");
     music.setLoop(true);
     music.setVolume(10);
-    Interface inter(window);
+    Interface interface_option(window);
     Game_ini game_ini(window);
     Credits credits(window);
     Settings_page settings_page(window);
     Score_page score_page(window);
     //Option* go_to_option = &inter;
-    Option* go_to_option = &game_ini;
+    Option* go_to_option{ nullptr };
     while (window.isOpen())
     {
         sprite.setPosition(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)));
@@ -104,7 +104,7 @@ int main()
             {
                 if (enabled_indicator != 0)
                 {
-                    go_to_option = &inter;
+                    go_to_option = &interface_option;
                     enabled_indicator = 0;
                 }
                 break;
@@ -170,11 +170,10 @@ int main()
             default:
                 break;
         }
-        go_to_option->system(window, mouse);
-        //menu_option_temp = go_to_option->system(window, mouse);
-        //menu_option = menu_option_enum(menu_option_temp);
         go_to_option->settings(res_load.load_from_settings(2));
-
+        
+        menu_option = menu_option_enum(go_to_option->system(window, mouse));
+        
         if (res_load.load_from_settings(4) == true && music_play == true)
         {
             music.play();

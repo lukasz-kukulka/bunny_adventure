@@ -8,9 +8,8 @@
 #include "Files_operations.hpp"
 #include <SFML/Audio.hpp>
 #include "Files_operations.hpp"
-#include "Load_from_files.hpp"
 
-class Interface :public Option, public Load_from_files
+class Interface :public Option
 {
 public:
 	Interface(sf::RenderWindow&);
@@ -26,6 +25,11 @@ private:
 	bool play_click[5] = {1, 1, 1, 1, 1};
 	bool end_animation;
 	uint8_t button_answer;
+
+	sf::Texture leaf, menu_button_left, menu_button_mid, menu_button_right, arrow_left, arrow_right, background_base, jaguar, cloud, forest;
+	sf::SoundBuffer buffer_menu, buffer_menu_choise;
+	sf::Sound click_sound, choise_sound;
+	sf::Font font_menu_button, button_confirm_font;
 };
 
 

@@ -1,7 +1,27 @@
 #include "Interface.hpp"
 
-Interface::Interface(sf::RenderWindow& window) : Load_from_files(window)
+Interface::Interface(sf::RenderWindow& window) 
 {
+	
+	this->jaguar.loadFromFile("Menu/Textures/Menu/Jaguar.png");
+	this->cloud.loadFromFile("Menu/Textures/Menu/cloud.png");
+	this->forest.loadFromFile("Menu/Textures/Menu/forest1.png");
+	this->leaf.loadFromFile("Menu/Textures/Menu/leaf.png");
+	this->menu_button_left.loadFromFile("Menu/Textures/Menu/left_button_blue.png");
+	this->menu_button_mid.loadFromFile("Menu/Textures/Menu/mid_button_blue.png");
+	this->menu_button_right.loadFromFile("Menu/Textures/Menu/right_button_blue.png");
+	this->arrow_left.loadFromFile("Menu/Textures/Menu/arrow_left.png");
+	this->arrow_right.loadFromFile("Menu/Textures/Menu/arrow_right.png");
+	this->background_base.loadFromFile("Menu/Textures/Menu/background1.jpg");
+	this->buffer_menu.loadFromFile("Menu/Sound/Menu/click.wav");
+	this->click_sound.setBuffer(buffer_menu);
+	this->click_sound.setVolume(15.f);
+	this->buffer_menu_choise.loadFromFile("Menu/Sound/Menu/choise.wav");
+	this->choise_sound.setBuffer(buffer_menu_choise);
+	this->choise_sound.setVolume(15.f);
+	this->font_menu_button.loadFromFile("Menu/Fonts/avocado.ttf");
+	this->button_confirm_font.loadFromFile("Menu/Fonts/bongus.ttf");
+
 	this->end_animation = false;
 	this->background_sprite.setTexture(background_base);
 	this->background_sprite.setScale(1.0 / 1080.0 * window.getSize().y, 1.0 / 1080.0 * window.getSize().y);
