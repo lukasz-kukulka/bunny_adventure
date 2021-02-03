@@ -27,7 +27,7 @@ uint8_t Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		}
 		for (uint8_t i = 0; i < slider.size(); i++)
 		{
-			slider_index = slider[i].system(window, mouse);
+			slider_index = slider[i].system(window, mouse, event);
 			if (slider_index == 1 || slider_index == 2)
 			{
 				for (uint16_t z = 0; z < extra_record_number; z++)
@@ -39,9 +39,9 @@ uint8_t Score_page::system(sf::RenderWindow& window, sf::Vector2i mouse)
 				}
 				if (slider_index == 2 && score_records[0].visible_status() != true && move_record_time.asMilliseconds() >= 100) // down
 				{
-					for (uint16_t j = score_records.size() - 1; j >= 0; j--)
+					for (uint16_t j = score_records.size(); j > 0; j--)
 					{
-						score_records[j].move_down(window);
+						score_records[j - 1].move_down(window);
 						move_record_clock.restart();
 					}
 
