@@ -26,6 +26,7 @@ public:
 	void add_player_points(uint16_t points);
 	uint8_t no_of_life_out();
 	void no_of_life_change(int8_t life);
+	void player_restart_level(sf::RenderWindow& window);
 	unsigned int player_point_out();
 
 	void draw(sf::RenderWindow& window);

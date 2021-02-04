@@ -178,6 +178,8 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			{
 				game_level++;
 				level_ini.game_lvl_change(game_level);
+				
+				this->restart_player_level = true;
 				//std::cout << static_cast<int>(game_level) << std::endl;
 
 			}
@@ -308,6 +310,12 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	level_ini.player_points_in(player_bunny[0].player_point_out());
 	colision.gravity();
 	level_ini.view_ini(view_game);
+	if (restart_player_level == true)
+	{
+		player_reset(window);
+		background_ini.backgroud_restart(window, view_game);
+	}
+
 	return 1;
 }
 
@@ -371,6 +379,15 @@ void Game_ini::points_initialize(uint16_t index)
 	{
 		player_bunny[0].add_player_points(1);
 	}
+}
+
+void Game_ini::player_reset(sf::RenderWindow& window)
+{
+	this->restart_player_level = false;
+	player_bunny[0].player_restart_level(window);
+	this->view_game.setCenter(sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2));
+	window.setView(view_game);
+	this->background_ini.system(window, view_game, game_level);
 }
 
 

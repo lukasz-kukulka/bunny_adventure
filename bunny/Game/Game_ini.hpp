@@ -17,7 +17,9 @@ public:
 	void objects_ini(sf::RenderWindow& window);
 	void settings(uint8_t volume);
 	void points_initialize(uint16_t index);
+	void player_reset(sf::RenderWindow& window);
 	void draw(sf::RenderWindow& window);
+
 
 private:
 	sf::Font font_menu;
@@ -45,6 +47,7 @@ private:
 	bool menu_esc_visible{ false };
 	bool esc_stop_move{ false };
 	bool game_over_frame_del{ false };
+	bool restart_player_level{ false };
 	Files_operations file_operations;
 	std::string best_score_from_file;
 };

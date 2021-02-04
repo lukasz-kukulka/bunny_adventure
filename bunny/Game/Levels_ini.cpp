@@ -1,6 +1,10 @@
 #include "Levels_ini.hpp"
 
-Levels_ini::Levels_ini(sf::RenderWindow& window) : test_lvl(window), pick_lvl_test(window)
+Levels_ini::Levels_ini(sf::RenderWindow& window) 
+		: test_lvl(window)
+		, pick_lvl_test(window)
+		, pick_lvl_test_2(window)
+		, test_lvl_2(window)
 {
 	this->font.loadFromFile("Game/Fonts/beachday.ttf");
 	//std::cout << "--->" << static_cast<int>(game_level)  << std::endl;
@@ -23,6 +27,22 @@ uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
 			choise_bonus->initialize_singe_bonus_item(window);
 			this->bonus_yes = true;
 			level_indicator = 0;		
+		}
+		break;
+	}
+	case 1:
+	{
+		if (level_indicator != 1)
+		{
+			this->no_of_level++;
+			this->turn_off_all_functions = false;
+			lvl_size = sf::Vector2i(10000, 2000);
+			choise_level = &test_lvl_2;
+			choise_bonus = &pick_lvl_test_2;
+			choise_bonus->initialize_pick_class(window);
+			choise_bonus->initialize_singe_bonus_item(window);
+			this->bonus_yes = true;
+			level_indicator = 1;
 		}
 		break;
 	}

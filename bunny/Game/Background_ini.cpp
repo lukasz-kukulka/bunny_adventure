@@ -40,8 +40,7 @@ uint8_t Background_ini::system(sf::RenderWindow& window, sf::View& view_game, ui
 void Background_ini::objects_ini(sf::RenderWindow& window, sf::View& view_game)
 {
 	view_window = view_game;
-	if (game_lvl == 0)
-	{
+
 		this->skys.push_back(Background(window, &sky_texture, 0, 0, 0.1, view_window));
 		this->skys.push_back(Background(window, &sky_texture, 0, 1, 0.1, view_window));
 		this->skys.push_back(Background(window, &forest_dark_texture, 1, 0, 0.4, view_window));
@@ -50,7 +49,14 @@ void Background_ini::objects_ini(sf::RenderWindow& window, sf::View& view_game)
 		this->skys.push_back(Background(window, &forest_mid_texture, 1, 1, 1.2, view_window));
 		this->skys.push_back(Background(window, &forest_light_texture, 1, 0, 4, view_window));
 		this->skys.push_back(Background(window, &forest_light_texture, 1, 1, 4, view_window));
-	}
+
+}
+
+void Background_ini::backgroud_restart(sf::RenderWindow& window, sf::View& view_game)
+{
+	view_window = view_game;
+	skys.erase(skys.begin(), skys.end());
+	objects_ini(window, view_window);
 }
 
 //void Background_ini::level_size(sf::Vector2i lvl_size)

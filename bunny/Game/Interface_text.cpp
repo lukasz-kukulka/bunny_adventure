@@ -18,7 +18,7 @@ void Interface_text::system(sf::View& window)
 	text_tile[2].system(window, sf::Vector2f(rectangle_panel_top.getPosition().x + rectangle_panel_top.getGlobalBounds().width / 3 * 2, rectangle_panel_top.getPosition().y), "Level: ", std::to_string(no_of_level));
 }
 
-void Interface_text::initialization_tiles_text(sf::RenderWindow& window) // dodac typ enum
+void Interface_text::initialization_tiles_text(sf::RenderWindow& window)
 {
 	file_operations.sort_best_score();
 	text_tile.push_back(Singe_interface_tile(window, sf::Vector2f(rectangle_panel_top.getPosition().x, rectangle_panel_top.getPosition().y), "Score: ", "00000000",

@@ -7,7 +7,8 @@
 #include "Object_lvl_ini.hpp"
 #include "Level_end.hpp"
 #include "Game_over.hpp"
-
+#include "Levels/Pick_lvl_test2.hpp"
+#include "Levels/Test_LVL_2.hpp"
 
 class Levels_ini
 {
@@ -47,6 +48,8 @@ private:
 	Choise_level* choise_level{ nullptr };
 	Choise_lvl_bonus* choise_bonus{ nullptr };
 	Test_LVL test_lvl;
+	Pick_lvl_test2 pick_lvl_test_2;
+	Test_LVL_2 test_lvl_2;
 	Pick_lvl_test pick_lvl_test;
 	uint8_t game_lvl{ 0 };
 	uint8_t level_indicator{ 99 };   // if lvl will be more levels than 99 changing this ////////////////////////////////////
@@ -61,14 +64,14 @@ private:
 	uint16_t no_til{ 0 };
 	uint32_t player_points{ 0 };
 	uint8_t bonus_delete_element{ 0 };
-	uint8_t no_of_level{ 0 };
+	uint8_t no_of_level{ 1 };
 	bool bonus_yes{ true };
 	bool bonus_delete_yes{ false };
 	bool level_time_change{ false };
 	bool turn_off_all_functions{ false };
 	bool initialization_end_lvl_screen{ false };
 	bool game_over_ini{ false };
-	uint8_t last_level{ 1 }; // Always one more then maximum level
+	uint8_t last_level{ 2 }; // Always one more then maximum level
 
 };
 

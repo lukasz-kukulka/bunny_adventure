@@ -1,36 +1,36 @@
-#include "Pick_lvl_test.hpp"
+#include "Pick_lvl_test2.hpp"
 
-Pick_lvl_test::Pick_lvl_test(sf::RenderWindow& window)
+Pick_lvl_test2::Pick_lvl_test2(sf::RenderWindow& window)
 {
     this->bonus501 = 0; // widogrona wisz¹ce !!!!!!!!!!!! musi byc u góry
-    this->bonus502 = 5; // burak 
-    this->bonus503 = 4; // kolko - lisc zielony
-    this->bonus504 = 6; // marchewka
+    this->bonus502 = 1; // burak 
+    this->bonus503 = 1; // kolko - lisc zielony
+    this->bonus504 = 20; // marchewka
     this->bonus505 = 3; // grzyb 
-    this->bonus506 = 11; // kolko - spirala
-    this->bonus507 = 2; // kolko - lisc rozowy
+    this->bonus506 = 5; // kolko - spirala
+    this->bonus507 = 11; // kolko - lisc rozowy
     this->bonus508 = 1; // kolko - kropla
-    this->bonus509 = 4; // kolko - ogien
-    this->bonus510 = 6; // kolko - trybik
-    this->bonus511 = 8; // ziemniak
-    this->bonus512 = 2; // kociolek
+    this->bonus509 = 2; // kolko - ogien
+    this->bonus510 = 3; // kolko - trybik
+    this->bonus511 = 1; // ziemniak
+    this->bonus512 = 7; // kociolek
     this->bonus_quantity = bonus501 + bonus502 + bonus503 + bonus504 + bonus505 + bonus506 + bonus507 + bonus508 + bonus509 + bonus510 + bonus511 + bonus512;
 
     bonus_ini.push_back(Pick_items_ini(window));
 }
 
-uint8_t Pick_lvl_test::system(sf::RenderWindow& window)
+uint8_t Pick_lvl_test2::system(sf::RenderWindow& window)
 {
     bonus_ini[0].system(window);
     return 0;
 }
 
-void Pick_lvl_test::initialize_pick_class(sf::RenderWindow& window)
+void Pick_lvl_test2::initialize_pick_class(sf::RenderWindow& window)
 {
-    
+
 }
 
-void Pick_lvl_test::initialize_singe_bonus_item(sf::RenderWindow& window)
+void Pick_lvl_test2::initialize_singe_bonus_item(sf::RenderWindow& window)
 {
     for (uint8_t i = bonus501; i > 0; i--)
     {
@@ -84,69 +84,69 @@ void Pick_lvl_test::initialize_singe_bonus_item(sf::RenderWindow& window)
     bonus_ini[0].bonus_quantity_in(bonus_quantity);
 }
 
-void Pick_lvl_test::bonus_parameters_ini(single_tile_out_for_bonus index)
+void Pick_lvl_test2::bonus_parameters_ini(single_tile_out_for_bonus index)
 {
     bonus_ini[0].bonus_parameters_ini(index);
 }
 
-void Pick_lvl_test::no_of_tiles(uint16_t index)
+void Pick_lvl_test2::no_of_tiles(uint16_t index)
 {
     bonus_ini[0].no_of_tiles_in(index);
     //std::cout << index + 1000 << std::endl;
 }
 
-sf::Sprite Pick_lvl_test::bonus_sprite_out(uint16_t index)
+sf::Sprite Pick_lvl_test2::bonus_sprite_out(uint16_t index)
 {
     return bonus_ini[0].bonus_sprite_out(index);
 }
 
-void Pick_lvl_test::player_mid_position(sf::Sprite* player)
+void Pick_lvl_test2::player_mid_position(sf::Sprite* player)
 {
     bonus_ini[0].player_mid_position(player);
 }
 
-uint16_t Pick_lvl_test::no_of_bonus_out()
+uint16_t Pick_lvl_test2::no_of_bonus_out()
 {
     return bonus_ini[0].no_of_bonus_out();
 }
 
-void Pick_lvl_test::delete_bonus_elements(uint16_t element_index)
+void Pick_lvl_test2::delete_bonus_elements(uint16_t element_index)
 {
     bonus_ini[0].delete_bonus_ele(element_index);
     //std::cout << "test_level PICK        " << element_index << std::endl;
 }
 
-uint8_t Pick_lvl_test::type_item_bonus_out(uint16_t index)
+uint8_t Pick_lvl_test2::type_item_bonus_out(uint16_t index)
 {
     return bonus_ini[0].type_item_bonus_out(index);
 }
 
-bool Pick_lvl_test::confirm_bonus_delete()
+bool Pick_lvl_test2::confirm_bonus_delete()
 {
     return bonus_ini[0].confirm_bonus_delete();
 }
 
-void Pick_lvl_test::view_ini(sf::View& view)
+void Pick_lvl_test2::view_ini(sf::View& view)
 {
     bonus_ini[0].view_ini(view);
 }
 
-void Pick_lvl_test::delete_bonus_item_confirm(uint16_t index)
+void Pick_lvl_test2::delete_bonus_item_confirm(uint16_t index)
 {
     bonus_ini[0].delete_bonus_item_confirm(index);
 }
 
-bool Pick_lvl_test::delete_bonus_item_confirm_out(uint16_t index)
+bool Pick_lvl_test2::delete_bonus_item_confirm_out(uint16_t index)
 {
     return bonus_ini[0].delete_bonus_item_confirm_out(index);
 }
 
-//single_tile_out_for_bonus Pick_lvl_test::bonus_parameters_ini(uint16_t index)
+//single_tile_out_for_bonus Pick_lvl_test2::bonus_parameters_ini(uint16_t index)
 //{
 //    return single_tile_out_for_bonus();
 //}
 
-void Pick_lvl_test::draw(sf::RenderWindow& window)
+void Pick_lvl_test2::draw(sf::RenderWindow& window)
 {
     for (uint8_t i = 0; bonus_ini.size() > i; i++)
     {

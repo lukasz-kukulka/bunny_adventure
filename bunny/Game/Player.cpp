@@ -305,6 +305,11 @@ void Player::no_of_life_change(int8_t life)
 	this->no_of_life = no_of_life + life;
 }
 
+void Player::player_restart_level(sf::RenderWindow& window)
+{
+	this->player_sprite.setPosition(window.getSize().x / 2 - player_sprite.getGlobalBounds().width / 2, 250);
+}
+
 unsigned int Player::player_point_out()
 {
 	return player_points;

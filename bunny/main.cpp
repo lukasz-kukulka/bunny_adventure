@@ -32,8 +32,8 @@
 // - check error with end of map <-- done
 // - save score to file <-- done
 // - memory error - check class load_from_file this efect settings and credits <-- done
-// - error with moving scroll bar and pointers to options <-- curently
-// - music
+// - error with moving scroll bar and pointers to options <-- done
+// - add new level <-- curently
 // - changing all loop for and clean project
 // - add where is posible const
 // - add cmake
