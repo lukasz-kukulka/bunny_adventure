@@ -18,8 +18,8 @@ public:
 	bool animation_finish_out();
 	void delete_item_confirm();
 	uint8_t type_item_out();
-
 	void draw(sf::RenderWindow& window);
+
 private:
 	sf::Sprite bonus_sprite;
 	uint8_t type_item, animation_steps{ 0 };

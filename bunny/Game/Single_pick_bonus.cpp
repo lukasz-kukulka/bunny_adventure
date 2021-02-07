@@ -2,7 +2,6 @@
 
 Single_pick_bonus::Single_pick_bonus(sf::RenderWindow& window, sf::Texture* texture, uint8_t type_of_item)
 {
-	//sprite_tex = texture;
 	this->bonus_sprite.setTexture(*texture);
 	this->bonus_sprite.setPosition(sf::Vector2f(-1000, -1500));
 	this->delete_item = false;
@@ -44,16 +43,12 @@ bool Single_pick_bonus::if_can_you_delete_item()
 void Single_pick_bonus::animation_delete()
 {
 	this->animation_delete_start = true;
-	//std::cout << "dupa" << std::endl;
 }
 
 
 void Single_pick_bonus::animation_ini(sf::RenderWindow& window, sf::Sprite* player)
 {
-	//std::cout << "tak" << std::endl;
-	
-	
-	if (animation_delete_start == true) // && animation_finish == false
+	if (animation_delete_start == true)
 	{
 		if (animation_steps == 0)
 		{
@@ -131,28 +126,12 @@ void Single_pick_bonus::delete_item_confirm()
 	this->delete_item = true;
 }
 
-//void Single_pick_bonus::bonus_extra_efect_ini(sf::RenderWindow& window)
-//{
-//	
-//}
-
 uint8_t Single_pick_bonus::type_item_out()
 {
 	return type_item;
 }
 
-//sf::Texture Single_pick_bonus::texture_out()
-//{
-//	//sprite_tex = bonus_sprite.getTexture();
-//	return bonus_sprite.getTexture();
-//}
-
 void Single_pick_bonus::draw(sf::RenderWindow& window)
 {
 	window.draw(bonus_sprite);
-	//for (int i = 0; i < bonus_extra_text.size(); i++)
-	//{
-	//	bonus_extra_text[i].draw(window);
-	//}
-		
 }

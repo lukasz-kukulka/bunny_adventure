@@ -15,7 +15,6 @@ Button_option::Button_option(sf::RenderWindow& window, sf::RectangleShape space_
 	this->single_workspace.setOutlineThickness(1);
 	this->single_workspace.setOutlineColor(sf::Color(0, 0, 0, 0));
 
-	
 	this->button_sprite.setTexture(*button_grey);
 	this->button_sprite.setScale(single_workspace.getGlobalBounds().width / button_sprite.getGlobalBounds().width / 2.5, 
 		single_workspace.getGlobalBounds().width / button_sprite.getGlobalBounds().width / 2.5);

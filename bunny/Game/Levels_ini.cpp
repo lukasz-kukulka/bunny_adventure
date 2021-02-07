@@ -7,7 +7,6 @@ Levels_ini::Levels_ini(sf::RenderWindow& window)
 		, test_lvl_2(window)
 {
 	this->font.loadFromFile("Game/Fonts/beachday.ttf");
-	//std::cout << "--->" << static_cast<int>(game_level)  << std::endl;
 }
 
 uint8_t Levels_ini::system(sf::RenderWindow& window, uint8_t game_level)
@@ -262,7 +261,6 @@ void Levels_ini::draw(sf::RenderWindow& window)
 {
 	choise_level->draw(window);
 	choise_bonus->draw(window);
-
 	for (auto i : level_end_vector)
 		i.draw(window);
 	for (auto i : game_over)

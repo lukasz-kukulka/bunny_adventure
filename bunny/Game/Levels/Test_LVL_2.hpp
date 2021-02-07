@@ -7,7 +7,6 @@ class Test_LVL_2 :public Choise_level
 {
 public:
 	Test_LVL_2(sf::RenderWindow& window);
-
 	uint8_t system();
 	void objects_ini(sf::RenderWindow& window, sf::Vector2i size_board);
 	sf::Sprite* tiles(uint32_t index);

@@ -46,18 +46,12 @@ uint8_t Pick_items_ini::system(sf::RenderWindow& window)
 				}
 			}
 		}
-		//for (uint16_t z = teporary_tiles_tab.size(); z > 0; z--)
-		//{
-		//	bonuses[z - 1].changing_bonus_position(sf::Vector2f(tiles_parameters[teporary_tiles_tab[z - 1]].x_position,
-		//		tiles_parameters[teporary_tiles_tab[z - 1]].y_position - bonuses[z - 1].globalbound_out().y));
-		//}
 		for (uint16_t i = 0; i < bonuses.size(); i++)
 		{
 			bonuses[i].changing_bonus_position(sf::Vector2f(tiles_parameters[teporary_tiles_tab[i]].x_position,
 			tiles_parameters[teporary_tiles_tab[i]].y_position - bonuses[i].globalbound_out().y));
 		}
 		bonus_position_ini = false;
-		//std::cout << "TEST" << std::endl;
 	}
 	animation_delete_bonus_ini(window);
 	return 0;
@@ -72,7 +66,6 @@ void Pick_items_ini::single_pick_items_ini(sf::RenderWindow& window, uint8_t typ
 	}
 	else if (type == 2)
 	{
-		//std::cout << "TEST" << std::endl;
 		bonuses.push_back(Single_pick_bonus(window, &awa502, 2));
 		bonus_info.push_back(Bonus_extra_effect(window, &font, show_text, 2));
 	}
@@ -158,7 +151,6 @@ uint16_t Pick_items_ini::no_of_bonus_out()
 
 uint16_t Pick_items_ini::no_of_tiles_out()
 {
-	//std::cout << tiles_parameters.size() << std::endl;
 	return tiles_quantity;
 }
 
@@ -169,30 +161,20 @@ void Pick_items_ini::animation_delete_bonus_ini(sf::RenderWindow& window)
 	{
 
 		this->confirm_delete_variable = false;
-		//std::cout << i << std::endl;
-		//bonus_info[i].system(view_window);
 		bonuses[i].animation_ini(window ,player_sprite_out());
 		if (bonuses[i].animation_finish_out() == true)
 		{
-			//bonus_info.erase(bonus_info.begin() + i);
 			bonuses.erase(bonuses.begin() + i);
 			this->confirm_delete_variable = true;
-			//i=0;
-
 			break;
 		}
 	}
 	for (int i = 0; i < bonus_info.size(); i++)
 	{
-
-		//this->confirm_delete_variable = false;
-		//std::cout << i << std::endl;
 		bonus_info[i].system(view_window);
-		//bonuses[i].animation_ini(window, player_sprite_out());
 		if (bonus_info[i].system(view_window) == 1)
 		{
 			bonus_info.erase(bonus_info.begin() + i);
-			//i=0;
 			break;
 		}
 	}

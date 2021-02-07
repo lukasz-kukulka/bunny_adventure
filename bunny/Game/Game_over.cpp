@@ -21,7 +21,6 @@ Game_over::Game_over(sf::View window, sf::Font* font, uint32_t points)
 
 uint8_t Game_over::system()
 {
-	//std::cout << "---> " << system_clock << std::endl;
 	this->system_clock++;
 	if (system_clock >= 30)
 	{
@@ -32,7 +31,6 @@ uint8_t Game_over::system()
 	{
 		return 0;
 	}
-	
 }
 
 void Game_over::draw(sf::RenderWindow& window)

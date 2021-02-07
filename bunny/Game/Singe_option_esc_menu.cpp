@@ -34,12 +34,10 @@ uint8_t Singe_option_esc_menu::system(sf::View& window, bool mark_on)
 	if (mark_visible == true)
 	{
 		this->esc_option.setFillColor(sf::Color(255, 0, 0, 222));
-		//this->mark_option.setScale(sf::Vector2f(1.0, 1.0));
 	}
 	else
 	{
 		this->esc_option.setFillColor(sf::Color(255, 0, 0, 111));
-		//this->mark_option.setScale(sf::Vector2f(0, 0));
 	}
 
 	return 0;
@@ -48,7 +46,5 @@ uint8_t Singe_option_esc_menu::system(sf::View& window, bool mark_on)
 void Singe_option_esc_menu::draw(sf::RenderWindow& window)
 {
 	window.draw(esc_option);
-	//window.draw(mark_option);
-	//text_menu.getFont();
 	window.draw(text_menu);
 }

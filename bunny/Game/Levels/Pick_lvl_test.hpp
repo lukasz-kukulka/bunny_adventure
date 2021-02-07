@@ -26,7 +26,6 @@ public:
 private:
 	uint8_t bonus501, bonus502, bonus503, bonus504, bonus505, bonus506, bonus507, bonus508, bonus509, bonus510, bonus511, bonus512;
 	uint16_t bonus_quantity;
-	//uint16_t no_tiles;
 	std::vector<Pick_items_ini>bonus_ini;
 	std::vector<single_tile_out_for_bonus>bonuses_vector;
 };

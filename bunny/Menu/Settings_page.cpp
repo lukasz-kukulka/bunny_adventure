@@ -337,9 +337,6 @@ void Settings_page::draw(sf::RenderWindow& window)
 	}
 
 	window.draw(save_back_rec);
-
-	for (uint8_t i = 0; i < texts.size(); i++)
-	{
-		texts[i].draw(window);
-	}
+	for (auto i : texts)
+		i.draw(window);
 }

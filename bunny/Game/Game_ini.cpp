@@ -13,7 +13,6 @@ Game_ini::Game_ini(sf::RenderWindow& window)
 	this->time_directions = 0;
 	this->objects_ini(window);
 	this->game_level = 0;
-	//this->level_size_map = level_ini.level_size();
 	this->view_game.setCenter(sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2)); 
 	this->view_game.setSize(sf::Vector2f(window.getSize().x, window.getSize().y));
 	this->direction_enabled = true;
@@ -23,10 +22,6 @@ Game_ini::Game_ini(sf::RenderWindow& window)
 	interface_texts.best_score_in(&best_score_from_file);
 	
 }
-
-//Game_ini::~Game_ini()
-//{
-//}
 
 uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
@@ -78,8 +73,6 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	}
 	if (level_ini.turn_off_all_function_check() == false)
 	{
-
-		
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{
 			if (menu_esc.size() == 0 && time_menu >= 300)
@@ -87,7 +80,6 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 				menu_esc.push_back(Menu_esc_in_game(view_game, 0, &font_menu));
 				time_menu = menu_clock.restart().asMilliseconds();
 				this->esc_stop_move = true;
-				//menu_esc[0].system(view_game, position_esc_menu);
 			}
 			else if (menu_esc.size() == 1 && time_menu >= 300)
 			{
@@ -157,7 +149,6 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && colision.player_stay_in_ground() == true && esc_stop_move == false)
 		{
-			//player_bunny[0].animation_directon(0);
 			player_bunny[0].jump_reset(10);
 			player_bunny[0].animation_reset(1);
 			colision.player_stay_in_ground_change(false);
@@ -180,8 +171,6 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 				level_ini.game_lvl_change(game_level);
 				
 				this->restart_player_level = true;
-				//std::cout << static_cast<int>(game_level) << std::endl;
-
 			}
 			this->pressed_and_restart_new_level = true;
 		}
@@ -190,8 +179,6 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			menu_esc.push_back(Menu_esc_in_game(view_game, 1, &font_menu));
 			time_menu = menu_clock.restart().asMilliseconds();
 			this->esc_stop_move = true;
-
-			//return 5;
 		}			
 	}
 	else if (esc_stop_move == true)
@@ -202,8 +189,6 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 			file_operations.add_new_score(player_bunny[0].player_point_out());
 			game_over_frame_del = true;
 		}
-		
-		//level_ini.player_points_in(player_bunny[0].player_point_out());
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && time_menu >= 300)
 		{
 			if (menu_esc[0].system(view_game, position_esc_menu) == 0)
@@ -227,33 +212,23 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		menu_esc[0].system(view_game, position_esc_menu);
 	}
 	time_directions = clock_directions.getElapsedTime().asMilliseconds();
-	//if ((view_game.getCenter().x - view_game.getSize().x / 2 >= 0 || player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2 - view_game.getSize().x / 2 >= 0) &&
-	//	view_game.getCenter().x + view_game.getSize().x / 2 <= level_ini.level_size().x)
 	if (view_game.getCenter().x - view_game.getSize().x / 2 >= 0 && view_game.getCenter().x + view_game.getSize().x / 2 <= level_ini.level_size().x && 
 		player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2 - view_game.getSize().x / 2 >= 0 && 
 		player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2 <= level_ini.level_size().x - view_game.getSize().x / 2)
 	{
 		this->view_game.setCenter(player_bunny[0].get_position().x + player_bunny[0].get_global().x / 2, view_game.getCenter().y);
 	}
-	//this->game_level = level_ini.game_lvl_out();
 
-	
 	level_ini.system(window, game_level);
-
 	time_animation = clock_animation.restart().asSeconds();
-
 	player_bunny[0].animations(time_animation);
 	player_bunny[0].system();
 	player_bunny[0].gravity_insert(colision.gravityY_out());
-	//window.setView(view_game); 
 	colision.level_size_input(level_ini.level_size());
-	//std::cout << level_ini.level_size().x << std::endl;
 	colision.no_of_bonus_in(level_ini.no_of_bonus_out());    
 	colision.player_sprite_in(player_bunny[0].shape_player());
 	colision.gravity_change(10);
 	this->ladder_movement_enable = false;
-	//this->ladder_movement_enable_animation = false;
-	//std::cout << level_ini.no_tiles() << std::endl;
 	for (int i = 0; i < level_ini.no_tiles(); i++)
 	{
 		colision.tile_sprite_in(level_ini.tiles(i));
@@ -262,17 +237,9 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 		colision.colision(window);
 		if (colision.ladder_colision(window) == 1)
 		{
-			//std::cout << "----------" << std::endl;
 			colision.gravity_change(0);
 			this->ladder_movement_enable = true;
 		}
-		//if (colision.ladder_colision(window) == 2)
-		//{
-		//	
-		//	//colision.gravity_change(0);
-		//	this->ladder_movement_enable_animation = true;
-		//}
-		//std::cout << "----------" << colision.ladder_colision(window) << std::endl;
 	}
 	if (ladder_movement_enable == false)
 	{
@@ -284,26 +251,21 @@ uint8_t Game_ini::system(sf::RenderWindow& window, sf::Vector2i mouse)
 	{
 		for (bonus_index = 0; bonus_index < level_ini.no_of_bonus_out(); bonus_index++)
 		{
-			//std::cout << "-----------------------------------------" << bonus_index << std::endl;
 			colision.bonus_sprite_in(level_ini.bonus_sprite_out(bonus_index));
 			colision.colision_bonus();
-			if (colision.catch_bonus() == true && level_ini.bonus_item_delete_confirm_out(bonus_index) == false)// && colision.catch_bonus_one_time() == true
+			if (colision.catch_bonus() == true && level_ini.bonus_item_delete_confirm_out(bonus_index) == false)
 			{
 				level_ini.delete_bonus_yes(true, player_bunny[0].shape_player());
 				level_ini.delete_bonus_ini(bonus_index);
 				this->index_delete_bonus = level_ini.type_item_bonus_out(bonus_index);
 				level_ini.bonus_item_delete_confirm(bonus_index);
-				//std::cout << "-----------------------------------------" << static_cast<int>( index_delete_bonus) << std::endl;
 				break;
 			}
 		}
 	}
 	if (level_ini.confirm_bonus_delete() == true && level_ini.no_of_bonus_out() > 0)
 	{
-		
-		//std::cout << level_ini.no_of_bonus_out() << "        ----------------------------------------- >>>>>>>>>>>>>>>>>>>     " << static_cast<int>(index_delete_bonus) << std::endl;
 		points_initialize(index_delete_bonus);
-		//std::cout << player_bunny[0].player_point_out() << std::endl;
 	}
 	interface_texts.score_points_in(player_bunny[0].player_point_out());
 	interface_texts.no_of_level_in(level_ini.no_of_level_out());
@@ -341,43 +303,43 @@ void Game_ini::points_initialize(uint16_t index)
 	}
 	else if (index == 3)
 	{
-		player_bunny[0].add_player_points(1);
+		player_bunny[0].add_player_points(2);
 	}
 	else if (index == 4)
 	{
-		player_bunny[0].add_player_points(1);
+		player_bunny[0].add_player_points(3);
 	}
 	else if (index == 5)
 	{
-		player_bunny[0].add_player_points(1);
+		player_bunny[0].add_player_points(4);
 	}
 	else if (index == 6)
 	{
-		player_bunny[0].add_player_points(1);
+		player_bunny[0].add_player_points(5);
 	}
 	else if (index == 7)
 	{
-		player_bunny[0].add_player_points(1);
+		player_bunny[0].add_player_points(6);
 	}
 	else if (index == 8)
 	{
-		player_bunny[0].add_player_points(1);
+		player_bunny[0].add_player_points(7);
 	}
 	else if (index == 9)
 	{
-		player_bunny[0].add_player_points(1);
+		player_bunny[0].add_player_points(8);
 	}
 	else if (index == 10)
 	{
-		player_bunny[0].add_player_points(1);
+		player_bunny[0].add_player_points(9);
 	}
 	else if (index == 11)
 	{
-		player_bunny[0].add_player_points(1);
+		player_bunny[0].add_player_points(10);
 	}
 	else if (index == 12)
 	{
-		player_bunny[0].add_player_points(1);
+		player_bunny[0].add_player_points(11);
 	}
 }
 

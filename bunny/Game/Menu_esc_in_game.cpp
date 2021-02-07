@@ -3,7 +3,6 @@
 Menu_esc_in_game::Menu_esc_in_game(sf::View& window, uint8_t type_menu, sf::Font* font_text)
 {
 	this->font = font_text;
-	//std::cout << font_menu.loadFromFile("Game/Fonts/butler.ttf") << std::endl;
 	this->all_panel_top.setSize(sf::Vector2f(window.getSize().x / 3, window.getSize().y / 3));
 	this->all_panel_top.setPosition(window.getCenter().x - all_panel_top.getGlobalBounds().width / 2, window.getCenter().y - all_panel_top.getGlobalBounds().height / 2);
 	this->all_panel_top.setFillColor(sf::Color(255, 0, 0, 0));
@@ -68,10 +67,6 @@ uint8_t Menu_esc_in_game::no_of_option_menu_out()
 void Menu_esc_in_game::draw(sf::RenderWindow& window)
 { 
 	window.draw(all_panel_top);
-	//for (uint8_t i = 0; i < single_option.size(); i++)
-	//{
-	//	single_option[i].draw(window);
-	//}
 	for (auto i : single_option)
 		i.draw(window);
 

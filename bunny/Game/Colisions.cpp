@@ -4,13 +4,12 @@ Colisions::Colisions()
 {
 	this->gravityY = 10;
 	this->border = 20;
-	this->level_size = sf::Vector2i(10000, 0);// uwazac bo z ta wartoscia bedzie zaczynal player
+	this->level_size = sf::Vector2i(10000, 0);
 	this->ground_yes_no = false;
 	this->catch_bonus_true = false;
 	this->catch_bonus_one_time_true = true;
 	this->bonus_quantity = 0;
 	this->bonus_number = 0;
-	//this->player_sprite = nullptr;
 }
 
 void Colisions::gravity()
@@ -21,10 +20,6 @@ void Colisions::gravity()
 
 void Colisions::colision(sf::RenderWindow& window)
 {
-	//std::cout << "PLAYER ---> " << player_sprite->getPosition().x + player_sprite->getGlobalBounds().height << "    ========    tiles ---> " << tile_sprite->getPosition().x << std::endl;
-	//std::cout << level_size.x << std::endl;
-	//player_sprite = player;
-
 	if (player_sprite->getPosition().x <= 0)
 	{
 		player_sprite->setPosition(0, player_sprite->getPosition().y);
@@ -41,24 +36,13 @@ void Colisions::colision(sf::RenderWindow& window)
 
 		player_sprite->setPosition(player_sprite->getPosition().x, tile_sprite->getPosition().y - player_sprite->getGlobalBounds().height - gravityY);
 		this->ground_yes_no = true;
-		//this->gravityY = 10;
-		
 	}
-	//else if (player_sprite->getPosition().y + player_sprite->getGlobalBounds().height > tile_sprite->getPosition().y - 1 &&
-	//	player_sprite->getPosition().x + player_sprite->getGlobalBounds().width - border > tile_sprite->getPosition().x &&
-	//	player_sprite->getPosition().x + border < tile_sprite->getPosition().x + tile_sprite->getGlobalBounds().width && tiles_type == 111)
-	//{
-	//	std::cout << "1" << std::endl;
-	//	this->gravityY = 10;
-	//}
-
 	else if (player_sprite->getPosition().y + border <= tile_sprite->getPosition().y + tile_sprite->getGlobalBounds().height &&
 		player_sprite->getPosition().y >= tile_sprite->getPosition().y + tile_sprite->getGlobalBounds().height - tile_sprite->getGlobalBounds().height / 3 * 2&&
 		player_sprite->getPosition().x + player_sprite->getGlobalBounds().width - border > tile_sprite->getPosition().x &&
 		player_sprite->getPosition().x + border < tile_sprite->getPosition().x + tile_sprite->getGlobalBounds().width && tiles_type != 111)
 	{
 		player_sprite->setPosition(player_sprite->getPosition().x, tile_sprite->getPosition().y + tile_sprite->getGlobalBounds().height - border);
-		//std::cout << "2" << std::endl;
 	}
 
 	if (player_sprite->getPosition().y + player_sprite->getGlobalBounds().height == tile_sprite->getPosition().y + tile_sprite->getGlobalBounds().height &&
@@ -67,7 +51,6 @@ void Colisions::colision(sf::RenderWindow& window)
 		player_sprite->getPosition().x + player_sprite->getGlobalBounds().width - border <= tile_sprite->getPosition().x + tile_sprite->getGlobalBounds().width / 3 && tiles_type != 111)
 	{
 		player_sprite->setPosition(tile_sprite->getPosition().x - player_sprite->getGlobalBounds().width + border, player_sprite->getPosition().y);
-		//std::cout << "3" << std::endl;
 	}
 	else if (player_sprite->getPosition().y + player_sprite->getGlobalBounds().height == tile_sprite->getPosition().y + tile_sprite->getGlobalBounds().height &&
 		player_sprite->getPosition().y + player_sprite->getGlobalBounds().height >= tile_sprite->getPosition().y + 10 && 
@@ -75,7 +58,6 @@ void Colisions::colision(sf::RenderWindow& window)
 		player_sprite->getPosition().x + border >= tile_sprite->getPosition().x + tile_sprite->getGlobalBounds().width / 3 * 2 && tiles_type != 111)
 	{
 		player_sprite->setPosition(tile_sprite->getPosition().x + tile_sprite->getGlobalBounds().width - border, player_sprite->getPosition().y);
-		//std::cout << "4" << std::endl;
 	}
 }
 
@@ -86,7 +68,6 @@ uint8_t Colisions::ladder_colision(sf::RenderWindow& window)
 		player_sprite->getPosition().x + player_sprite->getGlobalBounds().width - border * 3 > tile_sprite->getPosition().x &&
 		player_sprite->getPosition().x + border * 3 < tile_sprite->getPosition().x + tile_sprite->getGlobalBounds().width && tiles_type == 111)
 	{
-		//std::cout << "==" << static_cast<int>(tiles_type) << std::endl;
 		return 1;
 	}
 
@@ -123,22 +104,17 @@ void Colisions::no_of_bonus_in(uint16_t index)
 
 void Colisions::colision_bonus()
 {
-	//std::cout << "PLAYER ---> " << player_sprite->getPosition().x << "    ========    BONUS ---> " << bonus_sprite.getPosition().x <<std::endl;
 	if (player_sprite->getPosition().x + player_sprite->getGlobalBounds().width > bonus_sprite.getPosition().x &&
 		player_sprite->getPosition().x < bonus_sprite.getPosition().x + bonus_sprite.getGlobalBounds().width &&
 		player_sprite->getPosition().y + player_sprite->getGlobalBounds().height > bonus_sprite.getPosition().y &&
 		player_sprite->getPosition().y < bonus_sprite.getPosition().y + bonus_sprite.getGlobalBounds().height)
 	{
-		//std::cout << catch_bonus_true << std::endl;
-		//std::cout << bonus_sprite.getPosition().x << " ------- POSITION X "<< std::endl;
 		this->catch_bonus_true = true;
 
 	}
 	else
 	{
 		this->catch_bonus_true = false;
-		//this->catch_bonus_one_time_true = true;
-		//std::cout << "__________________________________________________________________________" << std::endl;
 	}
 }
 
@@ -151,21 +127,6 @@ bool Colisions::catch_bonus()
 {
 	return catch_bonus_true;
 }
-
-//bool Colisions::catch_bonus_one_time()
-//{
-//	return catch_bonus_one_time_true;
-//}
-//
-//void Colisions::catch_bonus_one_time_in(bool index)
-//{
-//	this->catch_bonus_one_time_true = index;
-//}
-
-//void Colisions::catch_change_to_false()
-//{
-//	this->catch_bonus_true = false;
-//}
 
 void Colisions::player_sprite_in(sf::Sprite* player)
 {

@@ -111,8 +111,6 @@ float Menu::scale()
 
 void Menu::draw(sf::RenderWindow& window)
 {
-	//std::cout << " DRAW " << button_sprite_mid.getPosition().x << std::endl;
-	
 	window.draw(button_sprite_left);
 	window.draw(button_sprite_mid);
 	window.draw(button_sprite_right);

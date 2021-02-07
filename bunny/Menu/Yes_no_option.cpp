@@ -90,7 +90,6 @@ uint8_t Yes_no_option::system(sf::RenderWindow& window, sf::Vector2i mouse)
 				this->no_button_bool = false;
 				return index * 2;
 			}
-			
 		}
 	}
 	else

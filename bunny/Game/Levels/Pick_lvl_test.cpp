@@ -2,18 +2,18 @@
 
 Pick_lvl_test::Pick_lvl_test(sf::RenderWindow& window)
 {
-    this->bonus501 = 0; // widogrona wisz¹ce !!!!!!!!!!!! musi byc u góry
-    this->bonus502 = 5; // burak 
-    this->bonus503 = 4; // kolko - lisc zielony
-    this->bonus504 = 6; // marchewka
-    this->bonus505 = 3; // grzyb 
-    this->bonus506 = 11; // kolko - spirala
-    this->bonus507 = 2; // kolko - lisc rozowy
-    this->bonus508 = 1; // kolko - kropla
-    this->bonus509 = 4; // kolko - ogien
-    this->bonus510 = 6; // kolko - trybik
-    this->bonus511 = 8; // ziemniak
-    this->bonus512 = 2; // kociolek
+    this->bonus501 = 0; 
+    this->bonus502 = 5; 
+    this->bonus503 = 4; 
+    this->bonus504 = 6;
+    this->bonus505 = 3; 
+    this->bonus506 = 11;
+    this->bonus507 = 2; 
+    this->bonus508 = 1;
+    this->bonus509 = 4; 
+    this->bonus510 = 6;
+    this->bonus511 = 8;
+    this->bonus512 = 2; 
     this->bonus_quantity = bonus501 + bonus502 + bonus503 + bonus504 + bonus505 + bonus506 + bonus507 + bonus508 + bonus509 + bonus510 + bonus511 + bonus512;
 
     bonus_ini.push_back(Pick_items_ini(window));
@@ -92,7 +92,6 @@ void Pick_lvl_test::bonus_parameters_ini(single_tile_out_for_bonus index)
 void Pick_lvl_test::no_of_tiles(uint16_t index)
 {
     bonus_ini[0].no_of_tiles_in(index);
-    //std::cout << index + 1000 << std::endl;
 }
 
 sf::Sprite Pick_lvl_test::bonus_sprite_out(uint16_t index)
@@ -113,7 +112,6 @@ uint16_t Pick_lvl_test::no_of_bonus_out()
 void Pick_lvl_test::delete_bonus_elements(uint16_t element_index)
 {
     bonus_ini[0].delete_bonus_ele(element_index);
-    //std::cout << "test_level PICK        " << element_index << std::endl;
 }
 
 uint8_t Pick_lvl_test::type_item_bonus_out(uint16_t index)
@@ -141,18 +139,9 @@ bool Pick_lvl_test::delete_bonus_item_confirm_out(uint16_t index)
     return bonus_ini[0].delete_bonus_item_confirm_out(index);
 }
 
-//single_tile_out_for_bonus Pick_lvl_test::bonus_parameters_ini(uint16_t index)
-//{
-//    return single_tile_out_for_bonus();
-//}
-
 void Pick_lvl_test::draw(sf::RenderWindow& window)
 {
-    for (uint8_t i = 0; bonus_ini.size() > i; i++)
-    {
-        bonus_ini[i].draw(window);
-    }
-    //for (auto i : bonus_ini)
-    //    i.draw(window);
+    for (auto i : bonus_ini)
+        i.draw(window);
 }
 

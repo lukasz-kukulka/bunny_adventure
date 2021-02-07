@@ -14,5 +14,4 @@ public:
 	virtual uint16_t bonus_size() = 0;
 	virtual uint16_t tiles_type(uint16_t index) = 0;
 	virtual void draw(sf::RenderWindow&) = 0;
-	//virtual uint8_t bonus_size(uint8_t) = 0;
 };

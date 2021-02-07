@@ -21,7 +21,6 @@ public:
 private:
 	uint16_t no_line{ 1 };
 	std::string name, data, score;
-	//std::string line;
 	std::vector<Single_record_file>records;
 	std::vector<Single_record_file>temp_single_record;
 };

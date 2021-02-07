@@ -11,33 +11,6 @@
 #include <stdlib.h>
 #include <time.h> 
 
-// - end lvl system <-- done
-// - end game algorithm <-- done
-// - load score to interface from files <-- done
-// - sort score in file <-- done
-// - add enum in menu <-- done
-// - optimalize save and load file <-- done
-// - save score to file <-- done
-// - optimalization main and level vitual class <-- done
-// - error with out range of vector bonus <-- done
-// - error with couting point for bonus <-- done
-// - error with pick up right items bonus <-- done
-// - error with desapeart bonus object <-- done
-// - menu to exit from game/to menu <-- done
-// - close option <-- done
-// - bonus anoucemenet one under another and middle in screan <-- done
-// - add text depends of with bonus is <-- done
-// - add text diferents colors bonus <-- done
-// - dellete in destructor one of class <-- done
-// - check error with end of map <-- done
-// - save score to file <-- done
-// - memory error - check class load_from_file this efect settings and credits <-- done
-// - error with moving scroll bar and pointers to options <-- done
-// - add new level <-- curently
-// - changing all loop for and clean project
-// - add where is posible const
-// - add cmake
-
 extern sf::Vector2i mouse;
 
 int main()
@@ -52,7 +25,6 @@ int main()
         close_option = 5,
     } menu_option;
     menu_option = interface_menu_option;
-
 
     int menu_option_temp;
     Files_operations res_load;
@@ -91,7 +63,6 @@ int main()
     Credits credits(window);
     Settings_page settings_page(window);
     Score_page score_page(window);
-    //Option* go_to_option = &inter;
     Option* go_to_option{ nullptr };
     while (window.isOpen())
     {
@@ -120,7 +91,7 @@ int main()
                 }
                 sprite.setScale(0, 0);
                 break;
-                if (music.getVolume() <= 1) //zwiekszyæ volume
+                if (music.getVolume() <= 1)
                 {
                     music.pause();
                 }
@@ -171,7 +142,6 @@ int main()
                 break;
         }
         go_to_option->settings(res_load.load_from_settings(2));
-        
         menu_option = menu_option_enum(go_to_option->system(window, mouse));
         
         if (res_load.load_from_settings(4) == true && music_play == true)

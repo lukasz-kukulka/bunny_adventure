@@ -24,7 +24,6 @@ void Test_LVL_2::objects_ini(sf::RenderWindow& window, sf::Vector2i size_board)
 
 sf::Sprite* Test_LVL_2::tiles(uint32_t index)
 {
-
 	return lvl1.shape(index);
 }
 
@@ -47,7 +46,6 @@ uint16_t Test_LVL_2::tiles_type(uint16_t index)
 {
 	return lvl1.tiles_type(index);
 }
-
 
 void Test_LVL_2::draw(sf::RenderWindow& window)
 {

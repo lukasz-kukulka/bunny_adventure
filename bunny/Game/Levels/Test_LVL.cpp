@@ -30,8 +30,6 @@ sf::Sprite* Test_LVL::tiles(uint32_t index)
 
 uint16_t Test_LVL::no_til()
 {
-    //std::cout << lvl0.no_tiles() << std::endl;
-    
     return lvl0.no_tiles();
 }
 
@@ -49,7 +47,6 @@ uint16_t Test_LVL::tiles_type(uint16_t index)
 {
     return lvl0.tiles_type(index);
 }
-
 
 void Test_LVL::draw(sf::RenderWindow& window)
 {

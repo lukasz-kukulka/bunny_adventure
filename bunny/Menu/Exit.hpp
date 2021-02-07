@@ -11,7 +11,6 @@ public:
 	void no_exit();
 	void draw(sf::RenderWindow&);
 	
-	
 private:
 	sf::Text ask;
 	sf::Sprite bunny_sprite, cloud_sprite, forest_tex;

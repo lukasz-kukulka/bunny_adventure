@@ -15,7 +15,6 @@ public:
 	void best_score_in(std::string* score);
 	void draw(sf::RenderWindow& window);
 
-
 private:
 	sf::Font font_points;
 	sf::Font best_score;

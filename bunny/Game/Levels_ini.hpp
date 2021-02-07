@@ -52,7 +52,7 @@ private:
 	Test_LVL_2 test_lvl_2;
 	Pick_lvl_test pick_lvl_test;
 	uint8_t game_lvl{ 0 };
-	uint8_t level_indicator{ 99 };   // if lvl will be more levels than 99 changing this ////////////////////////////////////
+	uint8_t level_indicator{ 99 };
 	sf::Font font;
 	sf::Vector2i lvl_size{ sf::Vector2i(0, 0) };
 	sf::Sprite* player_pos{ nullptr };
@@ -71,7 +71,7 @@ private:
 	bool turn_off_all_functions{ false };
 	bool initialization_end_lvl_screen{ false };
 	bool game_over_ini{ false };
-	uint8_t last_level{ 2 }; // Always one more then maximum level
+	uint8_t last_level{ 2 };
 
 };
 

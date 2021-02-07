@@ -184,20 +184,12 @@ void Score_page::draw(sf::RenderWindow& window)
 {
 	window.draw(background_sprite_bunny);
 	window.draw(base_rec);
-	for (uint16_t i = 0; i < score_records.size(); i++)
-	{
-		score_records[i].draw(window);
-	}
-	for (uint8_t i = 0; i < slider.size(); i++)
-	{
-		slider[i].draw(window);
-	}
-	for (uint8_t i = 0; i < back_button.size(); i++)
-	{
-		back_button[i].draw(window);
-	}
-	for (uint8_t i = 0; i < screen_del.size(); i++)
-	{
-		screen_del[i].draw(window);
-	}
+	for (auto i : score_records)
+		i.draw(window);
+	for (auto i : slider)
+		i.draw(window);
+	for (auto i : back_button)
+		i.draw(window);
+	for (auto i : screen_del)
+		i.draw(window);
 }

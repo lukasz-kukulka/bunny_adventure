@@ -53,5 +53,4 @@ void Background::level_size(sf::Vector2i lvl_size)
 void Background::draw(sf::RenderWindow& window)
 {
 	window.draw(back_sprite);
-	
 }

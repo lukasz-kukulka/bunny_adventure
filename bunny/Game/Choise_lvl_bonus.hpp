@@ -5,7 +5,6 @@
 class Choise_lvl_bonus
 {
 public:
-
 	virtual uint8_t system(sf::RenderWindow& window) = 0;
 	virtual void initialize_pick_class(sf::RenderWindow&) = 0;
 	virtual void initialize_singe_bonus_item(sf::RenderWindow& window) = 0;
@@ -21,6 +20,5 @@ public:
 	virtual void delete_bonus_item_confirm(uint16_t index) = 0;
 	virtual bool delete_bonus_item_confirm_out(uint16_t index) = 0;
 	virtual void draw(sf::RenderWindow&) = 0;
-
 };
 

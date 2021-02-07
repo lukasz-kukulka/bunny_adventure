@@ -39,7 +39,6 @@ void Interface_text::score_points_in(int points)
 
 	for(int i = score_points.size(); i < 8; i++)
 	{
-		//std::cout << score_points.size() <<    "   -----------------------------------------  " << score_points << std::endl;
 		this->score_points = "0" + score_points;
 	}
 }

@@ -45,9 +45,6 @@ void Text::reset()
 void Text::draw(sf::RenderWindow& window)
 {
 	window.draw(text);
-	for (uint8_t i = 0; i < singles.size(); i++)
-	{
-		singles[i].draw(window);
-	}
-
+	for (auto i : singles)
+		i.draw(window);
 }

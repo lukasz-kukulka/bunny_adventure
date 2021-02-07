@@ -37,7 +37,6 @@ private:
 	Background_ini background_ini;
 	Colisions colision;
 	std::vector<Menu_esc_in_game> menu_esc;
-	//Menu_esc_in_game menu_esc;
 	Interface_text interface_texts;
 	sf::View view_game;
 	bool direction_enabled;

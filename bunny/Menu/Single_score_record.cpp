@@ -17,7 +17,6 @@ Single_score_record::Single_score_record(sf::RenderWindow& window, sf::Texture* 
 
 uint8_t Single_score_record::system(sf::RenderWindow& window, sf::Vector2i mouse)
 {
-	//move_record_time = move_record_clock.getElapsedTime();
 	if (all_record.getPosition().y + 10 < base_shape.getPosition().y || all_record.getPosition().y + 10 > base_shape.getPosition().y + base_shape.getSize().y)
 	{
 		objects_unvisible(window);

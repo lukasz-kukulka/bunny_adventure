@@ -3,7 +3,6 @@
 Player::Player(sf::RenderWindow& window, sf::Texture* bunny, float time_animation)
 {
 	this->movement_enable = false; 
-	//std::cout << window_animation.top << std::endl;
 	this->direction_player = 100;
 	this->steps_animation_right_left = 9;
 	this->lines_of_animations = 9;
@@ -28,7 +27,6 @@ uint8_t Player::system()
 
 void Player::animations(float time_animation)
 {
-	//std::cout << "----->  " << static_cast<int>(direction_player) << std::endl;
 	switch (direction_player)
 	{
 	case 0:
@@ -54,9 +52,7 @@ void Player::animations(float time_animation)
 	{
 		if (movement_enable == true)
 		{
-			//this->player_sprite.move(3, 0);
 			this->player_sprite.setPosition(player_sprite.getPosition().x + 3, player_sprite.getPosition().y);
-			//std::cout << "event";
 		}
 		if (animation[1].system(time_animation, &player_sprite) == 1)
 		{
@@ -69,9 +65,7 @@ void Player::animations(float time_animation)
 		if (movement_enable == true)
 		{
 			this->player_sprite.setPosition(player_sprite.getPosition().x - 3, player_sprite.getPosition().y);
-			//this->player_sprite.move(-3, 0);
 		}
-		//this->player_sprite.move(-3, 0);
 		if (animation[2].system(time_animation, &player_sprite) == 1)
 		{
 			this->direction_player = 100;
@@ -100,8 +94,6 @@ void Player::animations(float time_animation)
 		}
 		else
 		{
-			//this->player_sprite.move(0, - 2 - gravitY);
-
 			if (directions == 2)
 			{
 				animation[3].end_animation();
@@ -120,7 +112,6 @@ void Player::animations(float time_animation)
 		if (movement_enable == true)
 		{
 			this->player_sprite.setPosition(player_sprite.getPosition().x + 4, player_sprite.getPosition().y);
-			//this->player_sprite.move(4, 0);
 		}
 		
 		jump_limits(time_animation);
@@ -135,7 +126,6 @@ void Player::animations(float time_animation)
 		if (movement_enable == true)
 		{
 			this->player_sprite.setPosition(player_sprite.getPosition().x - 4, player_sprite.getPosition().y);
-			//this->player_sprite.move(-4, 0);
 		}
 		jump_limits(time_animation);
 		if (animation[2].system(time_animation, &player_sprite) == 1)
@@ -181,7 +171,6 @@ void Player::animations(float time_animation)
 	default:
 		break;
 	}
-	//this->movement_enable = false;
 }
 
 sf::Sprite* Player::shape_player()

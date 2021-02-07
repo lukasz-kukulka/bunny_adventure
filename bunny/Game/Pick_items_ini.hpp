@@ -35,7 +35,6 @@ private:
 	sf::Font font;
 	sf::View view_window;
 	std::vector<Single_pick_bonus>bonuses;
-	//std::vector<Single_pick_bonus>bonuses_before_delete;
 	std::vector<single_tile_out_for_bonus>tiles_parameters;
 	std::vector<int>teporary_tiles_tab;
 	std::vector<Bonus_extra_effect>bonus_info;
@@ -45,8 +44,5 @@ private:
 	bool bonus_position_ini;
 	bool confirm_delete_variable{ false };
 	bool animation_bonus_extra_effect{ false };
-	//bool info_about_bonus{ false };
-	//int aaa{ 0 }; // temporary variable
-
 };
 

@@ -9,7 +9,6 @@ public:
 	uint8_t system();
 	void draw(sf::RenderWindow& window);
 
-
 private:
 	sf::Text info_text;
 	sf::RectangleShape rectangle;

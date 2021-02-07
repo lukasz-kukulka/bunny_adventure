@@ -18,12 +18,7 @@ public:
 	void no_of_bonus_in(uint16_t index);
 	void colision_bonus();
 	void tile_sprite_in(sf::Sprite* tiles);
-	//uint16_t bonus_no_initialize();
-	//void bonus_index_incresed();
 	bool catch_bonus();
-	//bool catch_bonus_one_time();
-	//void catch_bonus_one_time_in(bool index);
-	//void catch_change_to_false();
 	void player_sprite_in(sf::Sprite* player);
 	void free_memory();
 	void tiles_type_in(uint16_t value);

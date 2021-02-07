@@ -8,6 +8,7 @@ public:
 	uint8_t system(sf::RenderWindow&, sf::Vector2i);
 	sf::RectangleShape shape();
 	void draw(sf::RenderWindow&);
+
 private:
 	sf::Sprite arrow_sprite;
 	sf::Text title_section;

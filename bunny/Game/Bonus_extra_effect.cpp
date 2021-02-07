@@ -44,16 +44,12 @@ uint8_t Bonus_extra_effect::system(sf::View window)
 		this->bonus_text.setPosition(window.getCenter().x - bonus_text.getGlobalBounds().width / 2, window.getCenter().y);
 	if (bonus_text.getScale().x < 1 && can_delete == true)
 	{
-		//std::cout << "STEP 1" << std::endl;
-		//this->bonus_text.setCharacterSize(window.getSize().x / 50);
 		this->bonus_text.setScale(bonus_text.getScale().x + 0.005, bonus_text.getScale().x + 0.005);
 		this->bonus_text.setPosition(window.getCenter().x - bonus_text.getGlobalBounds().width / 2, bonus_text.getPosition().y - 1);
 		this->bonus_text.setOutlineThickness(2);
 		if (bonus_text.getScale().x >= 0.99)
 			return 1;
-
 	}
-
 	return 0;
 }
 

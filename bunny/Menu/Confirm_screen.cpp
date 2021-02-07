@@ -7,7 +7,6 @@ Confirm_screen::Confirm_screen(sf::RenderWindow& window, sf::Font* font, std::st
 	this->text_input = text_input;
 	this->tex_color = tex_color;
 	this->tex_grey = tex_grey;
-
 	objects_ini(window);
 }
 
